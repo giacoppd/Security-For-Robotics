@@ -65,26 +65,25 @@
 \end{titlepage}
 
 \begin{abstract}
-  In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack, leaving the potential for disaster. 
-  We evaluated ROS to find security holes and document them. 
-  The different vulnerabilities found were categorized into malware, sensor hacks, network and control channel attacks, and physical attacks. 
-  For some of these attacks were able to implement solutions, which were also documented and submitted upstream.
-  These findings and any solutions were added to an ongoing academic effort to make robotics more secure.
+In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack, leaving the potential for disaster. 
+To attempt to prevent and mitigate these we evaluated ROS on a drone to find security holes and document them. 
+The different vulnerabilities found were categorized into malware, sensor hacks, network and control channel attacks, and physical attacks. 
+For some of these attacks were able to implement solutions, which were also documented.
+These findings and any solutions were added to an ongoing academic effort to make robotics more secure.
 \end{abstract}
 
 \hrule\vspace{5mm}
 \subsection*{Problem Definition}
-Robotics is still a relatively up and coming field and as most efforts in robotics are in 
-pursuit of furthering capabilities, security has been left largely untouched. 
-Because of this many functioning, deployed robots have limited to no security in their internal systems, making them very vulnerable to attacks
+Robotics is still a relatively up and coming field and as most efforts in robotics are in pursuit of furthering capabilities, security has been left largely untouched. 
+Because of this many functioning, deployed robots have limited to no security in their internal systems, making them very vulnerable to attacks.
 While the community developing robotics is still largely academic and there is little worry of being attacked, the security vunerbilities still exist. 
-It's only a matter of time before robotics become ubiquitous in society and hackers exploit these vulnerabilities for personal gain.
-There have already been reports of smart appliances being used for bot nets, it's only a matter of time before drones and other robotics are similarly abused, and through our work we hope to
-eliminate some of this abuse before it begins.
+Soon robotics will become ubiquitous in society and hackers will exploit these vulnerabilities for personal gain.
+There have already been reports of smart appliances being used for botnets, it's only a matter of time before drones and other robotics are similarly abused.
+Through our work we hope to eliminate some of this abuse before it begins.
 
 Since robotics are continually in development and there is such a wide variety of devices we have to focus our efforts onto a small subset of robotics to have any hope of making progress within a year. 
 While most likely subject to change, we are currently hoping to focus on the weaknesses of drones.
-We can choose focus on the risks within Robotic Operating System (ROS) if the device is running it, or an a real-time OS like nuttx. (choosen ros?)
+We can choose focus on the risks within Robotic Operating System (ROS) or the currently in development secure version, SROS.
 These operating systems can be attacked at the driver level with malware, they can have the configuration files modified, and they can have data intercepted or spoofed in their internal communication subsystems.
 We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
 Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices. 
@@ -108,6 +107,24 @@ Because this is such a nebulous problem at the moment, it's hard to define concr
 The best way to measure our efforts seems to simply be documentation.
 We're unsure if we even will be able to isolate and exploit a vulnerability successfully, but we can still record everything we try and our findings to help better the academic community. 
 Failure for us would mean that we not only were unable to crack a security hole, but we also failed to record our process and attempts, or didn't gather necessary data.
+
+\newpage
+
+\vspace{.2in}
+\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+Sponsor \makebox[2.5in][r]{Date} \\
+
+\vspace{.2in}
+\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+Group Member \makebox[2.5in][r]{Date} \\
+
+\vspace{.2in}
+\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+Group Member \makebox[2.5in][r]{Date} \\
+
+\vspace{.2in}
+\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+Group Member \makebox[2.5in][r]{Date} \\
 
 
 \bibliographystyle{IEEEtran}
