@@ -57,8 +57,23 @@
     \large
     \textbf{CS461 Capstone}\\ 
   \vspace{5mm}
-:cal SetSyn("tex")
     \textbf{10/13/2016}\\ 
+    
+  \vspace{.2in}
+  \makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+  Sponsor \makebox[2.5in][r]{Date} \\
+
+  \vspace{.2in}
+  \makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+  Group Member \makebox[2.5in][r]{Date} \\
+
+  \vspace{.2in}
+  \makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+  Group Member \makebox[2.5in][r]{Date} \\
+
+  \vspace{.2in}
+  \makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
+  Group Member \makebox[2.5in][r]{Date} \\
     
     \vfill
     \end{center}
@@ -88,17 +103,21 @@ These operating systems can be attacked at the driver level with malware, they c
 We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
 Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices. 
 Even physical attacks are something that needs to be addressed as a security concern.
+It's very important that we ackowledge all of these risks, since exploitation of them could be a big setback for global trust of robotics.
 
 Essentially the problem we face is twofold; first we need to isolate a specific feature of a specific device, and then we need to attempt to break that feature, then document our work.
-Assuming we are able to do that, we should attempt to find a fix for that weakness which doesn't adversely affect the functionality of the system.
-If our fix was adopted into the OS itself, we would have done a service to the community, and there would be no noticeable difference in performance to the user.
+This could be a crucial improvement for the use of robotics running ROS in a wide variety of sectors.
+The military uses and plans to use them widely, and for them more than anyone they need to be as secure as possible.
+Amazon and other commercial shipping companies have a vast use of robotics, and we've all heard about their plans for delivery drones, which are a huge security risk.
+If consumers think these will be abused they won't trust this upcoming technology and it will be slowly or never adopted, which will make companies hesitant to invest in their development.
+Consequentially, the world as a whole will be slower to advance robotic technology.
+Hopefully our work in securing robotics can help to better develop consumer trust in this emerging technology. 
 
 \subsection*{Proposed Solution}
-As stated above, the specific problem is still very vague at this point.
 The minimal solution we hope to reach is identifying and proving that a vulnerability exists in some sector of a device.
 This would include full documentation and research reports of our findings, specifically a threat model analysis based off Adam Shostack's methods. \cite[p.203]{TMDS}
 
-If possible we would hope to find some sort of fix for the vulnerability and implement it without noticeably hurting the functionality of the device.
+If possible we hope to find a reasonable fix for the vulnerability and implement it without noticeably hurting the functionality of the device.
 This implementation would follow any regulations in place and should not introduce other security holes.
 If a successful fix were to be created it would need to be fully documented and tested.
 
@@ -109,22 +128,6 @@ We're unsure if we even will be able to isolate and exploit a vulnerability succ
 Failure for us would mean that we not only were unable to crack a security hole, but we also failed to record our process and attempts, or didn't gather necessary data.
 
 \newpage
-
-\vspace{.2in}
-\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
-Sponsor \makebox[2.5in][r]{Date} \\
-
-\vspace{.2in}
-\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
-Group Member \makebox[2.5in][r]{Date} \\
-
-\vspace{.2in}
-\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
-Group Member \makebox[2.5in][r]{Date} \\
-
-\vspace{.2in}
-\makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
-Group Member \makebox[2.5in][r]{Date} \\
 
 
 \bibliographystyle{IEEEtran}
