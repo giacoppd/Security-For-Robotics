@@ -8,12 +8,12 @@ GH		= gv
 all: pdf
 
 pdf:
-	latex requirements_formatting.tex
-	bibtex requirements_formatting
-	latex requirements_formatting.tex
-	latex requirements_formatting.tex
-	dvips -R -Poutline -t letter requirements_formatting.dvi -o requirements_formatting.ps
-	ps2pdf requirements_formatting.ps
+	latex srs_template.tex
+	bibtex srs_template
+	latex srs_template.tex
+	latex srs_template.tex
+	dvips -R -Poutline -t letter srs_template.dvi -o srs_template.ps
+	ps2pdf srs_template.ps
 
 clean:
 	rm -f *.dvi *.out *.aux *.log *.bbl *.blg *.ps *.pdf
