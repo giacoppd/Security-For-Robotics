@@ -127,7 +127,8 @@ $<$Gantt Chart will go here, blah blah blah$>$
 \chapter{Specific Requirements}
 
 \section{Software Interfaces}
-$<$As we are looking for vulnerabilities in ROS, all code produced must be compatible with it or integrated into it. The version of ROS we will be using is TBD.$>$
+$<$As we are looking for vulnerabilities in ROS, all code produced must be compatible with it or integrated into it. The version of ROS we will be using is Kinetic Kame, the current long
+term support version of ROS.$>$
 
 \subsection{Communications Protocol}
 $<$ROS uses 2 major forms of communication. Internally, ROS has the publisher subscriber system, which works basically like a socket system.
@@ -137,10 +138,12 @@ station, which controls the starting and stopping of the robot. These generally 
 although with extra effort more complicated setups are possible. (SOURCE)$>$
 
 \section{External Interfaces}
-$<$blah blah blah$>$
+$<$At this time there are no plans for any particular external interface. All currently identified attack vectors are directly between
+a computer and a drone on some sort of communications channel.$>$
 
 \section{Functions}
-$<$blah blah blah$>$
+$<$Any vuneribilities found should in some way compromise the functionality or integrity of the robot. In turn, any fixes created for said vunerabilities
+should prevent those from being compromised.$>$
 
 \section{Specific Requirements}
 $<$As previously stated, at the moment (Team Name) is in the process of finding specific vulnerabilities. When we do find one, we will produce documentation outlining at least but not limited to:
