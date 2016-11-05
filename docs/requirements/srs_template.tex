@@ -79,6 +79,12 @@ Group Member \makebox[2.5in][r]{Date} \\
 \makebox[2.5in]{\hrulefill} \hspace {1.0in}\makebox[2.5in]{\hrulefill} \\
 Group Member \makebox[2.5in][r]{Date} \\
 
+\chapter{Abstract}
+In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack, leaving the potential for disaster.
+To attempt to prevent and mitigate these we evaluated ROS on a drone to find security holes and document them.
+The different vulnerabilities found were categorized into malware, sensor hacks, network and control channel attacks, and physical attacks.
+For some of these attacks were able to implement solutions, which were also documented.
+These findings and any solutions will be added to an ongoing academic effort to make robotics more secure.
 
 \chapter{Introduction}
 
@@ -116,12 +122,12 @@ $<$All software developed by (Team name) should have 2 objectives:
 $<$blah blah blah$>$
 
 \section{Constraints}
-$<$Any work done on vunerabilities needs to be appropriately documented and preferably published upstream to ROS/SROS as a whole.$>$
+$<$Any work done on vulnerabilities needs to be appropriately documented and preferably published upstream to ROS/SROS as a whole.$>$
 
 \section{Assumptions and Dependencies}
 $<$There are only 3 real dependencies for this project at time of writing. First, we must complete our threat analysis before we start looking for threats,
-so that we have a general idea of where to investigate further. Second, we need to find a vunerability before we can document it, or fix it, for obvious reasons.
-Lastly, we must have some sort of vunerability at least documented before we prepare for Expo, or we won't have anything to present on.$>$
+so that we have a general idea of where to investigate further. Second, we need to find a vulnerability before we can document it, or fix it, for obvious reasons.
+Lastly, we must have some sort of vulnerability at least documented before we prepare for Expo, or we won't have anything to present on.$>$
 
 \section{Apportioning of Requirements}
   \begin{center}
@@ -146,8 +152,8 @@ station, which controls the starting and stopping of the robot. These generally 
 although with extra effort more complicated setups are possible. (SOURCE)$>$
 
 \section{External Interfaces}
-$<$The external interface we will be working with is a DJI FlameWheel 550 hexcopter. 
-Included on it is a beaglebone black with a pixhawk firecap mounted on it. 
+$<$The external interface we will be working with is a DJI FlameWheel 550 hexcopter.
+Included on it is a beaglebone black with a pixhawk firecap mounted on it.
 The sensors it has are the same as that of a regular pixhawk, which includes a gps and 9DOF.$>$
 
 \section{Functions}
@@ -159,19 +165,23 @@ Our operating environment, the type of attack, the particular system/piece of co
 
 \section{Software Attributes}
   \subsection{Reliability}
-  $<$blah blah blah$>$
-
+  $<$The reliability of ROS is what we will be trying to ensure, specifically that of it's security. 
+  We also want our documentation of any found exploits to be clear and readable for anyone using them in the future.$>$
+ 
   \subsection{Availability}
-  $<$blah blah blah$>$
+  $<$ROS and the potential exploits that we will be studying is open source, so it is available to anyone to confirm.
+  If we are able to create a fix or patch for any of these we would contribute them to the open source SROS project.$>$
 
   \subsection{Security}
-  $<$blah blah blah$>$
+  $<$Security is the backbone of our entire project, we will be working specifically on finding potential security holes in ROS.
+  If possible we hope to be able to create a patch for ones we are able to exploit and help to improve the security for everyone.$>$
 
   \subsection{Maintainability}
-  $<$blah blah blah$>$
+  $<$Because ROS is actively supported the software is maintained.
+  If we produce a patch we would submit it to the SROS project and have it maintained within that.$>$
 
   \subsection{Portability}
-  $<$blah blah blah$>$
-
+  $<$ROS itself is very portable and we will be putting it onto our beaglebone.
+  This also means that if we created a patch it would need to also be portable to the SROS project.$>$
 
 \end{document}
