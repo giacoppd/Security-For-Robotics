@@ -89,10 +89,10 @@ These findings and any solutions will be added to an ongoing academic effort to 
 \chapter{Introduction}
 
 \section{Purpose}
-$<$To define the requirements and deliverables for Group 50's capstone project to our sponsor, Vedanth Narayanan.$>$
+To define the requirements and deliverables for Group 50's capstone project to our sponsor, Vedanth Narayanan.
 
 \section{Scope}
-$<$We are to find security vulnerabilities in ROS/SROS, document these vulnerabilities, and if possible, produce patches for anything we find. Any patches produced will be submitted to the ROS project. Our testing will be focused around ROS/SROS running on a drone, and we will see if we can compromise that drone based on our findings.$>$
+We are to find security vulnerabilities in ROS/SROS, document these vulnerabilities, and if possible, produce patches for anything we find. Any patches produced will be submitted to the ROS project. Our testing will be focused around ROS/SROS running on a drone, and we will see if we can compromise that drone based on our findings.
 
 \section{Definitions}
 \begin{itemize}
@@ -102,31 +102,31 @@ $<$We are to find security vulnerabilities in ROS/SROS, document these vulnerabi
 \end{itemize}
 
 \section{Overview}
-$<$This document gives an overall agenda for our research. It is divided into 3 main sections:
+This document gives an overall agenda for our research. It is divided into 3 main sections:
 Section 1 is the introduction and purpose of this document, along with some acronym definitions.
 Section 2 contains the overall description of the goals we hope to achieve in our research.
-Section 3 lists our specific goals for our research.$>$
+Section 3 lists our specific goals for our research.
 
 
 \chapter{Overall Description}
 
 \section{Product Perspective}
-$<$All software developed by Group 50 should have 2 objectives:
+All software developed by Group 50 should have 2 objectives:
 1. Fixing a specific, known vulnerability in ROS/SROS
-2. Be lightweight enough that the implementation doesn't drastically affect the overall operation of the robot. Ideally, any code produced would be later incorporated into ROS itself, and not an external layer or program.$>$
+2. Be lightweight enough that the implementation doesn't drastically affect the overall operation of the robot. Ideally, any code produced would be later incorporated into ROS itself, and not an external layer or program.
 
 \section{Product Functions}
-$<$The main product we will be producing is research documentation on the potential security exploits in ROS.
+The main product we will be producing is research documentation on the potential security exploits in ROS.
 This will hopefully be used in future research and development of a more secure ROS.
-If we are able to exploit a vulnerability and create a functional patch for it, the changes will be submitted to the SROS project.$>$
+If we are able to exploit a vulnerability and create a functional patch for it, the changes will be submitted to the SROS project.
 
 \section{Constraints}
-$<$Any work done on vulnerabilities needs to be appropriately documented and preferably published upstream to ROS/SROS as a whole.$>$
+Any work done on vulnerabilities needs to be appropriately documented and preferably published upstream to ROS/SROS as a whole.
 
 \section{Assumptions and Dependencies}
-$<$There are only 3 real dependencies for this project at time of writing. First, we must complete our threat analysis before we start looking for threats,
+There are only 3 real dependencies for this project at time of writing. First, we must complete our threat analysis before we start looking for threats,
 so that we have a general idea of where to investigate further. Second, we need to find a vulnerability before we can document it, or fix it, for obvious reasons.
-Lastly, we must have some sort of vulnerability at least documented before we prepare for Expo, or we won't have anything to present on.$>$
+Lastly, we must have some sort of vulnerability at least documented before we prepare for Expo, or we won't have anything to present on.
 
 \section{Apportioning of Requirements}
   \begin{center}
@@ -141,46 +141,46 @@ Lastly, we must have some sort of vulnerability at least documented before we pr
 \chapter{Specific Requirements}
 
 \section{Software Interfaces}
-$<$As we are looking for vulnerabilities in ROS, all code produced must be compatible with it or integrated into it. The version of ROS we will be using is Kinetic Kame, the current long-term support version of ROS.$>$
+As we are looking for vulnerabilities in ROS, all code produced must be compatible with it or integrated into it. The version of ROS we will be using is Kinetic Kame, the current long-term support version of ROS.
 
 \subsection{Communications Protocol}
-$<$ROS uses 2 major forms of communication. Internally, ROS has the publisher subscriber system, which works basically like a socket system.
+ROS uses 2 major forms of communication. Internally, ROS has the publisher subscriber system, which works basically like a socket system.
 Publishers export data, and anyone who subscribes to that publisher receives the data, with no limit to the number of
 subscribers or any authentication on who can subscribe. There is also normally some sort of wireless/wired connection to a base
 station, which controls the starting and stopping of the robot. These generally take the form of a standard LAN connection,
-although with extra effort more complicated setups are possible.$>$
+although with extra effort more complicated setups are possible.
 
 \section{External Interfaces}
-$<$The external interface we will be working with is a DJI FlameWheel 550 hexcopter.
+The external interface we will be working with is a DJI FlameWheel 550 hexcopter.
 Included on it is a beaglebone black with a pixhawk firecap mounted on it.
-The sensors it has are the same as that of a regular pixhawk, which includes a gps and 9DOF.$>$
+The sensors it has are the same as that of a regular pixhawk, which includes a gps and 9DOF.
 
 \section{Functions}
-$<$Any vulnerabilities found should in some way compromise the functionality or integrity of the robot. In turn, any fixes created for said vulnerabilities should prevent those from being compromised.$>$
+Any vulnerabilities found should in some way compromise the functionality or integrity of the robot. In turn, any fixes created for said vulnerabilities should prevent those from being compromised.
 
 \section{Specific Requirements}
-$<$As previously stated, at the moment Group 50 is in the process of finding specific vulnerabilities. When we do find one, we will produce documentation outlining at least but not limited to:
-Our operating environment, the type of attack, the particular system/piece of code attacked, the success rate of the attack, the result of the attack, and the potential fix to prevent the attack.$>$
+As previously stated, at the moment Group 50 is in the process of finding specific vulnerabilities. When we do find one, we will produce documentation outlining at least but not limited to:
+Our operating environment, the type of attack, the particular system/piece of code attacked, the success rate of the attack, the result of the attack, and the potential fix to prevent the attack.
 
 \section{Software Attributes}
   \subsection{Reliability}
-  $<$The reliability of ROS is what we will be trying to ensure, specifically that of it's security.
-  We also want our documentation of any found exploits to be clear and readable for anyone using them in the future.$>$
+  The reliability of ROS is what we will be trying to ensure, specifically that of it's security.
+  We also want our documentation of any found exploits to be clear and readable for anyone using them in the future.
 
   \subsection{Availability}
-  $<$ROS and the potential exploits that we will be studying is open source, so it is available to anyone to confirm.
-  If we are able to create a fix or patch for any of these we would contribute them to the open source SROS project.$>$
+  ROS and the potential exploits that we will be studying is open source, so it is available to anyone to confirm.
+  If we are able to create a fix or patch for any of these we would contribute them to the open source SROS project.
 
   \subsection{Security}
-  $<$Security is the backbone of our entire project, we will be working specifically on finding potential security holes in ROS.
-  If possible we hope to be able to create a patch for ones we are able to exploit and help to improve the security for everyone.$>$
+  Security is the backbone of our entire project, we will be working specifically on finding potential security holes in ROS.
+  If possible we hope to be able to create a patch for ones we are able to exploit and help to improve the security for everyone.
 
   \subsection{Maintainability}
-  $<$Because ROS is actively supported the software is maintained.
-  If we produce a patch we would submit it to the SROS project and have it maintained within that.$>$
+  Because ROS is actively supported the software is maintained.
+  If we produce a patch we would submit it to the SROS project and have it maintained within that.
 
   \subsection{Portability}
-  $<$ROS itself is very portable and we will be putting it onto our beaglebone.
-  This also means that if we created a patch it would need to also be portable to the SROS project.$>$
+  ROS itself is very portable and we will be putting it onto our beaglebone.
+  This also means that if we created a patch it would need to also be portable to the SROS project.
 
 \end{document}
