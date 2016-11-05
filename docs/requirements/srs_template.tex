@@ -21,6 +21,7 @@
 \usepackage[bookmarks=true]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{graphicx}
 \hypersetup{
     bookmarks=false,    % show bookmarks bar?
     pdftitle={Software Requirement Specification},    % title
@@ -98,7 +99,10 @@ $<$We are to find security vulnerabilities in ROS/SROS, document these vulnerabi
 $<$blah blah blah$>$
 
 \section{Overview}
-$<$blah blah blah$>$
+$<$This document gives an overall agenda for our research. It is divided into 3 main sections:
+Section 1 is the introduction and purpose of this document, along with some acronym definitions.
+Section 2 contains the overall description of the goals we hope to achieve in our research.
+Section 3 lists our specific goals for our research.$>$
 
 
 \chapter{Overall Description}
@@ -118,17 +122,24 @@ $<$blah blah blah$>$
 $<$blah blah blah$>$
 
 \section{Assumptions and Dependencies}
-$<$blah blah blah$>$
+$<$There are only 3 real dependencies for this project at time of writing. First, we must complete our threat analysis before we start looking for threats,
+so that we have a general idea of where to investigate further. Second, we need to find a vunerability before we can document it, or fix it, for obvious reasons.
+Lastly, we must have some sort of vunerability at least documented before we prepare for Expo, or we won't have anything to present on.$>$
 
 \section{Apportioning of Requirements}
-$<$Gantt Chart will go here, blah blah blah$>$
+  \begin{center}
+    \begin{figure}
+      \makebox[\textwidth]{\includegraphics[width=\paperwidth]{ganntSPnotext.png}}
+      \caption{Gantt Chart}
+      \label{fig:gantt}
+    \end{figure}
+  \end{center}
 
 
 \chapter{Specific Requirements}
 
 \section{Software Interfaces}
-$<$As we are looking for vulnerabilities in ROS, all code produced must be compatible with it or integrated into it. The version of ROS we will be using is Kinetic Kame, the current long
-term support version of ROS.$>$
+$<$As we are looking for vulnerabilities in ROS, all code produced must be compatible with it or integrated into it. The version of ROS we will be using is Kinetic Kame, the current long-term support version of ROS.$>$
 
 \subsection{Communications Protocol}
 $<$ROS uses 2 major forms of communication. Internally, ROS has the publisher subscriber system, which works basically like a socket system.
@@ -138,12 +149,12 @@ station, which controls the starting and stopping of the robot. These generally 
 although with extra effort more complicated setups are possible. (SOURCE)$>$
 
 \section{External Interfaces}
-$<$At this time there are no plans for any particular external interface. All currently identified attack vectors are directly between
-a computer and a drone on some sort of communications channel.$>$
+$<$The external interface we will be working with is a DJI FlameWheel 550 hexcopter. 
+Included on it is a beaglebone black with a pixhawk firecap mounted on it. 
+The sensors it has are the same as that of a regular pixhawk, which includes a gps and 9DOF.$>$
 
 \section{Functions}
-$<$Any vuneribilities found should in some way compromise the functionality or integrity of the robot. In turn, any fixes created for said vunerabilities
-should prevent those from being compromised.$>$
+$<$Any vulnerabilities found should in some way compromise the functionality or integrity of the robot. In turn, any fixes created for said vulnerabilities should prevent those from being compromised.$>$
 
 \section{Specific Requirements}
 $<$As previously stated, at the moment (Team Name) is in the process of finding specific vulnerabilities. When we do find one, we will produce documentation outlining at least but not limited to:
