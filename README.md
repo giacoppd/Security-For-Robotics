@@ -2,10 +2,9 @@
 
 ### Project Members
   * Vedanth Narayanan `Project Client (narayave)`
-
   * Dominic Giacoppe `(giacoppd)`
   * Emily Longman `(longmane)`
-	* Zach Rogers `(rogersza)`
+  * Zach Rogers `(rogersza)`
 
 ### Structure
 * Problem Statement Document `docs/problem_statement`
