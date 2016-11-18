@@ -12,3 +12,7 @@
 * Requirements Document `docs/requirements`
 
 * Technology Review Document `docs/tech_review`
+
+* Design Document `docs/design_doc`
+
+* PCB Schematics `schematics/`
