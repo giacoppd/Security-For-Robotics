@@ -15,6 +15,8 @@
 \usepackage{hyperref}
 \usepackage{textcomp}
 \usepackage{listings}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -74,10 +76,19 @@ data to reverse-engineer the drone's methods of communication for the purpose of
 The two drones that we have use a 2.4Ghz data-link between the drone and the receiver ground-station unit.
 That receiver unit then uses a Bluetooth connection to connect to the user's controller, which is a physical controller
 or device such as a laptop or tablet.\cite{NazaM2} With this in mind, there are two communication channels that can be
-targeted. The 2.4Ghz frequency is commonly used by most Wireless Access Points, following the 802.11a/b/g
-standard.Bluetooth is another method of communication via RF (radio frequencies). This means that communication packets
-for the drone is being sent and received out in the open, which can be can be intercepted and analyzed with the right
-tools.
+targeted; the connection from the drone to the ground-station unit, and the connection from the ground-station unit
+to the controller, this can be seen on Figure ~\ref{fig:datalink_diagram}\cite{NazaM2}.
+
+\begin{figure}[h]
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{datalink_diagram}}
+  \caption{Flame Wheel ARF F550 Datalink Diagram}
+  \label{fig:datalink_diagram}
+\end{figure}
+
+The 2.4Ghz frequency is commonly used by most Wireless Access Points, following the IEEE 802.11a/b/g
+standard. Bluetooth is another protocol that operates within the 2.4Ghz RF (radio frequency) spectrum.
+This means that communication packets for the drone is being sent and received out in the open, which can be can be
+intercepted and analyzed with the right tools.
 
 \subsection*{Methods of Data Capture}
 
