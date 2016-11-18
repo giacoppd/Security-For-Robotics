@@ -61,24 +61,32 @@
 \end{titlepage}
 
 \begin{abstract}
-Our goal as a group is to identify vulnerabilities, both hardware and software related, within our drone system. A big part of that will have to do with
-the drone's communication channel, which describes how a user controls a drone during flight and general operation. In order to attack the communication
-channel, we must first understand how the drones communicate with the user, and how the user sends commands to the drone. This will involve lots of data
-capturing. So my focus right now is to determine how we will be capturing that data, and how we will use that data to reverse-engineer the drone's methods
-of communication for the purpose of developing attack methods.
+Our goal as a group is to identify vulnerabilities, both hardware and software related, within our drone system.
+A big part of that will have to do with the drone's communication channel, which describes how a user controls a
+drone during flight and general operation. In order to attack the communication channel, we must first understand
+how the drones communicate with the user, and how the user sends commands to the drone. This will involve lots of
+data capturing. So my focus right now is to determine how we will be capturing that data, and how we will use that
+data to reverse-engineer the drone's methods of communication for the purpose of developing attack methods.
 \end{abstract}
 
 \hrule\vspace{5mm}
 \subsection*{Drone Communication Channel}
-The two drones that we have use a 2.4Ghz data-link between the drone and the receiver ground-station unit. That receiver unit then uses a Bluetooth
-connection to connect to the user's controller, which is a physical controller or device such as a laptop or tablet. With this in mind, there are two
-communication channels that can be targeted. The 2.4Ghz frequency is commonly used by most Wireless Access Points, following the 802.11a/b/g standard.
-Bluetooth is another method of communication via RF (radio frequencies). This means that communication packets for the drone is being sent and received
-out in the open, which can be can be intercepted and analyzed with the right tools.
+The two drones that we have use a 2.4Ghz data-link between the drone and the receiver ground-station unit.
+That receiver unit then uses a Bluetooth connection to connect to the user's controller, which is a physical controller
+or device such as a laptop or tablet.\cite{NazaM2} With this in mind, there are two communication channels that can be
+targeted. The 2.4Ghz frequency is commonly used by most Wireless Access Points, following the 802.11a/b/g
+standard.Bluetooth is another method of communication via RF (radio frequencies). This means that communication packets
+for the drone is being sent and received out in the open, which can be can be intercepted and analyzed with the right
+tools.
 
 \subsection*{Methods of Data Capture}
 
 
 \subsection*{Leveraging Captured Data to Develop Attack Methods}
+
+
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{tech_review}
 
 \end{document}
