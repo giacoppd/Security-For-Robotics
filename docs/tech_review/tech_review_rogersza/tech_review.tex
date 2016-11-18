@@ -108,7 +108,13 @@ is only a small part of getting to the ultimate goal of intercepting drone data;
 Development phase. The next step is to explore how exactly to capture that data.
 
 \subsection*{Methods of Data Capture}
+Capturing communication data between the user flying the drone, and the drone itself, will allow us to reverse engineer
+the communication protocols being used. Being able to capture that data also presents the possibility of doing a
+Man-In-The-Middle (MITM) like attack, enabling an attacker to intercept and spoof commands being sent to the drone
+in real time.
 
+In order to capture this data, we need hardware that can recieve RF on the 2.4Ghz and 900Mhz band. There are many, many
+options out there, some of which can be quite costly. 
 
 \subsection*{Leveraging Captured Data to Develop Attack Methods}
 
