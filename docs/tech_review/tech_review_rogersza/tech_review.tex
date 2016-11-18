@@ -92,7 +92,7 @@ open, which can be can be intercepted and analyzed with the right tools.
 
 Each drone will be using a BeagleBone Black with a PixHawk Fire v1.6 Cape, making our drones Linux powered, running
 Ubuntu Snappy Core, enabling us to use ROS\cite{PixHawk}. The PixHawk is a flight control system, similar to the
-Naza M2, which comes standard on the Flame Wheel ARF F550. It handles the drone's flight system, and includes a cluster
+Naza-M2, which comes standard on the Flame Wheel ARF F550. It handles the drone's flight system, and includes a cluster
 of sensors (GPS, Gyroscope, etc) to keep track of vital information in order to maintain control over the drone while
 in flight. The PixHawk also handles telementry communication between the drone and the ground-station. As stated before,
 2.4Ghz is the operating frequency between the drone and the ground-station, though the PixHawk also supports a RFD900
@@ -100,6 +100,12 @@ in flight. The PixHawk also handles telementry communication between the drone a
 channel that could be targeted. In order to intercept and analyze 900Mhz RF communications, we would need additional
 tools, seperate from what would be needed to intercept and analyze communications on the 2.4Ghz
 frequency\cite{HakDaSpectrum900}.
+
+What should now be clear is that there are a lot of data transmitted in the open air in order to have a successful
+drone system. This means that there are a lot of different ways that communications can be intercepted and even
+altered, in an attempt to gain control over a drone's flight plan. Knowing which communication channels to target
+is only a small part of getting to the ultimate goal of intercepting drone data; consider that the R&D phase. The next
+step is to explore how exactly to capture that data.
 
 \subsection*{Methods of Data Capture}
 
