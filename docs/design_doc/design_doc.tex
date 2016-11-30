@@ -1,0 +1,105 @@
+\documentclass[IEEEtran,letterpaper,10pt,titlepage,draftclsnofoot,onecolumn]{article}
+
+\usepackage{nopageno}
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+\usepackage{balance}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=c,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\def\name{Emily Longman}
+
+\begin{document}
+\begin{titlepage}
+  \begin{center}
+    \vspace*{1cm}
+    
+    \huge
+    \textbf{Security for Robotics - Design Document}      
+  \vspace{0.5cm}
+        
+    \textit{Emily Longman, Zach Rogers, and Dominic Giacoppe}\\ 
+  \vspace{0.5cm}
+    \vfill
+    \large
+    \textbf{CS461 Capstone}\\ 
+  \vspace{5mm}
+
+    \textbf{11/30/2016}\\ 
+    
+    \vfill
+    \end{center}
+\end{titlepage}
+
+\begin{abstract}
+  In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack. 
+  We will evaluate the ROS to find as many of these security holes as we can and document them. 
+  The different vulnerabilities find will be categorized into malware, sensor hacks, network and control channel attacks, and physical breaches. 
+  For some of these exploits we may be able to implement solutions, which will also be documented. 
+  These findings and any solutions will be added to an ongoing academic effort to make robotics more secure.
+\end{abstract}
+
+\subsection*{Drone OS}
+
+For the purposes of the OS, it is not so much it's design as it is it's execution. 
+Since we are using ROS Kinetic, the most recent version of ROS, we will download and compile from source following ROS's instructions here: http://wiki.ros.org/kinetic/Installation/Source. 
+We will need to do this twice, once on the robot itself and once on our designated control station. 
+Since these instructions assume for the most part that the system is being built off Ubuntu, the actual challenge here will be installing Ubuntu to both systems, and in particular installing to the drone itself. 
+The control station is a laptop and shouldn't be any harder than installing off a live cd tends to be, which means it shouldn't take more than an hour or two, assuming we use a normal laptop. 
+Installing to the drone is a more complicated affair; the exact process is board dependent and may in fact be optional. 
+If our drone does not need to be software wiped before we can use it, my understanding is that the prior users of our drone were already using Ubuntu so we wouldn't need to actually do anything except clean off their project-specific code. 
+If we do need to actually build Ubuntu on the drone, Zach has compiled some documentation for our board and it 
+would suggest that it's not difficult at all. 
+Most of the documentation needed is found at http://elinux.org/BeagleBoardUbuntu and the general idea is that we create a live install medium on an sd card and boot off that in our drone. 
+From there it shouldn't be too much different from a normal 
+Ubuntu install, beyond the fact we are going for a minimal install in order to converse memory. 
+We can also flash our OS directly to the eMMC, but doing so may permanently configure the drone, which 
+would not be good stewardship of loaned materials. 
+Either way, it would involve burning an ISO image to an SD card to be put in the drone, so we do not need to worry about wired/wireless configurations, just finding an SD card to burn. I do not foresee this being a particularly involved process.
+
+\subsection*{Wired/Wireless communications}
+
+Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop. 
+We may need to configure the Ubuntu install on the drone to recognize the Ethernet connection but it should be automated as part of the install, if it is anything like what a normal live installation media is like. 
+The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity for an Ubuntu system. 
+On the same page as the installation guide, about 2/3rds of the way down is a guide for configuring this as far as the software side is concerned. 
+Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and Zach will cover it later on.
+
+\subsection*{ROS v SROS (or rather ROS)}
+Once we have Ubnutu installed on both the station and the drone, we can follow http://wiki.ros.org/indigo/Installation/UbuntuARM this guide for the actual installation process.
+The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some apt-gets, and ROS will be installed. 
+The better question is what ROS packages we will install outside of the base ones for testing, but that is a question for later on. 
+
+\bibliographystyle{IEEEtran}
+\bibliography{design_doc.bib}
+
+\end{document}
