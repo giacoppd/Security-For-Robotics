@@ -89,15 +89,21 @@ Either way, it would involve burning an ISO image to an SD card to be put in the
 \subsection*{Wired/Wireless communications}
 
 Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop. 
-We may need to configure the Ubuntu install on the drone to recognize the Ethernet connection but it should be automated as part of the install, if it is anything like what a normal live installation media is like. 
-The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity for an Ubuntu system. 
-On the same page as the installation guide, about 2/3rds of the way down is a guide for configuring this as far as the software side is concerned. 
-Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and Zach will cover it later on.
+We may need to configure the Ubuntu install on the drone to recognize the Ethernet connection but it should be automated as
+part of the Ubuntu install, if it is anything like what a normal live installation media is like. 
+The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity 
+for an Ubuntu system. 
+On the same page as the installation guide, about 2/3rds of the way down is a guide for configuring this as far as the software 
+side is concerned, which should be enough for our purposes.
+Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and will be covered
+later on in this document.
 
 \subsection*{ROS v SROS (or rather ROS)}
 Once we have Ubnutu installed on both the station and the drone, we can follow http://wiki.ros.org/indigo/Installation/UbuntuARM this guide for the actual installation process.
-The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some apt-gets, and ROS will be installed. 
-The better question is what ROS packages we will install outside of the base ones for testing, but that is a question for later on. 
+The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some 
+apt-gets, and ROS will be installed. 
+The better question is what ROS packages we will install outside of the base ones for testing, but that is a question for later 
+on as we explore our options. 
 
 \bibliographystyle{IEEEtran}
 \bibliography{design_doc.bib}
