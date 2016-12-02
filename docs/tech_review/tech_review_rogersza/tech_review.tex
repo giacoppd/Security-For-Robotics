@@ -114,10 +114,27 @@ Man-In-The-Middle (MITM) like attack, enabling an attacker to intercept and spoo
 in real time.
 
 In order to capture this data, we need hardware that can recieve RF on the 2.4Ghz and 900Mhz band. There are many, many
-options out there, some of which can be quite costly. 
+options out there, some of which can be quite costly. Since the primary method of communication is through the 2.4 Ghz
+band, we can use a standard wireless radio that can run in permiscuous mode\cite{WiFiPerc}. Permiscuous Mode enables
+us to capture wireless packets without associating with an access point. This is how a lot of wireless attacks are
+performed\cite{WiFiPerc}. With this, we can use the Aircrack-NG suite of wireless auditing tools to attack the wireless
+communication channel that the drone uses\cite{AircrackNG}.
+
+While running in permiscuous mode a popular packet capturing tool known as Wireshark will also be helpful. Wireshark
+is a very powerful application that will allow deep packet inspection, which will aid in reverse engineering the
+communication channel\cite{WiFiPerc}.
+
+With these tools we will be able to capture communication between the drone and the drone ground control station, allowing
+us to leverage that data to develop drone attack methods, relating to our communications threat model.
 
 \subsection*{Leveraging Captured Data to Develop Attack Methods}
 
+Wireshark will also assist with analying the unknown communication protocol that the drone uses. Following the packet
+streams, and looking at the raw packet data, will allow us to form a concrete understanding of how the drone and
+ground control system associate with each other, and how commands are sent to the drone\cite{UknProto}.
+
+If reverse engineering proves to be unsuccessful, or difficult, we will still be in a poisiton to attack the drone
+communications, using MITM style attacks, and possibly some fuzzing related attacks\cite{Fuzzy}. 
 
 \newpage
 \bibliographystyle{IEEEtran}
