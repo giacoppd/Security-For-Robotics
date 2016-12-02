@@ -71,39 +71,39 @@
 \subsection*{Drone OS}
 
 For the purposes of the OS, it is not so much it's design as it is it's execution.
-Since we are using ROS Kinetic, the most recent version of ROS, we will download and compile from source following ROS's instructions here: http://wiki.ros.org/kinetic/Installation/Source.
-We will need to do this twice, once on the robot itself and once on our designated control station.
-Since these instructions assume for the most part that the system is being built off Ubuntu, the actual challenge here will be installing Ubuntu to both systems, and in particular installing to the drone itself.
-The control station is a laptop and shouldn't be any harder than installing off a live cd tends to be, which means it shouldn't take more than an hour or two, assuming we use a normal laptop.
-Installing to the drone is a more complicated affair; the exact process is board dependent and may in fact be optional.
-If our drone does not need to be software wiped before we can use it, my understanding is that the prior users of our drone were already using Ubuntu so we wouldn't need to actually do anything except clean off their project-specific code.
-If we do need to actually build Ubuntu on the drone, Zach has compiled some documentation for our board and it
-would suggest that it's not difficult at all.
-Most of the documentation needed is found at http://elinux.org/BeagleBoardUbuntu and the general idea is that we create a live install medium on an sd card and boot off that in our drone.
-From there it shouldn't be too much different from a normal
-Ubuntu install, beyond the fact we are going for a minimal install in order to converse memory.
-We can also flash our OS directly to the eMMC, but doing so may permanently configure the drone, which
-would not be good stewardship of loaned materials.
-Either way, it would involve burning an ISO image to an SD card to be put in the drone, so we do not need to worry about wired/wireless configurations, just finding an SD card to burn. I do not foresee this being a particularly involved process.
+We will be using ROS Indigo, which is the recommended version of ROS for our setup, http://wiki.ros.org/indigo,
+on top of some board-specific software builds.
+The control station, AKA a desktop or laptop computer running Ubuntu 14.04 for it's own operating system, will have a trivial
+install and setup procedure. It is detailed here http://wiki.ros.org/indigo/Installation/Ubuntu but boils down to about 8 
+commands total and waiting for apt-get to finish. We forsee little trouble with the process.
+The more involved process will be flashing the drone with the correct software. To start, we will need to flash the beagle
+bone black itself with a specific image found at the link along with instructions for the flashing process.
+http://ardupilot.org/dev/docs/building-for-beaglebone-black-on-linux.html# 
+The general idea here is to flash a SD card with the given image, then get the beagle bone black to boot off it. After that,
+we'll need to build the associated kernel with instructions on the same page and insert that into the beagle bone black
+so that it can operate the pixhawk. That is much the same process except we'll have to install some specific packages 
+for cross compiling. Once that is complete, then we can build the pixhawk specific libraries for autopilot with instructions
+found on this page: http://ardupilot.org/dev/docs/building-px4-for-linux-with-make.html. We would need to follow the 
+advanced instructions at the bottom of the page, but they are no harder than command line git and should not be too difficult.
+Once this is all done, our drone will be using a version of arduPilot for our flight systems and a custom Debian-based Linux 
+build for the underlying operating system on the beagle board black.
 
 \subsection*{Network Setup}
 
-Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop.
-We may need to configure the Ubuntu install on the drone to recognize the Ethernet connection but it should be automated as
-part of the Ubuntu install, if it is anything like what a normal live installation media is like.
+Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop. We may need to configure the debian install on the drone to recognize the Ethernet connection but it 
+should be automated as part of the debian install, if it is anything like what a normal live installation media is like.
 The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity
-for an Ubuntu system.
-On the same page as the installation guide, about 2/3rds of the way down is a guide for configuring this as far as the software
-side is concerned, which should be enough for our purposes.
+for an debian system. If the need arises many guides for setting up wireless connections on linux systems exist, like this
+https://www.linux.com/learn/how-configure-wireless-any-linux-desktop one. It should not be a big issue.
 Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and will be covered
 later on in this document.
 
 \subsection*{ROS v SROS (or rather ROS)}
-Once we have Ubnutu installed on both the station and the drone, we can follow http://wiki.ros.org/indigo/Installation/UbuntuARM this guide for the actual installation process.
+Once we have Ubunutu installed on both the station and debian on the drone, we can follow 
+http://wiki.ros.org/indigo/Installation/
 The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some
-apt-gets, and ROS will be installed.
-The better question is what ROS packages we will install outside of the base ones for testing, but that is a question for later
-on as we explore our options.
+apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ones for 
+testing, but that is a question for later on as we explore our options.
 
 \subsection*{Drone Communication Channel}
 The two drones that we have use a 2.4Ghz data-link between the drone and the receiver ground-station unit.
