@@ -1,4 +1,4 @@
-\documentclass[IEEEtran,letterpaper,10pt,titlepage,draftclsnofoot,onecolumn]{article}
+\documentclass[IEEEtran,letterpaper,10pt,notitlepage,draftclsnofoot,onecolumn]{article}
 
 \usepackage{nopageno}
 \usepackage{alltt}
@@ -15,6 +15,7 @@
 \usepackage{hyperref}
 \usepackage{textcomp}
 \usepackage{listings}
+\usepackage{titling}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -39,34 +40,33 @@
 \def\name{Emily Longman}
 
 \begin{document}
-\begin{titlepage}
+\begin{titlingpage}
   \begin{center}
     \vspace*{1cm}
 
     \huge
-    \textbf{Security for Robotics - Design Document}
+    \textbf{Design Document}
+    \textbf{Security for Robotics}
   \vspace{0.5cm}
 
     \textit{Emily Longman, Zach Rogers, and Dominic Giacoppe}\\
-  \vspace{0.5cm}
-    \vfill
+  \vspace{10cm}
     \large
-    \textbf{CS461 Capstone}\\
-  \vspace{5mm}
+    \textbf{CS461 Fall Capstone}\\
+  \vspace{5cm}
 
-    \textbf{11/30/2016}\\
+    \textbf{12/2/2016}\\
 
-    \vfill
+    \begin{abstract}
+      In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack.
+      We will evaluate the ROS to find as many of these security holes as we can and document them.
+      The different vulnerabilities found will be categorized into malware, sensor hacks, network and control channel attacks, and physical breaches.
+      For some of these exploits we may be able to implement solutions, which will also be documented.
+      These findings and any solutions will be added to an ongoing academic effort to make robotics more secure.
+    \end{abstract}
+
     \end{center}
-\end{titlepage}
-
-\begin{abstract}
-  In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack.
-  We will evaluate the ROS to find as many of these security holes as we can and document them.
-  The different vulnerabilities found will be categorized into malware, sensor hacks, network and control channel attacks, and physical breaches.
-  For some of these exploits we may be able to implement solutions, which will also be documented.
-  These findings and any solutions will be added to an ongoing academic effort to make robotics more secure.
-\end{abstract}
+\end{titlingpage}
 
 \section{Introduction}
 \subsection{Problem Definition}
@@ -78,15 +78,13 @@ There have already been reports of smart appliances being used for botnets, it's
 Through our work we hope to eliminate some of this abuse before it begins.
 
 Since robotics are continually in development and there is such a wide variety of devices we have to focus our efforts onto a small subset of robotics to have any hope of making progress within a year. 
-While most likely subject to change, we are currently hoping to focus on the weaknesses of drones.
-We can choose focus on the risks within Robotic Operating System (ROS) or the currently in development secure version, SROS.
-These operating systems can be attacked at the driver level with malware, they can have the configuration files modified, and they can have data intercepted or spoofed in their internal communication subsystems.
-We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
+The Robotic Operating System (ROS) can be attacked at the driver level with malware, can have the configuration files modified, and can have data intercepted or spoofed in the internal communication subsystems.
+We should also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
 Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices. 
 Even physical attacks are something that needs to be addressed as a security concern.
 It's very important that we acknowledge all of these risks, since exploitation of them could be a big setback for global trust of robotics.
 
-Essentially the problem we face is twofold; first we need to isolate a specific feature of a specific device, and then we need to attempt to break that feature, then document our work.
+Essentially the problem we face is twofold; first we need to isolate a specific feature of a specific device, and then we need to attempt to break that feature, and document our work.
 This could be a crucial improvement for the use of robotics running ROS in a wide variety of sectors.
 The military uses and plans to use them widely, and for them more than anyone they need to be as secure as possible.
 Amazon and other commercial shipping companies have a vast use of robotics, and we've all heard about their plans for delivery drones, which are a huge security risk.
@@ -102,7 +100,7 @@ This method is widely used in industry when producing any sort of software. Many
 There are a variety of tools and technologies that can be used in threat modeling, which I am going to be comparing.
 
 Adam Shostack mentions in his book on threat modeling that  \cite[p.203]{TMDS}
-one of the most important tools we can use is a whiteboard.
+One of the most important tools we can use is a whiteboard.
 This may not be a true technology but its important for us to be able to visualize the various modes of possible attack.
 It's perfect for initial creation of the models as we're sure to make many changes to ideas.
 
@@ -118,7 +116,15 @@ We can then update this as we make progress on that specific exploit, and eventu
 To get the most out of threat modeling it would be great to employ all of these, but they may not all be viable.
 
 \subsection{Data of Interest}
-Discuss Failure Modes here...
+There is wide variety of data to collect in this project, and that data is different for each class of attack.
+This makes drawing any overarching final conclusions difficult, as well as defining which exploits are the most severe.
+One form of data is universal though, and that's the failure mode of each successful attack.
+Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures.
+Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and detection rating scales, usually from 1 to 10.
+After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be mathematically ranked in order of importance. \cite{FMEA}
+
+Employing this method and applying it to all successful exploits found will be immensely helpful in being able to compare completely separate systems.
+Final conclusion data can be drawn form these and an ultimate ranking of security prioritized vulnerabilities would be an immensely useful product to the community as a whole. 
 
 \section{Approach}
 \subsection{Methods of Data Capture}
