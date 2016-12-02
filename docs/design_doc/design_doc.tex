@@ -220,20 +220,20 @@ Actually setting up the wireless card so that the board recognizes it and can us
 The control station wireless shouldn't be any different than the drone's, and may in fact be pre-configured for us as part of the initial installation.
 
 \subsection{Drone OS}
-For the purposes of the OS, it is not so much it's design as it is it's execution.
-We will be using ROS Indigo, which is the recommended version of ROS for our setup on top of some board-specific software 
-builds. The control station, AKA a desktop or laptop computer running Ubuntu 14.04 for it's own operating system, will have a 
-trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8 commands total and waiting for 
-apt-get to finish. We foresee little trouble with the process.The more involved process will be flashing the drone with the 
-correct software. To start, we will need to flash the BeagleBone black itself with a specific image found at this link along 
-with instructions for the flashing process\cite{buildingBBB}. The general idea here is to flash a SD card with the given image, 
-then get the beagle bone black to boot off it. After that, we'll need to build the associated kernel with instructions on the 
-same page and insert that into the beagle bone black so that it can operate the pixhawk. That is much the same process except 
-we'll have to install some specific packages for cross compiling. Once that is complete, then we can build the pixhawk specific 
-libraries for autopilot with instructions found on this page\cite{buildingPX}. We would need to follow the advanced 
-instructions at the bottom of the page, but they are no harder than command line git is and should not be too difficult for our 
-team. Once this is all done, our drone will be using a version of arduPilot for our flight systems and a custom Debian-based 
-Linux build for the underlying operating system on the beagle board black.
+For the purposes of the OS, it is not so much it's design as it is it's execution, as most of the OS has been decided with
+the requirements of our pixhawk cape. We will be using ROS Indigo, which is the recommended version of ROS for our setup on top 
+of some board-specific software builds. The control station, AKA a desktop or laptop computer running Ubuntu 14.04 for it's own 
+operating system, will have a trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8 
+commands total and waiting for apt-get to finish. We foresee little trouble with the process.The more involved process will be 
+flashing the drone with the correct software. To start, we will need to flash the BeagleBone black itself with a specific image 
+found at this link along with instructions for the flashing process\cite{buildingBBB}. The general idea here is to flash a SD 
+card with the given image, then get the beagle bone black to boot off it. After that, we'll need to build the associated kernel 
+with instructions on the same page and insert that into the beagle bone black so that it can operate the pixhawk. That is much 
+the same process except we'll have to install some specific packages for cross compiling. Once that is complete, then we can 
+build the pixhawk specific libraries for autopilot with instructions found on this page\cite{buildingPX}. We would need to 
+follow the advanced instructions at the bottom of the page, but they are no harder than command line git is and should not be 
+too difficult for our team. Once this is all done, our drone will be using a version of arduPilot for our flight systems and a 
+custom Debian-based Linux build for the underlying operating system on the beagle board black.
 
 \subsubsection{ROS v SROS (or rather ROS)}
 Once we have Ubunutu installed on both the station and debian on the drone, we can follow\cite{Indigo}.
