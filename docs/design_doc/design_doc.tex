@@ -71,35 +71,35 @@
 \subsection*{Drone OS}
 
 For the purposes of the OS, it is not so much it's design as it is it's execution.
-We will be using ROS Indigo, which is the recommended version of ROS for our setup on top of some board-specific software 
-builds. The control station, AKA a desktop or laptop computer running Ubuntu 14.04 for it's own operating system, will have a 
-trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8 commands total and waiting for 
-apt-get to finish. We forsee little trouble with the process.The more involved process will be flashing the drone with the 
-correct software. To start, we will need to flash the beaglebone black itself with a specific image found at this link along 
-with instructions for the flashing process\cite{buildingBBB}. The general idea here is to flash a SD card with the given image, 
-then get the beagle bone black to boot off it. After that, we'll need to build the associated kernel with instructions on the 
-same page and insert that into the beagle bone black so that it can operate the pixhawk. That is much the same process except 
-we'll have to install some specific packages for cross compiling. Once that is complete, then we can build the pixhawk specific 
-libraries for autopilot with instructions found on this page\cite{buildingPX}. We would need to follow the advanced 
-instructions at the bottom of the page, but they are no harder than command line git is and should not be too difficult for our 
-team. Once this is all done, our drone will be using a version of arduPilot for our flight systems and a custom Debian-based 
+We will be using ROS Indigo, which is the recommended version of ROS for our setup on top of some board-specific software
+builds. The control station, AKA a desktop or laptop computer running Ubuntu 14.04 for it's own operating system, will have a
+trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8 commands total and waiting for
+apt-get to finish. We for see little trouble with the process.The more involved process will be flashing the drone with the
+correct software. To start, we will need to flash the BeagleBone Black itself with a specific image found at this link along
+with instructions for the flashing process\cite{buildingBBB}. The general idea here is to flash a SD card with the given image,
+then get the beagle bone black to boot off it. After that, we'll need to build the associated kernel with instructions on the
+same page and insert that into the beagle bone black so that it can operate the Pixhawk. That is much the same process except
+we'll have to install some specific packages for cross compiling. Once that is complete, then we can build the Pixhawk specific
+libraries for autopilot with instructions found on this page\cite{buildingPX}. We would need to follow the advanced
+instructions at the bottom of the page, but they are no harder than command line git is and should not be too difficult for our
+team. Once this is all done, our drone will be using a version of ArduPilot for our flight systems and a custom Debian-based
 Linux build for the underlying operating system on the beagle board black.
 
 \subsection*{Network Setup}
 
-Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the 
-control station laptop. We may need to configure the debian install on the drone to recognize the Ethernet connection but it 
-should be automated as part of the debian install, if it is anything like what a normal live installation media is like.
+Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the
+control station laptop. We may need to configure the Debian install on the drone to recognize the Ethernet connection but it
+should be automated as part of the Debian install, if it is anything like what a normal live installation media is like.
 The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity
 for an debian system. If the need arises many guides for setting up wireless connections on linux systems exist, like this
-\cite{wirelessconfig}. It should not be a big issue. Actually setting up the wireless card so that the board recognizes it and 
-can use it is a different matter, and will be covered later on in this document. The control station wireless shouldn't be 
-any different than the drone's, and may infact be pre-configured for us as part of the initial installation.
+\cite{wirelessconfig}. It should not be a big issue. Actually setting up the wireless card so that the board recognizes it and
+can use it is a different matter, and will be covered later on in this document. The control station wireless shouldn't be
+any different than the drone's, and may in fact be pre-configured for us as part of the initial installation.
 
 \subsection*{ROS v SROS (or rather ROS)}
-Once we have Ubunutu installed on both the station and debian on the drone, we can follow\cite{Indigo}.
+Once we have Ubuntu installed on both the station and Debian on the drone, we can follow\cite{Indigo}.
 The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some
-apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ones for 
+apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ones for
 testing, but that is a question for later on as we explore our options.
 
 \subsection*{Drone Communication Channel}
@@ -118,7 +118,7 @@ Each drone will be using a BeagleBone Black with a PixHawk Fire v1.6 Cape, makin
 Ubuntu Snappy Core, enabling us to use ROS\cite{PixHawk}. The PixHawk is a flight control system, similar to the
 Naza-M2, which comes standard on the Flame Wheel ARF F550. It handles the drone's flight system, and includes a cluster
 of sensors (GPS, Gyroscope, etc) to keep track of vital information in order to maintain control over the drone while
-in flight. The PixHawk also handles telementry communication between the drone and the ground-station. As stated before,
+in flight. The PixHawk also handles telemetry communication between the drone and the ground-station. As stated before,
 2.4Ghz is the operating frequency between the drone and the ground-station, though the PixHawk also supports a RFD900
 900Mhz Telemetry Radio, for longer operating distances\cite{PixHawkDocs}. This opens up an additional communication
 channel that could be targeted. In order to intercept and analyze 900Mhz RF communications, we would need additional
@@ -137,9 +137,9 @@ the communication protocols being used. Being able to capture that data also pre
 Man-In-The-Middle (MITM) like attack, enabling an attacker to intercept and spoof commands being sent to the drone
 in real time.
 
-In order to capture this data, we need hardware that can recieve RF on the 2.4Ghz and 900Mhz band. There are many, many
+In order to capture this data, we need hardware that can receive RF on the 2.4Ghz and 900Mhz band. There are many, many
 options out there, some of which can be quite costly. Since the primary method of communication is through the 2.4 Ghz
-band, we can use a standard wireless radio that can run in permiscuous mode\cite{WiFiPerc}. Permiscuous Mode enables
+band, we can use a standard wireless radio that can run in promiscuous mode\cite{WiFiPerc}. Promiscuous Mode enables
 us to capture wireless packets without associating with an access point. This is how a lot of wireless attacks are
 performed\cite{WiFiPerc}. With this, we can use the Aircrack-NG suite of wireless auditing tools to attack the wireless
 communication channel that the drone uses\cite{AircrackNG}.
@@ -153,13 +153,18 @@ us to leverage that data to develop drone attack methods, relating to our commun
 
 \subsection*{Leveraging Captured Data to Develop Attack Methods}
 
-Wireshark will also assist with analying the unknown communication protocol that the drone uses. Following the packet
+Wireshark will also assist with analyzing the unknown communication protocol that the drone uses. Following the packet
 streams, and looking at the raw packet data, will allow us to form a concrete understanding of how the drone and
 ground control system associate with each other, and how commands are sent to the drone\cite{UknProto}.
 
-If reverse engineering proves to be unsuccessful, or difficult, we will still be in a poisiton to attack the drone
+If reverse engineering proves to be unsuccessful, or difficult, we will still be in a position to attack the drone
 communications, using MITM style attacks, and possibly some fuzzing related attacks\cite{Fuzzy}.
 
+Along with this analysis, monitoring how the drone ROS packages utilize the ROS Watchdog Timer will provide some
+further insight. The Watchdog Timer is used by ROS to detect system failures and crashes at both the hardware and
+software level\cite{doggo_watching}. Understanding the implementation of the watchdog and how it responds
+during various failures and attempts at exploitation will allow us to develop better, more sophisticated attack
+methods.
 \bibliographystyle{IEEEtran}
 \bibliography{design_doc.bib}
 
