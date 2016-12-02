@@ -71,36 +71,33 @@
 \subsection*{Drone OS}
 
 For the purposes of the OS, it is not so much it's design as it is it's execution.
-We will be using ROS Indigo, which is the recommended version of ROS for our setup, http://wiki.ros.org/indigo,
-on top of some board-specific software builds.
-The control station, AKA a desktop or laptop computer running Ubuntu 14.04 for it's own operating system, will have a trivial
-install and setup procedure. It is detailed here http://wiki.ros.org/indigo/Installation/Ubuntu but boils down to about 8 
-commands total and waiting for apt-get to finish. We forsee little trouble with the process.
-The more involved process will be flashing the drone with the correct software. To start, we will need to flash the beagle
-bone black itself with a specific image found at the link along with instructions for the flashing process.
-http://ardupilot.org/dev/docs/building-for-beaglebone-black-on-linux.html# 
-The general idea here is to flash a SD card with the given image, then get the beagle bone black to boot off it. After that,
-we'll need to build the associated kernel with instructions on the same page and insert that into the beagle bone black
-so that it can operate the pixhawk. That is much the same process except we'll have to install some specific packages 
-for cross compiling. Once that is complete, then we can build the pixhawk specific libraries for autopilot with instructions
-found on this page: http://ardupilot.org/dev/docs/building-px4-for-linux-with-make.html. We would need to follow the 
-advanced instructions at the bottom of the page, but they are no harder than command line git and should not be too difficult.
-Once this is all done, our drone will be using a version of arduPilot for our flight systems and a custom Debian-based Linux 
-build for the underlying operating system on the beagle board black.
+We will be using ROS Indigo, which is the recommended version of ROS for our setup on top of some board-specific software 
+builds. The control station, AKA a desktop or laptop computer running Ubuntu 14.04 for it's own operating system, will have a 
+trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8 commands total and waiting for 
+apt-get to finish. We forsee little trouble with the process.The more involved process will be flashing the drone with the 
+correct software. To start, we will need to flash the beaglebone black itself with a specific image found at this link along 
+with instructions for the flashing process\cite{buildingBBB}. The general idea here is to flash a SD card with the given image, 
+then get the beagle bone black to boot off it. After that, we'll need to build the associated kernel with instructions on the 
+same page and insert that into the beagle bone black so that it can operate the pixhawk. That is much the same process except 
+we'll have to install some specific packages for cross compiling. Once that is complete, then we can build the pixhawk specific 
+libraries for autopilot with instructions found on this page\cite{buildingPX}. We would need to follow the advanced 
+instructions at the bottom of the page, but they are no harder than command line git is and should not be too difficult for our 
+team. Once this is all done, our drone will be using a version of arduPilot for our flight systems and a custom Debian-based 
+Linux build for the underlying operating system on the beagle board black.
 
 \subsection*{Network Setup}
 
-Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop. We may need to configure the debian install on the drone to recognize the Ethernet connection but it 
+Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the 
+control station laptop. We may need to configure the debian install on the drone to recognize the Ethernet connection but it 
 should be automated as part of the debian install, if it is anything like what a normal live installation media is like.
 The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity
 for an debian system. If the need arises many guides for setting up wireless connections on linux systems exist, like this
-https://www.linux.com/learn/how-configure-wireless-any-linux-desktop one. It should not be a big issue.
-Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and will be covered
-later on in this document.
+\cite{wirelessconfig}. It should not be a big issue. Actually setting up the wireless card so that the board recognizes it and 
+can use it is a different matter, and will be covered later on in this document. The control station wireless shouldn't be 
+any different than the drone's, and may infact be pre-configured for us as part of the initial installation.
 
 \subsection*{ROS v SROS (or rather ROS)}
-Once we have Ubunutu installed on both the station and debian on the drone, we can follow 
-http://wiki.ros.org/indigo/Installation/
+Once we have Ubunutu installed on both the station and debian on the drone, we can follow\cite{Indigo}.
 The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some
 apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ones for 
 testing, but that is a question for later on as we explore our options.
