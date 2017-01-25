@@ -1,0 +1,4 @@
+<launch>
+  <node name="adder" pkg="malpac" type="adder.py" output="screen" />
+  <node name="spy" pkg="malpac" type="spy.py" output="screen" />
+</launch>
