@@ -1,4 +1,12 @@
 <launch>
-  <node name="adder" pkg="malpac" type="adder.py" output="screen" />
-  <node name="spy" pkg="malpac" type="spy.py" output="screen" />
+	<node name="adder" pkg="malpac" type="adder.py" output="screen" />
+	<node name="spy" pkg="malpac" type="spy.py" output="screen" />
+	<node name="talker" pkg="malpac" type="talker.py" output="screen" >
+		<remap from="chatter" to="repeat"/>
+	</node>
+	<node name="repeater" pkg="malpac" type="redirect.py" output="screen" >
+		<remap from="chatter" to="repeat"/>
+	</node>
+
+
 </launch>

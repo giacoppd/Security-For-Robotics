@@ -4,9 +4,9 @@ import rospy
 from std_msgs.msg import Int32
 
 def printer(data):
-	rospy.loginfo("saw %s", data.data)
+	rospy.loginfo("Seeing " + str(data.data))
 	print('I see' + str(data.data))
-	rospy.spin() #why doesn't it keep running
+	# rospy.spin() #why doesn't it keep running
 
 def notmain():
 	rospy.init_node('spy', anonymous=True)
