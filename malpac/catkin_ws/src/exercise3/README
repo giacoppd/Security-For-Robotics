@@ -1,0 +1,36 @@
+README - Vedanth Narayanan
+
+Dependencies:
+	1. Frontier Exploration needs to be installed first.
+
+References:
+	1. I Worked with Alison Shutterly, Ammar Kothari, and Sogol Balali. We did share code with each other's permission.
+	2. We used the online Wiki a lot.
+	3. Programming Robots with ROS
+	4. We also got some assistance from a friend that had taken the class previously. This was primarily to help us think about the problem in the correct manner.
+
+1. scripts/ directory:
+	a. *.png are the different maps we played around with.
+	b. hough_transform.py and marker_node.py primarily work to figure out circular objects and try to play an rviz marker there.
+	c. maze3.world and maze3.yaml exist to help setting up the map for the robot.
+
+2. launch/ directory:
+	a. Need to run "roslaunch exercise3 roam.launch"
+	b. roam.launch launches a modified turtlebot in stage, along with explore.launch.
+	c. explore.launch is very much similar to the vanilla launch file for frontier_exploration.
+
+3. rviz/ directory:
+	a. Most of the turtlebot simulations make use of a rviz configuration, and I am making use of one.
+	b. It's possible to not have the rviz_config.rviz file, but I didn't want to break the program.
+
+
+Video details:
+	1. Videos are called simulation.ogv and simulation-auto.ogv and they should be found in the root of exercise3.
+	2. The scripts do place rviz markers, but definitely not in the place.
+		a. This is probably a problem with our Hough transform or what we are publishing.
+	3. In the autonomous video, I add a new nav goal towards the end. The robot seemed to be stuck in 1 spot. The code for this was not written by me, but it was copied from a previous student's assignment.
+
+
+Final note:
+	I wish I had had more time to work on this assignment. I spent most of dead week trying to finish up the papers for this class, and trying to study for my finals in other classes.
+	If I had the time, I definitely thought I could have done a better job.

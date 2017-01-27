@@ -1,0 +1,24 @@
+README
+
+1. To run the package, make sure to call: roslaunch exercise2 patrol.launch
+
+2. The python script has the absolute path of a text file, so it needs to be altered the path is not right.
+
+3. Interesting things the robot does at different locations is based on a cycle of 3. Keep note that there are really 4 waypoints.
+	- At the first waypoint, it says that's ready to start patrolling.
+	- At the second waypoint, it mentions how many waypoints it has left to go to.
+	- At the third, it's skeptical of who or what is near it, so it prints out the distance to the closest thing. THis is the IR data.
+	- At the last waypoint, it chooses to take a small break by sleeping. Then it starts going to the different waypoints again.
+
+The messages the robot prints may be lost with the ROSINFO messages.
+
+4. Key presses
+	- When 'r' is pressed, the waypoints array is shuffled around, make note of the order.
+		- THE robot will probably be on its way to a location, and it's not until it reaches the location that it will head to the next random location.
+
+	- When 'h' is pressed, it knows that it needs to go to base, but sometimes has trouble.
+
+5. Sometimes the robot spends just a little bit of time calculating. More often than not, it WILL find it's way back.
+
+6.  Resources used - Programming Robots with ROS - BIll SMart
+	Collaborated with Alison, Matt, and Derek.

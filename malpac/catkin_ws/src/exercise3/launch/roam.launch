@@ -1,0 +1,10 @@
+<launch>
+
+	<include file="$(find exercise3)/launch/turtlebot_mod.launch" />
+	<include file="$(find exercise3)/launch/explore.launch"/>
+
+	<node name="hough_transform" pkg="exercise3" type="hough_transform.py" output="screen" cwd="node"/>
+	<node name="hough_marker" pkg="exercise3" type="marker_node.py" output="screen" cwd="node"/>
+	<node name="set_border" pkg="exercise3" type="set.py" output="screen" cwd="node"/>
+
+</launch>
