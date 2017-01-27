@@ -1,0 +1,2 @@
+This package disables all network interfaces and re-enables them after 5 seconds.
+Run with rosrun malpac3 bomb.py
