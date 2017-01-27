@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "malpac2"
-PROJECT_SPACE_DIR = "/home/dominic/malpac2/devel"
+PROJECT_SPACE_DIR = "/home/dominic/SP/Security-For-Robotics/malpac2/devel"
 PROJECT_VERSION = "0.0.0"

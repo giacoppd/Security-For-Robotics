@@ -7,9 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/dominic/malpac2/devel:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/dominic/malpac2/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/dominic/malpac2/devel/lib/pkgconfig:/opt/ros/indigo/lib/pkgconfig"
-export PWD="/home/dominic/malpac2/build"
+export CMAKE_PREFIX_PATH="/home/dominic/SP/Security-For-Robotics/malpac2/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/dominic/SP/Security-For-Robotics/malpac2/devel/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/dominic/SP/Security-For-Robotics/malpac2/devel/lib/pkgconfig:/opt/ros/indigo/lib/pkgconfig"
+export PWD="/home/dominic/SP/Security-For-Robotics/malpac2/build"
 export PYTHONPATH="/opt/ros/indigo/lib/python2.7/site-packages"
-export ROS_PACKAGE_PATH="/home/dominic/malpac2/src:$ROS_PACKAGE_PATH"
+export ROS_PACKAGE_PATH="/home/dominic/malpac2/src:/home/dominic/SP/Security-For-Robotics/malpac2/src:$ROS_PACKAGE_PATH"
