@@ -2,6 +2,6 @@
 This directory contains ROS packages related to our project. 
 
 ### Malicious ROS Packages
-  * malpac - Stuff here...
-  * malpac2 - Stuff here...
-  * malpac3 - Stuff here.
+  * malpac - Refer to it's readme
+  * malpac2 - Refer to it's readme
+  * malpac3 - Refer to it's readme
