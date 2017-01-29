@@ -1,0 +1,563 @@
+ubuntu@arm:~$ 
+ubuntu@arm:~$ ls
+bin
+ubuntu@arm:~$ cd bin/
+ubuntu@arm:~/bin$ ls
+ubuntu@arm:~/bin$ ls -a1
+.
+..
+ubuntu@arm:~/bin$ ps
+  PID TTY          TIME CMD
+  856 ttyGS0   00:00:00 bash
+  875 ttyGS0   00:00:00 ps
+ubuntu@arm:~/bin$ cd ..
+ubuntu@arm:~$ cd /
+ubuntu@arm:/$ ls
+bin   etc     lib         mnt           proc  sbin  tmp       var
+boot  home    lost+found  nfs-uEnv.txt  root  srv   uEnv.txt
+dev   ID.txt  media       opt           run   sys   usr
+ubuntu@arm:/$ cat ID.txt 
+rcn-ee.net console Ubuntu Image 2017-01-23
+ubuntu@arm:/$ cat uEnv.txt 
+##These are needed to be compliant with Angstrom's 2013.06.20 u-boot.
+ 
+loadaddr=0x82000000
+fdtaddr=0x88000000
+rdaddr=0x88080000
+ 
+initrd_high=0xffffffff
+fdt_high=0xffffffff
+ 
+##These are needed to be compliant with Debian 2014-05-14 u-boot.
+ 
+loadximage=echo debug: [/boot/vmlinuz-${uname_r}] ... ; load mmc 0:1 ${loadaddr} /boot/vmlinuz-${uname_r}
+loadxfdt=echo debug: [/boot/dtbs/${uname_r}/${fdtfile}] ... ;load mmc 0:1 ${fdtaddr} /boot/dtbs/${uname_r}/${fdtfile}
+loadxrd=echo debug: [/boot/initrd.img-${uname_r}] ... ; load mmc 0:1 ${rdaddr} /boot/initrd.img-${uname_r}; setenv rds
+ize ${filesize}
+loaduEnvtxt=load mmc 0:1 ${loadaddr} /boot/uEnv.txt ; env import -t ${loadaddr} ${filesize};
+check_dtb=if test -n ${dtb}; then setenv fdtfile ${dtb};fi;
+loadall=run loaduEnvtxt; run check_dtb; run loadximage; run loadxrd; run loadxfdt;
+ 
+mmcargs=setenv bootargs console=tty0 console=${console} ${optargs} ${cape_disable} ${cape_enable} root=/dev/mmcblk0p1 
+rootfstype=${mmcrootfstype} ${cmdline}
+ 
+uenvcmd=run loadall; run mmcargs; echo debug: [${bootargs}] ... ; echo debug: [bootz ${loadaddr} ${rdaddr}:${rdsize} $
+{fdtaddr}] ... ; bootz ${loadaddr} ${rdaddr}:${rdsize} ${fdtaddr};
+ 
+ubuntu@arm:/$ cd opt/
+ubuntu@arm:/opt$ ls
+backup  scripts  source
+ubuntu@arm:/opt$ cd s
+-bash: cd: s: No such file or directory
+ubuntu@arm:/opt$ cd scripts/
+ubuntu@arm:/opt/scripts$ ls
+3rdparty  boot  desktop-defaults  device  images  mods  tools  un-tweak-image
+ubuntu@arm:/opt/scripts$ cd images/
+ubuntu@arm:/opt/scripts/images$ ls
+beaglebg-eMMC.jpg  beaglebg.jpg
+ubuntu@arm:/opt/scripts/images$ cd ..
+ubuntu@arm:/opt/scripts$ cd tools/
+ubuntu@arm:/opt/scripts/tools$ ls
+beaglebone-black-eMMC-flasher.sh  graphics              readme.txt
+developers                        grow_partition.sh     software
+dtc                               init-eMMC-flasher.sh  update_kernel.sh
+eMMC                              non-mmc-rootfs        wm
+ubuntu@arm:/opt/scripts/tools$ cd eMMC/
+ubuntu@arm:/opt/scripts/tools/eMMC$ ls
+bbb-eMMC-flasher-eewiki-12mb.sh
+bbb-eMMC-flasher-eewiki-ext4.sh
+beaglebone-black-make-microSD-flasher-from-eMMC.sh
+functions.sh
+init-eMMC-flasher-a335.sh
+init-eMMC-flasher-from-usb-media.sh
+init-eMMC-flasher-from-usb-media-v1-bbgw.sh
+init-eMMC-flasher-from-usb-media-v2-bbgw.sh
+init-eMMC-flasher-v2.sh
+init-eMMC-flasher-v3-bbbl.sh
+init-eMMC-flasher-v3-bbbw.sh
+init-eMMC-flasher-v3-bbg.sh
+init-eMMC-flasher-v3-bbgw.sh
+init-eMMC-flasher-v3-m10a.sh
+init-eMMC-flasher-v3.sh
+init-eMMC-flasher-v3-x15_b1.sh
+mmc_resize_usbflasher_example.md
+mmc_usbflasher_example.md
+readme.md
+ubuntu@arm:/opt/scripts/tools/eMMC$ cat readme.md 
+#Current:
+ 
+- init-eMMC-flasher-v3.sh
+ 
+  - Current BeagleBone Black production flasher, runs in single user mode:
+  
+    ```
+    cmdline=init=<path>/init-eMMC-flasher-v3.sh
+    ```
+  
+- init-eMMC-flasher-v3-bbg.sh
+ 
+  - Current BeagleBone Green production flasher, runs in single user mode:
+  
+    ```
+    cmdline=init=<path>/init-eMMC-flasher-v3-bbg.sh
+    ```
+ 
+- beaglebone-black-make-microSD-flasher-from-eMMC.sh
+ 
+  - Clones eMMC to microSD and sets it up to flash the eMMC.
+  
+    ```
+    sudo ./beaglebone-black-make-microSD-flasher-from-eMMC.sh
+    ```
+ 
+- bbb-eMMC-flasher-eewiki-ext4.sh
+ 
+  - Clones microSD to eMMC as a single ext4 partition.
+  
+    ```
+    sudo ./bbb-eMMC-flasher-eewiki-ext4.sh
+    ```
+ 
+ 
+#In development:
+ 
+- init-eMMC-flasher-from-usb-media.sh
+ 
+#Obsolete:
+ 
+- bbb-eMMC-flasher-eewiki-12mb.sh
+ 
+  - replaced by: bbb-eMMC-flasher-eewiki-ext4.sh
+ 
+================================================================================
+Starting eMMC Flasher from microSD media
+Version: [1.20161216: more fixes...]
+================================================================================
+ 
+================================================================================
+Prepare environment for flashing
+Starting at Mon Jan 23 21:10:37 UTC 2017
+----------------------------------------
+==> Giving system time to stablize...
+5 4 3 2 1 
+==> Preparing /tmp
+==> Preparing sysctl
+==> sysctl: vm.min_free_kbytes=[2665]
+==> sysctl: setting: [sysctl -w vm.min_free_kbytes=16384]
+vm.min_free_kbytes = 16384
+----------------------------------------
+==> Determining root drive
+==> console=tty0 console=ttyO0,115200n8 root=/dev/mmcblk0p1 rootfstype=ext4 rootwait coherent_pool=1M net.ifnames=0 qu
+iet cape_universal=enable
+----------------------------------------
+==> root_drive=[/dev/mmcblk0p1]
+====> Root drive identified at [/dev/mmcblk0p1]
+==> Boot Drive [/dev/mmcblk0p1]
+==> Figuring out Source and Destination devices
+====> Source identified: [/dev/mmcblk0]
+====> Destination identified: [/dev/mmcblk1]
+==> Figuring out machine
+====> Machine is TI_AM335x_BeagleBone_Black
+====> Machine is compatible with BeagleBone Black
+================================================================================
+5 4 3 2 1 
+ 
+========================================
+Checking for Valid bbb-eeprom header
+==> Valid bbb-eeprom header found [335]
+========================================
+ 
+================================================================================
+Checking running system
+==> Copying: [/dev/mmcblk0] -> [/dev/mmcblk1]
+==> lsblk:
+----------------------------------------
+NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+mmcblk1boot0 179:16   0    2M  1 disk 
+mmcblk1boot1 179:24   0    2M  1 disk 
+mmcblk0      179:0    0 29.8G  0 disk 
+└─mmcblk0p1  179:1    0  1.7G  0 part /
+mmcblk1      179:8    0  3.6G  0 disk 
+├─mmcblk1p1  179:9    0   96M  0 part 
+└─mmcblk1p2  179:10   0  3.5G  0 part 
+----------------------------------------
+==> df -h | grep rootfs:
+----------------------------------------
+==> Giving you time to check...
+10 9 8 7 6 5 4 3 2 1 
+================================================================================
+ 
+================================================================================
+Preparing drives
+ 
+----------------------------------------
+==> Erasing: /dev/mmcblk1
+----------------------------------------
+108+0 records in
+108+0 records out
+113246208 bytes (113 MB, 108 MiB) copied, 16.988 s, 6.7 MB/s
+----------------------------------------
+108+0 records in
+108+0 records out
+113246208 bytes (113 MB, 108 MiB) copied, 3.46048 s, 32.7 MB/s
+----------------------------------------
+==> Erasing: /dev/mmcblk1 complete
+----------------------------------------
+ 
+----------------------------------------
+==> Loading /boot/SOC.sh
+************************************************************
+#!/bin/sh
+format=1.0
+ 
+board=am335x_evm
+ 
+bootloader_location=dd_spl_uboot_boot
+bootrom_gpt=
+ 
+dd_spl_uboot_count=1
+dd_spl_uboot_seek=1
+dd_spl_uboot_conf=notrunc
+dd_spl_uboot_bs=128k
+dd_spl_uboot_backup=/opt/backup/uboot/MLO
+ 
+dd_uboot_count=2
+dd_uboot_seek=1
+dd_uboot_conf=notrunc
+dd_uboot_bs=384k
+dd_uboot_backup=/opt/backup/uboot/u-boot.img
+ 
+boot_fstype=ext4
+conf_boot_startmb=4
+conf_boot_endmb=
+sfdisk_fstype=L
+ 
+boot_label=BOOT
+rootfs_label=rootfs
+ 
+#Kernel
+dtb=
+serial_tty=ttyO0
+usbnet_mem=
+ 
+************************************************************
+==> Loaded
+ 
+----------------------------------------
+ 
+================================================================================
+Writing bootloader to [/dev/mmcblk1]
+----------------------------------------
+==> Figuring out options for SPL U-Boot copy ...
+===> Will use : count=1 seek=1 conv=notrunc bs=128k
+==> Figuring out options for U-Boot copy ...
+===> Will use : count=2 seek=1 conv=notrunc bs=384k
+==> Copying SPL U-Boot with dd if=/opt/backup/uboot/MLO of=/dev/mmcblk1 count=1 seek=1 conv=notrunc bs=128k
+------------------------------------------------------------
+0+1 records in
+0+1 records out
+69720 bytes (70 kB, 68 KiB) copied, 0.01834 s, 3.8 MB/s
+------------------------------------------------------------
+==> Copying U-Boot with dd if=/opt/backup/uboot/u-boot.img of=/dev/mmcblk1 count=2 seek=1 conv=notrunc bs=384k
+------------------------------------------------------------
+0+1 records in
+0+1 records out
+381088 bytes (381 kB, 372 KiB) copied, 0.0587995 s, 6.5 MB/s
+------------------------------------------------------------
+Writing bootloader completed
+================================================================================
+ 
+================================================================================
+Partitionning /dev/mmcblk1
+----------------------------------------
+sfdisk: [2.26.x or greater]
+==> sfdisk parameters:
+sfdisk: [sfdisk from util-linux 2.27.1]
+sfdisk: [sfdisk --force /dev/mmcblk1]
+sfdisk: [4M,,L,*]
+==> Partitionning
+------------------------------------------------------------
+Checking that no-one is using this disk right now ... OK
+ 
+Disk /dev/mmcblk1: 3.6 GiB, 3867148288 bytes, 7553024 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+ 
+>>> Created a new DOS disklabel with disk identifier 0xae88ddce.
+Created a new partition 1 of type 'Linux' and of size 3.6 GiB.
+/dev/mmcblk1p2: 
+New situation:
+ 
+Device         Boot Start     End Sectors  Size Id Type
+/dev/mmcblk1p1 *     8192 7553023 7544832  3.6G 83 Linux
+ 
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+------------------------------------------------------------
+ 
+==> Partitionning Completed
+==> Generated Partitions:
+------------------------------------------------------------
+Disk /dev/mmcblk1: 3.6 GiB, 3867148288 bytes, 7553024 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xae88ddce
+ 
+Device         Boot Start     End Sectors  Size Id Type
+/dev/mmcblk1p1 *     8192 7553023 7544832  3.6G 83 Linux
+------------------------------------------------------------
+================================================================================
+ 
+================================================================================
+Preparing future rootfs to receive files
+----------------------------------------
+ 
+==> Formatting rootfs with mkfs.ext4  /dev/mmcblk1p1 -L rootfs
+--------------------------------------------------------------------------------
+ 
+mke2fs 1.42.13 (17-May-2015)
+Discarding device blocks: done                            
+Creating filesystem with 943104 4k blocks and 236176 inodes
+Filesystem UUID: 802659a1-dada-4ff0-b785-711a0e789b42
+Superblock backups stored on blocks: 
+        32768, 98304, 163840, 229376, 294912, 819200, 884736
+ 
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (16384 blocks): done
+Writing superblocks and filesystem accounting information: done 
+ 
+--------------------------------------------------------------------------------
+==> Formatting rootfs: /dev/mmcblk1p1 complete
+==> Creating temporary rootfs directory (/tmp/rootfs)
+==> Mounting /dev/mmcblk1p1 to /tmp/rootfs
+ 
+================================================================================
+ 
+================================================================================
+Copying: Current rootfs to /dev/mmcblk1p1
+----------------------------------------
+==> rsync: / -> /tmp/rootfs
+----------------------------------------
+        637.31M  99%    4.70MB/s    0:02:09 (xfr#25684, to-chk=0/31686)   
+----------------------------------------
+==> Copying: Kernel modules
+===> Creating directory for modules
+===> rsync: /lib/modules/4.4.43-ti-r84/ -> /tmp/rootfs/lib/modules/4.4.43-ti-r84/
+----------------------------------------
+         91.93M 100%    5.44MB/s    0:00:16 (xfr#2456, to-chk=0/2864)   
+----------------------------------------
+Copying: Current rootfs to /dev/mmcblk1p1 complete
+================================================================================
+ 
+================================================================================
+Final System Tweaks:
+----------------------------------------
+==> Applying SSH Key Regeneration trick
+ 
+==> Found pre-existing uEnv file at /tmp/rootfs/boot/uEnv.txt. Using it.
+********************************************************************************
+#Docs: http://elinux.org/Beagleboard:U-boot_partitioning_layout_2.0
+ 
+uname_r=4.4.43-ti-r84
+#uuid=
+#dtb=
+ 
+##BeagleBone Black/Green dtb's for v4.1.x (BeagleBone White just works..)
+ 
+##BeagleBone Black: HDMI (Audio/Video) disabled:
+#dtb=am335x-boneblack-emmc-overlay.dtb
+ 
+##BeagleBone Black: eMMC disabled:
+#dtb=am335x-boneblack-hdmi-overlay.dtb
+ 
+##BeagleBone Black: HDMI Audio/eMMC disabled:
+#dtb=am335x-boneblack-nhdmi-overlay.dtb
+ 
+##BeagleBone Black: HDMI (Audio/Video)/eMMC disabled:
+#dtb=am335x-boneblack-overlay.dtb
+ 
+##BeagleBone Black: wl1835
+#dtb=am335x-boneblack-wl1835mod.dtb
+ 
+##BeagleBone Green: eMMC disabled
+#dtb=am335x-bonegreen-overlay.dtb
+ 
+###EXPERIMENTAL###
+#enable_uboot_overlays=1
+#dtb_overlay=/lib/firmware/BB-UART2-00A0.dtbo
+##U-Boot fdt tweaks...
+#uboot_fdt_buffer=0x60000
+###EXPERIMENTAL###
+ 
+cmdline=coherent_pool=1M net.ifnames=0 quiet cape_universal=enable
+ 
+#In the event of edid real failures, uncomment this next line:
+#cmdline=coherent_pool=1M net.ifnames=0 quiet cape_universal=enable video=HDMI-A-1:1024x768@60e
+ 
+##Example v3.8.x
+#cape_disable=capemgr.disable_partno=
+#cape_enable=capemgr.enable_partno=
+ 
+##Example v4.1.x
+#cape_disable=bone_capemgr.disable_partno=
+#cape_enable=bone_capemgr.enable_partno=
+ 
+##enable Generic eMMC Flasher:
+##make sure, these tools are installed: dosfstools rsync
+#cmdline=init=/opt/scripts/tools/eMMC/init-eMMC-flasher-v3.sh
+ 
+********************************************************************************
+ 
+Device UUID should be: 802659a1-dada-4ff0-b785-711a0e789b42
+==> Put root uuid in uEnv.txt
+ 
+==> Generating: /etc/fstab
+Device UUID should be: 802659a1-dada-4ff0-b785-711a0e789b42
+===> /etc/fstab generated
+****************************************
+# /etc/fstab: static file system information.
+#
+UUID=802659a1-dada-4ff0-b785-711a0e789b42  /  ext4  noatime,errors=remount-ro  0  1
+debugfs  /sys/kernel/debug  debugfs  defaults  0  0
+****************************************
+ 
+==> /boot/uEnv.txt: disabling eMMC flasher script
+****************************************
+#Docs: http://elinux.org/Beagleboard:U-boot_partitioning_layout_2.0
+ 
+uname_r=4.4.43-ti-r84
+#uuid=
+#dtb=
+ 
+##BeagleBone Black/Green dtb's for v4.1.x (BeagleBone White just works..)
+ 
+##BeagleBone Black: HDMI (Audio/Video) disabled:
+#dtb=am335x-boneblack-emmc-overlay.dtb
+ 
+##BeagleBone Black: eMMC disabled:
+#dtb=am335x-boneblack-hdmi-overlay.dtb
+ 
+##BeagleBone Black: HDMI Audio/eMMC disabled:
+#dtb=am335x-boneblack-nhdmi-overlay.dtb
+ 
+##BeagleBone Black: HDMI (Audio/Video)/eMMC disabled:
+#dtb=am335x-boneblack-overlay.dtb
+ 
+##BeagleBone Black: wl1835
+#dtb=am335x-boneblack-wl1835mod.dtb
+ 
+##BeagleBone Green: eMMC disabled
+#dtb=am335x-bonegreen-overlay.dtb
+ 
+###EXPERIMENTAL###
+#enable_uboot_overlays=1
+#dtb_overlay=/lib/firmware/BB-UART2-00A0.dtbo
+##U-Boot fdt tweaks...
+#uboot_fdt_buffer=0x60000
+###EXPERIMENTAL###
+ 
+cmdline=coherent_pool=1M net.ifnames=0 quiet cape_universal=enable
+ 
+#In the event of edid real failures, uncomment this next line:
+#cmdline=coherent_pool=1M net.ifnames=0 quiet cape_universal=enable video=HDMI-A-1:1024x768@60e
+ 
+##Example v3.8.x
+#cape_disable=capemgr.disable_partno=
+#cape_enable=capemgr.enable_partno=
+ 
+##Example v4.1.x
+#cape_disable=bone_capemgr.disable_partno=
+#cape_enable=bone_capemgr.enable_partno=
+ 
+##enable Generic eMMC Flasher:
+##make sure, these tools are installed: dosfstools rsync
+##cmdline=init=/opt/scripts/tools/eMMC/init-eMMC-flasher-v3.sh
+ 
+uuid=802659a1-dada-4ff0-b785-711a0e789b42
+****************************************
+ 
+================================================================================
+Tearing down future rootfs
+----------------------------------------
+ 
+==> Unmounting /tmp/rootfs
+================================================================================
+================================================================================
+Tearing Down script environment
+==> Unmounting /tmp
+==> Stopping Cylon LEDs ...
+==> Setting LEDs to 
+==> Force writeback of eMMC buffers by Syncing: /dev/mmcblk1
+./functions.sh: line 250:  1007 Terminated              cylon_leds
+----------------------------------------
+100000+0 records in
+100000+0 records out
+51200000 bytes (51 MB, 49 MiB) copied, 1.40997 s, 36.3 MB/s
+----------------------------------------
+===> Syncing: /dev/mmcblk1 complete
+==> This script took 207 seconds to run
+================================================================================
+ 
+==> Setting LEDs to 
+==> Displaying mount points
+--------------------------------------------------------------------------------
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+udev on /dev type devtmpfs (rw,nosuid,relatime,size=222036k,nr_inodes=55509,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,noexec,relatime,size=49980k,mode=755)
+/dev/mmcblk0p1 on / type ext4 (rw,noatime,errors=remount-ro,data=ordered)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+tmpfs on /run/lock type tmpfs (rw,nosuid,nodev,noexec,relatime,size=5120k)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
+cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/lib/systemd/systemd
+-cgroups-agent,name=systemd)
+cgroup on /sys/fs/cgroup/cpu,cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,cpu,cpuacct)
+cgroup on /sys/fs/cgroup/net_cls,net_prio type cgroup (rw,nosuid,nodev,noexec,relatime,net_cls,net_prio)
+cgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)
+cgroup on /sys/fs/cgroup/pids type cgroup (rw,nosuid,nodev,noexec,relatime,pids)
+cgroup on /sys/fs/cgroup/perf_event type cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)
+cgroup on /sys/fs/cgroup/memory type cgroup (rw,nosuid,nodev,noexec,relatime,memory)
+cgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,freezer)
+cgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,devices)
+cgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)
+mqueue on /dev/mqueue type mqueue (rw,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=34,pgrp=1,timeout=0,minproto=5,maxproto=5,direct)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime)
+configfs on /sys/kernel/config type configfs (rw,relatime)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,relatime)
+--------------------------------------------------------------------------------
+ 
+================================================================================
+eMMC has been flashed: please wait for device to power down.
+================================================================================
+Calling shutdown
+==> Setting LEDs to 
+ubuntu@arm:/opt/scripts/tools/eMMC$ 
+[Closed]
+ 
+[Reconnected]
+ 
+Ubuntu 16.04.1 LTS arm ttyGS0
+ 
+rcn-ee.net console Ubuntu Image 2017-01-23
+ 
+Support/FAQ: http://elinux.org/BeagleBoardUbuntu
+ 
+default username:password is [ubuntu:temppwd]
+ 
+arm login: ubuntu 
+Password: 
+Last login: Mon Jan 23 21:06:54 UTC 2017 on ttyGS0
+Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.43-ti-r84 armv7l)
+ 
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+ubuntu@arm:~$ 

@@ -15,4 +15,13 @@
 
 * Design Document `docs/design_doc`
 
+* Progress Report `docs/progress_report`
+
+* Threat Models `docs/threat_models`
+
+* ROS Packages `ros_packages/`
+
+* Beagle Bone Black Stuff `beagle/`
+
 * PCB Schematics `schematics/`
+
