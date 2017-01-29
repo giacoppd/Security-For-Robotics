@@ -25,3 +25,6 @@
 
 * PCB Schematics `schematics/`
 
+### Large File System
+The following file types are tracked by the Github LFS:
+	* `*.img.xz'
