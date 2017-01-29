@@ -1,2 +1,3 @@
 This is a group of 4 packages, one is mine, the other 3 are Vee's. 
 To run mine, go to src/malpac/launch and run "roslaunch spylaunch.launch"
+It's a simple publisher/subscriber with 1 publisher and 2 subscribers. Does some counting
