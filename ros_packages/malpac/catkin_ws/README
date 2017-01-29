@@ -1,0 +1,2 @@
+This is a group of 4 packages, one is mine, the other 3 are Vee's. 
+To run mine, go to src/malpac/launch and run "roslaunch spylaunch.launch"
