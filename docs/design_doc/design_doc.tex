@@ -286,10 +286,10 @@ too difficult for our team. Once this is all done, our drone will be using a ver
 custom Debian-based Linux build for the underlying operating system on the beagle board black.
 
 \subsubsection{ROS v SROS (or rather ROS)}
-Once we have Ubunutu installed on both the station and debian on the drone, we can follow\cite{Indigo}.
+Once we have Ubunutu installed on both the station and Debian on the drone, we can follow\cite{Indigo}.
 The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some 
-apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ones for 
-testing, but that is a question for later on as we explore our options. SROS is currently thought to be uncompatable with
+apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ROS packages
+and the ones required for our board's autonomous routines for testing purposes. SROS is currently thought to be uncompatable with
 our drone's specific OS, as the autopilot packages on the drone use UDP based networking, while SROS only has TCP support for 
 it's encryption protocols. It is not known at this time if there is a workaround for this issue, or if SROS will just run the 
 package in a ROS compatability mode, and as such the team will be using ROS until some investigation is done on the matter.
