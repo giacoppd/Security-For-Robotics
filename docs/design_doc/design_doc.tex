@@ -19,6 +19,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{setspace}
+\usepackage[utf8]{inputenc}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -139,6 +140,8 @@ If consumers think these will be abused they won't trust this upcoming technolog
 Consequentially, the world as a whole will be slower to advance robotic technology.
 Hopefully our work in securing robotics can help to better develop consumer trust in this emerging technology. 
 
+\textbf{Emily}
+
 \section{Research Design}
 \subsection{Threat Models}
 A key element to our project is being able to accurately find vulnerabilities or identify areas where they are likely to be. 
@@ -175,6 +178,8 @@ These threat models also serve a secondary purpose, of acting as a design viewpo
 They will show how much potential there is in each area for exploitation, which helps someone looking at it to understand why that area is important to research and secure.
 It provides a visual representation of where the greatest concentrations of vulnerabilities lie, for both the researchers to work from and for anyone else to gain some understanding at a glance.
 
+\textbf{Emily}
+
 \subsection{Documentation of Data}
 The core of our project is the data that we record when trying out different exploits on the system, and for it to be useful it must be recorded thoroughly and consistently. 
 Because there is such a wide variety of ways we will attempt to attack the system, the data will also be quite varied. 
@@ -197,6 +202,8 @@ While they are options, all of these should be taken into account when we start 
 We don't necessarily need to follow the previously stated ideas as they are, and we're sure to find problems with them or better options along the way.
 The main concept here is that research data is precious and sensitive and we need to do our best to make our final product something that's academically valuable.
 
+\textbf{Emily}
+
 \subsection{Data of Interest}
 There is wide variety of data to collect in this project, and that data is different for each class of attack.
 This makes drawing any overarching final conclusions difficult, as well as defining which exploits are the most severe.
@@ -207,6 +214,8 @@ After these scales have been defined one can use them to calculate a risk priori
 
 Employing this method and applying it to all successful exploits found will be immensely helpful in being able to compare completely separate systems.
 Final conclusion data can be drawn form these and an ultimate ranking of security prioritized vulnerabilities would be an immensely useful product to the community as a whole. 
+
+\textbf{Emily}
 
 \section{Approach}
 \subsection{Methods of Data Capture}
@@ -229,6 +238,7 @@ communication channel\cite{WiFiPerc}.
 With these tools we will be able to capture communication between the drone and the drone ground control station, allowing
 us to leverage that data to develop drone attack methods, relating to our communications threat model.
 
+\textbf{Zach}
 
 \subsection{Drone Communication Channel}
 A lot goes into the communication between the two drones that we have use.
@@ -260,6 +270,8 @@ altered, in an attempt to gain control over a drone's flight plan. Knowing which
 is only a small part of getting to the ultimate goal of intercepting drone data; consider that the Research and
 Development phase. The next step is to explore how exactly to capture that data.
 
+\textbf{Zach}
+
 \subsubsection{Network Setup}
 Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop. 
 We may need to configure the debian install on the drone to recognize the Ethernet connection but it should be automated as part of the debian install, if it is anything like what a normal live installation media is like.
@@ -268,10 +280,12 @@ If the need arises many guides for setting up wireless connections on linux syst
 Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and will be covered later on in this document. 
 The control station wireless shouldn't be any different than the drone's, and may in fact be pre-configured for us as part of the initial installation.
 
+\textbf{Dominic}
+
 \subsection{Drone OS}
-For the purposes of the OS, it is not so much it's design as it is it's execution, as most of the OS has been decided with
+For the purposes of the OS, it is not so much its design as it is its execution, as most of the OS has been decided with
 the requirements of our pixhawk cape. We will be using ROS Indigo, which is the recommended version of ROS for our setup on top 
-of some board-specific software builds. The control station, AKA a desktop or laptop computer running linux with ROS for it's own 
+of some board-specific software builds. The control station, AKA a desktop or laptop computer running linux with ROS for its own 
 operating system, will have a trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8 
 commands total and waiting for apt-get to finish. We foresee little trouble with the process. The more involved process will be 
 flashing the drone with the correct software. To start, we will need to flash the BeagleBone black itself with a specific image 
@@ -284,14 +298,18 @@ follow the advanced instructions at the bottom of the page, but they are no hard
 too difficult for our team. Once this is all done, our drone will be using a version of arduPilot for our flight systems and a 
 custom Ubunutu-based Linux build for the underlying operating system on the beagle board black.
 
+\textbf{Dominic}
+
 \subsubsection{ROS v SROS (or rather ROS)}
-Once we have linux installed on both the station and Ubunutu on the drone, we can follow\cite{Indigo}.
-The gist of it is that's it isn't much different than a regular desktop install; setup your sources, your keys, do some 
+Once we have Linux installed on the station and Ubunutu on the drone, we can follow\cite{Indigo}.
+The gist of it is that it isn't much different than a regular desktop install; setup your sources, your keys, do some 
 apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ROS packages
 and the ones required for our board's autonomous routines for testing purposes. SROS is currently thought to be uncompatable with
 our drone's specific OS, as the autopilot packages on the drone use UDP based networking, while SROS only has TCP support for 
-it's encryption protocols. It is not known at this time if there is a workaround for this issue, or if SROS will just run the 
-package in a ROS compatability mode, and as such the team will be using ROS until some investigation is done on the matter.
+its encryption protocols. It is not known at this time if there is a workaround for this issue, or if SROS will just run the 
+package in a ROS compatability mode, and as such the team will be using ROS for the foreseeable future. 
+
+\textbf{Dominic}
 
 \subsection{Leveraging Captured Data to Develop Attack Methods}
 Wireshark will also assist with analyzing the unknown communication protocol that the drone uses. Following the packet
@@ -306,6 +324,8 @@ further insight. The Watchdog Timer is used by ROS to detect system failures and
 software level\cite{doggo_watching}. Understanding the implementation of the watchdog and how it responds
 during various failures and attempts at exploitation will allow us to develop better, more sophisticated attack
 methods.
+
+\textbf{Zach}
 
 \section{Conclusion}
 In the end, there are a few goals for the results of this project. 
