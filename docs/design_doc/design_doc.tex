@@ -58,7 +58,7 @@
         Design Document
         %Progress Report
         }
-      
+
 \newcommand{\NameSigPair}[1]{\par
 \makebox[2.75in][r]{#1} \hfil   \makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill    \makebox[.75in]{\hrulefill}}
 \par\vspace{-12pt} \textit{\tiny\noindent
@@ -72,9 +72,9 @@
     \pagenumbering{gobble}
     \begin{singlespace}
       \includegraphics[height=4cm]{coe_v_spot1}
-        \hfill 
+        \hfill
         % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
-        %\includegraphics[height=4cm]{CompanyLogo}   
+        %\includegraphics[height=4cm]{CompanyLogo}
         \par\vspace{.2in}
         \centering
         \scshape{
@@ -90,7 +90,7 @@
             {\large Prepared by }\par
             Group\CapstoneTeamNumber\par
             % 5. comment out the line below this one if you do not wish to name your team
-            \CapstoneTeamName\par 
+            \CapstoneTeamName\par
             \vspace{10pt}
             {\Large
                 \NameSigPair{\GroupMemberOne}\par
@@ -105,7 +105,7 @@
           The different vulnerabilities found will be categorized into malware, sensor hacks, network and control channel attacks, and physical breaches.
           For some of these exploits we may be able to implement solutions, which will also be documented.
           These findings and any solutions will be added to an ongoing academic effort to make robotics more secure.
-        \end{abstract}     
+        \end{abstract}
     \end{singlespace}
 \end{titlepage}
 \newpage
@@ -118,17 +118,17 @@
 
 \section{Introduction}
 \subsection{Problem Definition}
-Robotics is still a relatively up and coming field and as most efforts in robotics are in pursuit of furthering capabilities, security has been left largely untouched. 
+Robotics is still a relatively up and coming field and as most efforts in robotics are in pursuit of furthering capabilities, security has been left largely untouched.
 Because of this many functioning, deployed robots have limited to no security in their internal systems, making them very vulnerable to attacks.
-While the community developing robotics is still largely academic and there is little worry of being attacked, the security vulnerabilities still exist. 
+While the community developing robotics is still largely academic and there is little worry of being attacked, the security vulnerabilities still exist.
 Soon robotics will become ubiquitous in society and hackers will exploit these vulnerabilities for personal gain.
 There have already been reports of smart appliances being used for botnets, it's only a matter of time before drones and other robotics are similarly abused. \cite{ddos}
 Through our work we hope to eliminate some of this abuse before it begins.
 
-Since robotics are continually in development and there is such a wide variety of devices we have to focus our efforts onto a small subset of robotics to have any hope of making progress within a year. 
+Since robotics are continually in development and there is such a wide variety of devices we have to focus our efforts onto a small subset of robotics to have any hope of making progress within a year.
 The Robotic Operating System (ROS) can be attacked at the driver level with malware, can have the configuration files modified, and can have data intercepted or spoofed in the internal communication subsystems.
-We should also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
-Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices. 
+We should also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems.
+Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices.
 Even physical attacks are something that needs to be addressed as a security concern.
 It's very important that we acknowledge all of these risks, since exploitation of them could be a big setback for global trust of robotics.
 
@@ -138,15 +138,15 @@ The military uses and plans to use them widely, and for them more than anyone th
 Amazon and other commercial shipping companies have a vast use of robotics, and we've all heard about their plans for delivery drones, which are a huge security risk.
 If consumers think these will be abused they won't trust this upcoming technology and it will be slowly or never adopted, which will make companies hesitant to invest in their development.
 Consequentially, the world as a whole will be slower to advance robotic technology.
-Hopefully our work in securing robotics can help to better develop consumer trust in this emerging technology. 
+Hopefully our work in securing robotics can help to better develop consumer trust in this emerging technology.
 
 \textbf{Emily}
 
 \section{Research Design}
 \subsection{Threat Models}
-A key element to our project is being able to accurately find vulnerabilities or identify areas where they are likely to be. 
-One of the best ways to do this in an organized way that can be later referenced is with threat modeling. 
-This method is widely used in industry when producing any sort of software. Many security professionals use it, but anyone can employ its methods. 
+A key element to our project is being able to accurately find vulnerabilities or identify areas where they are likely to be.
+One of the best ways to do this in an organized way that can be later referenced is with threat modeling.
+This method is widely used in industry when producing any sort of software. Many security professionals use it, but anyone can employ its methods.
 There are a variety of tools and technologies that can be used in threat modeling, which I am going to be comparing.
 
 Adam Shostack mentions in his book on threat modeling that  \cite[p.203]{TMDS}
@@ -160,7 +160,7 @@ It also serves as a useful reference and record throughout the research process.
 If our models change at all we'll still have a formal record of any previous versions which we used to collect any previous data.
 
 One last and important technology that Adam Shostack mentions is a bug tracking system.
-Just the issue tracking system in git could work for this, but there's a variety of ways we can do it. 
+Just the issue tracking system in git could work for this, but there's a variety of ways we can do it.
 What's important is that it includes a definition of the threat, how we're going about it, the need to test it, the need to validate an assumption, and any possible mitigation we have. \cite[p.205]{TMDS}
 We can then update this as we make progress on that specific exploit, and eventually close it as either completed or a dead end.
 To get the most out of threat modeling it would be great to employ all of these, but they may not all be viable.
@@ -181,24 +181,24 @@ It provides a visual representation of where the greatest concentrations of vuln
 \textbf{Emily}
 
 \subsection{Documentation of Data}
-The core of our project is the data that we record when trying out different exploits on the system, and for it to be useful it must be recorded thoroughly and consistently. 
-Because there is such a wide variety of ways we will attempt to attack the system, the data will also be quite varied. 
-As much as I wish it were possible to have easily comparable data from all of them, it simply isn't possible. 
+The core of our project is the data that we record when trying out different exploits on the system, and for it to be useful it must be recorded thoroughly and consistently.
+Because there is such a wide variety of ways we will attempt to attack the system, the data will also be quite varied.
+As much as I wish it were possible to have easily comparable data from all of them, it simply isn't possible.
 To combat this we have to try to at least document what we come up with consistently.
 
 An article from Georgia Tech on proper research data documentation gives a few great concepts to focus on. \cite{GTDD}
-It states that among a number of things, one should record the location, methodology, software used, and any data processing done. 
-For location data this means recording where the data was taken, which for our project might include GPS data when testing with the drones. 
+It states that among a number of things, one should record the location, methodology, software used, and any data processing done.
+For location data this means recording where the data was taken, which for our project might include GPS data when testing with the drones.
 It could also mean what location within the drone, and within that it could even be as specific as where in the code (if it's a software based exploit).
 Methodology is possibly the most important one, as it records how the data was generated, the protocol used, or where it came from.
-Our diverse range of data could actually be somewhat standardized if we meticulously record the methodology used and then later visualize it somehow according to that, most likely in some sort of tree based on categorizations of methodology. 
-Software used ties into this, as it is part of what generates the data points we output. 
-If we used software in manipulating, organizing, or visualizing the data though we would need to record that separately. 
+Our diverse range of data could actually be somewhat standardized if we meticulously record the methodology used and then later visualize it somehow according to that, most likely in some sort of tree based on categorizations of methodology.
+Software used ties into this, as it is part of what generates the data points we output.
+If we used software in manipulating, organizing, or visualizing the data though we would need to record that separately.
 This leads to the last point of data processing, which is also a very important one.
 If we change the data in any way to process it we absolutely must record that, or else the legitimacy of the final data could be ruined.
 Just like citing any sources we use, we have to cite anything that we do for the sake of reproducibility.
 
-While they are options, all of these should be taken into account when we start to actually produce data. 
+While they are options, all of these should be taken into account when we start to actually produce data.
 We don't necessarily need to follow the previously stated ideas as they are, and we're sure to find problems with them or better options along the way.
 The main concept here is that research data is precious and sensitive and we need to do our best to make our final product something that's academically valuable.
 
@@ -213,7 +213,7 @@ Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and
 After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be mathematically ranked in order of importance. \cite{FMEA}
 
 Employing this method and applying it to all successful exploits found will be immensely helpful in being able to compare completely separate systems.
-Final conclusion data can be drawn form these and an ultimate ranking of security prioritized vulnerabilities would be an immensely useful product to the community as a whole. 
+Final conclusion data can be drawn form these and an ultimate ranking of security prioritized vulnerabilities would be an immensely useful product to the community as a whole.
 
 \textbf{Emily}
 
@@ -241,12 +241,11 @@ us to leverage that data to develop drone attack methods, relating to our commun
 \textbf{Zach}
 
 \subsection{Drone Communication Channel}
-A lot goes into the communication between the two drones that we have use.
-To begin they have a 2.4Ghz data-link between the drone and the receiver ground-station unit.
+The two drones that we have use a 2.4Ghz data-link between the drone and the receiver ground-station unit.
 That receiver unit then uses a Bluetooth connection to connect to the user's controller, which is a physical controller
 or device such as a laptop or tablet.\cite{NazaM2} With this in mind, there are two communication channels that can be
 targeted; the connection from the drone to the ground-station unit, and the connection from the ground-station unit
-to the controller\cite{NazaM2}.
+to the controller. \cite{NazaM2}
 
 The 2.4Ghz frequency is commonly used by most Wireless Access Points, following the IEEE 802.11a/b/g
 standard. Bluetooth is another protocol that operates within the 2.4Ghz RF (radio frequency)
@@ -254,17 +253,17 @@ spectrum\cite{HakDaSpectrum}. This means that communication packets for the dron
 open, which can be can be intercepted and analyzed with the right tools.
 
 Each drone will be using a BeagleBone Black with a PixHawk Fire v1.6 Cape, making our drones Linux powered, running
-Ubuntu Snappy Core, enabling us to use ROS\cite{PixHawk}. The PixHawk is a flight control system, similar to the
+Ubuntu ARM, enabling us to use ROS\cite{PixHawk}. The PixHawk is a flight control system, similar to the
 Naza-M2, which comes standard on the Flame Wheel ARF F550. It handles the drone's flight system, and includes a cluster
 of sensors (GPS, Gyroscope, etc) to keep track of vital information in order to maintain control over the drone while
-in flight. The PixHawk also handles telemetry communication between the drone and the ground-station. As stated before,
+in flight. The PixHawk also handles telementry communication between the drone and the ground-station. As stated before,
 2.4Ghz is the operating frequency between the drone and the ground-station, though the PixHawk also supports a RFD900
-900Mhz Telemetry Radio, for longer operating distances\cite{PixHawkDocs}. This opens up an additional communication
+900Mhz Telemetry Radio, for longer telemetry reporting distances\cite{PixHawkDocs}. This opens up an additional communication
 channel that could be targeted. In order to intercept and analyze 900Mhz RF communications, we would need additional
-tools, separate from what would be needed to intercept and analyze communications on the 2.4Ghz
+tools, seperate from what would be needed to intercept and analyze communications on the 2.4Ghz
 frequency\cite{HakDaSpectrum900}.
 
-What should now be clear is that there are a lot of data transmitted in the open air in order to have a successful
+What should now be clear is that there is a lot of data transmitted in the open air in order to have a successful
 drone system. This means that there are a lot of different ways that communications can be intercepted and even
 altered, in an attempt to gain control over a drone's flight plan. Knowing which communication channels to target
 is only a small part of getting to the ultimate goal of intercepting drone data; consider that the Research and
@@ -273,41 +272,41 @@ Development phase. The next step is to explore how exactly to capture that data.
 \textbf{Zach}
 
 \subsubsection{Network Setup}
-Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop. 
-We may need to configure the debian install on the drone to recognize the Ethernet connection but it should be automated as part of the debian install, if it is anything like what a normal live installation media is like.
-The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity for an debian system. 
-If the need arises many guides for setting up wireless connections on linux systems exist, like this. \cite{wirelessconfig} 
-Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and will be covered later on in this document. 
+Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop.
+We may need to configure the Ubuntu install on the drone to recognize the Ethernet connection but it should be automated as part of the Ubuntu install.
+The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity for Ubuntu based system.
+If the need arises many guides for setting up wireless connections on linux systems exist, like this. \cite{wirelessconfig}
+Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and will be covered later on in this document.
 The control station wireless shouldn't be any different than the drone's, and may in fact be pre-configured for us as part of the initial installation.
 
 \textbf{Dominic}
 
 \subsection{Drone OS}
 For the purposes of the OS, it is not so much its design as it is its execution, as most of the OS has been decided with
-the requirements of our pixhawk cape. We will be using ROS Indigo, which is the recommended version of ROS for our setup on top 
-of some board-specific software builds. The control station, AKA a desktop or laptop computer running linux with ROS for its own 
-operating system, will have a trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8 
-commands total and waiting for apt-get to finish. We foresee little trouble with the process. The more involved process will be 
-flashing the drone with the correct software. To start, we will need to flash the BeagleBone black itself with a specific image 
+the requirements of our pixhawk cape. We will be using ROS Kinetic, which is the recommended version of ROS for our setup on top
+of some board-specific software builds. The control station, AKA a desktop or laptop computer running linux with ROS for its own
+operating system, will have a trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8
+commands total and waiting for apt-get to finish. We foresee little trouble with the process. The more involved process will be
+flashing the drone with the correct software. To start, we will need to flash the BeagleBone black itself with a specific image
 found at this link along with instructions for the flashing process\cite{buildingBBB}. The general idea here is to flash the internal
-memory of the BBB with the system image so it has something to boot from. After that, we'll need to build the associated kernel 
-with instructions on the same page and insert that into the beagle bone black so that it can operate the pixhawk. That is much 
-the same process except we'll have to install some specific packages for cross compiling. Once that is complete, then we can 
-build the pixhawk specific libraries for autopilot with instructions found on this page\cite{buildingPX}. We would need to 
-follow the advanced instructions at the bottom of the page, but they are no harder than command line git is and should not be 
-too difficult for our team. Once this is all done, our drone will be using a version of arduPilot for our flight systems and a 
+memory of the BBB with the system image so it has something to boot from. After that, we'll need to build the associated kernel
+with instructions on the same page and insert that into the beagle bone black so that it can operate the pixhawk. That is much
+the same process except we'll have to install some specific packages for cross compiling. Once that is complete, then we can
+build the pixhawk specific libraries for autopilot with instructions found on this page\cite{buildingPX}. We would need to
+follow the advanced instructions at the bottom of the page, but they are no harder than command line git is and should not be
+too difficult for our team. Once this is all done, our drone will be using a version of arduPilot for our flight systems and a
 custom Ubunutu-based Linux build for the underlying operating system on the beagle board black.
 
 \textbf{Dominic}
 
 \subsubsection{ROS v SROS (or rather ROS)}
 Once we have Linux installed on the station and Ubunutu on the drone, we can follow\cite{Indigo}.
-The gist of it is that it isn't much different than a regular desktop install; setup your sources, your keys, do some 
+The gist of it is that it isn't much different than a regular desktop install; setup your sources, your keys, do some
 apt-gets, and ROS will be installed. The better question is what ROS packages we will install outside of the base ROS packages
 and the ones required for our board's autonomous routines for testing purposes. SROS is currently thought to be uncompatable with
-our drone's specific OS, as the autopilot packages on the drone use UDP based networking, while SROS only has TCP support for 
-its encryption protocols. It is not known at this time if there is a workaround for this issue, or if SROS will just run the 
-package in a ROS compatability mode, and as such the team will be using ROS for the foreseeable future. 
+our drone's specific OS, as the autopilot packages on the drone use UDP based networking, while SROS only has TCP support for
+its encryption protocols. It is not known at this time if there is a workaround for this issue, or if SROS will just run the
+package in a ROS compatability mode, and as such the team will be using ROS for the foreseeable future.
 
 \textbf{Dominic}
 
@@ -316,7 +315,7 @@ Wireshark will also assist with analyzing the unknown communication protocol tha
 streams, and looking at the raw packet data, will allow us to form a concrete understanding of how the drone and
 ground control system associate with each other, and how commands are sent to the drone\cite{UknProto}.
 
-If reverse engineering proves to be unsuccessful, or difficult, we will still be in a position to attack the drone
+If reverse engineering proves to be unsuccessful, or difficult, we will still be in a poisiton to attack the drone
 communications, using MITM style attacks, and possibly some fuzzing related attacks\cite{Fuzzy}.
 
 Along with this analysis, monitoring how the drone ROS packages utilize the ROS Watchdog Timer will provide some
@@ -328,10 +327,10 @@ methods.
 \textbf{Zach}
 
 \section{Conclusion}
-In the end, there are a few goals for the results of this project. 
+In the end, there are a few goals for the results of this project.
 First is just to gain insight into the penetrability of the drones current security and document it.
 Next is to determine where the biggest potential for risk lies and compile a ranking of the most potentially catastrophic vulnerabilities.
-Lastly the hope is to find or create as many patches as possible to prevent these exploits from being abused, and to contribute them to the community, possibly the SROS project. 
+Lastly the hope is to find or create as many patches as possible to prevent these exploits from being abused, and to contribute them to the community, possibly the SROS project.
 
 By following the protocol that has been laid out and exploring as many of the options as possible, a great deal of valuable data can be generated.
 Future expansion upon it academically could yield even greater results, using it as a stepping stone for direction.
