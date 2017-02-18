@@ -8,12 +8,12 @@ GH		= gv
 all: pdf
 
 pdf:
-	latex progress_report.tex
-	bibtex progress_report
-	latex progress_report.tex
-	latex progress_report.tex
-	dvips -R -Poutline -t letter progress_report.dvi -o progress_report.ps
-	ps2pdf progress_report.ps
+	latex midterm_progress.tex
+	bibtex midterm_progress
+	latex midterm_progress.tex
+	latex midterm_progress.tex
+	dvips -R -Poutline -t letter midterm_progress.dvi -o midterm_progress.ps
+	ps2pdf midterm_progress.ps
  
 clean:
 	rm -f *.dvi *.out *.aux *.log *.bbl *.blg *.ps *.pdf
