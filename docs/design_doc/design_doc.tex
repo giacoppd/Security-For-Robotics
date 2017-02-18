@@ -241,12 +241,11 @@ us to leverage that data to develop drone attack methods, relating to our commun
 \textbf{Zach}
 
 \subsection{Drone Communication Channel}
-A lot goes into the communication between the two drones that we have use.
-To begin they have a 2.4Ghz data-link between the drone and the receiver ground-station unit.
+The two drones that we have use a 2.4Ghz data-link between the drone and the receiver ground-station unit.
 That receiver unit then uses a Bluetooth connection to connect to the user's controller, which is a physical controller
 or device such as a laptop or tablet.\cite{NazaM2} With this in mind, there are two communication channels that can be
 targeted; the connection from the drone to the ground-station unit, and the connection from the ground-station unit
-to the controller\cite{NazaM2}.
+to the controller. \cite{NazaM2}
 
 The 2.4Ghz frequency is commonly used by most Wireless Access Points, following the IEEE 802.11a/b/g
 standard. Bluetooth is another protocol that operates within the 2.4Ghz RF (radio frequency)
@@ -254,17 +253,17 @@ spectrum\cite{HakDaSpectrum}. This means that communication packets for the dron
 open, which can be can be intercepted and analyzed with the right tools.
 
 Each drone will be using a BeagleBone Black with a PixHawk Fire v1.6 Cape, making our drones Linux powered, running
-Ubuntu Snappy Core, enabling us to use ROS\cite{PixHawk}. The PixHawk is a flight control system, similar to the
+Ubuntu ARM, enabling us to use ROS\cite{PixHawk}. The PixHawk is a flight control system, similar to the
 Naza-M2, which comes standard on the Flame Wheel ARF F550. It handles the drone's flight system, and includes a cluster
 of sensors (GPS, Gyroscope, etc) to keep track of vital information in order to maintain control over the drone while
-in flight. The PixHawk also handles telemetry communication between the drone and the ground-station. As stated before,
+in flight. The PixHawk also handles telementry communication between the drone and the ground-station. As stated before,
 2.4Ghz is the operating frequency between the drone and the ground-station, though the PixHawk also supports a RFD900
-900Mhz Telemetry Radio, for longer operating distances\cite{PixHawkDocs}. This opens up an additional communication
+900Mhz Telemetry Radio, for longer telemetry reporting distances\cite{PixHawkDocs}. This opens up an additional communication
 channel that could be targeted. In order to intercept and analyze 900Mhz RF communications, we would need additional
-tools, separate from what would be needed to intercept and analyze communications on the 2.4Ghz
+tools, seperate from what would be needed to intercept and analyze communications on the 2.4Ghz
 frequency\cite{HakDaSpectrum900}.
 
-What should now be clear is that there are a lot of data transmitted in the open air in order to have a successful
+What should now be clear is that there is a lot of data transmitted in the open air in order to have a successful
 drone system. This means that there are a lot of different ways that communications can be intercepted and even
 altered, in an attempt to gain control over a drone's flight plan. Knowing which communication channels to target
 is only a small part of getting to the ultimate goal of intercepting drone data; consider that the Research and
@@ -274,8 +273,8 @@ Development phase. The next step is to explore how exactly to capture that data.
 
 \subsubsection{Network Setup}
 Wired communications shouldn't be any harder than inserting the Ethernet cable into the appropriate slots on the drone and the control station laptop.
-We may need to configure the debian install on the drone to recognize the Ethernet connection but it should be automated as part of the debian install, if it is anything like what a normal live installation media is like.
-The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity for an debian system.
+We may need to configure the Ubuntu install on the drone to recognize the Ethernet connection but it should be automated as part of the Ubuntu install.
+The wireless connection will be more involved, but should not be any different than a regular setup of wireless connectivity for Ubuntu based system.
 If the need arises many guides for setting up wireless connections on linux systems exist, like this. \cite{wirelessconfig}
 Actually setting up the wireless card so that the board recognizes it and can use it is a different matter, and will be covered later on in this document.
 The control station wireless shouldn't be any different than the drone's, and may in fact be pre-configured for us as part of the initial installation.
@@ -284,7 +283,7 @@ The control station wireless shouldn't be any different than the drone's, and ma
 
 \subsection{Drone OS}
 For the purposes of the OS, it is not so much its design as it is its execution, as most of the OS has been decided with
-the requirements of our pixhawk cape. We will be using ROS Kinetic, which is the recommended version of ROS for our setup on top 
+the requirements of our pixhawk cape. We will be using ROS Kinetic, which is the recommended version of ROS for our setup on top
 of some board-specific software builds. The control station, AKA a desktop or laptop computer running linux with ROS for its own
 operating system, will have a trivial install and setup procedure. It is detailed here\cite{Indigo} but boils down to about 8
 commands total and waiting for apt-get to finish. We foresee little trouble with the process. The more involved process will be
@@ -312,11 +311,11 @@ package in a ROS compatability mode, and as such the team will be using ROS for 
 \textbf{Dominic}
 
 \subsection{Leveraging Captured Data to Develop Attack Methods}
-Wireshark will also assist with analyzing the unknown communication protocol that the drone uses. Following the packet
+Wireshark will also assist with analying the unknown communication protocol that the drone uses. Following the packet
 streams, and looking at the raw packet data, will allow us to form a concrete understanding of how the drone and
 ground control system associate with each other, and how commands are sent to the drone\cite{UknProto}.
 
-If reverse engineering proves to be unsuccessful, or difficult, we will still be in a position to attack the drone
+If reverse engineering proves to be unsuccessful, or difficult, we will still be in a poisiton to attack the drone
 communications, using MITM style attacks, and possibly some fuzzing related attacks\cite{Fuzzy}.
 
 Along with this analysis, monitoring how the drone ROS packages utilize the ROS Watchdog Timer will provide some
