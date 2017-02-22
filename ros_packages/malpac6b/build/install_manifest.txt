@@ -1,0 +1,12 @@
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/_setup_util.py
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/env.sh
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/setup.bash
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/setup.sh
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/setup.zsh
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/.rosinstall
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/lib/pkgconfig/malpac6b.pc
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/share/malpac6b/cmake/malpac6bConfig.cmake
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/share/malpac6b/cmake/malpac6bConfig-version.cmake
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/share/malpac6b/package.xml
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/lib/malpac6b/replacer.py
+/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/lib/malpac6b/dummy.py
