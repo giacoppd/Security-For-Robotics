@@ -1,0 +1,8 @@
+prefix=/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6/devel
+
+Name: malpac6
+Description: Description of malpac6
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6/devel/lib 
+Requires: 
