@@ -1,0 +1,8 @@
+prefix=/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac7/install
+
+Name: malpac7
+Description: Description of malpac7
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac7/install/lib 
+Requires: 
