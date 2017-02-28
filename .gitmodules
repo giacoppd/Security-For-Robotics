@@ -1,0 +1,3 @@
+[submodule "ros_packages/gps_spoof"]
+	path = ros_packages/gps_spoof
+	url = https://github.com/markszabo/drone-hacking
