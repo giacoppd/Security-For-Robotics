@@ -1,8 +1,0 @@
-prefix=/home/dominic/SP/Security-For-Robotics/malpac3/install
-
-Name: malpac3
-Description: Description of malpac3
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/dominic/SP/Security-For-Robotics/malpac3/install/lib 
-Requires: 
