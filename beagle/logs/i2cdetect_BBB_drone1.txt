@@ -1,0 +1,181 @@
+ 
+Ubuntu 16.04.1 LTS arm ttyGS0
+ 
+rcn-ee.net console Ubuntu Image 2017-01-23
+ 
+Support/FAQ: http://elinux.org/BeagleBoardUbuntu
+ 
+default username:password is [ubuntu:temppwd]
+ 
+arm login: ubuntu 
+Password: 
+Last login: Fri Feb  17 09:42:58 UTC 2017 on ttyGS0
+Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.43-ti-r84 armv7l)
+ 
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+HAI, I AM DRONE 1!
+ubuntu@arm:~$ ls
+ardupilot  bin
+ubuntu@arm:~$ i2cdetect 
+Error: No i2c-bus specified!
+Usage: i2cdetect [-y] [-a] [-q|-r] I2CBUS [FIRST LAST]
+       i2cdetect -F I2CBUS
+       i2cdetect -l
+  I2CBUS is an integer or an I2C bus name
+  If provided, FIRST and LAST limit the probing range.
+ubuntu@arm:~$ i2cdetect -l
+i2c-0   i2c             OMAP I2C adapter                        I2C adapter
+i2c-2   i2c             OMAP I2C adapter                        I2C adapter
+ubuntu@arm:~$ i2cdetect -r 0
+WARNING! This program can confuse your I2C bus, cause data loss and worse!
+I will probe file /dev/i2c-0 using read byte commands.
+I will probe address range 0x03-0x77.
+Continue? [Y/n] y   
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- UU -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- UU -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: UU -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: UU -- -- -- -- -- -- --                         
+ubuntu@arm:~$ i2cdetect -r 2
+WARNING! This program can confuse your I2C bus, cause data loss and worse!
+I will probe file /dev/i2c-2 using read byte commands.
+I will probe address range 0x03-0x77.
+Continue? [Y/n] y
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- UU UU UU UU -- -- -- -- 5c -- -- -- 
+60: -- -- -- -- 64 -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+ubuntu@arm:~$ i2cdetect -r 1
+Error: Could not open file `/dev/i2c-1' or `/dev/i2c/1': No such file or directory
+ubuntu@arm:~$ cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups
+cat: /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups: Permission denied
+ubuntu@arm:~$ sudo !!
+sudo cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups
+[sudo] password for ubuntu: 
+registered pin groups:
+group: pinmux_uart0_pins
+pin 92 (44e10970.0)
+pin 93 (44e10974.0)
+ 
+group: cpsw_default
+pin 66 (44e10908.0)
+pin 67 (44e1090c.0)
+pin 68 (44e10910.0)
+pin 69 (44e10914.0)
+pin 70 (44e10918.0)
+pin 71 (44e1091c.0)
+pin 72 (44e10920.0)
+pin 73 (44e10924.0)
+pin 74 (44e10928.0)
+pin 75 (44e1092c.0)
+pin 76 (44e10930.0)
+pin 77 (44e10934.0)
+pin 78 (44e10938.0)
+pin 79 (44e1093c.0)
+pin 80 (44e10940.0)
+ 
+group: cpsw_sleep
+pin 66 (44e10908.0)
+pin 67 (44e1090c.0)
+pin 68 (44e10910.0)
+pin 69 (44e10914.0)
+pin 70 (44e10918.0)
+pin 71 (44e1091c.0)
+pin 72 (44e10920.0)
+pin 73 (44e10924.0)
+pin 74 (44e10928.0)
+pin 75 (44e1092c.0)
+pin 76 (44e10930.0)
+pin 77 (44e10934.0)
+pin 78 (44e10938.0)
+pin 79 (44e1093c.0)
+pin 80 (44e10940.0)
+ 
+group: davinci_mdio_default
+pin 82 (44e10948.0)
+pin 83 (44e1094c.0)
+ 
+group: davinci_mdio_sleep
+pin 82 (44e10948.0)
+pin 83 (44e1094c.0)
+ 
+group: pinmux_mmc1_pins
+pin 88 (44e10960.0)
+ 
+group: pinmux_emmc_pins
+pin 32 (44e10880.0)
+pin 33 (44e10884.0)
+pin 0 (44e10800.0)
+pin 1 (44e10804.0)
+pin 2 (44e10808.0)
+pin 3 (44e1080c.0)
+pin 4 (44e10810.0)
+pin 5 (44e10814.0)
+pin 6 (44e10818.0)
+pin 7 (44e1081c.0)
+ 
+group: user_leds_default
+pin 21 (44e10854.0)
+pin 22 (44e10858.0)
+pin 23 (44e1085c.0)
+pin 24 (44e10860.0)
+ 
+group: user_leds_sleep
+pin 21 (44e10854.0)
+pin 22 (44e10858.0)
+pin 23 (44e1085c.0)
+pin 24 (44e10860.0)
+ 
+group: pinmux_i2c0_pins
+pin 98 (44e10988.0)
+pin 99 (44e1098c.0)
+ 
+group: pinmux_i2c2_pins
+pin 94 (44e10978.0)
+pin 95 (44e1097c.0)
+ 
+group: nxp_hdmi_bonelt_pins
+pin 108 (44e109b0.0)
+pin 40 (44e108a0.0)
+pin 41 (44e108a4.0)
+pin 42 (44e108a8.0)
+pin 43 (44e108ac.0)
+pin 44 (44e108b0.0)
+pin 45 (44e108b4.0)
+pin 46 (44e108b8.0)
+pin 47 (44e108bc.0)
+pin 48 (44e108c0.0)
+pin 49 (44e108c4.0)
+pin 50 (44e108c8.0)
+pin 51 (44e108cc.0)
+pin 52 (44e108d0.0)
+pin 53 (44e108d4.0)
+pin 54 (44e108d8.0)
+pin 55 (44e108dc.0)
+pin 56 (44e108e0.0)
+pin 57 (44e108e4.0)
+pin 58 (44e108e8.0)
+pin 59 (44e108ec.0)
+ 
+group: nxp_hdmi_bonelt_off_pins
+pin 108 (44e109b0.0)
+ 
+group: mcasp0_pins
+pin 107 (44e109ac.0)
+pin 103 (44e1099c.0)
+pin 101 (44e10994.0)
+pin 100 (44e10990.0)
+pin 27 (44e1086c.0)
+ 
+ubuntu@arm:~$ 

@@ -1,0 +1,2631 @@
+ 
+Ubuntu 16.04.1 LTS arm ttyGS0
+ 
+rcn-ee.net console Ubuntu Image 2017-01-23
+ 
+Support/FAQ: http://elinux.org/BeagleBoardUbuntu
+ 
+default username:password is [ubuntu:temppwd]
+ 
+arm login: ubuntu 
+Password: 
+Last login: Fri Feb  3 09:42:58 UTC 2017 on ttyGS0
+Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.43-ti-r84 armv7l)
+ 
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+HAI, I AM DRONE 1!
+ubuntu@arm:~$ ls
+ardupilot  bin
+ubuntu@arm:~$ i2cdetect 
+Error: No i2c-bus specified!
+Usage: i2cdetect [-y] [-a] [-q|-r] I2CBUS [FIRST LAST]
+       i2cdetect -F I2CBUS
+       i2cdetect -l
+  I2CBUS is an integer or an I2C bus name
+  If provided, FIRST and LAST limit the probing range.
+ubuntu@arm:~$ i2cdetect -l
+i2c-0   i2c             OMAP I2C adapter                        I2C adapter
+i2c-2   i2c             OMAP I2C adapter                        I2C adapter
+ubuntu@arm:~$ i2cdetect -r 0
+WARNING! This program can confuse your I2C bus, cause data loss and worse!
+I will probe file /dev/i2c-0 using read byte commands.
+I will probe address range 0x03-0x77.
+Continue? [Y/n] y   
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- UU -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- UU -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: UU -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: UU -- -- -- -- -- -- --                         
+ubuntu@arm:~$ i2cdetect -r 2
+WARNING! This program can confuse your I2C bus, cause data loss and worse!
+I will probe file /dev/i2c-2 using read byte commands.
+I will probe address range 0x03-0x77.
+Continue? [Y/n] y
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- UU UU UU UU -- -- -- -- 5c -- -- -- 
+60: -- -- -- -- 64 -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+ubuntu@arm:~$ i2cdetect -r 1
+Error: Could not open file `/dev/i2c-1' or `/dev/i2c/1': No such file or directory
+ubuntu@arm:~$ cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups
+cat: /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups: Permission denied
+ubuntu@arm:~$ sudo !!
+sudo cat /sys/kernel/debug/pinctrl/44e10800.pinmux/pingroups
+[sudo] password for ubuntu: 
+registered pin groups:
+group: pinmux_uart0_pins
+pin 92 (44e10970.0)
+pin 93 (44e10974.0)
+ 
+group: cpsw_default
+pin 66 (44e10908.0)
+pin 67 (44e1090c.0)
+pin 68 (44e10910.0)
+pin 69 (44e10914.0)
+pin 70 (44e10918.0)
+pin 71 (44e1091c.0)
+pin 72 (44e10920.0)
+pin 73 (44e10924.0)
+pin 74 (44e10928.0)
+pin 75 (44e1092c.0)
+pin 76 (44e10930.0)
+pin 77 (44e10934.0)
+pin 78 (44e10938.0)
+pin 79 (44e1093c.0)
+pin 80 (44e10940.0)
+ 
+group: cpsw_sleep
+pin 66 (44e10908.0)
+pin 67 (44e1090c.0)
+pin 68 (44e10910.0)
+pin 69 (44e10914.0)
+pin 70 (44e10918.0)
+pin 71 (44e1091c.0)
+pin 72 (44e10920.0)
+pin 73 (44e10924.0)
+pin 74 (44e10928.0)
+pin 75 (44e1092c.0)
+pin 76 (44e10930.0)
+pin 77 (44e10934.0)
+pin 78 (44e10938.0)
+pin 79 (44e1093c.0)
+pin 80 (44e10940.0)
+ 
+group: davinci_mdio_default
+pin 82 (44e10948.0)
+pin 83 (44e1094c.0)
+ 
+group: davinci_mdio_sleep
+pin 82 (44e10948.0)
+pin 83 (44e1094c.0)
+ 
+group: pinmux_mmc1_pins
+pin 88 (44e10960.0)
+ 
+group: pinmux_emmc_pins
+pin 32 (44e10880.0)
+pin 33 (44e10884.0)
+pin 0 (44e10800.0)
+pin 1 (44e10804.0)
+pin 2 (44e10808.0)
+pin 3 (44e1080c.0)
+pin 4 (44e10810.0)
+pin 5 (44e10814.0)
+pin 6 (44e10818.0)
+pin 7 (44e1081c.0)
+ 
+group: user_leds_default
+pin 21 (44e10854.0)
+pin 22 (44e10858.0)
+pin 23 (44e1085c.0)
+pin 24 (44e10860.0)
+ 
+group: user_leds_sleep
+pin 21 (44e10854.0)
+pin 22 (44e10858.0)
+pin 23 (44e1085c.0)
+pin 24 (44e10860.0)
+ 
+group: pinmux_i2c0_pins
+pin 98 (44e10988.0)
+pin 99 (44e1098c.0)
+ubuntu@arm:~$ cd 
+.cache/    .ros/      ardupilot/ bin/       
+ubuntu@arm:~$ cd ardupilot/
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Makefile      eclipse.cproject  uncrustify_cpp.cfg
+AntennaTracker  Makefile.waf  eclipse.project   uncrustify_headers.cfg
+ArduCopter      README.md     libraries         waf
+ArduPlane       Tools         mk                wscript
+BUILD.md        Vagrantfile   modules
+COPYING.txt     benchmarks    reformat.sh
+Doxyfile.in     docs          tests
+ubuntu@arm:~/ardupilot$ cd tests/
+ubuntu@arm:~/ardupilot/tests$ ls
+AP_gtest.h
+ubuntu@arm:~/ardupilot/tests$ cd ..
+ubuntu@arm:~/ardupilot$ cd Tools/
+ubuntu@arm:~/ardupilot/Tools$ ls
+APM2_2560_bootloader  CodeStyle             PPM_decoding     autotest
+APM_radio_test        Failsafe              Pozyx            gittools
+ArduPPM               Frame_params          PrintVersion.py  mavproxy_modules
+ArduPilotMega_demo    GIT_Test              Replay           scripts
+ArdupilotMegaPlanner  Hello                 SerialProxy      vagrant
+CHDK-Scripts          Linux_HAL_Essentials  Xplane
+CPUInfo               LogAnalyzer           ardupilotwaf
+ubuntu@arm:~/ardupilot/Tools$ cd ArduPPM/
+ubuntu@arm:~/ardupilot/Tools/ArduPPM$ ls
+ATMega328p  ATMega32U2  Binaries  Libraries  WorkBasket  readme.txt
+ubuntu@arm:~/ardupilot/Tools/ArduPPM$ cat readme.txt 
+ 
+ArduPPM is the generic code name for boards or chips responsible for ppm encoding.
+ 
+ 
+ 
+ 
+Available firmwares :
+ 
+ 
+ATMega328p : second generation ppm encoder code designed for APM v1.x boards using ATMega328P.
+ 
+ 
+ATMega32U2 : second generation ppm encoder code designed for boards using ATMega16U2 or ATMega32U2 (PhoneDrone and future APM boards).
+ 
+ 
+ 
+ 
+ 
+ 
+APM v1.x users are welcome to use the new ppm encoder code (ATMega328p).
+ 
+This firmware should solve compatibility or reliability problems that can be seen with "difficult" receivers.
+ 
+ubuntu@arm:~/ardupilot/Tools/ArduPPM$ cd ..
+ubuntu@arm:~/ardupilot/Tools$ cd ..
+ubuntu@arm:~/ardupilot$ ks
+-bash: ks: command not found
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Makefile      eclipse.cproject  uncrustify_cpp.cfg
+AntennaTracker  Makefile.waf  eclipse.project   uncrustify_headers.cfg
+ArduCopter      README.md     libraries         waf
+ArduPlane       Tools         mk                wscript
+BUILD.md        Vagrantfile   modules
+COPYING.txt     benchmarks    reformat.sh
+Doxyfile.in     docs          tests
+ubuntu@arm:~/ardupilot$ cd ArduCopter/
+ubuntu@arm:~/ardupilot/ArduCopter$ ls
+APM_Config.h              capabilities.cpp          failsafe.cpp
+APM_Config_mavlink_hil.h  commands.cpp              fence.cpp
+AP_Arming.cpp             commands_logic.cpp        flight_mode.cpp
+AP_Arming.h               compassmot.cpp            heli.cpp
+AP_Rally.cpp              compat.cpp                heli_control_acro.cpp
+AP_Rally.h                config.h                  heli_control_stabilize.cpp
+AP_State.cpp              control_acro.cpp          inertia.cpp
+ArduCopter.cpp            control_althold.cpp       land_detector.cpp
+ArduCopter.elf            control_auto.cpp          landing_gear.cpp
+Attitude.cpp              control_autotune.cpp      leds.cpp
+Copter.cpp                control_avoid_adsb.cpp    make.inc
+Copter.h                  control_brake.cpp         motor_test.cpp
+GCS_Mavlink.cpp           control_circle.cpp        motors.cpp
+GCS_Mavlink.h             control_drift.cpp         navigation.cpp
+Log.cpp                   control_flip.cpp          perf_info.cpp
+Makefile                  control_guided.cpp        position_vector.cpp
+Makefile.waf              control_guided_nogps.cpp  precision_landing.cpp
+Parameters.cpp            control_land.cpp          radio.cpp
+Parameters.h              control_loiter.cpp        sensors.cpp
+Parameters.pde            control_poshold.cpp       setup.cpp
+ReleaseNotes.txt          control_rtl.cpp           switches.cpp
+UserCode.cpp              control_sport.cpp         system.cpp
+UserVariables.h           control_stabilize.cpp     takeoff.cpp
+afs_copter.cpp            control_throw.cpp         terrain.cpp
+afs_copter.h              crash_check.cpp           test.cpp
+avoidance_adsb.cpp        defines.h                 tuning.cpp
+avoidance_adsb.h          ekf_check.cpp             version.h
+baro_ground_effect.cpp    esc_calibration.cpp       wscript
+build                     events.cpp
+ubuntu@arm:~/ardupilot/ArduCopter$ cd build/
+ubuntu@arm:~/ardupilot/ArduCopter/build$ ls
+AP_Arming.d           control_autotune.o      heli_control_acro.d
+AP_Arming.o           control_avoid_adsb.d    heli_control_acro.o
+AP_Rally.d            control_avoid_adsb.o    heli_control_stabilize.d
+AP_Rally.o            control_brake.d         heli_control_stabilize.o
+AP_State.d            control_brake.o         inertia.d
+AP_State.o            control_circle.d        inertia.o
+ArduCopter.d          control_circle.o        land_detector.d
+ArduCopter.elf        control_drift.d         land_detector.o
+ArduCopter.map        control_drift.o         landing_gear.d
+ArduCopter.o          control_flip.d          landing_gear.o
+Attitude.d            control_flip.o          leds.d
+Attitude.o            control_guided.d        leds.o
+Copter.d              control_guided.o        libraries
+Copter.o              control_guided_nogps.d  logs
+GCS_Mavlink.d         control_guided_nogps.o  make.flags
+GCS_Mavlink.o         control_land.d          motor_test.d
+Log.d                 control_land.o          motor_test.o
+Log.o                 control_loiter.d        motors.d
+Parameters.d          control_loiter.o        motors.o
+Parameters.o          control_poshold.d       navigation.d
+UserCode.d            control_poshold.o       navigation.o
+UserCode.o            control_rtl.d           perf_info.d
+afs_copter.d          control_rtl.o           perf_info.o
+afs_copter.o          control_sport.d         position_vector.d
+avoidance_adsb.d      control_sport.o         position_vector.o
+avoidance_adsb.o      control_stabilize.d     precision_landing.d
+baro_ground_effect.d  control_stabilize.o     precision_landing.o
+baro_ground_effect.o  control_throw.d         radio.d
+capabilities.d        control_throw.o         radio.o
+capabilities.o        crash_check.d           sensors.d
+commands.d            crash_check.o           sensors.o
+commands.o            ekf_check.d             setup.d
+commands_logic.d      ekf_check.o             setup.o
+commands_logic.o      esc_calibration.d       switches.d
+compassmot.d          esc_calibration.o       switches.o
+compassmot.o          events.d                system.d
+compat.d              events.o                system.o
+compat.o              failsafe.d              takeoff.d
+control_acro.d        failsafe.o              takeoff.o
+control_acro.o        fence.d                 terrain.d
+control_althold.d     fence.o                 terrain.o
+control_althold.o     flight_mode.d           test.d
+control_auto.d        flight_mode.o           test.o
+control_auto.o        heli.d                  tuning.d
+control_autotune.d    heli.o                  tuning.o
+ubuntu@arm:~/ardupilot/ArduCopter/build$ ./ArduCopter.elf 
+Scheduler: failed to set scheduling parameters: Operation not permitted
+ubuntu@arm:~/ardupilot/ArduCopter/build$ sudo !!
+sudo ./ArduCopter.elf 
+0 0 0 ToneAlarm: Error!! please check if PWM overlays are loaded correctlyAP_Notify: Failed to initialise ToneAlarmDataFlash_File: buffer size
+=16384
+        Q}      Q       Q COMPASS INIT ERROR
+PANIC: AP_Baro::read unsuccessful for more than 500ms in AP_Baro::calibrate [2]
+ 
+ubuntu@arm:~/ardupilot/ArduCopter/build$ sudo ./ArduCopter.elf --help
+Usage: -A uartAPath -B uartBPath -C uartCPath -D uartDPath -E uartEPath -F uartFPath
+Options:
+        serial:
+                    -A /dev/ttyO4
+                          -B /dev/ttyS1
+        networking tcp:
+                          -C tcp:192.168.2.15:1243:wait
+                          -A tcp:11.0.0.2:5678
+                          -A udp:11.0.0.2:14550
+        networking UDP:
+                          -A udp:11.0.0.255:14550:bcast
+                          -A udpin:0.0.0.0:14550
+        custom log path:
+                          --log-directory /var/APM/logs
+                          -l /var/APM/logs
+        custom terrain path:
+                           --terrain-directory /var/APM/terrain
+                           -t /var/APM/terrain
+        module support:
+                           --module-directory /usr/lib/ardupilot/modules
+                           -M /usr/lib/ardupilot/modules
+ubuntu@arm:~/ardupilot/ArduCopter/build$ ls /dev/i2c-*
+/dev/i2c-0  /dev/i2c-2
+ubuntu@arm:~/ardupilot/ArduCopter/build$ sudo ./ArduCopter.elf --home
+Unknown option '?'
+ubuntu@arm:~/ardupilot/ArduCopter/build$ waf
+-bash: waf: command not found
+ubuntu@arm:~/ardupilot/ArduCopter/build$ cd ..
+ubuntu@arm:~/ardupilot/ArduCopter$ ks
+-bash: ks: command not found
+ubuntu@arm:~/ardupilot/ArduCopter$ ls
+APM_Config.h              capabilities.cpp          failsafe.cpp
+APM_Config_mavlink_hil.h  commands.cpp              fence.cpp
+AP_Arming.cpp             commands_logic.cpp        flight_mode.cpp
+AP_Arming.h               compassmot.cpp            heli.cpp
+AP_Rally.cpp              compat.cpp                heli_control_acro.cpp
+AP_Rally.h                config.h                  heli_control_stabilize.cpp
+AP_State.cpp              control_acro.cpp          inertia.cpp
+ArduCopter.cpp            control_althold.cpp       land_detector.cpp
+ArduCopter.elf            control_auto.cpp          landing_gear.cpp
+Attitude.cpp              control_autotune.cpp      leds.cpp
+Copter.cpp                control_avoid_adsb.cpp    make.inc
+Copter.h                  control_brake.cpp         motor_test.cpp
+GCS_Mavlink.cpp           control_circle.cpp        motors.cpp
+GCS_Mavlink.h             control_drift.cpp         navigation.cpp
+Log.cpp                   control_flip.cpp          perf_info.cpp
+Makefile                  control_guided.cpp        position_vector.cpp
+Makefile.waf              control_guided_nogps.cpp  precision_landing.cpp
+Parameters.cpp            control_land.cpp          radio.cpp
+Parameters.h              control_loiter.cpp        sensors.cpp
+Parameters.pde            control_poshold.cpp       setup.cpp
+ReleaseNotes.txt          control_rtl.cpp           switches.cpp
+UserCode.cpp              control_sport.cpp         system.cpp
+UserVariables.h           control_stabilize.cpp     takeoff.cpp
+afs_copter.cpp            control_throw.cpp         terrain.cpp
+afs_copter.h              crash_check.cpp           test.cpp
+avoidance_adsb.cpp        defines.h                 tuning.cpp
+avoidance_adsb.h          ekf_check.cpp             version.h
+baro_ground_effect.cpp    esc_calibration.cpp       wscript
+build                     events.cpp
+ubuntu@arm:~/ardupilot/ArduCopter$ wa   
+-bash: wa: command not found
+ubuntu@arm:~/ardupilot/ArduCopter$ cd ..
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Makefile      eclipse.cproject  uncrustify_cpp.cfg
+AntennaTracker  Makefile.waf  eclipse.project   uncrustify_headers.cfg
+ArduCopter      README.md     libraries         waf
+ArduPlane       Tools         mk                wscript
+BUILD.md        Vagrantfile   modules
+COPYING.txt     benchmarks    reformat.sh
+Doxyfile.in     docs          tests
+ubuntu@arm:~/ardupilot$ waf
+-bash: waf: command not found
+ubuntu@arm:~/ardupilot$ cd waf
+-bash: cd: waf: Not a directory
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Makefile      eclipse.cproject  uncrustify_cpp.cfg
+AntennaTracker  Makefile.waf  eclipse.project   uncrustify_headers.cfg
+ArduCopter      README.md     libraries         waf
+ArduPlane       Tools         mk                wscript
+BUILD.md        Vagrantfile   modules
+COPYING.txt     benchmarks    reformat.sh
+Doxyfile.in     docs          tests
+ubuntu@arm:~/ardupilot$ ./waf
+The project was not configured: run "waf configure" first!
+ubuntu@arm:~/ardupilot$ ./waf configure
+Setting top to                           : /home/ubuntu/ardupilot 
+Setting out to                           : /home/ubuntu/ardupilot/build 
+Autoconfiguration                        : enabled 
+Setting board to                         : sitl 
+Checking for 'g++' (C++ compiler)        : /usr/bin/g++ 
+Checking for 'gcc' (C compiler)          : /usr/bin/gcc 
+Checking for need to link with librt     : not necessary 
+Checking for HAVE_CMATH_ISFINITE         : yes 
+Checking for HAVE_CMATH_ISINF            : yes 
+Checking for HAVE_CMATH_ISNAN            : yes 
+Checking for NEED_CMATH_ISFINITE_STD_NAMESPACE : yes 
+Checking for NEED_CMATH_ISINF_STD_NAMESPACE    : yes 
+Checking for NEED_CMATH_ISNAN_STD_NAMESPACE    : yes 
+Checking for header endian.h                   : yes 
+Checking for header byteswap.h                 : yes 
+Checking for program 'python'                  : /usr/bin/python 
+Checking for python version >= 2.7.0           : 2.7.12 
+Source is git repository                       : yes 
+Update submodules                              : yes 
+Checking for program 'git'                     : /usr/bin/git 
+Checking for program 'size'                    : /usr/bin/size 
+Benchmarks                                     : disabled 
+Unit tests                                     : enabled 
+'configure' finished successfully (11.398s)
+ubuntu@arm:~/ardupilot$ cat README.md 
+#ArduPilot Project#
+ 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ArduPilot/ardupilot?utm_source=badge&utm_medium=badge&utm_campaign=pr-
+badge&utm_content=badge)
+ 
+[![Build SemaphoreCI](https://semaphoreci.com/api/v1/projects/4d28a40d-b6a6-4bfb-9780-95d92aabb178/667563/badge.svg)](https://semaphoreci.com/
+diydrones/ardupilot)
+ 
+[![Build Travis](https://travis-ci.org/ArduPilot/ardupilot.svg?branch=master)](https://travis-ci.org/ArduPilot/ardupilot)
+ 
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/5331/badge.svg)](https://scan.coverity.com/projects/diydrones-ardupilot)
+ 
+### The ArduPilot project is made up of: ###
+>>ArduCopter (or APM:Copter) : [code](https://github.com/ArduPilot/ardupilot/tree/master/ArduCopter), [wiki](http://ardupilot.org/copter/index
+.html)
+ 
+>>ArduPlane (or APM:Plane) : [code](https://github.com/ArduPilot/ardupilot/tree/master/ArduPlane), [wiki](http://ardupilot.org/plane/index.htm
+l)
+ 
+>>ArduRover (or APMrover2) : [code](https://github.com/ArduPilot/ardupilot/tree/master/APMrover2), [wiki](http://ardupilot.org/rover/index.htm
+l)
+ 
+>>Antenna Tracker : [code](https://github.com/ArduPilot/ardupilot/tree/master/AntennaTracker), [wiki](http://ardupilot.org/antennatracker/inde
+x.html)
+ 
+### User Support & Discussion Forums ###
+>>Support Forum: [http://discuss.ardupilot.org/](http://discuss.ardupilot.org/)
+ 
+>>Community Site: [http://ardupilot.org](http://ardupilot.org)
+ 
+### Developer Information ###
+>>Github repository: [https://github.com/ArduPilot/ardupilot](https://github.com/ArduPilot/ardupilot)
+ 
+>>Main developer wiki: [http://dev.ardupilot.org](http://dev.ardupilot.org)
+ 
+>>Developer email group: drones-discuss@googlegroups.com
+ 
+### Contributors ###
+>>[Github statistics](https://github.com/ArduPilot/ardupilot/graphs/contributors)
+ 
+### How To Get Involved ###
+>>The ArduPilot project is open source and we encourage participation and code contributions: [guidelines for contributors to the ardupilot co
+debase](http://dev.ardupilot.org/wiki/guidelines-for-contributors-to-the-apm-codebase)
+ 
+>>We have an active group of Beta Testers especially for ArduCopter to help us find bugs: [release procedures](http://dev.ardupilot.org/wiki/r
+elease-procedures)
+ 
+>>Desired Enhancements and Bugs can be posted to the [issues list](https://github.com/ArduPilot/ardupilot/issues).
+ 
+>>Helping other users with log analysis on [http://discuss.ardupilot.org/](http://discuss.ardupilot.org/) is always appreciated:
+ 
+>>There is a group of wiki editors as well in case documentation is your thing: ardu-wiki-editors@googlegroups.com
+ 
+>>Developer discussions occur on drones-discuss@google-groups.com
+ 
+### License ###
+>>[Overview of license](http://dev.ardupilot.com/wiki/license-gplv3)
+ 
+>>[Full Text](https://github.com/ArduPilot/ardupilot/blob/master/COPYING.txt)
+ 
+### Maintainers ###
+>> Ardupilot is comprised of several parts, vehicles and boards. The list below
+>> contains the people that regularly contribute to the project and are responsible
+>> for reviewing patches on their specific area. See [CONTRIBUTING.md](.github/CONTRIBUTING.md)
+>> for more information.
+>>
+>> - [Andrew Tridgell](https://github.com/tridge)
+>>   - ***Vehicle***: Plane, AntennaTracker
+>>   - ***Board***: APM1, APM2, Pixhawk, Pixhawk2, PixRacer
+>> - [Randy Mackay](https://github.com/rmackay9)
+>>   - ***Vehicle***: Copter, AntennaTracker
+>> - [Robert Lefebvre](https://github.com/R-Lefebvre)
+>>   - ***Vehicle***: TradHeli
+>> - [Grant Morphett](https://github.com/gmorph):
+>>   - ***Vehicle***: Rover
+>> - [Tom Pittenger] (https://github.com/magicrub)
+>>   - ***Vehicle***: Plane
+>> - [Paul Riseborough](https://github.com/priseborough)
+>>   - ***Subsystem***: AP_NavEKF2
+>> - [Lucas De Marchi](https://github.com/lucasdemarchi)
+>>   - ***Subsystem***: Linux
+>> - [Peter Barker](https://github.com/peterbarker)
+>>   - ***Subsystem***: DataFlash
+>>   - ***Subsystem***: Tools
+>> - [Michael du Breuil](https://github.com/WickedShell)
+>>   - ***Subsystem***: uBlox GPS
+>> - [Francisco Ferreira](https://github.com/oxinarf)
+>>   - ***Bug Master***
+>> - [Matthias Badaire](https://github.com/badzz)
+>>   - ***Subsystem***: FRSky
+>> - [Víctor Mayoral Vilches](https://github.com/vmayoral)
+>>   - ***Board***: PXF, Erle-Brain 2, PXFmini
+>> - [Mirko Denecke](https://github.com/mirkix)
+>>   - ***Board***: BBBmini, BeagleBone Blue
+>> - [Georgii Staroselskii](https://github.com/staroselskii)
+>>   - ***Board***: NavIO
+>> - [Emile Castelnuovo](https://github.com/emilecastelnuovo)
+>>   - ***Board***: VRBrain
+>> - [Julien BERAUD](https://github.com/jberaud)
+>>   - ***Board***: Bebop & Bebop 2
+>> - [Pritam Ghanghas](https://github.com/pritamghanghas)
+>>   - ***Board***: Raspilot
+>> - [Jonathan Challinger] (https://github.com/3drobotics/ardupilot-solo)
+>>   - ***Vehicle***: 3DRobotics Solo ArduPilot maintainer
+>> - [Gustavo José de Sousa](https://github.com/guludo)
+>>   - ***Subsystem***: Build system
+>> - [Craig Elder] (https://github.com/CraigElder)
+>>   - ***Administration***: ArduPilot Technical Community Manager
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ ls 
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ make
+make -C ArduPlane sitl
+make[1]: Entering directory '/home/ubuntu/ardupilot/ArduPlane'
+Checking modules
+// BUILDROOT=/tmp/ArduPlane.build HAL_BOARD=HAL_BOARD_SITL HAL_BOARD_SUBTYPE=HAL_BOARD_SUBTYPE_NONE TOOLCHAIN=NATIVE EXTRAFLAGS=-DGIT_VERSION=
+"b77ce1df" -I/home/ubuntu/ardupilot/libraries/AP_Common/missing -DMAVLINK_PROTOCOL_VERSION=2 -DHAVE_CMATH_ISFINITE -DNEED_CMATH_ISFINITE_STD_N
+AMESPACE -DHAVE_ENDIAN_H -DHAVE_BYTESWAP_H
+echo "Generating MAVLink headers..."
+Generating MAVLink headers...
+#goto mavlink module directory and run the most recent generator script
+echo "Generating C code using mavgen.py located at" /home/ubuntu/ardupilot/modules/mavlink/
+Generating C code using mavgen.py located at /home/ubuntu/ardupilot/modules/mavlink/
+PYTHONPATH=/home/ubuntu/ardupilot/modules/mavlink/ python /home/ubuntu/ardupilot/modules/mavlink//pymavlink/tools/mavgen.py --lang=C --wire-pr
+otocol=2.0 --output=/tmp/ArduPlane.build/libraries/GCS_MAVLink/include/mavlink/v2.0 /home/ubuntu/ardupilot/modules/mavlink/message_definitions
+/v1.0/ardupilotmega.xml; if [ $? -le 0 -o $? -gt 128 ]; then echo "mavgen: success"; exit 0; else echo "mavgen: failed"; exit 1; fi
+WARNING: Unable to load XML validator libraries. XML validation will not be performed
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml
+Note: message DATA64 is longer than 64 bytes long (74 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum ai
+r transfer unit.
+Note: message DATA96 is longer than 64 bytes long (106 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum a
+ir transfer unit.
+Note: message REMOTE_LOG_DATA_BLOCK is longer than 64 bytes long (214 bytes), which can cause fragmentation since many radio modems use 64 byt
+es as maximum air transfer unit.
+Note: message DEVICE_OP_READ_REPLY is longer than 64 bytes long (143 bytes), which can cause fragmentation since many radio modems use 64 byte
+s as maximum air transfer unit.
+Note: message DEVICE_OP_WRITE is longer than 64 bytes long (187 bytes), which can cause fragmentation since many radio modems use 64 bytes as 
+maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml
+Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maxim
+um air transfer unit.
+Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (80 bytes), which can cause fragmentation since many radio modems use 64 by
+tes as maximum air transfer unit.
+Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (189 bytes), which can cause fragmentation since many radio modems use 64 b
+ytes as maximum air transfer unit.
+Note: message LOCAL_POSITION_NED_COV is longer than 64 bytes long (233 bytes), which can cause fragmentation since many radio modems use 64 by
+tes as maximum air transfer unit.
+Note: message HIL_ACTUATOR_CONTROLS is longer than 64 bytes long (89 bytes), which can cause fragmentation since many radio modems use 64 byte
+s as maximum air transfer unit.
+Note: message HIGHRES_IMU is longer than 64 bytes long (70 bytes), which can cause fragmentation since many radio modems use 64 bytes as maxim
+um air transfer unit.
+Note: message HIL_SENSOR is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximu
+m air transfer unit.
+Note: message SIM_STATE is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum
+ air transfer unit.
+Note: message FILE_TRANSFER_PROTOCOL is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 by
+tes as maximum air transfer unit.
+Note: message HIL_STATE_QUATERNION is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes
+ as maximum air transfer unit.
+Note: message LOG_DATA is longer than 64 bytes long (105 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum
+ air transfer unit.
+Note: message GPS_INJECT_DATA is longer than 64 bytes long (121 bytes), which can cause fragmentation since many radio modems use 64 bytes as 
+maximum air transfer unit.
+Note: message SERIAL_CONTROL is longer than 64 bytes long (87 bytes), which can cause fragmentation since many radio modems use 64 bytes as ma
+ximum air transfer unit.
+Note: message ENCAPSULATED_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes a
+s maximum air transfer unit.
+Note: message RESOURCE_REQUEST is longer than 64 bytes long (251 bytes), which can cause fragmentation since many radio modems use 64 bytes as
+ maximum air transfer unit.
+Note: message FOLLOW_TARGET is longer than 64 bytes long (101 bytes), which can cause fragmentation since many radio modems use 64 bytes as ma
+ximum air transfer unit.
+Note: message CONTROL_SYSTEM_STATE is longer than 64 bytes long (108 bytes), which can cause fragmentation since many radio modems use 64 byte
+s as maximum air transfer unit.
+Note: message AUTOPILOT_VERSION is longer than 64 bytes long (68 bytes), which can cause fragmentation since many radio modems use 64 bytes as
+ maximum air transfer unit.
+Note: message GPS_INPUT is longer than 64 bytes long (71 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum
+ air transfer unit.
+Note: message GPS_RTCM_DATA is longer than 64 bytes long (190 bytes), which can cause fragmentation since many radio modems use 64 bytes as ma
+ximum air transfer unit.
+Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as max
+imum air transfer unit.
+Note: message CAMERA_INFORMATION is longer than 64 bytes long (94 bytes), which can cause fragmentation since many radio modems use 64 bytes a
+s maximum air transfer unit.
+Note: message CAMERA_IMAGE_CAPTURED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 byt
+es as maximum air transfer unit.
+Note: message LOGGING_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as max
+imum air transfer unit.
+Note: message LOGGING_DATA_ACKED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes 
+as maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml
+Merged enum MAV_CMD
+Found 206 MAVLink message types in 3 XML files
+Generating C implementation in directory /tmp/ArduPlane.build/libraries/GCS_MAVLink/include/mavlink/v2.0/ardupilotmega
+Generating C implementation in directory /tmp/ArduPlane.build/libraries/GCS_MAVLink/include/mavlink/v2.0/common
+Generating C implementation in directory /tmp/ArduPlane.build/libraries/GCS_MAVLink/include/mavlink/v2.0/uAvionix
+Copying fixed headers for protocol 2.0 to /tmp/ArduPlane.build/libraries/GCS_MAVLink/include/mavlink/v2.0
+mavgen: success
+%% Parameters.o
+%% control_modes.o
+%% tiltrotor.o
+%% Attitude.o
+%% ArduPlane.o
+%% geofence.o
+%% altitude.o
+%% GCS_Mavlink.o
+%% setup.o
+%% radio.o
+%% avoidance_adsb.o
+%% parachute.o
+%% sensors.o
+%% Plane.o
+%% px4_mixer.o
+%% failsafe.o
+%% takeoff.o
+%% is_flying.o
+%% AP_Arming.o
+%% commands.o
+%% events.o
+%% navigation.o
+%% system.o
+%% motor_test.o
+%% Log.o
+%% servos.o
+%% afs_plane.o
+%% capabilities.o
+%% quadplane.o
+%% commands_logic.o
+%% test.o
+%% tuning.o
+%% libraries/AP_Common/AP_Common.o
+%% libraries/AP_Common/c++.o
+%% libraries/AP_Common/Location.o
+%% libraries/AP_Menu/AP_Menu.o
+%% libraries/AP_Param/AP_Param.o
+%% libraries/StorageManager/StorageManager.o
+%% libraries/AP_GPS/AP_GPS_SBF.o
+%% libraries/AP_GPS/AP_GPS_UBLOX.o
+%% libraries/AP_GPS/AP_GPS_ERB.o
+%% libraries/AP_GPS/AP_GPS_NMEA.o
+%% libraries/AP_GPS/AP_GPS_SIRF.o
+%% libraries/AP_GPS/GPS_Backend.o
+%% libraries/AP_GPS/AP_GPS_SBP.o
+%% libraries/AP_GPS/AP_GPS.o
+%% libraries/AP_GPS/AP_GPS_GSOF.o
+%% libraries/AP_GPS/AP_GPS_NOVA.o
+%% libraries/AP_GPS/AP_GPS_MTK19.o
+%% libraries/AP_GPS/AP_GPS_PX4.o
+%% libraries/AP_GPS/AP_GPS_MAV.o
+%% libraries/AP_GPS/AP_GPS_QURT.o
+%% libraries/AP_GPS/AP_GPS_MTK.o
+%% libraries/AP_Baro/AP_Baro.o
+%% libraries/AP_Baro/AP_Baro_qflight.o
+%% libraries/AP_Baro/AP_Baro_HIL.o
+%% libraries/AP_Baro/AP_Baro_PX4.o
+%% libraries/AP_Baro/AP_Baro_MS5611.o
+%% libraries/AP_Baro/AP_Baro_QURT.o
+%% libraries/AP_Baro/AP_Baro_Backend.o
+%% libraries/AP_Baro/AP_Baro_BMP280.o
+%% libraries/AP_Baro/AP_Baro_BMP085.o
+%% libraries/AP_Compass/AP_Compass_Calibration.o
+%% libraries/AP_Compass/Compass_learn.o
+%% libraries/AP_Compass/AP_Compass.o
+%% libraries/AP_Compass/AP_Compass_qflight.o
+%% libraries/AP_Compass/AP_Compass_BMM150.o
+%% libraries/AP_Compass/AP_Compass_HMC5843.o
+%% libraries/AP_Compass/AP_Compass_PX4.o
+%% libraries/AP_Compass/AP_Compass_QURT.o
+%% libraries/AP_Compass/AP_Compass_IST8310.o
+%% libraries/AP_Compass/AP_Compass_Backend.o
+%% libraries/AP_Compass/CompassCalibrator.o
+%% libraries/AP_Compass/AP_Compass_AK09916.o
+%% libraries/AP_Compass/AP_Compass_HIL.o
+%% libraries/AP_Compass/AP_Compass_LSM9DS1.o
+%% libraries/AP_Compass/AP_Compass_LIS3MDL.o
+%% libraries/AP_Compass/AP_Compass_AK8963.o
+%% libraries/AP_Compass/AP_Compass_LSM303D.o
+%% libraries/AP_Math/quaternion.o
+%% libraries/AP_Math/AP_GeodesicGrid.o
+%% libraries/AP_Math/crc.o
+%% libraries/AP_Math/vector2.o
+%% libraries/AP_Math/polygon.o
+%% libraries/AP_Math/matrix3.o
+%% libraries/AP_Math/matrix_alg.o
+%% libraries/AP_Math/edc.o
+%% libraries/AP_Math/AP_Math.o
+%% libraries/AP_Math/vector3.o
+%% libraries/AP_Math/location.o
+%% libraries/AP_ADC/AP_ADC.o
+%% libraries/AP_ADC/AP_ADC_ADS1115.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp: In member function 'bool AP_InertialSensor_SITL::init_sensor()':
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp:32:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_InertialSensor/AuxiliaryBus.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Backend.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_BMI160.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_Stream.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_L3G4200D.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_QURT.o
+%% libraries/AP_InertialSensor/AP_InertialSensor.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_qflight.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_MAVLink.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS0.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Invensense.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_PX4.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_HIL.o
+%% libraries/AP_AccelCal/AccelCalibrator.o
+%% libraries/AP_AccelCal/AP_AccelCal.o
+%% libraries/AP_AHRS/AP_AHRS_DCM.o
+%% libraries/AP_AHRS/AP_AHRS.o
+%% libraries/AP_AHRS/AP_AHRS_NavEKF.o
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp: In member function 'void AP_AHRS_NavEKF::update_SITL()':
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp:255:59: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                           ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/RC_Channel/RC_Channel.o
+%% libraries/AP_RangeFinder/RangeFinder.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_Bebop.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PX4_PWM.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PulsedLightLRF.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LeddarOne.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_analog.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarSerialLV.o
+%% libraries/AP_RangeFinder/RangeFinder_Backend.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_trone.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarI2CXL.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_BBB_PRU.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareSerial.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MAVLink.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_uLanding.o
+%% libraries/Filter/LowPassFilter.o
+%% libraries/Filter/DerivativeFilter.o
+%% libraries/Filter/LowPassFilter2p.o
+%% libraries/AP_Relay/AP_Relay.o
+%% libraries/AP_Camera/AP_Camera.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS4525.o
+%% libraries/AP_Airspeed/Airspeed_Calibration.o
+%% libraries/AP_Airspeed/AP_Airspeed_analog.o
+%% libraries/AP_Airspeed/AP_Airspeed.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS5525.o
+%% libraries/AP_Airspeed/AP_Airspeed_Backend.o
+%% libraries/AP_Terrain/TerrainIO.o
+%% libraries/AP_Terrain/TerrainMission.o
+%% libraries/AP_Terrain/TerrainGCS.o
+%% libraries/AP_Terrain/AP_Terrain.o
+%% libraries/AP_Terrain/TerrainUtil.o
+%% libraries/AP_AdvancedFailsafe/AP_AdvancedFailsafe.o
+%% libraries/APM_Control/AP_AutoTune.o
+%% libraries/APM_Control/AP_SteerController.o
+%% libraries/APM_Control/AP_YawController.o
+%% libraries/APM_Control/AP_RollController.o
+%% libraries/APM_Control/AP_PitchController.o
+%% libraries/GCS_MAVLink/GCS_Common.o
+%% libraries/GCS_MAVLink/GCS_serial_control.o
+%% libraries/GCS_MAVLink/GCS_MAVLink.o
+%% libraries/GCS_MAVLink/GCS_Logs.o
+%% libraries/GCS_MAVLink/MAVLink_routing.o
+%% libraries/GCS_MAVLink/GCS_Signing.o
+%% libraries/GCS_MAVLink/GCS_DeviceOp.o
+%% libraries/AP_SerialManager/AP_SerialManager.o
+%% libraries/AP_Mount/AP_Mount_Backend.o
+%% libraries/AP_Mount/SoloGimbalEKF.o
+%% libraries/AP_Mount/AP_Mount_Alexmos.o
+%% libraries/AP_Mount/AP_Mount_SToRM32.o
+%% libraries/AP_Mount/AP_Mount.o
+%% libraries/AP_Mount/SoloGimbal.o
+%% libraries/AP_Mount/SoloGimbal_Parameters.o
+%% libraries/AP_Mount/AP_Mount_SoloGimbal.o
+%% libraries/AP_Mount/AP_Mount_Servo.o
+%% libraries/AP_Mount/AP_Mount_SToRM32_serial.o
+%% libraries/AP_Declination/AP_Declination.o
+%% libraries/DataFlash/LogFile.o
+%% libraries/DataFlash/DataFlash_SITL.o
+%% libraries/DataFlash/DFMessageWriter.o
+%% libraries/DataFlash/DataFlash.o
+%% libraries/DataFlash/DataFlash_Block.o
+%% libraries/DataFlash/DataFlash_MAVLink.o
+%% libraries/DataFlash/DataFlash_Backend.o
+%% libraries/DataFlash/DataFlash_File.o
+%% libraries/AP_Scheduler/AP_Scheduler.o
+%% libraries/AP_L1_Control/AP_L1_Control.o
+%% libraries/AP_RCMapper/AP_RCMapper.o
+%% libraries/AP_TECS/AP_TECS.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Outputs.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_RngBcnFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Measurements.o
+%% libraries/AP_NavEKF2/AP_NavEKF2.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_OptFlowFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_core.o
+%% libraries/AP_NavEKF2/AP_NavEKF_GyroBias.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_MagFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_VehicleStatus.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_PosVelFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_AirDataFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_GyroBias.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_OptFlowFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_core.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_MagFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_VehicleStatus.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_PosVelFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_AirDataFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Outputs.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_RngBcnFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Measurements.o
+%% libraries/AP_NavEKF3/AP_NavEKF3.o
+%% libraries/AP_Mission/AP_Mission.o
+%% libraries/AP_Notify/Display_SSD1306_I2C.o
+%% libraries/AP_Notify/ExternalLED.o
+%% libraries/AP_Notify/ToneAlarm_PX4_Solo.o
+%% libraries/AP_Notify/NavioLED_I2C.o
+%% libraries/AP_Notify/DiscoLED.o
+%% libraries/AP_Notify/NavioLED.o
+%% libraries/AP_Notify/OreoLED_PX4.o
+%% libraries/AP_Notify/ToneAlarm_PX4.o
+%% libraries/AP_Notify/Buzzer.o
+%% libraries/AP_Notify/Display.o
+%% libraries/AP_Notify/AP_BoardLED.o
+%% libraries/AP_Notify/VRBoard_LED.o
+%% libraries/AP_Notify/DiscreteRGBLed.o
+%% libraries/AP_Notify/AP_Notify.o
+%% libraries/AP_Notify/RGBLed.o
+%% libraries/AP_Notify/ToshibaLED.o
+%% libraries/AP_Notify/ToshibaLED_I2C.o
+%% libraries/AP_Notify/Display_SH1106_I2C.o
+%% libraries/AP_Notify/RCOutputRGBLed.o
+%% libraries/AP_Notify/PixRacerLED.o
+%% libraries/AP_Notify/ToneAlarm_Linux.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_I2C.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Bebop.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Analog.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Backend.o
+%% libraries/AP_BattMonitor/AP_BattMonitor.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_PX4.o
+%% libraries/AP_Arming/AP_Arming.o
+%% libraries/AP_BoardConfig/px4_drivers.o
+%% libraries/AP_BoardConfig/AP_BoardConfig.o
+%% libraries/AP_Frsky_Telem/AP_Frsky_Telem.o
+%% libraries/AP_ServoRelayEvents/AP_ServoRelayEvents.o
+%% libraries/AP_Rally/AP_Rally.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp: In constructor 'AP_OpticalFlow_SITL::AP_OpticalFlow_SITL(OpticalFlow&)':
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp:31:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_PX4Flow.o
+%% libraries/AP_OpticalFlow/OpticalFlow_backend.o
+%% libraries/AP_OpticalFlow/OpticalFlow.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Onboard.o
+%% libraries/AP_RSSI/AP_RSSI.o
+%% libraries/AP_RPM/RPM_Backend.o
+%% libraries/AP_RPM/AP_RPM.o
+%% libraries/AP_RPM/RPM_PX4_PWM.o
+%% libraries/AP_RPM/RPM_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp: In constructor 'AP_RPM_SITL::AP_RPM_SITL(AP_RPM&, uint8_t, AP_RPM::RPM_State&)':
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp:29:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Parachute/AP_Parachute.o
+%% libraries/AP_ADSB/AP_ADSB.o
+%% libraries/AP_Avoidance/AP_Avoidance.o
+%% libraries/AP_Motors/AP_MotorsTri.o
+%% libraries/AP_Motors/AP_MotorsHeli_RSC.o
+%% libraries/AP_Motors/AP_MotorsSingle.o
+%% libraries/AP_Motors/AP_MotorsHeli.o
+%% libraries/AP_Motors/AP_MotorsMulticopter.o
+%% libraries/AP_Motors/AP_MotorsMatrix.o
+%% libraries/AP_Motors/AP_MotorsHeli_Single.o
+%% libraries/AP_Motors/AP_MotorsCoax.o
+%% libraries/AP_Motors/AP_Motors_Class.o
+%% libraries/AC_AttitudeControl/AC_AttitudeControl_Multi.o
+%% libraries/AC_AttitudeControl/AC_PosControl.o
+%% libraries/AC_AttitudeControl/ControlMonitor.o
+%% libraries/AC_AttitudeControl/AC_AttitudeControl.o
+%% libraries/AC_AttitudeControl/AC_AttitudeControl_Heli.o
+%% libraries/AC_PID/AC_HELI_PID.o
+%% libraries/AC_PID/AC_PI_2D.o
+%% libraries/AC_PID/AC_PID.o
+%% libraries/AC_PID/AC_P.o
+%% libraries/AP_InertialNav/AP_InertialNav_NavEKF.o
+%% libraries/AC_WPNav/AC_WPNav.o
+%% libraries/AC_WPNav/AC_Circle.o
+%% libraries/AC_Fence/AC_PolyFence_loader.o
+%% libraries/AC_Fence/AC_Fence.o
+%% libraries/AC_Avoidance/AC_Avoid.o
+%% libraries/AP_Proximity/AP_Proximity_MAV.o
+%% libraries/AP_Proximity/AP_Proximity_Backend.o
+%% libraries/AP_Proximity/AP_Proximity_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_Proximity/AP_Proximity_SITL.cpp: In constructor 'AP_Proximity_SITL::AP_Proximity_SITL(AP_Proximity&, AP_Proximity::Proximity_State&)':
+/home/ubuntu/ardupilot/libraries/AP_Proximity/AP_Proximity_SITL.cpp:35:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Proximity/AP_Proximity.o
+%% libraries/AP_Proximity/AP_Proximity_LightWareSF40C.o
+%% libraries/AP_Tuning/AP_Tuning.o
+%% libraries/AP_Stats/AP_Stats.o
+%% libraries/AP_Landing/AP_Landing.o
+%% libraries/AP_Landing/AP_Landing_Slope.o
+%% libraries/AP_Beacon/AP_Beacon_Pozyx.o
+%% libraries/AP_Beacon/AP_Beacon_Backend.o
+%% libraries/AP_Beacon/AP_Beacon_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp: In constructor 'AP_Beacon_SITL::AP_Beacon_SITL(AP_Beacon&)':
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp:46:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Beacon/AP_Beacon.o
+%% libraries/AP_Module/AP_Module.o
+%% libraries/AP_Button/AP_Button.o
+%% libraries/AP_ICEngine/AP_ICEngine.o
+%% libraries/AP_FlashStorage/AP_FlashStorage.o
+%% libraries/SRV_Channel/SRV_Channel_aux.o
+%% libraries/SRV_Channel/SRV_Channel.o
+%% libraries/AP_HAL/UARTDriver.o
+%% libraries/AP_HAL/HAL.o
+%% libraries/AP_HAL/Device.o
+%% libraries/AP_HAL/Util.o
+%% libraries/AP_HAL_Empty/GPIO.o
+%% libraries/AP_HAL_Empty/Semaphores.o
+%% libraries/AP_HAL_Empty/UARTDriver.o
+%% libraries/AP_HAL_Empty/Storage.o
+%% libraries/AP_HAL_Empty/PrivateMember.o
+%% libraries/AP_HAL_Empty/RCOutput.o
+%% libraries/AP_HAL_Empty/Scheduler.o
+%% libraries/AP_HAL_Empty/AnalogIn.o
+%% libraries/AP_HAL_Empty/RCInput.o
+%% libraries/AP_HAL_Empty/HAL_Empty_Class.o
+%% libraries/AP_HAL_SITL/GPIO.o
+%% libraries/AP_HAL_SITL/SITL_State.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp: In member function 'void HALSITL::SITL_State::_sitl_setup(const char*)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:79:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:80:57: warning: cast from 'AP_Param*' to 'AP_Baro*' increases required alignment of target type [-Wcast-align]
+     _barometer = (AP_Baro *)AP_Param::find_object("GND_");
+                                                         ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:81:61: warning: cast from 'AP_Param*' to 'AP_InertialSensor*' increases required alignment of target type [-Wcast-align]
+     _ins = (AP_InertialSensor *)AP_Param::find_object("INS_");
+                                                             ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:82:59: warning: cast from 'AP_Param*' to 'Compass*' increases required alignment of target type [-Wcast-align]
+     _compass = (Compass *)AP_Param::find_object("COMPASS_");
+                                                           ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:84:62: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     _terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                              ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Semaphores.o
+%% libraries/AP_HAL_SITL/UARTDriver.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp: In member function 'virtual size_t HALSITL::UARTDriver::write(const uint8_t*, size_t)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp:149:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (txspace() <= (ssize_t)size) {
+                   ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Storage.o
+%% libraries/AP_HAL_SITL/SITL_cmdline.o
+%% libraries/AP_HAL_SITL/HAL_SITL_Class.o
+%% libraries/AP_HAL_SITL/RCOutput.o
+%% libraries/AP_HAL_SITL/sitl_ins.o
+%% libraries/AP_HAL_SITL/system.o
+%% libraries/AP_HAL_SITL/sitl_gps.o
+%% libraries/AP_HAL_SITL/sitl_compass.o
+%% libraries/AP_HAL_SITL/Scheduler.o
+%% libraries/AP_HAL_SITL/AnalogIn.o
+%% libraries/AP_HAL_SITL/sitl_barometer.o
+%% libraries/AP_HAL_SITL/RCInput.o
+%% libraries/SITL/SIM_Helicopter.o
+%% libraries/SITL/SIM_ADSB.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp: In member function 'void SITL::ADSB::update()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp:77:53: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                     ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_XPlane.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp: In member function 'bool SITL::XPlane::receive_data()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp:141:44: warning: cast from 'uint8_t* {aka unsigned char*}' to 'const float*' increases required alignment of target type [-Wcast-align]
+         const float *data = (const float *)p;
+                                            ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_last_letter.o
+%% libraries/SITL/SIM_Motor.o
+%% libraries/SITL/SIM_Gripper_EPM.o
+%% libraries/SITL/SIM_JSBSim.o
+%% libraries/SITL/SIM_Multicopter.o
+%% libraries/SITL/SIM_Sprayer.o
+%% libraries/SITL/SIM_Tracker.o
+%% libraries/SITL/SIM_Calibration.o
+%% libraries/SITL/SIM_SingleCopter.o
+%% libraries/SITL/SIM_Rover.o
+%% libraries/SITL/SIM_Aircraft.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp: In constructor 'SITL::Aircraft::Aircraft(const char*, const char*)':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:63:48: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                ^
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:75:61: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                             ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_Gazebo.o
+%% libraries/SITL/SIM_Balloon.o
+%% libraries/SITL/SIM_Gimbal.o
+%% libraries/SITL/SIM_Plane.o
+%% libraries/SITL/SIM_Gripper_Servo.o
+%% libraries/SITL/SIM_CRRCSim.o
+%% libraries/SITL/SIM_FlightAxis.o
+%% libraries/SITL/SIM_ICEngine.o
+%% libraries/SITL/SITL.o
+%% libraries/SITL/SIM_Frame.o
+%% libraries/SITL/SIM_QuadPlane.o
+%% libraries/AP_HAL/utility/srxl.o
+%% libraries/AP_HAL/utility/sumd.o
+%% libraries/AP_HAL/utility/Socket.o
+%% libraries/AP_HAL/utility/utoa_invert.o
+%% libraries/AP_HAL/utility/st24.o
+%% libraries/AP_HAL/utility/Print.o
+%% libraries/AP_HAL/utility/dsm.o
+%% libraries/AP_HAL/utility/print_vprintf.o
+%% libraries/AP_HAL/utility/RingBuffer.o
+%% libraries/AP_HAL/utility/getopt_cpp.o
+%% libraries/AP_HAL/utility/ftoa_engine.o
+Building /tmp/ArduPlane.build/ArduPlane.elf
+%% ArduPlane.elf
+Firmware is in ArduPlane.elf
+make[1]: Leaving directory '/home/ubuntu/ardupilot/ArduPlane'
+make -C ArduCopter sitl
+make[1]: Entering directory '/home/ubuntu/ardupilot/ArduCopter'
+Checking modules
+// BUILDROOT=/tmp/ArduCopter.build HAL_BOARD=HAL_BOARD_SITL HAL_BOARD_SUBTYPE=HAL_BOARD_SUBTYPE_NONE TOOLCHAIN=NATIVE EXTRAFLAGS=-DGIT_VERSION="b77ce1df" -I/home/ubuntu/ardupilot/libraries/AP_Comm
+on/missing -DMAVLINK_PROTOCOL_VERSION=2 -DHAVE_CMATH_ISFINITE -DNEED_CMATH_ISFINITE_STD_NAMESPACE -DHAVE_ENDIAN_H -DHAVE_BYTESWAP_H
+echo "Generating MAVLink headers..."
+Generating MAVLink headers...
+#goto mavlink module directory and run the most recent generator script
+echo "Generating C code using mavgen.py located at" /home/ubuntu/ardupilot/modules/mavlink/
+Generating C code using mavgen.py located at /home/ubuntu/ardupilot/modules/mavlink/
+PYTHONPATH=/home/ubuntu/ardupilot/modules/mavlink/ python /home/ubuntu/ardupilot/modules/mavlink//pymavlink/tools/mavgen.py --lang=C --wire-protocol=2.0 --output=/tmp/ArduCopter.build/libraries/GC
+S_MAVLink/include/mavlink/v2.0 /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml; if [ $? -le 0 -o $? -gt 128 ]; then echo "mavgen: success"; exit 0; else echo "mav
+gen: failed"; exit 1; fi
+WARNING: Unable to load XML validator libraries. XML validation will not be performed
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml
+Note: message DATA64 is longer than 64 bytes long (74 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DATA96 is longer than 64 bytes long (106 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message REMOTE_LOG_DATA_BLOCK is longer than 64 bytes long (214 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DEVICE_OP_READ_REPLY is longer than 64 bytes long (143 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DEVICE_OP_WRITE is longer than 64 bytes long (187 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml
+Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (80 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (189 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOCAL_POSITION_NED_COV is longer than 64 bytes long (233 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_ACTUATOR_CONTROLS is longer than 64 bytes long (89 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIGHRES_IMU is longer than 64 bytes long (70 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_SENSOR is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SIM_STATE is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FILE_TRANSFER_PROTOCOL is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_STATE_QUATERNION is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOG_DATA is longer than 64 bytes long (105 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_INJECT_DATA is longer than 64 bytes long (121 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SERIAL_CONTROL is longer than 64 bytes long (87 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ENCAPSULATED_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message RESOURCE_REQUEST is longer than 64 bytes long (251 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FOLLOW_TARGET is longer than 64 bytes long (101 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CONTROL_SYSTEM_STATE is longer than 64 bytes long (108 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message AUTOPILOT_VERSION is longer than 64 bytes long (68 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_INPUT is longer than 64 bytes long (71 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_RTCM_DATA is longer than 64 bytes long (190 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CAMERA_INFORMATION is longer than 64 bytes long (94 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CAMERA_IMAGE_CAPTURED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOGGING_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOGGING_DATA_ACKED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml
+Merged enum MAV_CMD
+Found 206 MAVLink message types in 3 XML files
+Generating C implementation in directory /tmp/ArduCopter.build/libraries/GCS_MAVLink/include/mavlink/v2.0/ardupilotmega
+Generating C implementation in directory /tmp/ArduCopter.build/libraries/GCS_MAVLink/include/mavlink/v2.0/common
+Generating C implementation in directory /tmp/ArduCopter.build/libraries/GCS_MAVLink/include/mavlink/v2.0/uAvionix
+Copying fixed headers for protocol 2.0 to /tmp/ArduCopter.build/libraries/GCS_MAVLink/include/mavlink/v2.0
+mavgen: success
+%% Parameters.o
+%% control_poshold.o
+%% control_circle.o
+%% terrain.o
+%% motors.o
+%% navigation.o
+%% UserCode.o
+%% heli.o
+%% commands_logic.o
+%% control_althold.o
+%% control_avoid_adsb.o
+%% Attitude.o
+%% control_guided.o
+%% GCS_Mavlink.o
+%% precision_landing.o
+%% inertia.o
+%% setup.o
+%% radio.o
+%% avoidance_adsb.o
+%% compassmot.o
+%% esc_calibration.o
+%% sensors.o
+%% control_throw.o
+%% perf_info.o
+%% failsafe.o
+%% crash_check.o
+%% fence.o
+%% takeoff.o
+%% land_detector.o
+%% control_stabilize.o
+%% Copter.o
+%% control_acro.o
+%% events.o
+%% heli_control_stabilize.o
+%% heli_control_acro.o
+%% position_vector.o
+%% control_brake.o
+%% control_sport.o
+%% AP_Arming.o
+%% switches.o
+%% motor_test.o
+%% Log.o
+%% leds.o
+%% tuning.o
+%% afs_copter.o
+%% system.o
+%% control_land.o
+%% commands.o
+%% landing_gear.o
+%% capabilities.o
+%% AP_State.o
+%% ekf_check.o
+%% control_auto.o
+%% baro_ground_effect.o
+%% AP_Rally.o
+%% control_flip.o
+%% test.o
+%% control_guided_nogps.o
+%% control_loiter.o
+%% flight_mode.o
+%% control_autotune.o
+%% control_drift.o
+%% ArduCopter.o
+%% compat.o
+%% control_rtl.o
+%% libraries/AP_Common/AP_Common.o
+%% libraries/AP_Common/c++.o
+%% libraries/AP_Common/Location.o
+%% libraries/AP_Menu/AP_Menu.o
+%% libraries/AP_AdvancedFailsafe/AP_AdvancedFailsafe.o
+%% libraries/AP_Param/AP_Param.o
+%% libraries/StorageManager/StorageManager.o
+%% libraries/GCS_MAVLink/GCS_Common.o
+%% libraries/GCS_MAVLink/GCS_serial_control.o
+%% libraries/GCS_MAVLink/GCS_MAVLink.o
+%% libraries/GCS_MAVLink/GCS_Logs.o
+%% libraries/GCS_MAVLink/MAVLink_routing.o
+%% libraries/GCS_MAVLink/GCS_Signing.o
+%% libraries/GCS_MAVLink/GCS_DeviceOp.o
+%% libraries/AP_SerialManager/AP_SerialManager.o
+%% libraries/AP_GPS/AP_GPS_SBF.o
+%% libraries/AP_GPS/AP_GPS_UBLOX.o
+%% libraries/AP_GPS/AP_GPS_ERB.o
+%% libraries/AP_GPS/AP_GPS_NMEA.o
+%% libraries/AP_GPS/AP_GPS_SIRF.o
+%% libraries/AP_GPS/GPS_Backend.o
+%% libraries/AP_GPS/AP_GPS_SBP.o
+%% libraries/AP_GPS/AP_GPS.o
+%% libraries/AP_GPS/AP_GPS_GSOF.o
+%% libraries/AP_GPS/AP_GPS_NOVA.o
+%% libraries/AP_GPS/AP_GPS_MTK19.o
+%% libraries/AP_GPS/AP_GPS_PX4.o
+%% libraries/AP_GPS/AP_GPS_MAV.o
+%% libraries/AP_GPS/AP_GPS_QURT.o
+%% libraries/AP_GPS/AP_GPS_MTK.o
+%% libraries/DataFlash/LogFile.o
+%% libraries/DataFlash/DataFlash_SITL.o
+%% libraries/DataFlash/DFMessageWriter.o
+%% libraries/DataFlash/DataFlash.o
+%% libraries/DataFlash/DataFlash_Block.o
+%% libraries/DataFlash/DataFlash_MAVLink.o
+%% libraries/DataFlash/DataFlash_Backend.o
+%% libraries/DataFlash/DataFlash_File.o
+%% libraries/AP_ADC/AP_ADC.o
+%% libraries/AP_ADC/AP_ADC_ADS1115.o
+%% libraries/AP_Baro/AP_Baro.o
+%% libraries/AP_Baro/AP_Baro_qflight.o
+%% libraries/AP_Baro/AP_Baro_HIL.o
+%% libraries/AP_Baro/AP_Baro_PX4.o
+%% libraries/AP_Baro/AP_Baro_MS5611.o
+%% libraries/AP_Baro/AP_Baro_QURT.o
+%% libraries/AP_Baro/AP_Baro_Backend.o
+%% libraries/AP_Baro/AP_Baro_BMP280.o
+%% libraries/AP_Baro/AP_Baro_BMP085.o
+%% libraries/AP_Compass/AP_Compass_Calibration.o
+%% libraries/AP_Compass/Compass_learn.o
+%% libraries/AP_Compass/AP_Compass.o
+%% libraries/AP_Compass/AP_Compass_qflight.o
+%% libraries/AP_Compass/AP_Compass_BMM150.o
+%% libraries/AP_Compass/AP_Compass_HMC5843.o
+%% libraries/AP_Compass/AP_Compass_PX4.o
+%% libraries/AP_Compass/AP_Compass_QURT.o
+%% libraries/AP_Compass/AP_Compass_IST8310.o
+%% libraries/AP_Compass/AP_Compass_Backend.o
+%% libraries/AP_Compass/CompassCalibrator.o
+%% libraries/AP_Compass/AP_Compass_AK09916.o
+%% libraries/AP_Compass/AP_Compass_HIL.o
+%% libraries/AP_Compass/AP_Compass_LSM9DS1.o
+%% libraries/AP_Compass/AP_Compass_LIS3MDL.o
+%% libraries/AP_Compass/AP_Compass_AK8963.o
+%% libraries/AP_Compass/AP_Compass_LSM303D.o
+%% libraries/AP_Math/quaternion.o
+%% libraries/AP_Math/AP_GeodesicGrid.o
+%% libraries/AP_Math/crc.o
+%% libraries/AP_Math/vector2.o
+%% libraries/AP_Math/polygon.o
+%% libraries/AP_Math/matrix3.o
+%% libraries/AP_Math/matrix_alg.o
+%% libraries/AP_Math/edc.o
+%% libraries/AP_Math/AP_Math.o
+%% libraries/AP_Math/vector3.o
+%% libraries/AP_Math/location.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp: In member function 'bool AP_InertialSensor_SITL::init_sensor()':
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp:32:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_InertialSensor/AuxiliaryBus.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Backend.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_BMI160.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_Stream.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_L3G4200D.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_QURT.o
+%% libraries/AP_InertialSensor/AP_InertialSensor.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_qflight.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_MAVLink.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS0.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Invensense.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_PX4.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_HIL.o
+%% libraries/AP_AccelCal/AccelCalibrator.o
+%% libraries/AP_AccelCal/AP_AccelCal.o
+%% libraries/AP_AHRS/AP_AHRS_DCM.o
+%% libraries/AP_AHRS/AP_AHRS.o
+%% libraries/AP_AHRS/AP_AHRS_NavEKF.o
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp: In member function 'void AP_AHRS_NavEKF::update_SITL()':
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp:255:59: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                           ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_NavEKF2/AP_NavEKF2_Outputs.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_RngBcnFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Measurements.o
+%% libraries/AP_NavEKF2/AP_NavEKF2.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_OptFlowFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_core.o
+%% libraries/AP_NavEKF2/AP_NavEKF_GyroBias.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_MagFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_VehicleStatus.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_PosVelFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_AirDataFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_GyroBias.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_OptFlowFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_core.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_MagFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_VehicleStatus.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_PosVelFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_AirDataFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Outputs.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_RngBcnFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Measurements.o
+%% libraries/AP_NavEKF3/AP_NavEKF3.o
+%% libraries/AP_Mission/AP_Mission.o
+%% libraries/AP_Rally/AP_Rally.o
+%% libraries/AC_PID/AC_HELI_PID.o
+%% libraries/AC_PID/AC_PI_2D.o
+%% libraries/AC_PID/AC_PID.o
+%% libraries/AC_PID/AC_P.o
+%% libraries/AC_AttitudeControl/AC_AttitudeControl_Multi.o
+%% libraries/AC_AttitudeControl/AC_PosControl.o
+%% libraries/AC_AttitudeControl/ControlMonitor.o
+%% libraries/AC_AttitudeControl/AC_AttitudeControl.o
+%% libraries/AC_AttitudeControl/AC_AttitudeControl_Heli.o
+%% libraries/RC_Channel/RC_Channel.o
+%% libraries/AP_Motors/AP_MotorsTri.o
+%% libraries/AP_Motors/AP_MotorsHeli_RSC.o
+%% libraries/AP_Motors/AP_MotorsSingle.o
+%% libraries/AP_Motors/AP_MotorsHeli.o
+%% libraries/AP_Motors/AP_MotorsMulticopter.o
+%% libraries/AP_Motors/AP_MotorsMatrix.o
+%% libraries/AP_Motors/AP_MotorsHeli_Single.o
+%% libraries/AP_Motors/AP_MotorsCoax.o
+%% libraries/AP_Motors/AP_Motors_Class.o
+%% libraries/AP_RangeFinder/RangeFinder.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_Bebop.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PX4_PWM.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PulsedLightLRF.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LeddarOne.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_analog.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarSerialLV.o
+%% libraries/AP_RangeFinder/RangeFinder_Backend.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_trone.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarI2CXL.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_BBB_PRU.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareSerial.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MAVLink.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_uLanding.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp: In constructor 'AP_OpticalFlow_SITL::AP_OpticalFlow_SITL(OpticalFlow&)':
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp:31:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_PX4Flow.o
+%% libraries/AP_OpticalFlow/OpticalFlow_backend.o
+%% libraries/AP_OpticalFlow/OpticalFlow.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Onboard.o
+%% libraries/AP_RSSI/AP_RSSI.o
+%% libraries/Filter/LowPassFilter.o
+%% libraries/Filter/DerivativeFilter.o
+%% libraries/Filter/LowPassFilter2p.o
+%% libraries/AP_Relay/AP_Relay.o
+%% libraries/AP_ServoRelayEvents/AP_ServoRelayEvents.o
+%% libraries/AP_Camera/AP_Camera.o
+%% libraries/AP_Mount/AP_Mount_Backend.o
+%% libraries/AP_Mount/SoloGimbalEKF.o
+%% libraries/AP_Mount/AP_Mount_Alexmos.o
+%% libraries/AP_Mount/AP_Mount_SToRM32.o
+%% libraries/AP_Mount/AP_Mount.o
+%% libraries/AP_Mount/SoloGimbal.o
+%% libraries/AP_Mount/SoloGimbal_Parameters.o
+%% libraries/AP_Mount/AP_Mount_SoloGimbal.o
+%% libraries/AP_Mount/AP_Mount_Servo.o
+%% libraries/AP_Mount/AP_Mount_SToRM32_serial.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS4525.o
+%% libraries/AP_Airspeed/Airspeed_Calibration.o
+%% libraries/AP_Airspeed/AP_Airspeed_analog.o
+%% libraries/AP_Airspeed/AP_Airspeed.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS5525.o
+%% libraries/AP_Airspeed/AP_Airspeed_Backend.o
+%% libraries/AP_InertialNav/AP_InertialNav_NavEKF.o
+%% libraries/AC_WPNav/AC_WPNav.o
+%% libraries/AC_WPNav/AC_Circle.o
+%% libraries/AP_Declination/AP_Declination.o
+%% libraries/AC_Fence/AC_PolyFence_loader.o
+%% libraries/AC_Fence/AC_Fence.o
+%% libraries/AC_Avoidance/AC_Avoid.o
+%% libraries/AP_Scheduler/AP_Scheduler.o
+%% libraries/AP_RCMapper/AP_RCMapper.o
+%% libraries/AP_Notify/Display_SSD1306_I2C.o
+%% libraries/AP_Notify/ExternalLED.o
+%% libraries/AP_Notify/ToneAlarm_PX4_Solo.o
+%% libraries/AP_Notify/NavioLED_I2C.o
+%% libraries/AP_Notify/DiscoLED.o
+%% libraries/AP_Notify/NavioLED.o
+%% libraries/AP_Notify/OreoLED_PX4.o
+%% libraries/AP_Notify/ToneAlarm_PX4.o
+%% libraries/AP_Notify/Buzzer.o
+%% libraries/AP_Notify/Display.o
+%% libraries/AP_Notify/AP_BoardLED.o
+%% libraries/AP_Notify/VRBoard_LED.o
+%% libraries/AP_Notify/DiscreteRGBLed.o
+%% libraries/AP_Notify/AP_Notify.o
+%% libraries/AP_Notify/RGBLed.o
+%% libraries/AP_Notify/ToshibaLED.o
+%% libraries/AP_Notify/ToshibaLED_I2C.o
+%% libraries/AP_Notify/Display_SH1106_I2C.o
+%% libraries/AP_Notify/RCOutputRGBLed.o
+%% libraries/AP_Notify/PixRacerLED.o
+%% libraries/AP_Notify/ToneAlarm_Linux.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_I2C.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Bebop.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Analog.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Backend.o
+%% libraries/AP_BattMonitor/AP_BattMonitor.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_PX4.o
+%% libraries/AP_BoardConfig/px4_drivers.o
+%% libraries/AP_BoardConfig/AP_BoardConfig.o
+%% libraries/AP_Frsky_Telem/AP_Frsky_Telem.o
+%% libraries/AC_Sprayer/AC_Sprayer.o
+%% libraries/AP_Parachute/AP_Parachute.o
+%% libraries/AP_LandingGear/AP_LandingGear.o
+%% libraries/AP_Terrain/TerrainIO.o
+%% libraries/AP_Terrain/TerrainMission.o
+%% libraries/AP_Terrain/TerrainGCS.o
+%% libraries/AP_Terrain/AP_Terrain.o
+%% libraries/AP_Terrain/TerrainUtil.o
+%% libraries/AP_RPM/RPM_Backend.o
+%% libraries/AP_RPM/AP_RPM.o
+%% libraries/AP_RPM/RPM_PX4_PWM.o
+%% libraries/AP_RPM/RPM_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp: In constructor 'AP_RPM_SITL::AP_RPM_SITL(AP_RPM&, uint8_t, AP_RPM::RPM_State&)':
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp:29:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AC_PrecLand/AC_PrecLand_Companion.o
+%% libraries/AC_PrecLand/PosVelEKF.o
+%% libraries/AC_PrecLand/AC_PrecLand_IRLock.o
+%% libraries/AC_PrecLand/AC_PrecLand_SITL.o
+%% libraries/AC_PrecLand/AC_PrecLand.o
+%% libraries/AC_PrecLand/AC_PrecLand_SITL_Gazebo.o
+%% libraries/AP_IRLock/IRLock.o
+%% libraries/AP_IRLock/AP_IRLock_I2C.o
+%% libraries/AP_IRLock/AP_IRLock_SITL.o
+%% libraries/AC_InputManager/AC_InputManager_Heli.o
+%% libraries/AC_InputManager/AC_InputManager.o
+%% libraries/AP_ADSB/AP_ADSB.o
+%% libraries/AP_Avoidance/AP_Avoidance.o
+%% libraries/AP_Proximity/AP_Proximity_MAV.o
+%% libraries/AP_Proximity/AP_Proximity_Backend.o
+%% libraries/AP_Proximity/AP_Proximity_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_Proximity/AP_Proximity_SITL.cpp: In constructor 'AP_Proximity_SITL::AP_Proximity_SITL(AP_Proximity&, AP_Proximity::Proximity_State&)':
+/home/ubuntu/ardupilot/libraries/AP_Proximity/AP_Proximity_SITL.cpp:35:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Proximity/AP_Proximity.o
+%% libraries/AP_Proximity/AP_Proximity_LightWareSF40C.o
+%% libraries/AP_Stats/AP_Stats.o
+%% libraries/AP_Gripper/AP_Gripper.o
+%% libraries/AP_Gripper/AP_Gripper_Servo.o
+%% libraries/AP_Gripper/AP_Gripper_Backend.o
+%% libraries/AP_Gripper/AP_Gripper_EPM.o
+%% libraries/AP_Beacon/AP_Beacon_Pozyx.o
+%% libraries/AP_Beacon/AP_Beacon_Backend.o
+%% libraries/AP_Beacon/AP_Beacon_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp: In constructor 'AP_Beacon_SITL::AP_Beacon_SITL(AP_Beacon&)':
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp:46:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Beacon/AP_Beacon.o
+%% libraries/AP_Arming/AP_Arming.o
+%% libraries/AP_Module/AP_Module.o
+%% libraries/AP_Button/AP_Button.o
+%% libraries/AP_ICEngine/AP_ICEngine.o
+%% libraries/AP_FlashStorage/AP_FlashStorage.o
+%% libraries/SRV_Channel/SRV_Channel_aux.o
+%% libraries/SRV_Channel/SRV_Channel.o
+%% libraries/AP_HAL/UARTDriver.o
+%% libraries/AP_HAL/HAL.o
+%% libraries/AP_HAL/Device.o
+%% libraries/AP_HAL/Util.o
+%% libraries/AP_HAL_Empty/GPIO.o
+%% libraries/AP_HAL_Empty/Semaphores.o
+%% libraries/AP_HAL_Empty/UARTDriver.o
+%% libraries/AP_HAL_Empty/Storage.o
+%% libraries/AP_HAL_Empty/PrivateMember.o
+%% libraries/AP_HAL_Empty/RCOutput.o
+%% libraries/AP_HAL_Empty/Scheduler.o
+%% libraries/AP_HAL_Empty/AnalogIn.o
+%% libraries/AP_HAL_Empty/RCInput.o
+%% libraries/AP_HAL_Empty/HAL_Empty_Class.o
+%% libraries/AP_HAL_SITL/GPIO.o
+%% libraries/AP_HAL_SITL/SITL_State.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp: In member function 'void HALSITL::SITL_State::_sitl_setup(const char*)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:79:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:80:57: warning: cast from 'AP_Param*' to 'AP_Baro*' increases required alignment of target type [-Wcast-align]
+     _barometer = (AP_Baro *)AP_Param::find_object("GND_");
+                                                         ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:81:61: warning: cast from 'AP_Param*' to 'AP_InertialSensor*' increases required alignment of target type [-Wcast-align]
+     _ins = (AP_InertialSensor *)AP_Param::find_object("INS_");
+                                                             ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:82:59: warning: cast from 'AP_Param*' to 'Compass*' increases required alignment of target type [-Wcast-align]
+     _compass = (Compass *)AP_Param::find_object("COMPASS_");
+                                                           ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:84:62: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     _terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                              ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Semaphores.o
+%% libraries/AP_HAL_SITL/UARTDriver.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp: In member function 'virtual size_t HALSITL::UARTDriver::write(const uint8_t*, size_t)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp:149:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (txspace() <= (ssize_t)size) {
+                   ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Storage.o
+%% libraries/AP_HAL_SITL/SITL_cmdline.o
+%% libraries/AP_HAL_SITL/HAL_SITL_Class.o
+%% libraries/AP_HAL_SITL/RCOutput.o
+%% libraries/AP_HAL_SITL/sitl_ins.o
+%% libraries/AP_HAL_SITL/system.o
+%% libraries/AP_HAL_SITL/sitl_gps.o
+%% libraries/AP_HAL_SITL/sitl_compass.o
+%% libraries/AP_HAL_SITL/Scheduler.o
+%% libraries/AP_HAL_SITL/AnalogIn.o
+%% libraries/AP_HAL_SITL/sitl_barometer.o
+%% libraries/AP_HAL_SITL/RCInput.o
+%% libraries/SITL/SIM_Helicopter.o
+%% libraries/SITL/SIM_ADSB.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp: In member function 'void SITL::ADSB::update()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp:77:53: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                     ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_XPlane.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp: In member function 'bool SITL::XPlane::receive_data()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp:141:44: warning: cast from 'uint8_t* {aka unsigned char*}' to 'const float*' increases required alignment of target type [-Wcast-align]
+         const float *data = (const float *)p;
+                                            ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_last_letter.o
+%% libraries/SITL/SIM_Motor.o
+%% libraries/SITL/SIM_Gripper_EPM.o
+%% libraries/SITL/SIM_JSBSim.o
+%% libraries/SITL/SIM_Multicopter.o
+%% libraries/SITL/SIM_Sprayer.o
+%% libraries/SITL/SIM_Tracker.o
+%% libraries/SITL/SIM_Calibration.o
+%% libraries/SITL/SIM_SingleCopter.o
+%% libraries/SITL/SIM_Rover.o
+%% libraries/SITL/SIM_Aircraft.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp: In constructor 'SITL::Aircraft::Aircraft(const char*, const char*)':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:63:48: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                ^
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:75:61: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                             ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_Gazebo.o
+%% libraries/SITL/SIM_Balloon.o
+%% libraries/SITL/SIM_Gimbal.o
+%% libraries/SITL/SIM_Plane.o
+%% libraries/SITL/SIM_Gripper_Servo.o
+%% libraries/SITL/SIM_CRRCSim.o
+%% libraries/SITL/SIM_FlightAxis.o
+%% libraries/SITL/SIM_ICEngine.o
+%% libraries/SITL/SITL.o
+%% libraries/SITL/SIM_Frame.o
+%% libraries/SITL/SIM_QuadPlane.o
+%% libraries/AP_HAL/utility/srxl.o
+%% libraries/AP_HAL/utility/sumd.o
+%% libraries/AP_HAL/utility/Socket.o
+%% libraries/AP_HAL/utility/utoa_invert.o
+%% libraries/AP_HAL/utility/st24.o
+%% libraries/AP_HAL/utility/Print.o
+%% libraries/AP_HAL/utility/dsm.o
+%% libraries/AP_HAL/utility/print_vprintf.o
+%% libraries/AP_HAL/utility/RingBuffer.o
+%% libraries/AP_HAL/utility/getopt_cpp.o
+%% libraries/AP_HAL/utility/ftoa_engine.o
+Building /tmp/ArduCopter.build/ArduCopter.elf
+%% ArduCopter.elf
+Firmware is in ArduCopter.elf
+make[1]: Leaving directory '/home/ubuntu/ardupilot/ArduCopter'
+make -C APMrover2 sitl
+make[1]: Entering directory '/home/ubuntu/ardupilot/APMrover2'
+Checking modules
+// BUILDROOT=/tmp/APMrover2.build HAL_BOARD=HAL_BOARD_SITL HAL_BOARD_SUBTYPE=HAL_BOARD_SUBTYPE_NONE TOOLCHAIN=NATIVE EXTRAFLAGS=-DGIT_VERSION="b77ce1df" -I/home/ubuntu/ardupilot/libraries/AP_Commo
+n/missing -DMAVLINK_PROTOCOL_VERSION=2 -DHAVE_CMATH_ISFINITE -DNEED_CMATH_ISFINITE_STD_NAMESPACE -DHAVE_ENDIAN_H -DHAVE_BYTESWAP_H
+echo "Generating MAVLink headers..."
+Generating MAVLink headers...
+#goto mavlink module directory and run the most recent generator script
+echo "Generating C code using mavgen.py located at" /home/ubuntu/ardupilot/modules/mavlink/
+Generating C code using mavgen.py located at /home/ubuntu/ardupilot/modules/mavlink/
+PYTHONPATH=/home/ubuntu/ardupilot/modules/mavlink/ python /home/ubuntu/ardupilot/modules/mavlink//pymavlink/tools/mavgen.py --lang=C --wire-protocol=2.0 --output=/tmp/APMrover2.build/libraries/GCS
+_MAVLink/include/mavlink/v2.0 /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml; if [ $? -le 0 -o $? -gt 128 ]; then echo "mavgen: success"; exit 0; else echo "mavg
+en: failed"; exit 1; fi
+WARNING: Unable to load XML validator libraries. XML validation will not be performed
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml
+Note: message DATA64 is longer than 64 bytes long (74 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DATA96 is longer than 64 bytes long (106 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message REMOTE_LOG_DATA_BLOCK is longer than 64 bytes long (214 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DEVICE_OP_READ_REPLY is longer than 64 bytes long (143 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DEVICE_OP_WRITE is longer than 64 bytes long (187 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml
+Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (80 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (189 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOCAL_POSITION_NED_COV is longer than 64 bytes long (233 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_ACTUATOR_CONTROLS is longer than 64 bytes long (89 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIGHRES_IMU is longer than 64 bytes long (70 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_SENSOR is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SIM_STATE is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FILE_TRANSFER_PROTOCOL is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_STATE_QUATERNION is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOG_DATA is longer than 64 bytes long (105 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_INJECT_DATA is longer than 64 bytes long (121 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SERIAL_CONTROL is longer than 64 bytes long (87 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ENCAPSULATED_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message RESOURCE_REQUEST is longer than 64 bytes long (251 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FOLLOW_TARGET is longer than 64 bytes long (101 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CONTROL_SYSTEM_STATE is longer than 64 bytes long (108 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message AUTOPILOT_VERSION is longer than 64 bytes long (68 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_INPUT is longer than 64 bytes long (71 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_RTCM_DATA is longer than 64 bytes long (190 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CAMERA_INFORMATION is longer than 64 bytes long (94 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CAMERA_IMAGE_CAPTURED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOGGING_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOGGING_DATA_ACKED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml
+Merged enum MAV_CMD
+Found 206 MAVLink message types in 3 XML files
+Generating C implementation in directory /tmp/APMrover2.build/libraries/GCS_MAVLink/include/mavlink/v2.0/ardupilotmega
+Generating C implementation in directory /tmp/APMrover2.build/libraries/GCS_MAVLink/include/mavlink/v2.0/common
+Generating C implementation in directory /tmp/APMrover2.build/libraries/GCS_MAVLink/include/mavlink/v2.0/uAvionix
+Copying fixed headers for protocol 2.0 to /tmp/APMrover2.build/libraries/GCS_MAVLink/include/mavlink/v2.0
+mavgen: success
+%% Parameters.o
+%% control_modes.o
+%% afs_rover.o
+%% GCS_Mavlink.o
+%% setup.o
+%% commands_logic.o
+%% sensors.o
+%% Rover.o
+%% commands_process.o
+%% crash_check.o
+%% AP_Arming.o
+%% events.o
+%% navigation.o
+%% system.o
+%% radio.o
+%% Log.o
+%% failsafe.o
+%% commands.o
+%% Steering.o
+%% capabilities.o
+%% test.o
+%% APMrover2.o
+%% compat.o
+%% libraries/AP_Common/AP_Common.o
+%% libraries/AP_Common/c++.o
+%% libraries/AP_Common/Location.o
+%% libraries/AP_Menu/AP_Menu.o
+%% libraries/AP_Param/AP_Param.o
+%% libraries/StorageManager/StorageManager.o
+%% libraries/AP_GPS/AP_GPS_SBF.o
+%% libraries/AP_GPS/AP_GPS_UBLOX.o
+%% libraries/AP_GPS/AP_GPS_ERB.o
+%% libraries/AP_GPS/AP_GPS_NMEA.o
+%% libraries/AP_GPS/AP_GPS_SIRF.o
+%% libraries/AP_GPS/GPS_Backend.o
+%% libraries/AP_GPS/AP_GPS_SBP.o
+%% libraries/AP_GPS/AP_GPS.o
+%% libraries/AP_GPS/AP_GPS_GSOF.o
+%% libraries/AP_GPS/AP_GPS_NOVA.o
+%% libraries/AP_GPS/AP_GPS_MTK19.o
+%% libraries/AP_GPS/AP_GPS_PX4.o
+%% libraries/AP_GPS/AP_GPS_MAV.o
+%% libraries/AP_GPS/AP_GPS_QURT.o
+%% libraries/AP_GPS/AP_GPS_MTK.o
+%% libraries/AP_ADC/AP_ADC.o
+%% libraries/AP_ADC/AP_ADC_ADS1115.o
+%% libraries/AP_Baro/AP_Baro.o
+%% libraries/AP_Baro/AP_Baro_qflight.o
+%% libraries/AP_Baro/AP_Baro_HIL.o
+%% libraries/AP_Baro/AP_Baro_PX4.o
+%% libraries/AP_Baro/AP_Baro_MS5611.o
+%% libraries/AP_Baro/AP_Baro_QURT.o
+%% libraries/AP_Baro/AP_Baro_Backend.o
+%% libraries/AP_Baro/AP_Baro_BMP280.o
+%% libraries/AP_Baro/AP_Baro_BMP085.o
+%% libraries/AP_Compass/AP_Compass_Calibration.o
+%% libraries/AP_Compass/Compass_learn.o
+%% libraries/AP_Compass/AP_Compass.o
+%% libraries/AP_Compass/AP_Compass_qflight.o
+%% libraries/AP_Compass/AP_Compass_BMM150.o
+%% libraries/AP_Compass/AP_Compass_HMC5843.o
+%% libraries/AP_Compass/AP_Compass_PX4.o
+%% libraries/AP_Compass/AP_Compass_QURT.o
+%% libraries/AP_Compass/AP_Compass_IST8310.o
+%% libraries/AP_Compass/AP_Compass_Backend.o
+%% libraries/AP_Compass/CompassCalibrator.o
+%% libraries/AP_Compass/AP_Compass_AK09916.o
+%% libraries/AP_Compass/AP_Compass_HIL.o
+%% libraries/AP_Compass/AP_Compass_LSM9DS1.o
+%% libraries/AP_Compass/AP_Compass_LIS3MDL.o
+%% libraries/AP_Compass/AP_Compass_AK8963.o
+%% libraries/AP_Compass/AP_Compass_LSM303D.o
+%% libraries/AP_Math/quaternion.o
+%% libraries/AP_Math/AP_GeodesicGrid.o
+%% libraries/AP_Math/crc.o
+%% libraries/AP_Math/vector2.o
+%% libraries/AP_Math/polygon.o
+%% libraries/AP_Math/matrix3.o
+%% libraries/AP_Math/matrix_alg.o
+%% libraries/AP_Math/edc.o
+%% libraries/AP_Math/AP_Math.o
+%% libraries/AP_Math/vector3.o
+%% libraries/AP_Math/location.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp: In member function 'bool AP_InertialSensor_SITL::init_sensor()':
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp:32:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_InertialSensor/AuxiliaryBus.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Backend.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_BMI160.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_Stream.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_L3G4200D.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_QURT.o
+%% libraries/AP_InertialSensor/AP_InertialSensor.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_qflight.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_MAVLink.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS0.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Invensense.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_PX4.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_HIL.o
+%% libraries/AP_AccelCal/AccelCalibrator.o
+%% libraries/AP_AccelCal/AP_AccelCal.o
+%% libraries/AP_AHRS/AP_AHRS_DCM.o
+%% libraries/AP_AHRS/AP_AHRS.o
+%% libraries/AP_AHRS/AP_AHRS_NavEKF.o
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp: In member function 'void AP_AHRS_NavEKF::update_SITL()':
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp:255:59: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                           ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_NavEKF2/AP_NavEKF2_Outputs.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_RngBcnFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Measurements.o
+%% libraries/AP_NavEKF2/AP_NavEKF2.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_OptFlowFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_core.o
+%% libraries/AP_NavEKF2/AP_NavEKF_GyroBias.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_MagFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_VehicleStatus.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_PosVelFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_AirDataFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_GyroBias.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_OptFlowFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_core.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_MagFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_VehicleStatus.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_PosVelFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_AirDataFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Outputs.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_RngBcnFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Measurements.o
+%% libraries/AP_NavEKF3/AP_NavEKF3.o
+%% libraries/AP_Mission/AP_Mission.o
+%% libraries/AP_Rally/AP_Rally.o
+%% libraries/AP_Terrain/TerrainIO.o
+%% libraries/AP_Terrain/TerrainMission.o
+%% libraries/AP_Terrain/TerrainGCS.o
+%% libraries/AP_Terrain/AP_Terrain.o
+%% libraries/AP_Terrain/TerrainUtil.o
+%% libraries/PID/PID.o
+%% libraries/RC_Channel/RC_Channel.o
+%% libraries/AP_RangeFinder/RangeFinder.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_Bebop.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PX4_PWM.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PulsedLightLRF.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LeddarOne.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_analog.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarSerialLV.o
+%% libraries/AP_RangeFinder/RangeFinder_Backend.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_trone.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarI2CXL.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_BBB_PRU.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareSerial.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MAVLink.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_uLanding.o
+%% libraries/Filter/LowPassFilter.o
+%% libraries/Filter/DerivativeFilter.o
+%% libraries/Filter/LowPassFilter2p.o
+%% libraries/AP_Relay/AP_Relay.o
+%% libraries/AP_ServoRelayEvents/AP_ServoRelayEvents.o
+%% libraries/AP_Mount/AP_Mount_Backend.o
+%% libraries/AP_Mount/SoloGimbalEKF.o
+%% libraries/AP_Mount/AP_Mount_Alexmos.o
+%% libraries/AP_Mount/AP_Mount_SToRM32.o
+%% libraries/AP_Mount/AP_Mount.o
+%% libraries/AP_Mount/SoloGimbal.o
+%% libraries/AP_Mount/SoloGimbal_Parameters.o
+%% libraries/AP_Mount/AP_Mount_SoloGimbal.o
+%% libraries/AP_Mount/AP_Mount_Servo.o
+%% libraries/AP_Mount/AP_Mount_SToRM32_serial.o
+%% libraries/AP_Camera/AP_Camera.o
+%% libraries/GCS_MAVLink/GCS_Common.o
+%% libraries/GCS_MAVLink/GCS_serial_control.o
+%% libraries/GCS_MAVLink/GCS_MAVLink.o
+%% libraries/GCS_MAVLink/GCS_Logs.o
+%% libraries/GCS_MAVLink/MAVLink_routing.o
+%% libraries/GCS_MAVLink/GCS_Signing.o
+%% libraries/GCS_MAVLink/GCS_DeviceOp.o
+%% libraries/AP_SerialManager/AP_SerialManager.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS4525.o
+%% libraries/AP_Airspeed/Airspeed_Calibration.o
+%% libraries/AP_Airspeed/AP_Airspeed_analog.o
+%% libraries/AP_Airspeed/AP_Airspeed.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS5525.o
+%% libraries/AP_Airspeed/AP_Airspeed_Backend.o
+%% libraries/DataFlash/LogFile.o
+%% libraries/DataFlash/DataFlash_SITL.o
+%% libraries/DataFlash/DFMessageWriter.o
+%% libraries/DataFlash/DataFlash.o
+%% libraries/DataFlash/DataFlash_Block.o
+%% libraries/DataFlash/DataFlash_MAVLink.o
+%% libraries/DataFlash/DataFlash_Backend.o
+%% libraries/DataFlash/DataFlash_File.o
+%% libraries/AP_RCMapper/AP_RCMapper.o
+%% libraries/AP_Scheduler/AP_Scheduler.o
+%% libraries/APM_Control/AP_AutoTune.o
+%% libraries/APM_Control/AP_SteerController.o
+%% libraries/APM_Control/AP_YawController.o
+%% libraries/APM_Control/AP_RollController.o
+%% libraries/APM_Control/AP_PitchController.o
+%% libraries/AP_L1_Control/AP_L1_Control.o
+%% libraries/AP_BoardConfig/px4_drivers.o
+%% libraries/AP_BoardConfig/AP_BoardConfig.o
+%% libraries/AP_Frsky_Telem/AP_Frsky_Telem.o
+%% libraries/AP_Notify/Display_SSD1306_I2C.o
+%% libraries/AP_Notify/ExternalLED.o
+%% libraries/AP_Notify/ToneAlarm_PX4_Solo.o
+%% libraries/AP_Notify/NavioLED_I2C.o
+%% libraries/AP_Notify/DiscoLED.o
+%% libraries/AP_Notify/NavioLED.o
+%% libraries/AP_Notify/OreoLED_PX4.o
+%% libraries/AP_Notify/ToneAlarm_PX4.o
+%% libraries/AP_Notify/Buzzer.o
+%% libraries/AP_Notify/Display.o
+%% libraries/AP_Notify/AP_BoardLED.o
+%% libraries/AP_Notify/VRBoard_LED.o
+%% libraries/AP_Notify/DiscreteRGBLed.o
+%% libraries/AP_Notify/AP_Notify.o
+%% libraries/AP_Notify/RGBLed.o
+%% libraries/AP_Notify/ToshibaLED.o
+%% libraries/AP_Notify/ToshibaLED_I2C.o
+%% libraries/AP_Notify/Display_SH1106_I2C.o
+%% libraries/AP_Notify/RCOutputRGBLed.o
+%% libraries/AP_Notify/PixRacerLED.o
+%% libraries/AP_Notify/ToneAlarm_Linux.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_I2C.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Bebop.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Analog.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Backend.o
+%% libraries/AP_BattMonitor/AP_BattMonitor.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_PX4.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp: In constructor 'AP_OpticalFlow_SITL::AP_OpticalFlow_SITL(OpticalFlow&)':
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp:31:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_PX4Flow.o
+%% libraries/AP_OpticalFlow/OpticalFlow_backend.o
+%% libraries/AP_OpticalFlow/OpticalFlow.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Onboard.o
+%% libraries/AP_RSSI/AP_RSSI.o
+%% libraries/AP_Declination/AP_Declination.o
+%% libraries/AP_RPM/RPM_Backend.o
+%% libraries/AP_RPM/AP_RPM.o
+%% libraries/AP_RPM/RPM_PX4_PWM.o
+%% libraries/AP_RPM/RPM_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp: In constructor 'AP_RPM_SITL::AP_RPM_SITL(AP_RPM&, uint8_t, AP_RPM::RPM_State&)':
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp:29:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Arming/AP_Arming.o
+%% libraries/AP_Stats/AP_Stats.o
+%% libraries/AP_Beacon/AP_Beacon_Pozyx.o
+%% libraries/AP_Beacon/AP_Beacon_Backend.o
+%% libraries/AP_Beacon/AP_Beacon_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp: In constructor 'AP_Beacon_SITL::AP_Beacon_SITL(AP_Beacon&)':
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp:46:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Beacon/AP_Beacon.o
+%% libraries/AP_Module/AP_Module.o
+%% libraries/AP_Button/AP_Button.o
+%% libraries/AP_ICEngine/AP_ICEngine.o
+%% libraries/AP_FlashStorage/AP_FlashStorage.o
+%% libraries/SRV_Channel/SRV_Channel_aux.o
+%% libraries/SRV_Channel/SRV_Channel.o
+%% libraries/AP_HAL/UARTDriver.o
+%% libraries/AP_HAL/HAL.o
+%% libraries/AP_HAL/Device.o
+%% libraries/AP_HAL/Util.o
+%% libraries/AP_HAL_Empty/GPIO.o
+%% libraries/AP_HAL_Empty/Semaphores.o
+%% libraries/AP_HAL_Empty/UARTDriver.o
+%% libraries/AP_HAL_Empty/Storage.o
+%% libraries/AP_HAL_Empty/PrivateMember.o
+%% libraries/AP_HAL_Empty/RCOutput.o
+%% libraries/AP_HAL_Empty/Scheduler.o
+%% libraries/AP_HAL_Empty/AnalogIn.o
+%% libraries/AP_HAL_Empty/RCInput.o
+%% libraries/AP_HAL_Empty/HAL_Empty_Class.o
+%% libraries/AP_HAL_SITL/GPIO.o
+%% libraries/AP_HAL_SITL/SITL_State.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp: In member function 'void HALSITL::SITL_State::_sitl_setup(const char*)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:79:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:80:57: warning: cast from 'AP_Param*' to 'AP_Baro*' increases required alignment of target type [-Wcast-align]
+     _barometer = (AP_Baro *)AP_Param::find_object("GND_");
+                                                         ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:81:61: warning: cast from 'AP_Param*' to 'AP_InertialSensor*' increases required alignment of target type [-Wcast-align]
+     _ins = (AP_InertialSensor *)AP_Param::find_object("INS_");
+                                                             ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:82:59: warning: cast from 'AP_Param*' to 'Compass*' increases required alignment of target type [-Wcast-align]
+     _compass = (Compass *)AP_Param::find_object("COMPASS_");
+                                                           ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:84:62: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     _terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                              ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Semaphores.o
+%% libraries/AP_HAL_SITL/UARTDriver.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp: In member function 'virtual size_t HALSITL::UARTDriver::write(const uint8_t*, size_t)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp:149:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (txspace() <= (ssize_t)size) {
+                   ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Storage.o
+%% libraries/AP_HAL_SITL/SITL_cmdline.o
+%% libraries/AP_HAL_SITL/HAL_SITL_Class.o
+%% libraries/AP_HAL_SITL/RCOutput.o
+%% libraries/AP_HAL_SITL/sitl_ins.o
+%% libraries/AP_HAL_SITL/system.o
+%% libraries/AP_HAL_SITL/sitl_gps.o
+%% libraries/AP_HAL_SITL/sitl_compass.o
+%% libraries/AP_HAL_SITL/Scheduler.o
+%% libraries/AP_HAL_SITL/AnalogIn.o
+%% libraries/AP_HAL_SITL/sitl_barometer.o
+%% libraries/AP_HAL_SITL/RCInput.o
+%% libraries/SITL/SIM_Helicopter.o
+%% libraries/SITL/SIM_ADSB.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp: In member function 'void SITL::ADSB::update()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp:77:53: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                     ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_XPlane.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp: In member function 'bool SITL::XPlane::receive_data()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp:141:44: warning: cast from 'uint8_t* {aka unsigned char*}' to 'const float*' increases required alignment of target type [-Wcast-align]
+         const float *data = (const float *)p;
+                                            ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_last_letter.o
+%% libraries/SITL/SIM_Motor.o
+%% libraries/SITL/SIM_Gripper_EPM.o
+%% libraries/SITL/SIM_JSBSim.o
+%% libraries/SITL/SIM_Multicopter.o
+%% libraries/SITL/SIM_Sprayer.o
+%% libraries/SITL/SIM_Tracker.o
+%% libraries/SITL/SIM_Calibration.o
+%% libraries/SITL/SIM_SingleCopter.o
+%% libraries/SITL/SIM_Rover.o
+%% libraries/SITL/SIM_Aircraft.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp: In constructor 'SITL::Aircraft::Aircraft(const char*, const char*)':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:63:48: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                ^
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:75:61: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                             ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_Gazebo.o
+%% libraries/SITL/SIM_Balloon.o
+%% libraries/SITL/SIM_Gimbal.o
+%% libraries/SITL/SIM_Plane.o
+%% libraries/SITL/SIM_Gripper_Servo.o
+%% libraries/SITL/SIM_CRRCSim.o
+%% libraries/SITL/SIM_FlightAxis.o
+%% libraries/SITL/SIM_ICEngine.o
+%% libraries/SITL/SITL.o
+%% libraries/SITL/SIM_Frame.o
+%% libraries/SITL/SIM_QuadPlane.o
+%% libraries/AP_HAL/utility/srxl.o
+%% libraries/AP_HAL/utility/sumd.o
+%% libraries/AP_HAL/utility/Socket.o
+%% libraries/AP_HAL/utility/utoa_invert.o
+%% libraries/AP_HAL/utility/st24.o
+%% libraries/AP_HAL/utility/Print.o
+%% libraries/AP_HAL/utility/dsm.o
+%% libraries/AP_HAL/utility/print_vprintf.o
+%% libraries/AP_HAL/utility/RingBuffer.o
+%% libraries/AP_HAL/utility/getopt_cpp.o
+%% libraries/AP_HAL/utility/ftoa_engine.o
+Building /tmp/APMrover2.build/APMrover2.elf
+%% APMrover2.elf
+Firmware is in APMrover2.elf
+make[1]: Leaving directory '/home/ubuntu/ardupilot/APMrover2'
+make -C AntennaTracker sitl
+make[1]: Entering directory '/home/ubuntu/ardupilot/AntennaTracker'
+Checking modules
+// BUILDROOT=/tmp/AntennaTracker.build HAL_BOARD=HAL_BOARD_SITL HAL_BOARD_SUBTYPE=HAL_BOARD_SUBTYPE_NONE TOOLCHAIN=NATIVE EXTRAFLAGS=-DGIT_VERSION="b77ce1df" -I/home/ubuntu/ardupilot/libraries/AP_
+Common/missing -DMAVLINK_PROTOCOL_VERSION=2 -DHAVE_CMATH_ISFINITE -DNEED_CMATH_ISFINITE_STD_NAMESPACE -DHAVE_ENDIAN_H -DHAVE_BYTESWAP_H
+echo "Generating MAVLink headers..."
+Generating MAVLink headers...
+#goto mavlink module directory and run the most recent generator script
+echo "Generating C code using mavgen.py located at" /home/ubuntu/ardupilot/modules/mavlink/
+Generating C code using mavgen.py located at /home/ubuntu/ardupilot/modules/mavlink/
+PYTHONPATH=/home/ubuntu/ardupilot/modules/mavlink/ python /home/ubuntu/ardupilot/modules/mavlink//pymavlink/tools/mavgen.py --lang=C --wire-protocol=2.0 --output=/tmp/AntennaTracker.build/librarie
+s/GCS_MAVLink/include/mavlink/v2.0 /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml; if [ $? -le 0 -o $? -gt 128 ]; then echo "mavgen: success"; exit 0; else echo 
+"mavgen: failed"; exit 1; fi
+WARNING: Unable to load XML validator libraries. XML validation will not be performed
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/ardupilotmega.xml
+Note: message DATA64 is longer than 64 bytes long (74 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DATA96 is longer than 64 bytes long (106 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message REMOTE_LOG_DATA_BLOCK is longer than 64 bytes long (214 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DEVICE_OP_READ_REPLY is longer than 64 bytes long (143 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DEVICE_OP_WRITE is longer than 64 bytes long (187 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/common.xml
+Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (80 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (189 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOCAL_POSITION_NED_COV is longer than 64 bytes long (233 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_ACTUATOR_CONTROLS is longer than 64 bytes long (89 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIGHRES_IMU is longer than 64 bytes long (70 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_SENSOR is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SIM_STATE is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FILE_TRANSFER_PROTOCOL is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_STATE_QUATERNION is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOG_DATA is longer than 64 bytes long (105 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_INJECT_DATA is longer than 64 bytes long (121 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SERIAL_CONTROL is longer than 64 bytes long (87 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ENCAPSULATED_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message RESOURCE_REQUEST is longer than 64 bytes long (251 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FOLLOW_TARGET is longer than 64 bytes long (101 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CONTROL_SYSTEM_STATE is longer than 64 bytes long (108 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message AUTOPILOT_VERSION is longer than 64 bytes long (68 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_INPUT is longer than 64 bytes long (71 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_RTCM_DATA is longer than 64 bytes long (190 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CAMERA_INFORMATION is longer than 64 bytes long (94 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CAMERA_IMAGE_CAPTURED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOGGING_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOGGING_DATA_ACKED is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validation skipped for /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml.
+Parsing /home/ubuntu/ardupilot/modules/mavlink/message_definitions/v1.0/uAvionix.xml
+Merged enum MAV_CMD
+Found 206 MAVLink message types in 3 XML files
+Generating C implementation in directory /tmp/AntennaTracker.build/libraries/GCS_MAVLink/include/mavlink/v2.0/ardupilotmega
+Generating C implementation in directory /tmp/AntennaTracker.build/libraries/GCS_MAVLink/include/mavlink/v2.0/common
+Generating C implementation in directory /tmp/AntennaTracker.build/libraries/GCS_MAVLink/include/mavlink/v2.0/uAvionix
+Copying fixed headers for protocol 2.0 to /tmp/AntennaTracker.build/libraries/GCS_MAVLink/include/mavlink/v2.0
+mavgen: success
+%% Parameters.o
+%% tracking.o
+%% control_manual.o
+%% control_scan.o
+%% GCS_Mavlink.o
+%% sensors.o
+%% Log.o
+%% AntennaTracker.o
+%% system.o
+%% radio.o
+%% servos.o
+%% control_servo_test.o
+%% capabilities.o
+%% control_auto.o
+%% libraries/AP_Common/AP_Common.o
+%% libraries/AP_Common/c++.o
+%% libraries/AP_Common/Location.o
+%% libraries/AP_Param/AP_Param.o
+%% libraries/StorageManager/StorageManager.o
+%% libraries/AP_GPS/AP_GPS_SBF.o
+%% libraries/AP_GPS/AP_GPS_UBLOX.o
+%% libraries/AP_GPS/AP_GPS_ERB.o
+%% libraries/AP_GPS/AP_GPS_NMEA.o
+%% libraries/AP_GPS/AP_GPS_SIRF.o
+%% libraries/AP_GPS/GPS_Backend.o
+%% libraries/AP_GPS/AP_GPS_SBP.o
+%% libraries/AP_GPS/AP_GPS.o
+%% libraries/AP_GPS/AP_GPS_GSOF.o
+%% libraries/AP_GPS/AP_GPS_NOVA.o
+%% libraries/AP_GPS/AP_GPS_MTK19.o
+%% libraries/AP_GPS/AP_GPS_PX4.o
+%% libraries/AP_GPS/AP_GPS_MAV.o
+%% libraries/AP_GPS/AP_GPS_QURT.o
+%% libraries/AP_GPS/AP_GPS_MTK.o
+%% libraries/AP_Baro/AP_Baro.o
+%% libraries/AP_Baro/AP_Baro_qflight.o
+%% libraries/AP_Baro/AP_Baro_HIL.o
+%% libraries/AP_Baro/AP_Baro_PX4.o
+%% libraries/AP_Baro/AP_Baro_MS5611.o
+%% libraries/AP_Baro/AP_Baro_QURT.o
+%% libraries/AP_Baro/AP_Baro_Backend.o
+%% libraries/AP_Baro/AP_Baro_BMP280.o
+%% libraries/AP_Baro/AP_Baro_BMP085.o
+%% libraries/AP_Compass/AP_Compass_Calibration.o
+%% libraries/AP_Compass/Compass_learn.o
+%% libraries/AP_Compass/AP_Compass.o
+%% libraries/AP_Compass/AP_Compass_qflight.o
+%% libraries/AP_Compass/AP_Compass_BMM150.o
+%% libraries/AP_Compass/AP_Compass_HMC5843.o
+%% libraries/AP_Compass/AP_Compass_PX4.o
+%% libraries/AP_Compass/AP_Compass_QURT.o
+%% libraries/AP_Compass/AP_Compass_IST8310.o
+%% libraries/AP_Compass/AP_Compass_Backend.o
+%% libraries/AP_Compass/CompassCalibrator.o
+%% libraries/AP_Compass/AP_Compass_AK09916.o
+%% libraries/AP_Compass/AP_Compass_HIL.o
+%% libraries/AP_Compass/AP_Compass_LSM9DS1.o
+%% libraries/AP_Compass/AP_Compass_LIS3MDL.o
+%% libraries/AP_Compass/AP_Compass_AK8963.o
+%% libraries/AP_Compass/AP_Compass_LSM303D.o
+%% libraries/AP_Math/quaternion.o
+%% libraries/AP_Math/AP_GeodesicGrid.o
+%% libraries/AP_Math/crc.o
+%% libraries/AP_Math/vector2.o
+%% libraries/AP_Math/polygon.o
+%% libraries/AP_Math/matrix3.o
+%% libraries/AP_Math/matrix_alg.o
+%% libraries/AP_Math/edc.o
+%% libraries/AP_Math/AP_Math.o
+%% libraries/AP_Math/vector3.o
+%% libraries/AP_Math/location.o
+%% libraries/AP_ADC/AP_ADC.o
+%% libraries/AP_ADC/AP_ADC_ADS1115.o
+%% libraries/AP_AccelCal/AccelCalibrator.o
+%% libraries/AP_AccelCal/AP_AccelCal.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp: In member function 'bool AP_InertialSensor_SITL::init_sensor()':
+/home/ubuntu/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp:32:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_InertialSensor/AuxiliaryBus.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Backend.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_BMI160.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_Stream.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_L3G4200D.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_QURT.o
+%% libraries/AP_InertialSensor/AP_InertialSensor.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_qflight.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_MAVLink.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS0.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Invensense.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_PX4.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_HIL.o
+%% libraries/AP_AHRS/AP_AHRS_DCM.o
+%% libraries/AP_AHRS/AP_AHRS.o
+%% libraries/AP_AHRS/AP_AHRS_NavEKF.o
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp: In member function 'void AP_AHRS_NavEKF::update_SITL()':
+/home/ubuntu/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp:255:59: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                           ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/Filter/LowPassFilter.o
+%% libraries/Filter/DerivativeFilter.o
+%% libraries/Filter/LowPassFilter2p.o
+%% libraries/GCS_MAVLink/GCS_Common.o
+%% libraries/GCS_MAVLink/GCS_serial_control.o
+%% libraries/GCS_MAVLink/GCS_MAVLink.o
+%% libraries/GCS_MAVLink/GCS_Logs.o
+%% libraries/GCS_MAVLink/MAVLink_routing.o
+%% libraries/GCS_MAVLink/GCS_Signing.o
+%% libraries/GCS_MAVLink/GCS_DeviceOp.o
+%% libraries/AP_SerialManager/AP_SerialManager.o
+%% libraries/AP_Declination/AP_Declination.o
+%% libraries/DataFlash/LogFile.o
+%% libraries/DataFlash/DataFlash_SITL.o
+%% libraries/DataFlash/DFMessageWriter.o
+%% libraries/DataFlash/DataFlash.o
+%% libraries/DataFlash/DataFlash_Block.o
+%% libraries/DataFlash/DataFlash_MAVLink.o
+%% libraries/DataFlash/DataFlash_Backend.o
+%% libraries/DataFlash/DataFlash_File.o
+%% libraries/AC_PID/AC_HELI_PID.o
+%% libraries/AC_PID/AC_PI_2D.o
+%% libraries/AC_PID/AC_PID.o
+%% libraries/AC_PID/AC_P.o
+%% libraries/AP_Scheduler/AP_Scheduler.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Outputs.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_RngBcnFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Measurements.o
+%% libraries/AP_NavEKF2/AP_NavEKF2.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_OptFlowFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_core.o
+%% libraries/AP_NavEKF2/AP_NavEKF_GyroBias.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_MagFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_VehicleStatus.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_PosVelFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_AirDataFusion.o
+%% libraries/AP_NavEKF2/AP_NavEKF2_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_GyroBias.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_OptFlowFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_core.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_MagFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_VehicleStatus.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_PosVelFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_AirDataFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Control.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Outputs.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_RngBcnFusion.o
+%% libraries/AP_NavEKF3/AP_NavEKF3_Measurements.o
+%% libraries/AP_NavEKF3/AP_NavEKF3.o
+%% libraries/AP_Mission/AP_Mission.o
+%% libraries/AP_Terrain/TerrainIO.o
+%% libraries/AP_Terrain/TerrainMission.o
+%% libraries/AP_Terrain/TerrainGCS.o
+%% libraries/AP_Terrain/AP_Terrain.o
+%% libraries/AP_Terrain/TerrainUtil.o
+%% libraries/AP_Rally/AP_Rally.o
+%% libraries/AP_Notify/Display_SSD1306_I2C.o
+%% libraries/AP_Notify/ExternalLED.o
+%% libraries/AP_Notify/ToneAlarm_PX4_Solo.o
+%% libraries/AP_Notify/NavioLED_I2C.o
+%% libraries/AP_Notify/DiscoLED.o
+%% libraries/AP_Notify/NavioLED.o
+%% libraries/AP_Notify/OreoLED_PX4.o
+%% libraries/AP_Notify/ToneAlarm_PX4.o
+%% libraries/AP_Notify/Buzzer.o
+%% libraries/AP_Notify/Display.o
+%% libraries/AP_Notify/AP_BoardLED.o
+%% libraries/AP_Notify/VRBoard_LED.o
+%% libraries/AP_Notify/DiscreteRGBLed.o
+%% libraries/AP_Notify/AP_Notify.o
+%% libraries/AP_Notify/RGBLed.o
+%% libraries/AP_Notify/ToshibaLED.o
+%% libraries/AP_Notify/ToshibaLED_I2C.o
+%% libraries/AP_Notify/Display_SH1106_I2C.o
+%% libraries/AP_Notify/RCOutputRGBLed.o
+%% libraries/AP_Notify/PixRacerLED.o
+%% libraries/AP_Notify/ToneAlarm_Linux.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_I2C.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Bebop.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Analog.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Backend.o
+%% libraries/AP_BattMonitor/AP_BattMonitor.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_PX4.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS4525.o
+%% libraries/AP_Airspeed/Airspeed_Calibration.o
+%% libraries/AP_Airspeed/AP_Airspeed_analog.o
+%% libraries/AP_Airspeed/AP_Airspeed.o
+%% libraries/AP_Airspeed/AP_Airspeed_MS5525.o
+%% libraries/AP_Airspeed/AP_Airspeed_Backend.o
+%% libraries/RC_Channel/RC_Channel.o
+%% libraries/AP_BoardConfig/px4_drivers.o
+%% libraries/AP_BoardConfig/AP_BoardConfig.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp: In constructor 'AP_OpticalFlow_SITL::AP_OpticalFlow_SITL(OpticalFlow&)':
+/home/ubuntu/ardupilot/libraries/AP_OpticalFlow/AP_OpticalFlow_SITL.cpp:31:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_PX4Flow.o
+%% libraries/AP_OpticalFlow/OpticalFlow_backend.o
+%% libraries/AP_OpticalFlow/OpticalFlow.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Onboard.o
+%% libraries/AP_RangeFinder/RangeFinder.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_Bebop.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PX4_PWM.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PulsedLightLRF.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LeddarOne.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_analog.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarSerialLV.o
+%% libraries/AP_RangeFinder/RangeFinder_Backend.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_trone.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarI2CXL.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_BBB_PRU.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_LightWareSerial.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MAVLink.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_uLanding.o
+%% libraries/AP_Mount/AP_Mount_Backend.o
+%% libraries/AP_Mount/SoloGimbalEKF.o
+%% libraries/AP_Mount/AP_Mount_Alexmos.o
+%% libraries/AP_Mount/AP_Mount_SToRM32.o
+%% libraries/AP_Mount/AP_Mount.o
+%% libraries/AP_Mount/SoloGimbal.o
+%% libraries/AP_Mount/SoloGimbal_Parameters.o
+%% libraries/AP_Mount/AP_Mount_SoloGimbal.o
+%% libraries/AP_Mount/AP_Mount_Servo.o
+%% libraries/AP_Mount/AP_Mount_SToRM32_serial.o
+%% libraries/AP_RSSI/AP_RSSI.o
+%% libraries/AP_RPM/RPM_Backend.o
+%% libraries/AP_RPM/AP_RPM.o
+%% libraries/AP_RPM/RPM_PX4_PWM.o
+%% libraries/AP_RPM/RPM_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp: In constructor 'AP_RPM_SITL::AP_RPM_SITL(AP_RPM&, uint8_t, AP_RPM::RPM_State&)':
+/home/ubuntu/ardupilot/libraries/AP_RPM/RPM_SITL.cpp:29:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Frsky_Telem/AP_Frsky_Telem.o
+%% libraries/AP_Beacon/AP_Beacon_Pozyx.o
+%% libraries/AP_Beacon/AP_Beacon_Backend.o
+%% libraries/AP_Beacon/AP_Beacon_SITL.o
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp: In constructor 'AP_Beacon_SITL::AP_Beacon_SITL(AP_Beacon&)':
+/home/ubuntu/ardupilot/libraries/AP_Beacon/AP_Beacon_SITL.cpp:46:54: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                      ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_Beacon/AP_Beacon.o
+%% libraries/AP_Module/AP_Module.o
+%% libraries/AP_Button/AP_Button.o
+%% libraries/AP_ICEngine/AP_ICEngine.o
+%% libraries/AP_FlashStorage/AP_FlashStorage.o
+%% libraries/SRV_Channel/SRV_Channel_aux.o
+%% libraries/SRV_Channel/SRV_Channel.o
+%% libraries/AP_HAL/UARTDriver.o
+%% libraries/AP_HAL/HAL.o
+%% libraries/AP_HAL/Device.o
+%% libraries/AP_HAL/Util.o
+%% libraries/AP_HAL_Empty/GPIO.o
+%% libraries/AP_HAL_Empty/Semaphores.o
+%% libraries/AP_HAL_Empty/UARTDriver.o
+%% libraries/AP_HAL_Empty/Storage.o
+%% libraries/AP_HAL_Empty/PrivateMember.o
+%% libraries/AP_HAL_Empty/RCOutput.o
+%% libraries/AP_HAL_Empty/Scheduler.o
+%% libraries/AP_HAL_Empty/AnalogIn.o
+%% libraries/AP_HAL_Empty/RCInput.o
+%% libraries/AP_HAL_Empty/HAL_Empty_Class.o
+%% libraries/AP_HAL_SITL/GPIO.o
+%% libraries/AP_HAL_SITL/SITL_State.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp: In member function 'void HALSITL::SITL_State::_sitl_setup(const char*)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:79:55: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     _sitl = (SITL::SITL *)AP_Param::find_object("SIM_");
+                                                       ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:80:57: warning: cast from 'AP_Param*' to 'AP_Baro*' increases required alignment of target type [-Wcast-align]
+     _barometer = (AP_Baro *)AP_Param::find_object("GND_");
+                                                         ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:81:61: warning: cast from 'AP_Param*' to 'AP_InertialSensor*' increases required alignment of target type [-Wcast-align]
+     _ins = (AP_InertialSensor *)AP_Param::find_object("INS_");
+                                                             ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:82:59: warning: cast from 'AP_Param*' to 'Compass*' increases required alignment of target type [-Wcast-align]
+     _compass = (Compass *)AP_Param::find_object("COMPASS_");
+                                                           ^
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/SITL_State.cpp:84:62: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     _terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                              ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Semaphores.o
+%% libraries/AP_HAL_SITL/UARTDriver.o
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp: In member function 'virtual size_t HALSITL::UARTDriver::write(const uint8_t*, size_t)':
+/home/ubuntu/ardupilot/libraries/AP_HAL_SITL/UARTDriver.cpp:149:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (txspace() <= (ssize_t)size) {
+                   ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/AP_HAL_SITL/Storage.o
+%% libraries/AP_HAL_SITL/SITL_cmdline.o
+%% libraries/AP_HAL_SITL/HAL_SITL_Class.o
+%% libraries/AP_HAL_SITL/RCOutput.o
+%% libraries/AP_HAL_SITL/sitl_ins.o
+%% libraries/AP_HAL_SITL/system.o
+%% libraries/AP_HAL_SITL/sitl_gps.o
+%% libraries/AP_HAL_SITL/sitl_compass.o
+%% libraries/AP_HAL_SITL/Scheduler.o
+%% libraries/AP_HAL_SITL/AnalogIn.o
+%% libraries/AP_HAL_SITL/sitl_barometer.o
+%% libraries/AP_HAL_SITL/RCInput.o
+%% libraries/SITL/SIM_Helicopter.o
+%% libraries/SITL/SIM_ADSB.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp: In member function 'void SITL::ADSB::update()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_ADSB.cpp:77:53: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+         _sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                     ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_XPlane.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp: In member function 'bool SITL::XPlane::receive_data()':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_XPlane.cpp:141:44: warning: cast from 'uint8_t* {aka unsigned char*}' to 'const float*' increases required alignment of target type [-Wcast-align]
+         const float *data = (const float *)p;
+                                            ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_last_letter.o
+%% libraries/SITL/SIM_Motor.o
+%% libraries/SITL/SIM_Gripper_EPM.o
+%% libraries/SITL/SIM_JSBSim.o
+%% libraries/SITL/SIM_Multicopter.o
+%% libraries/SITL/SIM_Sprayer.o
+%% libraries/SITL/SIM_Tracker.o
+%% libraries/SITL/SIM_Calibration.o
+%% libraries/SITL/SIM_SingleCopter.o
+%% libraries/SITL/SIM_Rover.o
+%% libraries/SITL/SIM_Aircraft.o
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp: In constructor 'SITL::Aircraft::Aircraft(const char*, const char*)':
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:63:48: warning: cast from 'AP_Param*' to 'SITL::SITL*' increases required alignment of target type [-Wcast-align]
+     sitl = (SITL *)AP_Param::find_object("SIM_");
+                                                ^
+/home/ubuntu/ardupilot/libraries/SITL/SIM_Aircraft.cpp:75:61: warning: cast from 'AP_Param*' to 'AP_Terrain*' increases required alignment of target type [-Wcast-align]
+     terrain = (AP_Terrain *)AP_Param::find_object("TERRAIN_");
+                                                             ^
+At global scope:
+cc1plus: warning: unrecognized command line option '-Wno-unknown-warning-option'
+%% libraries/SITL/SIM_Gazebo.o
+%% libraries/SITL/SIM_Balloon.o
+%% libraries/SITL/SIM_Gimbal.o
+%% libraries/SITL/SIM_Plane.o
+%% libraries/SITL/SIM_Gripper_Servo.o
+%% libraries/SITL/SIM_CRRCSim.o
+%% libraries/SITL/SIM_FlightAxis.o
+%% libraries/SITL/SIM_ICEngine.o
+%% libraries/SITL/SITL.o
+%% libraries/SITL/SIM_Frame.o
+%% libraries/SITL/SIM_QuadPlane.o
+%% libraries/AP_HAL/utility/srxl.o
+%% libraries/AP_HAL/utility/sumd.o
+%% libraries/AP_HAL/utility/Socket.o
+%% libraries/AP_HAL/utility/utoa_invert.o
+%% libraries/AP_HAL/utility/st24.o
+%% libraries/AP_HAL/utility/Print.o
+%% libraries/AP_HAL/utility/dsm.o
+%% libraries/AP_HAL/utility/print_vprintf.o
+%% libraries/AP_HAL/utility/RingBuffer.o
+%% libraries/AP_HAL/utility/getopt_cpp.o
+%% libraries/AP_HAL/utility/ftoa_engine.o
+Building /tmp/AntennaTracker.build/AntennaTracker.elf
+%% AntennaTracker.elf
+Firmware is in AntennaTracker.elf
+make[1]: Leaving directory '/home/ubuntu/ardupilot/AntennaTracker'
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ cd ArduPlane/
+ubuntu@arm:~/ardupilot/ArduPlane$ ls
+APM_Config.h            Parameters.h        createTags      radio.cpp
+APM_Config.h.reference  Parameters.pde      defines.h       release-notes.txt
+AP_Arming.cpp           Plane.cpp           events.cpp      sensors.cpp
+AP_Arming.h             Plane.h             failsafe.cpp    servos.cpp
+ArduPlane.cpp           afs_plane.cpp       geofence.cpp    setup.cpp
+ArduPlane.elf           altitude.cpp        is_flying.cpp   system.cpp
+Attitude.cpp            avoidance_adsb.cpp  make.inc        takeoff.cpp
+GCS_Mavlink.cpp         avoidance_adsb.h    motor_test.cpp  test.cpp
+GCS_Mavlink.h           capabilities.cpp    navigation.cpp  tiltrotor.cpp
+Log.cpp                 commands.cpp        parachute.cpp   tuning.cpp
+Makefile                commands_logic.cpp  px4_mixer.cpp   tuning.h
+Makefile.waf            config.h            quadplane.cpp   version.h
+Parameters.cpp          control_modes.cpp   quadplane.h     wscript
+ubuntu@arm:~/ardupilot/ArduPlane$ cd ..           
+ubuntu@arm:~/ardupilot$ cd ArduCopter/
+ubuntu@arm:~/ardupilot/ArduCopter$ ls
+APM_Config.h              capabilities.cpp          failsafe.cpp
+APM_Config_mavlink_hil.h  commands.cpp              fence.cpp
+AP_Arming.cpp             commands_logic.cpp        flight_mode.cpp
+AP_Arming.h               compassmot.cpp            heli.cpp
+AP_Rally.cpp              compat.cpp                heli_control_acro.cpp
+AP_Rally.h                config.h                  heli_control_stabilize.cpp
+AP_State.cpp              control_acro.cpp          inertia.cpp
+ArduCopter.cpp            control_althold.cpp       land_detector.cpp
+ArduCopter.elf            control_auto.cpp          landing_gear.cpp
+Attitude.cpp              control_autotune.cpp      leds.cpp
+Copter.cpp                control_avoid_adsb.cpp    make.inc
+Copter.h                  control_brake.cpp         motor_test.cpp
+GCS_Mavlink.cpp           control_circle.cpp        motors.cpp
+GCS_Mavlink.h             control_drift.cpp         navigation.cpp
+Log.cpp                   control_flip.cpp          perf_info.cpp
+Makefile                  control_guided.cpp        position_vector.cpp
+Makefile.waf              control_guided_nogps.cpp  precision_landing.cpp
+Parameters.cpp            control_land.cpp          radio.cpp
+Parameters.h              control_loiter.cpp        sensors.cpp
+Parameters.pde            control_poshold.cpp       setup.cpp
+ReleaseNotes.txt          control_rtl.cpp           switches.cpp
+UserCode.cpp              control_sport.cpp         system.cpp
+UserVariables.h           control_stabilize.cpp     takeoff.cpp
+afs_copter.cpp            control_throw.cpp         terrain.cpp
+afs_copter.h              crash_check.cpp           test.cpp
+avoidance_adsb.cpp        defines.h                 tuning.cpp
+avoidance_adsb.h          ekf_check.cpp             version.h
+baro_ground_effect.cpp    esc_calibration.cpp       wscript
+build                     events.cpp
+ubuntu@arm:~/ardupilot/ArduCopter$ ./ArduCopter.elf 
+You must specify a vehicle model
+ubuntu@arm:~/ardupilot/ArduCopter$ ./ArduCopter.elf --help
+Options:
+        --home HOME        set home location (lat,lng,alt,yaw)
+        --model MODEL      set simulation model
+        --wipe             wipe eeprom and dataflash
+        --unhide-groups    parameter enumeration ignores AP_PARAM_FLAG_ENABLE
+        --rate RATE        set SITL framerate
+        --console          use console instead of TCP ports
+        --instance N       set instance of SITL (adds 10*instance to all port numbers)
+        --speedup SPEEDUP  set simulation speedup
+        --gimbal           enable simulated MAVLink gimbal
+        --autotest-dir DIR set directory for additional files
+        --uartA device     set device string for UARTA
+        --uartB device     set device string for UARTB
+        --uartC device     set device string for UARTC
+        --uartD device     set device string for UARTD
+        --uartE device     set device string for UARTE
+        --defaults path    set path to defaults file
+ubuntu@arm:~/ardupilot/ArduCopter$ ./ArduCopter.elf       
+You must specify a vehicle model
+ubuntu@arm:~/ardupilot/ArduCopter$ cd ..
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ cd b
+-bash: cd: b: No such file or directory
+ubuntu@arm:~/ardupilot$ cd build/
+ubuntu@arm:~/ardupilot/build$ ls
+c4che  config.log  sitl
+ubuntu@arm:~/ardupilot/build$ cd ..
+ubuntu@arm:~/ardupilot$ cd Tools/
+ubuntu@arm:~/ardupilot/Tools$ ls
+APM2_2560_bootloader  CodeStyle             PPM_decoding     autotest
+APM_radio_test        Failsafe              Pozyx            gittools
+ArduPPM               Frame_params          PrintVersion.py  mavproxy_modules
+ArduPilotMega_demo    GIT_Test              Replay           scripts
+ArdupilotMegaPlanner  Hello                 SerialProxy      vagrant
+CHDK-Scripts          Linux_HAL_Essentials  Xplane
+CPUInfo               LogAnalyzer           ardupilotwaf
+ubuntu@arm:~/ardupilot/Tools$ cd ..
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ cd build/
+ubuntu@arm:~/ardupilot/build$ ls
+c4che  config.log  sitl
+ubuntu@arm:~/ardupilot/build$ cd ..
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ cd ..
+ubuntu@arm:~$ ks
+-bash: ks: command not found
+ubuntu@arm:~$ ls
+ardupilot  bin
+ubuntu@arm:~$ cd bin/
+ubuntu@arm:~/bin$ ls
+ubuntu@arm:~/bin$ cd ..
+ubuntu@arm:~$ cd ardupilot/
+ubuntu@arm:~/ardupilot$ ls
+APMrover2       Doxyfile.in   benchmarks        mk                      waf
+AntennaTracker  Makefile      build             modules                 wscript
+ArduCopter      Makefile.waf  docs              reformat.sh
+ArduPlane       README.md     eclipse.cproject  tests
+BUILD.md        Tools         eclipse.project   uncrustify_cpp.cfg
+COPYING.txt     Vagrantfile   libraries         uncrustify_headers.cfg
+ubuntu@arm:~/ardupilot$ 

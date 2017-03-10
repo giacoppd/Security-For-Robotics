@@ -19,9 +19,15 @@
 
 * Threat Models `docs/threat_models`
 
+* OSU Policy Exemption Requests `docs/policy_exemption`
+
+* Final documents from previous terms `docs/old_documents`
+
 * ROS Packages `ros_packages/`
 
-* Beagle Bone Black Stuff `beagle/`
+* Beagle Bone Black Images `beagle/images`
+
+* Beagle Bone Black Logs `beagle/logs`
 
 * PCB Schematics `schematics/`
 
