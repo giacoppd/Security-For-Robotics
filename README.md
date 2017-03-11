@@ -1,6 +1,8 @@
 ## Security for Robotics - OSU Computer Science Capstone Project - 2016/2017
 
-![Drone Security](https://d30y9cdsu7xlg0.cloudfront.net/png/15208-200.png)
+<p align="center">
+  <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/15208-200.png">
+</p>
 
 ### Project Members
   * Vedanth Narayanan `Project Client (narayave)`
