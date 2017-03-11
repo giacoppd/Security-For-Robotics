@@ -1,0 +1,252 @@
+\documentclass[IEEEtran,letterpaper,10pt,notitlepage,draftclsnofoot,onecolumn]{article}
+
+\usepackage{nopageno}
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+\usepackage{balance}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{   RoboSec}
+\def \CapstoneTeamNumber{   50}
+%\def \GroupMemberOne{     Emily Longman}
+%\def \GroupMemberTwo{     Zach Rogers}
+\def \GroupMemberThree{     Dominic Giacoppe}
+\def \CapstoneProjectName{    Security for Robotics}
+\def \CapstoneSponsorCompany{ Oregon State University}
+\def \CapstoneSponsorPerson{    Vedanth Narayanan}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{    %Problem Statement
+        %Requirements Document
+        %Technology Review
+        %Design Document
+        Winter Individual Report
+        }
+
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil   \makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill    \makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil    \makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill  \makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+      \includegraphics[height=4cm]{coe_v_spot1}
+        \hfill
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{10pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par
+            \vspace{10pt}
+            {\Large
+ %               \NameSigPair{\GroupMemberOne}\par
+%                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+          In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack.
+          We will evaluate the ROS to find as many of these security holes as we can and document them.
+          The different vulnerabilities found will be categorized into malware, sensor hacks, network and control channel attacks, and physical breaches.
+          For some of these exploits we may be able to implement solutions, which will also be documented.
+          These findings and any solutions will be added to an ongoing academic effort to make robotics more secure.
+        \end{abstract}
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+\section{Recap}
+Our team, Security for Robotics, is performing a threat analysis on the Robot Operating System (ROS) as our project, under Vee. 
+Our main goal is to document vulnerability we find in ROS with coded exploits so that other people can implement fixes for them. 
+It is also, in a way, providing code for Vee's thesis, as he needs exploits to test for his work. My portion of the project 
+is merely creating software packages that exploit OS/ROS level vulnerabilities; I am currently at 8, and I am aiming to produce a total of 15-20 by expo.
+
+\section[Current Status]
+The group as a whole is slightly behind where we wanted to be; we were hoping the drone given to us as a testbed would be operational by now. It's not, but it's much closer 
+and might be ready by spring term. It also turns out to be less important than we thought, as a lot of the code produced runs just as well in a virtual environment as it would
+on the drone. The only things we can't test are sensor spoofing, as we have no sensors to test, and physical attacks on the drone, which are outside of the main scope of the project anyways. 
+
+As my portion of the project focuses purely on software, the lack of a physical drone means very little to my work, but as it affects my team as a whole I am still trying to contribute to
+getting the drone operational. So while the group as a whole is somewhat behind, I am a little ahead of schedule.
+
+\section[Problems]
+On that note, my progress in the project is only limited by my other classwork and if I can think of good ideas for a new exploit to create. Over spring break I'm aiming to come up with 3 more that 
+I have thought in the last couple weeks of but haven't had time to implement due to finals. I understand that the drone has had more physical issues stopping progress, but I was not very involved 
+with the drone during that time, and in recent days a lot of progress has been made. For the real story on the problems with the drone, I recommend reading Zach's report. 
+
+\section[Interesting Code]
+Interesting code:
+	None of my code up till now is particularly complex, but it is interesting in how little it takes to break the system. For example, my 2nd package, which is a forkbomb:
+\begin{lstlisting}
+def suicide():
+    #some math to speed up the process a little
+    s = (((14**14 / 12)+123)/12.3)**4 
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+    os.system("rosrun malpac2 bomb.py")
+\end{lstlisting}
+\lstinputlisting[caption=Forkbomb, style=customc]{hello.c}
+
+This is the entire program. It brought my laptop to from 2\% to 60\% system usage in about 2 minutes, which would suggest that for a drone with limited computational power, it might be able to 
+overload it in less than a minute. But more importantly, this level of complexity is all you need to take down ROS. This project is less "about how we can break ROS", but more like 
+"in how many ways can we break ROS, and how bad?".
+
+\section{Weekly Summaries}
+\subsection{Week 1-6}
+I am combining them because to be frank, the weeks were more or less interchangeable until week 7. I continued to work on writing ROS packages and produced about one a week,
+while Zach worked on the drone, and Emily worked on the research aspect of the project. I also tried to meet with Vee weekly to keep him updated, as he doesn't really read Slack frequently,
+which the rest of the team uses to communicate. There were also intermittent bits where project progress was halted to work on required documents as a group, but those were not of note to the project as a whole.
+
+\subsection{Week 7}
+We, as a team, determined that as a team, we had more or less been working separately for the past 7 weeks, and should really rally and refocus on the project as a whole. 
+Zach was not making good headway on the drone and was getting frustrated, I had been working with Vee but not communicating his wishes to the rest of the team, and Emily hadn't really
+produced anything of note yet. We had a group meeting and figured out what needed to be done, namely that Zach needed to go meet McGrath and ask for help with the drone, Emily needed to 
+start work on producing her own packages, and I needed to keep up production on packages but also contribute to fixing the drone and research more. We also needed to get some documents 
+and waivers signed so that when we get the drone online, we won't break any laws trying to fly it or capture data from it.
+
+\subsection{Week 8}
+The above things happened, progress was made on the drone and Emily started on her first package. The drone now was at least communicating with our computers when we turned it on,
+but would shut down very quickly afterwards. I made another package, but as a whole the group felt the pressure from other classes starting to set in, and our priorities were on other homework. 
+We also planned to meet with McGrath again to ask more questions about the drone.
+
+\subsection{Week 9}
+Progress was being made on the drone, but we all had other work to do first. Including this document and the poster draft. Some drone work still was done, we figured out that some of the wiring 
+used by the prior group was incorrect and got the correct wires, but most of our attention was now focused on the new document deadlines. I still worked a little on packages, but no new ones this week.
+Mostly brainstorming while doing more mindless homework for other classes.
+
+\subsection{Week 10}
+To be determined.
+
+\section{Retrospective}
+
+\begin{center}
+\begin{tabular}{ |p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| }
+ \hline
+ \centering Positives &
+ \centering Deltas &
+ \centering Actions \tabularnewline
+ \hline
+ Significant Progress on the drone has been made &
+ Drone is still not done &
+ Continue work and keep meeting with McGrath until complete \tabularnewline
+ \hline
+ Multiple packages have been made &
+ Still not enough packages, and most of them are from me &
+ Continue work on packages, aim for one a week \tabularnewline
+ \hline
+ We have drafts for our documentation ready &
+ None of our current packages are documented &
+ Document all current packages using the draft format \tabularnewline
+ \hline
+\end{tabular}
+\end{center}
+
+\section{Preliminary Results}
+Package 1:
+Works as intended. It intercepts communication from a different node and relays it to stdout. It is actually way less impressive than what this makes it sounds however, as it works exactly how ROS intends it to work.
+Package 2:
+Works as intended. The forkbomb does indeed bring down whatever runs it, if it runs for long enough. 
+Package 3:
+Works as intended. It brings down the wireless networking on all devices it has been run on so far. It would not work on a non *nix operating system, but nobody runs ROS on anything else anyways.
+Package 4:
+Works as intended. The fibonacci implementation, much like the forkbomb, is very system intensive and grinds everything we've run it on to a halt.
+Package 5:
+Works as intended. It can delete any folder that doesn't have su permissions on it, which includes the install folder for ROS itself. For this test it just creates a dummy folder to delete though.
+Package 6:
+Works as intended. It creates, kills, and replaces a ROS node with one of my choosing. In theory you can do this to any ROS node, which would include possibly flight-control or a communications node. 
+Many possibilities with this one.
+Package 7:
+Works as intended. Does bogobogosort, an extremely inefficient sorting algorithm, on a 20 int array. Nobody has really done the math to determine the time complexity of this sort, but it's estimated 
+to be about O(n!)\^(n!), which for 20 is so big that my calculator errors on it. It isn't that system intensive, but it's a good example of something that while not explicitly malicious, is still a problem.
+Package 8:
+Works as intended. This one spawns a new ROSMASTER, which is the master for the master/slave system that ROS operates on, the slaves being all other running packages, including this one. It also redirects 
+all references from the old ROSMASTER to the new one, but still leaves the old one running.
+
+\section{Images}
+As the majority of my work has been code, I invite you to go look at the github page: \url{https://github.com/ZachR0/Security-For-Robotics/tree/master/ros_packages} contains all of the code I've produced up until now. 
+I could take screenshots, but they wouldn't be any more interesting than what you can see for yourself.
+
+\section{Evaluation of Other Teammates}
+Evaluation of other teammates:
+I think we are okay. I have mostly produced code and have served as an in-between for the group and higher authorities, as I have the most free time to go track down and bother people. Emily has worked on a lot of our 
+documentation and produced a lot of the documents so far, although Zach and I contributed as well, including this latex template. Zach has been stuck with the less than desirable task of fixing the drone, with some progress.
+Technically, I produced the most work this term, as I have written almost all of our codebase so far. Emily has just started and has some code up, but it is not that useful yet, and Zach has none. However, 
+this is mostly because only recently was it made clear to the team that what Vee really, truly wanted from the team was code. Emily drifted a little too far into research with no practical examples, and 
+Zach was too busy fixing the drone. Our real problem as a team is that I am the only one regularly available. Vee, Emily, and Zach are constantly busy, Zach being by far the worst offender. But this 
+means that we never meet as a team, we just work separately on our own goals, and as we can't meet with Vee regularly we keep getting lost in the weeds as to what he wants the team to be working towards
+next. My greatest fear is that our end product, despite meeting the specifications we put together in Fall, won't meet his expectations for the project as a whole, but in theory we should be fine either way. 
+
+The other issue is that we didn't ask McGrath about the drone early enough; I wanted to but I had no idea what was wrong with the drone as I wasn't working actively on it, and Zach tended to be too busy to go meet with him.
+I should have tried to force the issue or serve as Zach's messenger, but it just didn't happen. Since we started meeting with McGrath though we have made more progress with the drone than we did for most of Fall and Winter
+term in about 2 weeks.
+
+\bibliographystyle{IEEEtran}
+\bibliography{midterm_progress.bib}
+
+\end{document}
