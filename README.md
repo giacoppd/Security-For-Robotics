@@ -23,6 +23,8 @@
 
 * Final documents from previous terms `docs/old_documents`
 
+* Related Research & Supporting Documents `docs/supporting_research`
+
 * ROS Packages `ros_packages/`
 
 * Beagle Bone Black Images `beagle/images`
