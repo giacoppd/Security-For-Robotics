@@ -23,6 +23,8 @@
 
 * Threat Models `docs/threat_models`
 
+* Expo Poster `docs/poster`
+
 * OSU Policy Exemption Requests `docs/policy_exemption`
 
 * Final documents from previous terms `docs/old_documents`
