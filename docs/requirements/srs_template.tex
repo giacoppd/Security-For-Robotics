@@ -154,9 +154,12 @@ station, which controls the starting and stopping of the robot. These generally 
 although with extra effort more complicated setups are possible.
 
 \section{External Interfaces}
-The external interface we will be working with is a DJI FlameWheel 550 hexcopter.
-Included on it is a beaglebone black with a pixhawk firecap mounted on it.
-The sensors it has are the same as that of a regular pixhawk, which includes a gps and 9DOF.
+The external interface we will be working with is a DJI FlameWheel 550 HexCopter.
+Included on it is a Beaglebone Black with a PixHawk v1.6 Fire cape mounted on it.
+The PixHawk has a number of sensors, and interfaces directly with our 3DR GPS mounted unit. There is also
+a controller which communicates with the drone over 2.5 Ghz RF, along with a 900 Mhz MAVLink telemetry
+radio, that communicates with our ground station. The ground station is a computer running Mission Planner,
+a misison control software that allows us to define flight paths, and read telemetry data from the drone.
 
 \section{Functions}
 Any vulnerabilities found should in some way compromise the functionality or integrity of the robot. In turn, any fixes created for said vulnerabilities should prevent those from being compromised.
