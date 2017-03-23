@@ -42,6 +42,7 @@ def badmath():
     x = int(0)
     while(x < 20): 
         listy.append(random.randint(0,100))
+	x = x + 1
     Bogobogosort(listy)
 if __name__ == '__main__':
     badmath()
