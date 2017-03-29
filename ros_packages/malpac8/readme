@@ -1,0 +1,3 @@
+This one just changes your rosmaster URI to another one.
+Could be used in theory to redirect control to a remote baddy or something, 
+but doesn't really make a difference how it's used here
