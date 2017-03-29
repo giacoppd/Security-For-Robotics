@@ -1,0 +1,1 @@
+This one does the actual work. It kills the node in 6, and replaces it with a node from this package with the same name
