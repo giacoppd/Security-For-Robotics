@@ -1,0 +1,4 @@
+<launch>
+	<node name="dummy" pkg="malpac6" type="dummy.py" output="stdout" />
+	</node>
+</launch>

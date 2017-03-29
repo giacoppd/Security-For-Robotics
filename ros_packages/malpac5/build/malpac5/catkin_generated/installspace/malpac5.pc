@@ -1,8 +1,0 @@
-prefix=/home/dominic/SP/Security-For-Robotics/ros_packages/malpac5/install
-
-Name: malpac5
-Description: Description of malpac5
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/dominic/SP/Security-For-Robotics/ros_packages/malpac5/install/lib 
-Requires: 

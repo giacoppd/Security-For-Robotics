@@ -1,2 +1,0 @@
-malpac5
--DPYTHON_EXECUTABLE=/usr/bin/python2 -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 -DPYTHON_LIBRARY=/usr/lib/libpython2.7.so -DCATKIN_DEVEL_PREFIX=/home/dominic/SP/Security-For-Robotics/ros_packages/malpac5/devel -DCMAKE_INSTALL_PREFIX=/home/dominic/SP/Security-For-Robotics/ros_packages/malpac5/install -G Unix Makefiles

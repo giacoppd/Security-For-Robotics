@@ -1,8 +1,0 @@
-prefix=/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install
-
-Name: malpac6b
-Description: Description of malpac6b
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/dominic/Documents/senior/Security-For-Robotics/ros_packages/malpac6b/install/lib 
-Requires: 

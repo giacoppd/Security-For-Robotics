@@ -1,0 +1,5 @@
+<launch>
+	<node name="replacer" pkg="malpac6b" type="replacer.py" output="stdout" />
+	<node name="dummy" pkg="malpac6b" type="dummy.py" output="stdout" />
+	</node>
+</launch>
