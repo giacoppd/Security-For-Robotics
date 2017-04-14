@@ -6,7 +6,7 @@ import os
 import rospy
 
 def alertNK():
-	os.system("ping -c 10 175.45.179.255")
-
+#	os.system("ping -c 10 175.45.179.255")
+#don't actually run this please
 if __name__ == '__main__':
     alertNK()
