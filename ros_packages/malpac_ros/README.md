@@ -1,8 +1,8 @@
 ## malpac_ros ROS Package
-To be added...
+Collection of Proof-of-concept packages intended to target ROS directly
 
 ### Methods
-  * TBA
+  * ros1.py - PoC Broken Authentication
 
 ### Notes
   * These will be put into an actual ROS / catkin package at another time

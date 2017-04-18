@@ -27,11 +27,24 @@
 ##
 ##         Zach Rogers - Malicious ROS Package Collection
 ##
-##                    ROS Package 1
+##             ROS Package 1 - Broken Authentication
 ##                         ros1.py
 ###################################################################################
 import os
 import rospy
+
+#ROS Environment Variables -- Will need to change these accordingly
+VICTIM_ROS_MASTER_URI = "http://192.168.0.10:11311"
+VICTIM_ROS_HOSTNAME = "http://192.168.0.10"
+
+ATTACKER_ROS_MASTER_URI = VICTIM_ROS_HOSTNAME + ":11311"
+ATTACKER_ROS_HOSTNAME = "http://192.168.0.11"
+
+#IS THIS SCRIPT RUNNING ON THE ATTACKER OR VICTIM MACHINE?
+#When set to VICTIM, the PoC will establish the victim side of the equation
+#When set to ATTACKER, the PoC will setup the attacker side of the equation
+#Use sys args instead? 
+WHOAMI = "VICTIM"
 
 #Should we be loud and proud?
 VERBOSE = True
@@ -51,7 +64,7 @@ def log(text):
 
 
 def main():
-    log("[~] ROS package, still WIP")
+    log("[~] PoC showing lack of authentication in ROS...")
 
 if __name__ == '__main__':
     main()
