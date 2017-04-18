@@ -27,7 +27,7 @@
 ##
 ##         Zach Rogers - Malicious ROS Package Collection
 ##
-##             ROS Package 1 - Broken Authentication
+##             ROS Package 1 - Broken Authentication (Victim Subscriber, Attacker Publisher)
 ##                         ros1.py
 ###################################################################################
 import os
