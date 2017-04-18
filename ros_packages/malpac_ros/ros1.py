@@ -42,8 +42,8 @@ ATTACKER_ROS_MASTER_URI = VICTIM_ROS_MASTER_URI
 ATTACKER_ROS_HOSTNAME = "http://192.168.0.11"
 
 #IS THIS SCRIPT RUNNING ON THE ATTACKER OR VICTIM MACHINE?
-#When set to VICTIM, the PoC will establish the victim side of the equation
-#When set to ATTACKER, the PoC will setup the attacker side of the equation
+#When set to VICTIM, the PoC will establish the victim subscriber
+#When set to ATTACKER, the PoC will setup the attacker publisher
 #Use sys args instead?
 WHOAMI = "VICTIM"
 
