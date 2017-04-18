@@ -22,4 +22,7 @@ This directory contains ROS packages related to our project.
 
   * gps_spoof - To be added (linked from another repo?)
 
-  * malpac_comms - To be added
+  * malpac_comms - The purpose of this package is to compromise communications on a ROS based system.
+
+  * malpac_ros - This package contains several ROS related malware packages, in an attempt to exploit ROS itself
+  
