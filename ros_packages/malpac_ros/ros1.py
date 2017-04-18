@@ -34,16 +34,17 @@ import os
 import rospy
 
 #ROS Environment Variables -- Will need to change these accordingly
-VICTIM_ROS_MASTER_URI = "http://192.168.0.10:11311"
+ROS_CORE_PORT = "1337"
 VICTIM_ROS_HOSTNAME = "http://192.168.0.10"
+VICTIM_ROS_MASTER_URI = VICTIM_ROS_HOSTNAME + ":" + ROS_CORE_PORT
 
-ATTACKER_ROS_MASTER_URI = VICTIM_ROS_HOSTNAME + ":11311"
+ATTACKER_ROS_MASTER_URI = VICTIM_ROS_MASTER_URI
 ATTACKER_ROS_HOSTNAME = "http://192.168.0.11"
 
 #IS THIS SCRIPT RUNNING ON THE ATTACKER OR VICTIM MACHINE?
 #When set to VICTIM, the PoC will establish the victim side of the equation
 #When set to ATTACKER, the PoC will setup the attacker side of the equation
-#Use sys args instead? 
+#Use sys args instead?
 WHOAMI = "VICTIM"
 
 #Should we be loud and proud?
