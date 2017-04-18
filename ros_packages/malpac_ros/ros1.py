@@ -75,16 +75,11 @@ def victim():
     #Get ROS core running on the proper port
     os.system("roscore -p " + ROS_CORE_PORT)
 
-    # In ROS, nodes are uniquely named. If two nodes with the same
-    # name are launched, the previous one is kicked off. The
-    # anonymous=True flag means that rospy will choose a unique
-    # name for our 'listener' node so that multiple listeners can
-    # run simultaneously.
+    #Get the Subscriber (or listener) setup
     rospy.init_node('listener', anonymous=True)
-
     rospy.Subscriber('poc_auth', String, victim_callback)
 
-    # spin() simply keeps python from exiting until this node is stopped
+    #Keep python from exiting until this node is stopped
     rospy.spin()
 
 def attacker():
