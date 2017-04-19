@@ -12,5 +12,11 @@ Here are the various proof of concepts each script / package is attempting to sh
 #### Publisher / Subscriber Process Communication
   * ros3.py - Will pull all the active publishers and subscribers on the victim machine. All of the subscribers will be flooded with random data (fuzzing?), and all of the publishers will have their data logged for later review (maybe integrate with ROS bag?)
 
+
+### Other PoC Ideas
+  * Figure out way to install ROS packages on victim machine from an attacker machine -- Doing this will allow us to push our own malicious packages remotely.
+  * ROS Shell Package - uses the Publisher / Subscriber model to allow for a Linux shell on the victim machine.
+  * More to come...
+
 ### Notes
   * These will be put into an actual ROS / catkin package at another time
