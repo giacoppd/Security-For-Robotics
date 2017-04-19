@@ -11,7 +11,7 @@ Here are the various proof of concepts each script / package is attempting to sh
   * ros2.py - PoC Broken Authentication 2 - Sets up a publisher on the victim machine, and a subscriber on the attacker machine. Showing that communication can occur between the two, without any authentication.
 
 #### Publisher / Subscriber Process Communication
-  * ros3.py - Will pull all the active publishers and subscribers on the victim machine. All of the subscribers will be flooded with random data (fuzzing?), and all of the publishers will have their data logged for later review (maybe integrate with ROS bag?)
+  * ros3.py - Will pull all the active publishers and subscribers on the victim machine. All of the subscribers will be flooded with random data (Basiclly a ROS Fuzzy Tester), and all of the publishers will have their data logged for later review (maybe integrate with ROS bag?)
 
 
 ### Other PoC Ideas
