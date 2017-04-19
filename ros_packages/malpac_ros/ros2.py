@@ -73,7 +73,8 @@ def attacker():
     os.system("export ROS_HOSTNAME=" + VICTIM_ROS_HOSTNAME)
 
     #Get ROS core running on the proper port
-    os.system("roscore -p " + ROS_CORE_PORT)
+    #We don't have to run ROS CORE on the attacker machine, since it is using the victim's roscore instance
+    #os.system("roscore -p " + ROS_CORE_PORT)
 
     #Get the Subscriber (or listener) setup
     rospy.init_node('listener', anonymous=True)
