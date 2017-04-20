@@ -45,6 +45,16 @@ ATTACKER_ROS_HOSTNAME = "192.168.250.129"
 #Should we be loud and proud?
 VERBOSE = True
 
+def attacker():
+    """
+    Pull all subscribers from the victim
+
+    """
+
+    #Test that we can actuall pull active subscribers from a victim ROS machine
+    victim_subs = subprocess.check_output(['rostopic list -s'])
+    log(victim_subs)
+
 def log(text):
     """
     Logging function - Will output text if VERBOSE is set to True, otherwise calls will be ignored.
