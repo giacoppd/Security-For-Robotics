@@ -27,7 +27,7 @@
 ##
 ##         Zach Rogers - Malicious ROS Package Collection
 ##
-##             ROS Package 3 - Publisher Logging and Subscriber fuzzing
+##             ROS Package 3 - Subscriber fuzzing
 ##                         ros3.py
 ###################################################################################
 import os
