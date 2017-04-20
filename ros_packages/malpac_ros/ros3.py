@@ -31,6 +31,7 @@
 ##                         ros3.py
 ###################################################################################
 import os
+import subprocess
 import rospy
 from std_msgs.msg import String
 
