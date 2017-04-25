@@ -72,6 +72,10 @@ def victim():
     os.system("export ROS_MASTER_URI=" + VICTIM_ROS_MASTER_URI)
     os.system("export ROS_HOSTNAME=" + VICTIM_ROS_HOSTNAME)
 
+    #Kill *all* ROS processes if it is already running -- not sure if this will work with rosrun?
+    #This is a dirty, dirty way of accomplishing this
+    os.system("pkill -f ros*")
+
     #Get ROS core running on the proper port
     os.system("roscore -p " + ROS_CORE_PORT)
 
