@@ -57,10 +57,16 @@ def fuzz():
     os.system("export ROS_MASTER_URI=" + VICTIM_ROS_MASTER_URI)
     os.system("export ROS_HOSTNAME=" + VICTIM_ROS_HOSTNAME)
 
-
-    #Test that we can actuall pull active subscribers from a victim ROS machine
+    #Pull active subscribers from victim ROS machine
     victim_subs = subprocess.check_output(['rostopic list -s'], shell=True)
-    log(victim_subs)
+
+    #Format subprocess output (split newlines into elements, and remove '/')
+    victim_subs = victim_subs.splitlines()
+    for x in range(0, len(victim_subs)):
+        victim_subs[x] = victim_subs[x][1:]
+
+    #So, what will we be fuzzing?
+    log("[*] We will be targeting " + victim_subs + " on the victim machine...")
 
 def log(text):
     """
