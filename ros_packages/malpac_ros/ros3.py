@@ -59,7 +59,7 @@ def fuzz():
 
 
     #Test that we can actuall pull active subscribers from a victim ROS machine
-    victim_subs = subprocess.check_output(['rostopic list -s'])
+    victim_subs = subprocess.check_output(['rostopic list -s'], shell=True)
     log(victim_subs)
 
 def log(text):
@@ -78,7 +78,7 @@ def log(text):
 
 def main():
     log("[~] PoC showing Subscriber Fuzzing")
-    fuzz()    
+    fuzz()
 
 
 if __name__ == '__main__':
