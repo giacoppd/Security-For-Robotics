@@ -57,9 +57,9 @@ def fuzz(target_sub):
     """
 
     #Setup the publisher (or talker) -- Tweak these values to be more malicious
-    pub = rospy.Publisher(str(target_sub), String, queue_size=10)
+    pub = rospy.Publisher(str(target_sub), String, queue_size=1000)
     rospy.init_node('talker', anonymous=True)
-    rate = rospy.Rate(10) # 10hz
+    #rate = rospy.Rate(10) # 10hz
 
     #Publisher fuzzing loop
     while not rospy.is_shutdown():
@@ -67,7 +67,7 @@ def fuzz(target_sub):
         fuzz_str = "FUZZING %s" % rospy.get_time()
         rospy.loginfo(fuzz_str)
         pub.publish(fuzz_str)
-        rate.sleep()
+        #rate.sleep()
 
 def setup():
     """
