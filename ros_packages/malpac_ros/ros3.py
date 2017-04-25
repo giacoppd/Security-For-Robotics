@@ -66,7 +66,7 @@ def fuzz():
         victim_subs[x] = victim_subs[x][1:]
 
     #So, what will we be fuzzing?
-    log("[*] We will be targeting " + victim_subs + " on the victim machine...")
+    log("[*] We will be targeting " + str(victim_subs) + " on the victim machine...")
 
 def log(text):
     """
