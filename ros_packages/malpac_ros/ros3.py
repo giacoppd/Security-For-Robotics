@@ -68,22 +68,26 @@ def fuzz():
     #So, what will we be fuzzing?
     log("[*] Which remote subscribers would you like to target?")
     for x in range(0, len(victim_subs)):
-        log(str(x) + ". " + str(victim_subs[x]))
+        log("\t" + str(x) + ". " + str(victim_subs[x]))
 
     #Error handling, because the user is always an idiot
+    choice = ""
     while True:
         choice = raw_input("Enter the number, or all: ")
 
         try:
-            if int(choice) > 0 and int(choice) < len(victim_subs):
+            if str(choice) == "all":
                 break
-            elif str(choice) == "all":
+            elif int(choice) > 0 and int(choice) < len(victim_subs):
                 break
         except:
             continue
 
-    #Lets get started...
-    log("[!] Starting fuzzing on " + str(choice)) #Testing testing testing...
+    #Are we fuzzing multiple subscribers, if so do it on separate threads
+    if str(choice) == "all":
+        log("[!] Starting " + str(len(victim_subs)) + " fuzzing threads...")
+    else:
+        log("[!] Starting fuzzing against " + str(victim_subs[int(choice)]))
 
 
 
