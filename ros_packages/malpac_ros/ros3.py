@@ -66,7 +66,26 @@ def fuzz():
         victim_subs[x] = victim_subs[x][1:]
 
     #So, what will we be fuzzing?
-    log("[*] We will be targeting " + str(victim_subs) + " on the victim machine...")
+    log("[*] Which remote subscribers would you like to target?")
+    for x in range(0, len(victim_subs)):
+        log(str(x) + ". " + str(victim_subs[x]))
+
+    #Error handling, because the user is always an idiot
+    while True:
+        choice = raw_input("Enter the number, or all: ")
+
+        try:
+            if int(choice) > 0 and int(choice) < len(victim_subs):
+                break
+            elif str(choice) == "all":
+                break
+        except:
+            continue
+
+    #Lets get started...
+    log("[!] Starting fuzzing on " + str(choice)) #Testing testing testing...
+
+
 
 def log(text):
     """
