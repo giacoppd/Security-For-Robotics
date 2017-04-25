@@ -37,11 +37,11 @@ from std_msgs.msg import String
 
 #ROS Environment Variables -- Will need to change these accordingly
 ROS_CORE_PORT = "1337"
-VICTIM_ROS_HOSTNAME = "192.168.250.128"
+VICTIM_ROS_HOSTNAME = "172.16.88.129"
 VICTIM_ROS_MASTER_URI = "http://" + VICTIM_ROS_HOSTNAME + ":" + ROS_CORE_PORT
 
 ATTACKER_ROS_MASTER_URI = VICTIM_ROS_MASTER_URI
-ATTACKER_ROS_HOSTNAME = "192.168.250.129"
+ATTACKER_ROS_HOSTNAME = "172.16.88.128"
 
 #Should we be loud and proud?
 VERBOSE = True
