@@ -46,7 +46,7 @@ ATTACKER_ROS_HOSTNAME = "192.168.250.129"
 #Should we be loud and proud?
 VERBOSE = True
 
-def attacker():
+def fuzz():
     """
     Pull all subscribers from the victim
 
@@ -78,6 +78,7 @@ def log(text):
 
 def main():
     log("[~] PoC showing Subscriber Fuzzing")
+    fuzz()    
 
 
 if __name__ == '__main__':
