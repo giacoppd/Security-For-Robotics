@@ -78,7 +78,7 @@ def fuzz():
         try:
             if str(choice) == "all":
                 break
-            elif int(choice) > 0 and int(choice) < len(victim_subs):
+            elif int(choice) > -1 and int(choice) < len(victim_subs):
                 break
         except:
             continue
