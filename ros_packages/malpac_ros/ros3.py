@@ -77,7 +77,7 @@ def log(text):
 
 
 def main():
-    log("[~] PoC showing Publisher Logging and Subscriber Fuzzing")
+    log("[~] PoC showing Subscriber Fuzzing")
 
 
 if __name__ == '__main__':
