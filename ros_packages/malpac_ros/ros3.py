@@ -64,15 +64,16 @@ def fuzz(target_sub):
     pub = rospy.Publisher(str(target_sub), String, queue_size=1000)
     rospy.init_node('talker', anonymous=True)
 
-    #Create our fuzzing buffer - 50 A's, which will be increased by 50 each loop interation
-    fuzz_buffer = 'a'*50
+    #Create our fuzzing buffer
+    fuzz_factor = 200
+    fuzz_buffer = 'a'*fuzz_factor
 
     #Publisher fuzzing loop
     while not rospy.is_shutdown():
-        #Publish our fuzzing buffer, then increase by another 50
+        #Publish our fuzzing buffer, then increase by the fuzz factor
         log("[!] Sending buffer with length " + str(len(fuzz_buffer)) + "...")
         pub.publish(fuzz_buffer)
-        fuzz_buffer = fuzz_buffer + 'a'*50
+        fuzz_buffer = fuzz_buffer + 'a'*fuzz_factor
 
 def setup():
     """
