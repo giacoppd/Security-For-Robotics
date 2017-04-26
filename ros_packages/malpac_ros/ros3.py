@@ -57,23 +57,22 @@ def fuzz(target_sub):
     Notes:
     --------------
         Guidance from: http://www.primalsecurity.net/0x3-python-tutorial-fuzzer/
-        
+
     """
 
     #Setup the publisher (or talker) -- Tweak these values to be more malicious
     pub = rospy.Publisher(str(target_sub), String, queue_size=1000)
     rospy.init_node('talker', anonymous=True)
-    #rate = rospy.Rate(10) # 10hz
 
     #Create our fuzzing buffer - 50 A's, which will be increased by 50 each loop interation
-    fuzz_buffer = 'x41'*50
+    fuzz_buffer = 'a'*50
 
     #Publisher fuzzing loop
     while not rospy.is_shutdown():
         #Publish our fuzzing buffer, then increase by another 50
+        log("[!] Sending buffer with length " + str(len(fuzz_buffer)) + "...")
         pub.publish(fuzz_buffer)
-        fuzz_buffer = fuzz_buffer + 'x41'*50
-        #rate.sleep()
+        fuzz_buffer = fuzz_buffer + 'a'*50
 
 def setup():
     """
