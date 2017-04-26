@@ -12,6 +12,7 @@ Here are the various proof of concepts each script / package is attempting to sh
 
 #### Process Communication (Publisher / Subscriber Model)
   * ros3.py - Will pull all the active subscribers on the victim machine; All of the subscribers will be flooded with random data (Basiclly a ROS Fuzzy Tester)
+  Might be able to integrate with american fuzzy lop (http://lcamtuf.coredump.cx/afl/)
 
   * ros4.py - Will pull all active publishers on the victim machine; all of the publishers will have their data logged for later review (maybe integrate with ROS bag?)
 
