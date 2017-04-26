@@ -57,11 +57,12 @@ def fuzz(target_sub):
     Notes:
     --------------
         Guidance from: http://www.primalsecurity.net/0x3-python-tutorial-fuzzer/
+        Help with malicious publisher tweaking: http://docs.ros.org/kinetic/api/rospy/html/rospy.topics.Publisher-class.html
 
     """
 
     #Setup the publisher (or talker) -- Tweak these values to be more malicious
-    pub = rospy.Publisher(str(target_sub), String, queue_size=1000)
+    pub = rospy.Publisher(str(target_sub), String, queue_size=None, tcp_nodelay=True)
     rospy.init_node('talker', anonymous=True)
 
     #Create our fuzzing buffer
