@@ -54,6 +54,10 @@ def fuzz(target_sub):
     --------------
         * target_sub - Name of the ROS subscriber running on the remote ROS machine
 
+    Notes:
+    --------------
+        Guidance from: http://www.primalsecurity.net/0x3-python-tutorial-fuzzer/
+        
     """
 
     #Setup the publisher (or talker) -- Tweak these values to be more malicious
@@ -61,12 +65,14 @@ def fuzz(target_sub):
     rospy.init_node('talker', anonymous=True)
     #rate = rospy.Rate(10) # 10hz
 
+    #Create our fuzzing buffer - 50 A's, which will be increased by 50 each loop interation
+    fuzz_buffer = 'x41'*50
+
     #Publisher fuzzing loop
     while not rospy.is_shutdown():
-        #This is where actual fuzzing data will be generated
-        fuzz_str = "FUZZING %s" % rospy.get_time()
-        rospy.loginfo(fuzz_str)
-        pub.publish(fuzz_str)
+        #Publish our fuzzing buffer, then increase by another 50
+        pub.publish(fuzz_buffer)
+        fuzz_buffer = fuzz_buffer + 'x41'*50
         #rate.sleep()
 
 def setup():
