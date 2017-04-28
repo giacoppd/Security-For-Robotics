@@ -1,2 +1,8 @@
-This one does bogobogosort, a very ineffecient sorting algo. It's not really malicious in and of itself, it just takes forever
-and functions as a false positive for testing purposes
+This one does bogobogosort, a very ineffecient sorting algo. It's not really malicious in and of itself, 
+it just takes forever and functions as a false positive for testing purposes. It won't take down
+your system or use a ton of resources, it just lingers slowly and doesn't do anything useful.
+As for what bogobogosort is, http://www.dangermouse.net/esoteric/bogobogosort.html
+Basically takes an array/list/whatever of size N, and for each subarray from 0 to X, 
+where X increases from 0 to N, sorts that subarray by shuffling the elements randomly
+until it's sorted, then increases X by 1, until X = N and it's sorted the whole thing.
+Takes forever.
