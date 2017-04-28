@@ -1,2 +1,4 @@
 This one apt-get uninstalls ros from your system.
 It does need root privledges to do this, however.
+In theory could be modified for other build systems or do shell scripting to figure out the build system but not really that
+useful for our purposes
