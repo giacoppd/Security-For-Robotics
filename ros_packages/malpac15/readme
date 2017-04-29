@@ -1,0 +1,5 @@
+This in theory would connect to a ROS subscriber node without going through ROS but instead with a raw TCP socket with
+some massaging of the packets. It turns out to be more or less infeasible because I need the node unique ID, which is a super
+giberish string about 40 chars long, or the handshake fails. You are supposed to get it by contacting ROS core, which rather
+defeats the purpose. 
+In short: this in theory would work, if it weren't for handshakes.
