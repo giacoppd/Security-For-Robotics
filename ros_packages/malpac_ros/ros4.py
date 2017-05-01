@@ -67,6 +67,7 @@ def capture(target_pub):
     """
 
     ## ADD ROS BAG STUFF HERE ##
+    # We want to have ROS Bag record, we we can later use it for a replay attack
 
     #Get the Subscriber (or listener) setup
     rospy.init_node('listener', anonymous=True)
