@@ -27,9 +27,11 @@
 
 * OSU Policy Exemption Requests `docs/policy_exemption`
 
-* Final documents from previous terms `docs/old_documents`
+* Final Documents From Previous Terms `docs/old_documents`
 
 * Related Research & Supporting Documents `docs/supporting_research`
+
+* Misc Documents `docs/misc`
 
 * ROS Packages `ros_packages/`
 
