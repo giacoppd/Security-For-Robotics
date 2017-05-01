@@ -11,8 +11,7 @@ Here are the various proof of concepts each script / package is attempting to sh
   * ros2.py - PoC Broken Authentication 2 - Sets up a publisher on the victim machine, and a subscriber on the attacker machine. Showing that communication can occur between the two, without any authentication.
 
 #### Process Communication (Publisher / Subscriber Model)
-  ![ROS](https://raw.githubusercontent.com/ZachR0/Security-For Robotics/master/ros_packages/malpac_ros/documentation/ros_fuzz_1.png)
-  ![ROS](https://raw.githubusercontent.com/ZachR0/Security-For-Robotics/master/ros_packages/malpac_ros/documentation/ros_fuzz_2.png)
+  ![ROS](https://raw.githubusercontent.com/ZachR0/Security-For-Robotics/master/ros_packages/malpac_ros/documentation/ros_fuzz_1.png)
   * ros3.py - Will pull all the active subscribers on the victim machine; All of the subscribers will be flooded with random data (Basiclly a ROS Fuzzy Tester)
   Might be able to integrate with american fuzzy lop (http://lcamtuf.coredump.cx/afl/)
 
