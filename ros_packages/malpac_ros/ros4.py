@@ -53,7 +53,8 @@ def capture_callback(data):
     http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
     """
 
-    rospy.loginfo(rospy.get_caller_id() + 'CAPTURING %s', data.data)
+    #Write data to log file
+    rospy.loginfo(rospy.get_caller_id() + 'CAPTURING %s', data.data) #Output stdout for testing for now
 
 def capture(target_pub):
     """
@@ -64,6 +65,8 @@ def capture(target_pub):
         * target_pub - Name of the ROS publisher running on the remote ROS machine
 
     """
+
+    ## ADD ROS BAG STUFF HERE ##
 
     #Get the Subscriber (or listener) setup
     rospy.init_node('listener', anonymous=True)
