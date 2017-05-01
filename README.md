@@ -1,7 +1,7 @@
 ## Security for Robotics - OSU Computer Science Capstone Project - 2016/2017
 
 <p align="center">
-  <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/15208-200.png">
+  <img src="https://raw.githubusercontent.com/ZachR0/Security-For-Robotics/master/docs/misc/team_photo.jpg">
 </p>
 
 ### Project Members
