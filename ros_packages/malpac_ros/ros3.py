@@ -66,7 +66,7 @@ def fuzz(target_sub):
     rospy.init_node('talker', anonymous=True)
 
     #Create our fuzzing buffer
-    fuzz_factor = 200
+    fuzz_factor = 400
     fuzz_buffer = 'a'*fuzz_factor
 
     #Publisher fuzzing loop
