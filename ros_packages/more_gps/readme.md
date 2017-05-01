@@ -1,3 +1,5 @@
-## gps_spoof_landing
+## gps_spoof_landing Script
 
-This package sniffs for drone network information, and then leverages that to send spoffed landing data via UDP. Integration with RosBag is soon to be added, which will captrue more data.
+Emily
+
+This package sniffs for drone network information, and then leverages that to send spooffed landing data via UDP. Provides a proof of concept for gps hacking, so the script would likely need tweaking to fit whatever hardware is being used in an implementation of it.
