@@ -8,4 +8,4 @@ This is the kind of script that would likely be secondary to one of the network 
 
 #### stack_smash.c
 
-Coming soon!
+This script provides a basic proof of concept for stack smashing! This is a form of buffer overflow attack which has been used reliably for a very long time to gain unauthorized access to a system. This specific script is a small scale buffer so better demonstrate the idea. To use a simple approach like this, one needs access to the environment variables of the system so it's not perfect. There's still room for improvement to make this script more generalizable.
