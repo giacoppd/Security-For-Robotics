@@ -1,0 +1,34 @@
+I am Dominic Giacoppe, group 50, and this is the spring mid prog report.
+
+The goal of our project was to find a vunerability in ROS. Since then,
+we have determined that ROS is fundamentally not secure from a design 
+standpoint, and it has more than a few vunerabilities. My work focused 
+on ROS packages; specifically that ROS packages can run arbitrary code
+in shell at the same privledge level as ROSCORE, the master ROS process. 
+As such, I have created multiple packages to demonstrate kinds of 
+attacks possible with this level of access, broadly divided into 4
+categories. They are filesystem disruption, resource denial, information 
+leaking, and unintended actions.
+
+Filesystem disruption means I did something that either deleted something
+important or in 1 case, filled the hard drive with junk.
+{demo rm / -rf and the wikipedia thing}
+
+By resource denial I mean that it took up CPU time and prevented other
+things from running.
+{demo forkbomb and bogo bogo}
+
+Information leaking means data on the robot was sent somewhere that it
+probably should not have been sent.
+{demo pac 11, 8)
+
+Unintended actions is a catch all for the rest of the things I created,
+but generally means it did some interaction with the outside world not
+covered by the above.
+{demo ping NK and bitcoin}
+
+All of these were done with base ROS functionality. ROS simply doesn't
+check your code before running it, and unless you have other security 
+running nothing really will check it. At this point, unless I have 
+any bright ideas for new and interesting packages, my code portion
+of the project is complete as far as I'm concerned.
