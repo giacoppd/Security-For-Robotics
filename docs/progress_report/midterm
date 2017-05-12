@@ -20,12 +20,12 @@ things from running.
 
 Information leaking means data on the robot was sent somewhere that it
 probably should not have been sent.
-{demo pac 11, 8)
+{scp)
 
 Unintended actions is a catch all for the rest of the things I created,
 but generally means it did some interaction with the outside world not
 covered by the above.
-{demo ping NK and bitcoin}
+{bitcoin}
 
 All of these were done with base ROS functionality. ROS simply doesn't
 check your code before running it, and unless you have other security 
