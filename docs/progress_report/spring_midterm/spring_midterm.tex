@@ -134,6 +134,19 @@ After changes in the plan for this term were made in the beginning, the work on 
 Some initial dissection of data was also done for the expo poster, which provided a start for the metrics on the final paper.
 This mainly involved using the FMEA variables to rank the importance of each exploit and compare their failure modes.
 
+\section{Dominic's Progress}
+Dominic developed multiple packages that exploited the lack of process pre-checking
+in ROS packages. ROS does not check to ensure that packages operate in a safe manner before running
+them by design, and as such any package run by ROS can quite easily do unsafe operations. The creators of 
+ROS simply assumed that all packages run in ROS would all be run intentionally and benevolent in nature,
+but the fact remains that there is no check on packages run by ROS to ensure good behavior. In particular,
+ROS packages can make system calls to the underlying operating system's shell, which in turn gives them full 
+run of the robot with the right commands. This discovery was made about 2 weeks into winter term, as it is
+technically intentional functionality and documented; but it is very unsafe. Dominic was able to use packages
+to dump the entire root directory of the robot to another system, turn off the robot's wireless networking 
+capabilites, kill all ROS processes, and other problematic actions. Dominic also attempted to create a TCP node
+that would trick a ROS publisher node into publishing it's data to the TCP node, but was unable to due to 
+technical limitations.
 %discuss individual progress
 
 \section{Research Documentation}
