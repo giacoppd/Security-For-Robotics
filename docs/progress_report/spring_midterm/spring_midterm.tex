@@ -169,6 +169,23 @@ Even though these aren't within ROS specifically they still would have a great, 
 
 %Zach's cool exploits n hax0r stuffs
 % BOIIIIIIIIIIIIIIIIIIIIIIIIIIII
+Zach worked on some proof of concept (PoC) packages that involved showing that ROS has zero authentication measures by leveraging the publisher subscriber model.
+This simple yet effective PoC is the basis for remote ROS exploitation. If you know the IP address of a remote ROS machine, you can leverage it as you wish, without the need
+to authenticate with the machine in anyway. This should not be taken lightly, as this opens up ROS to any device that has a network connection. The PoC proving this to be true
+connects to a remote "victim" machine, sending data to a ROS subscriber process, as seen in the figure below.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.5\textwidth]{poc1}
+    \caption{PoC ROS Broken Authentication}
+\end{figure}
+
+Zach also worked on PoC packages exploring exploitation of the process communication model that ROS uses. These PoC packages act as ROS security tools, one of which is a subscriber
+fuzzing tool, and the other a publisher data capture tool. The subscriber fuzzer allows an attacker to target remote ROS processes by flooding them with large amounts of malformed data.
+This can be used to expose issues with ROS processes on a real world device, like a drone. The remote publisher data capture tool uses a ROS tool called rosbag to create a saved instance
+of a given ROS process. This PoC uses that data to preform what's known as a "ROS Bag Replay Attack", which can cause devices running ROS to carry out a given operation at the will of the attacker.
+For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then "replay" that action remotely, causing the drone
+to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method.
 
 
 The majority of progress this term has been in refining preexisting work and in expanding on ideas that had more room for exploration.
