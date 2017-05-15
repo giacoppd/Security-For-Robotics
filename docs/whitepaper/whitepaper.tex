@@ -126,67 +126,90 @@ McGrath and test our exploits on it, but we were unable to successfully repair t
 This had little effect on the project as a whole, as ROS is the same on a regular computer or an actual robot/drone, but it did remove some options we had for exploits. 
 Without a drone, we had no hardware to do any hardware based exploits, and as such the team moved focus to software based ones only.
 
+\section{Executive Summary}
+%in progress
+%maybe throw a chart in here
+
 \section{Necessity of Project}
 ROS is known by many users to be insecure, but until now nobody had made any serious effort to document in which ways it is insecure. 
 Our group undertook an exploratory effort to document ways we found it to be insecure as a starting point for what could be a more thorough documentation of the variety of ways it is insecure, for future research or development. 
 
 \section{Preexisting Research}
+This project would have been much more difficult without a lot of documentation and previous research into the security of ROS.
+One paper that was widely used in the creation of our project basis was \"A Preliminary Cyber-Physical Security Assessment of the Robot
+Operating System (ROS)\". \cite{mainROS}
+This article was written by a group of researchers who created a honeypot robotic system and brought it to DefCon 20 to let hackers there find any and all vulnerabilities they could.
+This lead the researches to be able to recored a range of attack vectors.
+They also used a variety of their own methods to study what was being done, such as examining the packets being sent and received through wireshark, visualizing the effects with hardware, and using Backtrack Linux.
+Their work inspired our team to find as many different ways as possible to attacks the system, and to catalog the effectiveness of each different type, relative to the others.
+
+To find inspiration for the different exploits that would be created, a lot of other research papers, journal articles, and security presentations were used. 
 
 \section{Packages and Solutions}
-Solution list Dominic:
-Malpac 1 (Malpac in the repo) is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and a subscriber that takes that message and prints it to stdout. 
+\subsection{Malpac 1}
+Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and a subscriber that takes that message and prints it to stdout. 
 There is also a third “malicious” node which also subscribes to the publisher and prints the same message with a slight modification to stdout as well. 
 While not that malicious in this case, the general principle can be used to receive and change any published data, including sending said data to other computers using the ROS subscriber/publisher system and compromise the original data’s integrity. 
 For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of system would be able to intercept those images.
 
-Malpac 2 is a forkbomb. 
+\subsection{Malpac 2}
+This package is a forkbomb. 
 As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is do a little math to slow things down a bit, then call itself 8 times and exit. 
 Eventually there are enough processes to clog the CPU and cause a kernel panic, bringing down the robot. 
 In theory, as long as you don’t have some sort of process management, this would kill any robot with enough time, which has obvious use cases.
 
-Malpac 3 temporarily disables the OS’es wireless networking capabilities. 
-For a drone dependant on wireless communication for control or navigation, this has some rather obvious consequences. 
+\subsection{Malpac 3}
+This exploit temporarily disables the OS’es wireless networking capabilities. 
+For a drone dependent on wireless communication for control or navigation, this has some rather obvious consequences. 
 It could also permanently disable the wireless networking with a small tweak, which would make the only fix to physically capture and wire back into the robot to fix the networking. 
 
-Malpac 6 consists of 2 parts, one package launches a publisher that publishes a string every couple seconds and a subscriber that takes that string and prints it to stdout. 
-The other one runs a package that kills the subscriber from the 1st package, and replaces it with it’s own subscriber with the same name that prints a modified message to stdout. 
-At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns out that ROS silently assigns each publisher and subscriber it’s own unique ID and is in fact quite noticeable. 
+\subsection{Malpac 6}
+Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a subscriber that takes that string and prints it to stdout. 
+The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the same name that prints a modified message to stdout. 
+At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns out that ROS silently assigns each publisher and subscriber its own unique ID and is in fact quite noticeable. 
 It might be hard to notice by an unassuming user, assuming they don’t notice the slight hiccup where the old subscriber dies and is replaced, so it still has potential to be a threat or phone home.
 
-Malpac 7 performs bogo-bogo sort, who’s origin is here: http://www.dangermouse.net/esoteric/bogobogosort.html
+\subsection{Malpac 7}
+This is a package that performs bogo-bogo sort. \cite{bogo}
 Bogo-bogo sort is an extremely inefficient sorting algorithm that basically performs a random shuffle to sort a list, recursively. 
 While it is not particularly system intensive, the sort for a list with a mere 10 elements can take on the order of days. 
 The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also doesn’t check for any particularly long running processes, which allows for a variety of actual threats. 
-The best example is an attack that lies dormant until signalled to do maximum damage, or one that waits for a specific process to kill it. 
+The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process to kill it. 
 
-Malpac 8 changes the ROSMASTER URI to an arbitrary one, and starts a new ROS master to match. 
+\subsection{Malpac 8}
+This is a package that changes the ROSMASTER URI to an arbitrary one, and starts a new ROS master to match. 
 The URI is basically where packages check for the ROS master node, which is the master in the ROS master/slave system as one might expect. 
 ROS master manages nodes, and the publisher/subscriber system between nodes as its 2 main duties. 
 As such, changing the URI and starting a new ROS master node means that all new nodes will talk to the new ROS master as opposed to the old, which could allow for some interesting node management or fiddling with the publisher/subscriber system. 
 The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised robot respond to a remote ROS master node as well, allowing an attacker to control the robot remotely. 
 
-Malpac 9 simply pkill’s (process kill, for those unfamiliar) all processes with ROS in the name. 
+\subsection{Malpac 9}
+This simply pkill’s (process kill, for those unfamiliar) all processes with ROS in the name. 
 This will at least kill ROS master, and maybe some other related ROS processes, but killing ROS master also kills all the nodes currently being managed by ROS master, so it will also kill all ROS processes on the system. 
 This has the obvious effect of bringing the robot to a halt, and has the potential of doing major damage. 
-Just image if a drone carrying an explosive payload fell out of the sky because it’s control system suddenly stopped.
+Just image if a drone carrying an explosive payload fell out of the sky because its control system suddenly stopped.
 
-Malpac 10 uses wget to attempt to download all of Wikipedia. 
-It probably doesn’t succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to the limit. 
+\subsection{Malpac 10} 
+This package uses wget to attempt to download all of Wikipedia. 
+It probably doesn’t succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to the limit.
 This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of issue. 
 If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for each process and will need a little disk space for that purpose. 
 
-Malpac 14 attempts to install a bitcoin mining service on the robot. 
+\subsection{Malpac 14} 
+attempts to install a bitcoin mining service on the robot. 
 It does currently need sudo permissions for this, as it does need to use apt-get the way it is set up, which means that ROSCORE needed to be run as a superuser so that this child process would have those permissions as well. 
 If the install succeeds however, then you have a bitcoin miner using CPU time for someone else’s monetary gain, and with a little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the package it was good enough as is. 
 
-Malpac 15 was an attempt to abuse how ROS subscribers and publishers really worked outside of ROS. 
+\subsection{Malpac 15}
+Here was an attempt to abuse how ROS subscribers and publishers really worked outside of ROS. 
 All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and print whatever they published as plain text to stdout. 
 In short, something like malpac 1, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by ROS master at their launch. 
 And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological capacity and time constraints. 
 We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more investigation into the handshake protocol used by ROS master. 
-While the documentation is available online, specifically starting at part 4 here: http://wiki.ros.org/ROS/Technical%20Overview, it was just a little too much for the team with the time we had.
+While the documentation is available online, specifically on the technical overview page of the official ROS site\cite{ROS}, it was just a little too much for the team with the time we had.
 
 \section{Conclusion}
+%add in charts
 ROS is vulnerable in at least the ways detailed above, and as such is insecure. 
 There are also vulnerabilities whose existence we are confident of, but were unable to write code to exploit in the given time. 
 In particular, due to our inability to repair our test drone in time, we were unable to attempt any exploits involving hardware. 
