@@ -8,12 +8,12 @@ GH		= gv
 all: pdf
 
 pdf:
-	latex midterm_progress.tex
-	bibtex midterm_progress
-	latex midterm_progress.tex
-	latex midterm_progress.tex
-	dvips -R -Poutline -t letter midterm_progress.dvi -o midterm_progress.ps
-	ps2pdf midterm_progress.ps
+	latex spring_midterm.tex
+	bibtex spring_midterm
+	latex spring_midterm.tex
+	latex spring_midterm.tex
+	dvips -R -Poutline -t letter spring_midterm.dvi -o spring_midterm.ps
+	ps2pdf spring_midterm.ps
  
 clean:
 	rm -f *.dvi *.out *.aux *.log *.bbl *.blg *.ps *.pdf
