@@ -286,7 +286,7 @@ We believe it is still possible to achieve this, but to do so would require a be
 While the documentation is available online, specifically on the technical overview page of the official ROS site\cite{ROS}, it was just a little too much for the team with the time we had.
 
 \subsubsection{Malpac OS}
-This package contains two scripts, mem\_hooks.c and stack\_smash.c.
+This package contains two scripts, a memory hook and a stack smasher.
 The first, the memory hook, is actually a Linux kernel exploit, and doesn't use ROS itself, but ROS commonly sits atop Ubuntu or Ubuntu-based linux systems. 
 This package does a simple memory hook into the syscall table, which allows the script to make changes to whichever syscalls it wants once it finds the syscall table memory address. 
 This is done by changing the pointer to the function of an existing syscall and replacing it with a pointer to a malicious function.
