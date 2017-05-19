@@ -127,7 +127,7 @@ There have already been reports of smart appliances being used for botnets, it's
 Through our work we hope to eliminate some of this abuse before it begins.
 
 \section{Executive Summary}
-Our team’s purpose was to find vulnerabilities in ROS, the Robot Operating System, and then prove their existence by writing code to exploit them. 
+Our team’s purpose was to find vulnerabilities in ROS, the Robot Operating System, and then prove their existence by writing code to exploit them.
 ROS turns out to be very vulnerable by design, and as such we found many vulnerabilities.
 Since we had an abundance of vulnerabilities, the team decided to not just document them but to also compare them amongst each other as a way of identifying which might be larger priorities for any successors using our work.
 
@@ -145,7 +145,7 @@ This lead the researches to be able to recored a range of attack vectors.
 They also used a variety of their own methods to study what was being done, such as examining the packets being sent and received through wireshark, visualizing the effects with hardware, and using Backtrack Linux.
 Their work inspired our team to find as many different ways as possible to attacks the system, and to catalog the effectiveness of each different type, relative to the others.
 
-One particularly useful paper was written by Bernhard Dieber et al, which discussed security on the application level of ROS. 
+One particularly useful paper was written by Bernhard Dieber et al, which discussed security on the application level of ROS.
 It provides great insights for the problems with authentication and data integrity that are present. \cite{App}
 A similar paper entitled \"ROS: an open-source Robotic Operating System\" was vastly useful in the planning of this project, as it gave a detailed over view of the system from a research standpoint.
 While it didn't discuss security explicitly, it helped us to have a better grasp over the system we were attempting to exploit. \cite{Open}
@@ -154,7 +154,7 @@ This project is closely aligned with ours in that they are working to bring bett
 The areas in which this project most wanted to provide security were some of the first that this project investigated. \cite{Sros}
 
 To find inspiration for the different exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
-Rather than listing them out here, they can be found referenced within the context they were used in our requirements and design documentation. 
+Rather than listing them out here, they can be found referenced within the context they were used in our requirements and design documentation.
 
 \section{Threat Model}
 A threat model was created to visualize the three categories. It serves as a roadmap for the research and can be looked back on at any time.
@@ -164,7 +164,7 @@ Not every area from the threat model was successful, some were not possible to b
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.25\textwidth]{model}
+    \includegraphics[\textwidth]{model}
     \caption{A view of the attacks that are viable against the ROS system}
 \end{figure}
 
@@ -271,33 +271,33 @@ For example, an attacker could capture what happens with a drone flight control 
 to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method.
 
 \section{Testing Methods}
-Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures, which can be applied to all of our attacks. 
-Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and detection rating scales, usually from 1 to 10. 
-After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be ranked in order of importance. 
+Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures, which can be applied to all of our attacks.
+Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and detection rating scales, usually from 1 to 10.
+After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be ranked in order of importance.
 You can see this represented in figure 2 below.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.25\textwidth]{RPN}
+    \includegraphics[\textwidth]{RPN}
     \caption{The increasing criticality ratings of packages, based on the three combined numbers}
 \end{figure}
 
 \section{Findings}
-Just as suspected, ROS has wide range of vulnerabilities that this project exploits with a success rate of nearly 100\%. 
-Most of these exploits involved either entering the system via the publisher/subscriber system that ROS uses to communicate, or demonstrated what malicious actions could take place on the system once inside. 
+Just as suspected, ROS has wide range of vulnerabilities that this project exploits with a success rate of nearly 100\%.
+Most of these exploits involved either entering the system via the publisher/subscriber system that ROS uses to communicate, or demonstrated what malicious actions could take place on the system once inside.
 Those that interrupted the availability of the system were most prevalent, since it's somewhat trivial to break subsystems once inside.
-The next most common type of exploit was those that tamper with the integrity of data, usually in network communication. 
+The next most common type of exploit was those that tamper with the integrity of data, usually in network communication.
 The least common were those that broke the confidentiality of data, often through authentication or sniffing.
 
-We also found that our project evolved as we went along. 
-We had initially intended to do more hardware based attacks, but they proved to be too cumbersome and difficult to generalize. 
+We also found that our project evolved as we went along.
+We had initially intended to do more hardware based attacks, but they proved to be too cumbersome and difficult to generalize.
 There are also a board range of physical attacks ranging anywhere from an EMP type gun to an eagle taking down an airborne drone.
 
 \section{Limitations}
-The main limitation our project faced was not being able to do testing on actual robotic hardware. 
-If this project were continued, the next steps would be to setup a ROS enabled drone and see how our exploit packages effect the drone's functionality. 
-Testing on real world hardware will drive home the real-world implications of using an insecure middleware on robotic devices with open communication channels. 
-Our research is not just limited to drones; any device running ROS can be used to further test our methods. 
+The main limitation our project faced was not being able to do testing on actual robotic hardware.
+If this project were continued, the next steps would be to setup a ROS enabled drone and see how our exploit packages effect the drone's functionality.
+Testing on real world hardware will drive home the real-world implications of using an insecure middleware on robotic devices with open communication channels.
+Our research is not just limited to drones; any device running ROS can be used to further test our methods.
 While our testing was done on ROS enabled machines, those machines were not real-world robotic devices, thus the real-world impact of our packages could not be evaluated.
 
 \section{Conclusion}
