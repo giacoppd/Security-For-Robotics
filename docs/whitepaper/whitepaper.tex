@@ -164,7 +164,7 @@ Not every area from the threat model was successful, some were not possible to b
 
 \begin{figure}[h]
     \centering
-    \includegraphics[\textwidth]{model}
+    \includegraphics[width=\textwidth]{model}
     \caption{A view of the attacks that are viable against the ROS system}
 \end{figure}
 
@@ -262,6 +262,12 @@ These simple yet effective PoCs are the basis for remote ROS exploitation. If yo
 to authenticate with the machine in any way. This should not be taken lightly, as this opens up ROS to any device that has a network connection. The PoC proving this to be true
 connects to a remote "victim" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15.
 
+\begin{figure}
+  \centering
+    \includegraphics[width=\textwidth]{poc1}
+    \caption{PoC ROS Broken Authentication}
+\end{figure}
+
 \subsection{ROS Process Communication}
 Two additional packages were created, exploring exploitation of the process communication model that ROS uses. These PoC packages act as ROS security tools, one of which is a subscriber
 fuzzing tool, and the other a publisher data capture tool. The subscriber fuzzer allows an attacker to target remote ROS processes by flooding them with large amounts of malformed data.
@@ -270,15 +276,27 @@ of a given ROS process. This PoC uses that data to preform what's known as a "RO
 For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then "replay" that action remotely, causing the drone
 to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method.
 
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=\textwidth]{poc2}
+    \caption{PoC ROS Fuzzer Selection}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=\textwidth]{poc3}
+    \caption{PoC ROS Fuzzer Execution}
+\end{figure}
+
 \section{Testing Methods}
 Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures, which can be applied to all of our attacks.
 Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and detection rating scales, usually from 1 to 10.
 After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be ranked in order of importance.
-You can see this represented in figure 2 below.
+You can see this represented in figure 5.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[\textwidth]{RPN}
+    \includegraphics[width=\textwidth]{RPN}
     \caption{The increasing criticality ratings of packages, based on the three combined numbers}
 \end{figure}
 
