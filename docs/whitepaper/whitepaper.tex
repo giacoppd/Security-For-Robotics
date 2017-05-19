@@ -103,7 +103,7 @@
         }
         \begin{abstract}
           In drones and other networked robotics there is a broad array of security vulnerabilities that can be leveraged in an attack.
-          We will evaluate the ROS to find as many of these security holes as we can and document them.
+          We will evaluate ROS to find as many of these security holes as we can and document them.
           The different vulnerabilities found will be categorized into malware, sensor hacks, network and control channel attacks, and physical breaches.
           For some of these exploits we may be able to implement solutions, which will also be documented.
           These findings and any solutions will be added to an ongoing academic effort to make robotics more secure.
@@ -127,8 +127,9 @@ There have already been reports of smart appliances being used for botnets, it's
 Through our work we hope to eliminate some of this abuse before it begins.
 
 \section{Executive Summary}
-Our team’s purpose was to find vulnerabilities in ROS, the Robot Operating System, and then prove their existence by writing code to exploit them. ROS turns out to be very vulnerable by design, and as such we found many vulnerabilities.
-% Poster level of brevity
+Our team’s purpose was to find vulnerabilities in ROS, the Robot Operating System, and then prove their existence by writing code to exploit them. 
+ROS turns out to be very vulnerable by design, and as such we found many vulnerabilities.
+Since we had an abundance of vulnerabilities, the team decided to not just document them but to also compare them amongst each other as a way of identifying which might be larger priorities for any successors using our work.
 
 \section{Problem Statement}
 ROS is known by many users to be insecure, but until now nobody had made any serious effort to document in which ways it is insecure.
@@ -277,7 +278,7 @@ You can see this represented in figure 2 below.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.25\textwidth]{fmea}
+    \includegraphics[width=0.25\textwidth]{RPN}
     \caption{The increasing criticality ratings of packages, based on the three combined numbers}
 \end{figure}
 
