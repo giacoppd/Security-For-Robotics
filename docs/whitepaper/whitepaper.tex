@@ -162,7 +162,7 @@ The model below in Figure 1 is organized as a tree, with the three main branches
 This way one can look at our threat model, decide if their concern is one of confidentiality, integrity, or availability, then examine the vulnerabilities in that category.
 Not every area from the threat model was successful, some were not possible to breach, but it’s still good to acknowledge that they are still likely targets.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{model}
     \caption{A view of the attacks that are viable against the ROS system}
@@ -257,18 +257,24 @@ The Mavlink script follows the same idea, but it was never able to reach a point
 With better documentation and a system with which to reliably test it the Mavlink script could grow to the point of the GPS one.
 
 \subsection{ROS Broken Authentication PoC}
-Two PoC packages were created that show ROS has zero authentication measures, by leveraging the publisher subscriber model.
-These simple yet effective PoCs are the basis for remote ROS exploitation. If you know the IP address of a remote ROS machine, you can leverage it as you wish, without the need
-to authenticate with the machine in any way. This should not be taken lightly, as this opens up ROS to any device that has a network connection. The PoC proving this to be true
-connects to a remote "victim" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15.
-
-\begin{figure}
+\begin{figure}[H]
   \centering
     \includegraphics[width=\textwidth]{poc1}
     \caption{PoC ROS Broken Authentication}
 \end{figure}
 
+Two PoC packages were created that show ROS has zero authentication measures, by leveraging the publisher subscriber model.
+These simple yet effective PoCs are the basis for remote ROS exploitation. If you know the IP address of a remote ROS machine, you can leverage it as you wish, without the need
+to authenticate with the machine in any way. This should not be taken lightly, as this opens up ROS to any device that has a network connection. The PoC proving this to be true
+connects to a remote "victim" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15.
+
 \subsection{ROS Process Communication}
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{poc2}
+    \caption{PoC ROS Fuzzer Selection}
+\end{figure}
+
 Two additional packages were created, exploring exploitation of the process communication model that ROS uses. These PoC packages act as ROS security tools, one of which is a subscriber
 fuzzing tool, and the other a publisher data capture tool. The subscriber fuzzer allows an attacker to target remote ROS processes by flooding them with large amounts of malformed data.
 This can be used to expose issues with ROS processes on a real world device, like a drone. The remote publisher data capture tool uses a ROS tool called rosbag to create a saved instance
@@ -276,13 +282,7 @@ of a given ROS process. This PoC uses that data to preform what's known as a "RO
 For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then "replay" that action remotely, causing the drone
 to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method.
 
-\begin{figure}[h]
-  \centering
-    \includegraphics[width=\textwidth]{poc2}
-    \caption{PoC ROS Fuzzer Selection}
-\end{figure}
-
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
     \includegraphics[width=\textwidth]{poc3}
     \caption{PoC ROS Fuzzer Execution}
@@ -292,9 +292,9 @@ to fly. It is also possible to modify this captured data before replaying it via
 Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures, which can be applied to all of our attacks.
 Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and detection rating scales, usually from 1 to 10.
 After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be ranked in order of importance.
-You can see this represented in figure 5.
+You can see this represented in figure 5 below.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{RPN}
     \caption{The increasing criticality ratings of packages, based on the three combined numbers}
