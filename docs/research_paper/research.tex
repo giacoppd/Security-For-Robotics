@@ -219,13 +219,23 @@ using the ROS subscriber/publisher system and compromise the original data’s i
 For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of 
 system would be able to intercept those images.
 
+This package was one of the first ideas implemented so it started in one of the most obvious places within our model, the Publisher/Subscriber system.
+It falls under the confidentiality section of the threat model because it steals data that would be best kept confidential. 
+Although not particularly sophisticated, the unencrypted nature of this communication channels means it doesn't need to be. 
+With little difficulty it demonstrates how trivial it is for a malicious actor to listen in on communications between nodes and steal useful information.
+This is expanded upon in later packages which take this easily gained information and use it spoof the system.
+
 \subsection{Forkbomb}
 This package is a forkbomb.
 As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is 
 do a little math to slow things down a bit, then call itself 8 times and exit.
 Eventually there are enough processes to clog the CPU and cause a kernel panic, bringing down the robot.
-In theory, as long as you don’t have some sort of process management, this would kill any robot with enough time, which has 
+In theory, as long as there is no existing form of process management, this would kill any robot with enough time, which has 
 obvious use cases.
+
+Forkbombs like this one work to fill up processing resources so that they system has a much harder time scheduling legitimate processes. 
+This is essentially denial of service, which falls into the availability branch of attacks, since the system resources are rendered unavailable when done successfully.
+Distributed denial of service (DDoS) attacks are becoming more and more common in Internet of Things devices, and this package shows how it easy is to do something similar within a ROS device.
 
 \subsection{Network Bomb}
 This exploit temporarily disables the operating system's wireless networking capabilities.
@@ -409,6 +419,8 @@ There are also a board range of physical attacks ranging anywhere from an EMP ty
 \section{Analysis}
 
 \section{Future Research}
+
+%discuss problems and failures here
 
 \section{Conclusion}
 ROS is vulnerable in at least the ways detailed above, and as such is insecure.
