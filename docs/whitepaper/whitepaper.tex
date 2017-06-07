@@ -189,7 +189,14 @@ In theory, as long as you don’t have some sort of process management, this wou
 \subsection{Malpac 3}
 This exploit temporarily disables the OS’es wireless networking capabilities.
 For a drone dependent on wireless communication for control or navigation, this has some rather obvious consequences.
-It could also permanently disable the wireless networking with a small tweak, which would make the only fix to physically capture and wire back into the robot to fix the networking.
+It could also permanently disable the wireless networking with a small tweak, which would make the only fix to physically capture and wire back into the robot to fix the networking. Either way, if your robot is dependant on wireless networking,
+it is going to be downed for a bit.
+
+\subsection{Malpac 4}
+This one is actually our Client, Vee's package. It does a very slow recursive implementation of the calculation of Fibbonachi
+numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither 
+of which being terribly great and both using a fair amount of system resources. As such it has the potential to bring down
+the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources for a bit.
 
 \subsection{Malpac 6}
 Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a subscriber that takes that string and prints it to stdout.
