@@ -235,7 +235,7 @@ This package dumps your filesystem to a remote machine, currently a dummy addres
 robot, it is now in the hands of some other party, assuming your network didn't die mid-transfer or something.
 
 \subsection{Malpac 12}
-This one, assuming your ROSMASTER was run with root privledges and is on a linux distrobution that uses apt-get as its package
+This one, assuming your ROSMASTER was run with root privledges and is on a linux distribution that uses apt-get as its package
 manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be 
 loaded into system memory, but on reboot or if ROS is killed and restarted in some other way, ROS will no longer be there.
 Especially bad if the ROS install was customized, as one would have to redo all those configurations all over again...
