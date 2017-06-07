@@ -146,33 +146,47 @@ If consumers think these will be abused they won't trust this upcoming technolog
 Consequentially, the world as a whole will be slower to advance robotic technology.
 Hopefully our work in securing robotics can help to better develop consumer trust in this emerging technology.
 
-\section{Preexisting Research}
-This project would have been much more difficult without a lot of documentation and previous research into the security of ROS.
-One paper that was widely used in the creation of our project basis was \"A Preliminary Cyber-Physical Security Assessment of the Robot
-Operating System (ROS)\". \cite{mainROS}
-This article was written by a group of researchers who created a honeypot robotic system and brought it to DefCon 20 to let hackers there find any and all vulnerabilities they could.
-This lead the researches to be able to recored a range of attack vectors.
-They also used a variety of their own methods to study what was being done, such as examining the packets being sent and received through wireshark, visualizing the effects with hardware, and using Backtrack Linux.
-Their work inspired our team to find as many different ways as possible to attacks the system, and to catalog the effectiveness of each different type, relative to the others.
+\section{Literature Review}
+This project would have been much more difficult without a variety of documentation and previous research into the security of ROS and robotics in general.
+One paper that was widely used in the creation of our project basis was \"A Preliminary Cyber-Physical Security Assessment of the Robotic Operating System (ROS)\". \cite{mainROS}
+This article was written by a group of researchers who created a honeypot robotic system and brought it to DefCon 20 to let hackers there exploit it as they could.
+This lead the researches to be able to recored a range of attack vectors from a wider variety of minds.
+They also used a number of their own methods to study what was being done, such as examining the packets being sent and received through wireshark, visualizing the effects with hardware, and using Backtrack Linux.
+Their work provided starting points for many different ways to attack the system, and for cataloging the effectiveness of each different type, relative to the others.
+The inspiration from this paper laid a groundwork for the threat models that would be created here, and for the exploratory structure that was followed.
 
 One particularly useful paper was written by Bernhard Dieber et al, which discussed security on the application level of ROS.
-It provides great insights for the problems with authentication and data integrity that are present. \cite{App}
-A similar paper entitled \"ROS: an open-source Robotic Operating System\" was vastly useful in the planning of this project, as it gave a detailed over view of the system from a research standpoint.
-While it didn't discuss security explicitly, it helped us to have a better grasp over the system we were attempting to exploit. \cite{Open}
-The last of the papers that were invaluable in the overall planning and implementation of this project was one discussing the SROS project.
-This project is closely aligned with ours in that they are working to bring better security to ROS in its most vulnerable sectors.
-The areas in which this project most wanted to provide security were some of the first that this project investigated. \cite{Sros}
+It provides great insights for the problems with authentication and data integrity that are present in ROS. \cite{App}
+This helped to provide guidance for that portion of our model, and was foundational in the understanding of how the application level interacts with the rest of the system, from a security standpoint. 
+A similar paper entitled \"ROS: an open-source Robotic Operating System\" was vastly useful in the planning of this project, as it gave a detailed overview of the system from a research standpoint.
+while the official site and documentation of ROS was absolutely invaluable, this paper provided us with a third party assessment of the system and how all portions work together.
+Without a thorough understanding of this research would be much more difficult. \cite{Open}
+ 
+The last of the papers that were used extensively in the overall planning and implementation of this project was one discussing the SROS project.
+This project is very closely aligned with ours in that they are working to bring better security to ROS in its most vulnerable sectors.
+The areas in which this project most wanted to provide security were some of the first that our project investigated. 
+Specifically it provided insight into the access control policies needed in ROS, the insecurity of the communication channels, and they way in which processes are handled. \cite{Sros}
 
 To find inspiration for specific exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
-These are discussed below, in the literature review.
-
-\section{Literature Review}
+These are referenced and discussed within each of packages to which they contributed.
 
 \section{Threat Model}
-A threat model was created to visualize the three categories. It serves as a roadmap for the research and can be looked back on at any time.
+A key element to our project is being able to accurately find vulnerabilities or identify areas where they are likely to be.
+One of the best ways to do this in an organized way that can be later referenced is with threat modeling.
+Adam Shostack has a well defined method for doing this, which was followed to develop the model for this project.
+
+An important thing to note is that ROS is middleware, which means it sits between the base Linux OS, and the application level.Typically there is little focus on security because middleware like this needs to be lightweight. 
+Without any specific security measures taken, there is room for all manner of attacks. To try to tackle them, the vulnerabilities were broken into the three categories of the CIA Triad \cite{CIA}:
+\begin{itemize}
+  \item Those affecting the confidentiality of data
+  \item Those affecting the integrity of data
+  \item Those affecting the availability of data
+\end{itemize}
+
+A threat model was created to visualize these three categories. It serves as a roadmap for the research and can be looked back on at any time.
 The model below in Figure 1 is organized as a tree, with the three main branches being the three components of the CIA triad (Confidentiality, Integrity, and Availability).
 This way one can look at our threat model, decide if their concern is one of confidentiality, integrity, or availability, then examine the vulnerabilities in that category.
-Not every area from the threat model was successful, some were not possible to breach, but it’s still good to acknowledge that they are still likely targets.
+Not every area from the threat model was successful, some were not possible to breach, but it is still good to acknowledge that they are still likely targets.
 
 \begin{figure}[H]
     \centering
@@ -301,8 +315,7 @@ ROS master at their launch. And to get said ID, you need to do some handshaking 
 beyond our technological capacity and time constraints.
 We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more 
 investigation into the handshake protocol used by ROS master.
-While the documentation is available online, specifically on the technical overview page of the official ROS site\cite{ROS}, it 
-was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS 
+While the documentation is available online, specifically on the technical overview page of the official ROS site \cite{ROS}, it was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS 
 still uses ROS to achieve this goal, while this package aimed to bypass ROS entirely.
 
 \subsection{Malpac OS}
