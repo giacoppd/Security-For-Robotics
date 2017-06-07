@@ -124,12 +124,27 @@ Because of this many functioning, deployed robots have limited to no security in
 While the community developing robotics is still largely academic and there is little worry of being attacked, the security vulnerabilities still exist.
 Soon robotics will become ubiquitous in society and hackers will exploit these vulnerabilities for personal gain.
 There have already been reports of smart appliances being used for botnets, it's only a matter of time before drones and other robotics are similarly abused. \cite{ddos}
-Through our work we hope to eliminate some of this abuse before it begins.
+This project aims to eliminate some of this abuse before it begins.
 
 \section{Problem Statement}
-ROS is known by many users to be insecure, but until now nobody had made any serious effort to document in which ways it is insecure.
-Our group undertook an exploratory effort to document ways we found it to be insecure as a starting point for what could be a more thorough documentation of the variety of ways it is insecure, for future research or development.
-This paper summarizes our findings.
+%ROS is known by many users to be insecure, but until now nobody had made any serious effort to document in which ways it is insecure.
+%Our group undertook an exploratory effort to document ways we found it to be insecure as a starting point for what could be a more thorough documentation of the variety of ways it is insecure, for future research or development.
+%This paper summarizes our findings.
+
+Since robotics are continually in development and there is such a wide variety of devices, focus needed to be on a small subset of robotics to have any hope of making progress within a year. 
+Because of this the Robotic Operating System (ROS) was chosen for this project.
+These operating systems can be attacked at the driver level with malware, they can have the configuration files modified, and they can have data intercepted or spoofed in their internal communication subsystems.
+We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
+Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices. 
+It's very important that we acknowledge all of these risks, since exploitation of them could be a big setback for global trust of robotics.
+
+Essentially the problem is twofold; first a specific feature of a specific device needs to be isolated, and then that feature needs to be broken, and all work documented.
+This could be a crucial improvement for the use of robotics running ROS in a wide variety of sectors.
+The military uses and plans to use them widely, and for them more than anyone they need to be as secure as possible.
+Amazon and other commercial shipping companies have a vast use of robotics, and we've all heard about their plans for delivery drones, which are a huge security risk.
+If consumers think these will be abused they won't trust this upcoming technology and it will be slowly or never adopted, which will make companies hesitant to invest in their development.
+Consequentially, the world as a whole will be slower to advance robotic technology.
+Hopefully our work in securing robotics can help to better develop consumer trust in this emerging technology.
 
 \section{Preexisting Research}
 This project would have been much more difficult without a lot of documentation and previous research into the security of ROS.
@@ -148,8 +163,8 @@ The last of the papers that were invaluable in the overall planning and implemen
 This project is closely aligned with ours in that they are working to bring better security to ROS in its most vulnerable sectors.
 The areas in which this project most wanted to provide security were some of the first that this project investigated. \cite{Sros}
 
-To find inspiration for the different exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
-Rather than listing them out here, they can be found referenced within the context they were used in our requirements and design documentation.
+To find inspiration for specific exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
+These are discussed below, in the literature review.
 
 \section{Literature Review}
 
@@ -171,26 +186,26 @@ Some are based on the same vulnerability, while others are more distinct.
 Specific packages have been chosen below to represent each of the notable categories of attack.
 These range from resource consumption, to network sniffing and spoofing, and to OS level exploitation.
 
-\subsection{Malpac 1}
+\subsection{Malicious Node}
 Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and a subscriber that takes that message and prints it to stdout.
 There is also a third “malicious” node which also subscribes to the publisher and prints the same message with a slight modification to stdout as well.
 While not that malicious in this case, the general principle can be used to receive and change any published data, including sending said data to other computers using the ROS subscriber/publisher system and compromise the original data’s integrity.
 For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of system would be able to intercept those images.
 
-\subsection{Malpac 2}
+\subsection{Forkbomb}
 This package is a forkbomb.
 As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is do a little math to slow things down a bit, then call itself 8 times and exit.
 Eventually there are enough processes to clog the CPU and cause a kernel panic, bringing down the robot.
 In theory, as long as you don’t have some sort of process management, this would kill any robot with enough time, which has obvious use cases.
 
 \subsection{Malpac 3}
-This exploit temporarily disables the OS’es wireless networking capabilities.
+This exploit temporarily disables the operating system's wireless networking capabilities.
 For a drone dependent on wireless communication for control or navigation, this has some rather obvious consequences.
-It could also permanently disable the wireless networking with a small tweak, which would make the only fix to physically capture and wire back into the robot to fix the networking. Either way, if your robot is dependant on wireless networking,
-it is going to be downed for a bit.
+It could also permanently disable the wireless networking with a small tweak, which would make the only fix to physically capture and wire back into the robot to fix the networking. 
+Either way, if one's robot is dependent on wireless networking, it is going to be downed for a bit.
 
 \subsection{Malpac 4}
-This one is actually our Client, Vee's package. It does a very slow recursive implementation of the calculation of Fibbonachi
+This one is actually our Client, Vee's package. It does a very slow recursive implementation of the calculation of Fibonacci
 numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither 
 of which being terribly great and both using a fair amount of system resources. As such it has the potential to bring down
 the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources for a bit.
@@ -210,7 +225,7 @@ It might be hard to notice by an unassuming user, assuming they don’t notice t
 This is a package that performs bogo-bogo sort. \cite{bogo}
 Bogo-bogo sort is an extremely inefficient sorting algorithm that basically performs a random shuffle to sort a list, recursively.
 While it is not particularly system intensive, the sort for a list with a mere 10 elements can take on the order of days.
-The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also doesn’t check for any particularly long running processes, which allows for a variety of actual threats.
+The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also does not check for any particularly long running processes, which allows for a variety of actual threats.
 The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process to kill it.
 
 \subsection{Malpac 8}
@@ -233,11 +248,11 @@ This can cause a number of issues depending on what else needs disk space, but i
 If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for each process and will need a little disk space for that purpose.
 
 \subsection{Malpac 11}
-This package dumps your filesystem to a remote machine, currently a dummy address. If you had something confidiental on the
+This package dumps your filesystem to a remote machine, currently a dummy address. If you had something confidential on the
 robot, it is now in the hands of some other party, assuming your network didn't die mid-transfer or something.
 
 \subsection{Malpac 12}
-This one, assuming your ROSMASTER was run with root privledges and is on a linux distribution that uses apt-get as its package
+This one, assuming your ROSMASTER was run with root privileges and is on a linux distribution that uses apt-get as its package
 manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be 
 loaded into system memory, but on reboot or if ROS is killed and restarted in some other way, ROS will no longer be there.
 Especially bad if the ROS install was customized, as one would have to redo all those configurations all over again...
@@ -292,7 +307,7 @@ With better documentation and a system with which to reliably test it the Mavlin
 Two PoC packages were created that show ROS has zero authentication measures, by leveraging the publisher subscriber model.
 These simple yet effective PoCs are the basis for remote ROS exploitation. If you know the IP address of a remote ROS machine, you can leverage it as you wish, without the need
 to authenticate with the machine in any way. This should not be taken lightly, as this opens up ROS to any device that has a network connection. The PoC proving this to be true
-connects to a remote "victim" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15.
+connects to a remote \"victim\" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15.
 
 \subsection{ROS Process Communication}
 \begin{figure}[H]
@@ -304,8 +319,8 @@ connects to a remote "victim" machine, sending data to a ROS subscriber process.
 Two additional packages were created, exploring exploitation of the process communication model that ROS uses. These PoC packages act as ROS security tools, one of which is a subscriber
 fuzzing tool, and the other a publisher data capture tool. The subscriber fuzzer allows an attacker to target remote ROS processes by flooding them with large amounts of malformed data.
 This can be used to expose issues with ROS processes on a real world device, like a drone. The remote publisher data capture tool uses a ROS tool called rosbag to create a saved instance
-of a given ROS process. This PoC uses that data to preform what's known as a "ROS Bag Replay Attack", which can cause devices running ROS to carry out a given operation at the will of the attacker.
-For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then "replay" that action remotely, causing the drone
+of a given ROS process. This PoC uses that data to preform what's known as a \"ROS Bag Replay Attack\", which can cause devices running ROS to carry out a given operation at the will of the attacker.
+For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then \"replay\" that action remotely, causing the drone
 to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method.
 
 \begin{figure}[H]
@@ -357,6 +372,6 @@ There are indeed already undertakings to do just that, specifically SROS and ROS
 Many of our vulnerability exploits come from having access to ROS itself or by abusing lax communications security to get into ROS, so just ensuring that the ROS is only accessible by trusted users is enough to prevent most exploits that we have found, although that in itself is a rather big task.
 
 \bibliographystyle{IEEEtran}
-\bibliography{whitepaper.bib}
+\bibliography{research.bib}
 
 \end{document}
