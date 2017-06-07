@@ -173,7 +173,7 @@ These are referenced and discussed within each of packages to which they contrib
 \section{Threat Model}
 A key element to our project is being able to accurately find vulnerabilities or identify areas where they are likely to be.
 One of the best ways to do this in an organized way that can be later referenced is with threat modeling.
-Adam Shostack has a well defined method for doing this, which was followed to develop the model for this project.
+Adam Shostack has a well defined method for doing this, which was followed to develop the model for this project. \cite{TMDS}
 
 An important thing to note is that ROS is middleware, which means it sits between the base Linux OS, and the application level.Typically there is little focus on security because middleware like this needs to be lightweight. 
 Without any specific security measures taken, there is room for all manner of attacks. To try to tackle them, the vulnerabilities were broken into the three categories of the CIA Triad \cite{CIA}:
@@ -186,7 +186,6 @@ Without any specific security measures taken, there is room for all manner of at
 A threat model was created to visualize these three categories. It serves as a roadmap for the research and can be looked back on at any time.
 The model below in Figure 1 is organized as a tree, with the three main branches being the three components of the CIA triad (Confidentiality, Integrity, and Availability).
 This way one can look at our threat model, decide if their concern is one of confidentiality, integrity, or availability, then examine the vulnerabilities in that category.
-Not every area from the threat model was successful, some were not possible to breach, but it is still good to acknowledge that they are still likely targets.
 
 \begin{figure}[H]
     \centering
@@ -194,13 +193,24 @@ Not every area from the threat model was successful, some were not possible to b
     \caption{A view of the attacks that are viable against the ROS system}
 \end{figure}
 
+Not every area from the threat model was successful, some were not possible to breach, but it is important to acknowledge their importance.
+This new version of the threat model was created to showcase the success level of each area using color coding.
+Those areas that are red have a lot more potential for vulnerabilities, yellow has been covered by our research but is still likely to have more, and green was heavily covered and only an expert in that area would be likely to identify more.
+This also includes our specific packages as leaves, rather than the general concepts they covered.
+
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{color_model}
+%    \caption{map of the areas which were most or least covered in this research}
+%\end{figure}
+
 \section{Packages and Solutions}
 As mentioned above, the exploits written were meant to cover a lot of ground topic wise.
 Some are based on the same vulnerability, while others are more distinct.
 Specific packages have been chosen below to represent each of the notable categories of attack.
 These range from resource consumption, to network sniffing and spoofing, and to OS level exploitation.
 
-\subsection{Malicious Node}
+\subsection{Eavesdropper}
 Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and 
 a subscriber that takes that message and prints it to stdout. There is also a third “malicious” node which also subscribes to 
 the publisher and prints the same message with a slight modification to stdout as well. While not that malicious in this case, 
@@ -217,7 +227,7 @@ Eventually there are enough processes to clog the CPU and cause a kernel panic, 
 In theory, as long as you don’t have some sort of process management, this would kill any robot with enough time, which has 
 obvious use cases.
 
-\subsection{Malpac 3}
+\subsection{Network Bomb}
 This exploit temporarily disables the operating system's wireless networking capabilities.
 For a robot dependent on wireless communication for control or navigation, this has some rather obvious consequences.
 Depending on how the robot handles the lack of networking it could do anything from fall out of the sky to automatically
@@ -225,20 +235,20 @@ returning home. It could also permanently disable the wireless networking with a
 fix to physically capture and wire back into the robot to fix the networking. 
 Either way, if one's robot is dependent on wireless networking, it will be downed for a bit.
 
-\subsection{Malpac 4}
+\subsection{Fibonacci}
 This one is actually our Client, Vee's package. It does a naive recursive implementation of the calculation of Fibonacci
 numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither 
 of which being terribly great results and both using a fair amount of system resources. As such it has the potential to 
 bring down the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources 
 for a bit.
 
-\subsection{Malpac 5}
+\subsection{Local Folder}
 This package just creates and then deletes a local folder. In theory it can delete any user level folder, which may include
 program files or ROS nodes or maybe just something important locally. If it has super user permissions then it could go so
 far as delete system directories or the like, but that is not guaranteed. Either way it can probably delete something that
 the user would rather it not.
 
-\subsection{Malpac 6}
+\subsection{Node Replacement}
 Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a 
 subscriber that takes that string and prints it to stdout.
 The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the 
@@ -248,7 +258,7 @@ out that ROS silently assigns each publisher and subscriber its own unique ID an
 It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies 
 and is replaced, so it still has potential to be a threat or phone home.
 
-\subsection{Malpac 7}
+\subsection{Costly Sorting}
 This is a package that performs bogo-bogo sort. \cite{bogo}
 Bogo-bogo sort is an extremely inefficient sorting algorithm that performs a random shuffle to sort a list, recursively.
 While it is not particularly system intensive, the sort for a list with a mere 10 elements can take on the order of days.
@@ -257,7 +267,7 @@ for any particularly long running processes, which allows for a variety of actua
 The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process 
 to kill it.
 
-\subsection{Malpac 8}
+\subsection{URI Change}
 This is a package that changes the ROSMASTER URI to an arbitrary one, and starts a new ROS master to match.
 The URI is basically where packages check for the ROS master node, which is the master in the ROS master/slave system.
 ROS master manages nodes, and the publisher/subscriber system between nodes as its 2 main duties.
@@ -266,37 +276,36 @@ opposed to the old, which could allow for some interesting node management or fi
 The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised 
 robot respond to a remote ROS master node as well, allowing an attacker to control the robot remotely.
 
-\subsection{Malpac 9}
+\subsection{Pkiller}
 This simply pkills (process kill, for those unfamiliar) all processes with ROS in the name.
 This will at least kill ROS master, and maybe some other related ROS processes, but killing ROS master also kills all the nodes currently being managed by ROS master, so it will also kill all ROS processes on the system.
 This has the obvious effect of bringing the robot to a halt, and has the potential of doing major damage.
 Just image if a drone carrying an explosive payload fell out of the sky because its control system suddenly stopped.
 
-\subsection{Malpac 10}
+\subsection{Massive Download}
 This package uses wget to attempt to download all of Wikipedia.
 It probably will not succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to 
 the limit. This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of 
 issue. If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for 
 each process and will need a little disk space for that purpose.
 
-\subsection{Malpac 11}
+\subsection{Root Dump}
 This package dumps your filesystem to a remote machine, currently a dummy address. If you had something confidential on the
 robot, it is now in the hands of some other party, assuming your network connection did not die mid-transfer or something.
 If your drone had those top secret recon images, or maybe the drone's code itself was supposed to be a secret, they could
 potentially be in the hands of some unknown party.
 
-\subsection{Malpac 12}
+\subsection{Uninstaller}
 This one, assuming your ROSMASTER was run with root privileges and is on a Linux distribution that uses apt-get as its package
 manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be 
 loaded into system memory, but on reboot or if ROS is killed and restarted in some other way, ROS will no longer be there.
 Especially bad if the ROS install was customized, as one would have to redo all those configurations all over again...
 
-\subsection{Malpac 13}
-Pings (what the team knows to be, but can not directly confirm) a North Korean IP address. While it has no direct effect on 
-the system, alerting North Korea to your presence is not exactly a great idea in the current political environment, and 
-has a good chance of getting one on a watchlist. 
+\subsection{Start WW3}
+This pings (what the team knows to be, but can not directly confirm) a North Korean IP address. 
+While it has no direct effect on the system, alerting North Korea to your presence is not exactly a great idea in the current political environment, and has a good chance of getting one on a watchlist. 
 
-\subsection{Malpac 14}
+\subsection{Bitcoin Miner}
 This package attempts to install a bitcoin mining service on the robot.
 It does currently need superuser permissions for this, as it does need to use apt-get, which means that ROSCORE 
 needed to be run as a superuser so that this child process would have those permissions as well.
@@ -304,21 +313,18 @@ If the install succeeds however, then you have a bitcoin miner using CPU time fo
 little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the 
 package it was good enough as is.
 
-\subsection{Malpac 15}
+\subsection{ROSless Listener}
 Here was an attempt to abuse how ROS subscribers and publishers really worked outside of ROS.
 All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general 
 idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and 
 print whatever they published as plain text to stdout.
-In short, something like malpac 1, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding 
-that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by 
-ROS master at their launch. And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit 
-beyond our technological capacity and time constraints.
+In short, something like the first malpac, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by ROS master at their launch. And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological capacity and time constraints.
 We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more 
 investigation into the handshake protocol used by ROS master.
 While the documentation is available online, specifically on the technical overview page of the official ROS site \cite{ROS}, it was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS 
 still uses ROS to achieve this goal, while this package aimed to bypass ROS entirely.
 
-\subsection{Malpac OS}
+\subsection{Linux Kernel Exploitation}
 This package contains two scripts, a memory hook and a stack smasher.
 The first, the memory hook, is actually a Linux kernel exploit, and doesn't use ROS itself, but ROS commonly sits atop Ubuntu or Ubuntu-based linux systems.
 This package does a simple memory hook into the syscall table, which allows the script to make changes to whichever syscalls it wants once it finds the syscall table memory address.
@@ -331,7 +337,7 @@ It works by leveraging the overflow to push its way into privileged space and th
 This specific script is a small scale buffer so better demonstrate the idea.
 To use a simple approach like this, one needs access to the environment variables of the system so it's not perfect.
 
-\subsection{Malpac GPS}
+\subsection{GPS Exploitation}
 The exploits in the category work with the GPS or Mavlink protocol.
 Specifically the GPS package uses both spoofing and man in the middle to trick a drone into thinking it is the home base, and can misguide it.
 This is done by sniffing for drone network information, and then leveraging that to send spoofed landing data via UDP.
@@ -371,7 +377,7 @@ to fly. It is also possible to modify this captured data before replaying it via
 \end{figure}
 
 \section{Testing Methods}
-Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures, which can be applied to all of our attacks.
+Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures, which can be applied to all of our attacks. \cite{FMEA}
 Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and detection rating scales, usually from 1 to 10.
 After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be ranked in order of importance.
 You can see this represented in figure 5 below.
