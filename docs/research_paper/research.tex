@@ -196,6 +196,9 @@ of which being terribly great and both using a fair amount of system resources. 
 the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources for a bit.
 
 \subsection{Malpac 5}
+This package just creates and then deletes a local folder. In theory it can delete any user level folder, which may include
+program files or ROS nodes or maybe just something important locally. If it has super user permissions then it could go so
+far as delete system directories or the like, but it probably can't.
 
 \subsection{Malpac 6}
 Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a subscriber that takes that string and prints it to stdout.
