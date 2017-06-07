@@ -187,16 +187,21 @@ Specific packages have been chosen below to represent each of the notable catego
 These range from resource consumption, to network sniffing and spoofing, and to OS level exploitation.
 
 \subsection{Malicious Node}
-Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and a subscriber that takes that message and prints it to stdout.
-There is also a third “malicious” node which also subscribes to the publisher and prints the same message with a slight modification to stdout as well.
-While not that malicious in this case, the general principle can be used to receive and change any published data, including sending said data to other computers using the ROS subscriber/publisher system and compromise the original data’s integrity.
-For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of system would be able to intercept those images.
+Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and 
+a subscriber that takes that message and prints it to stdout. There is also a third “malicious” node which also subscribes to 
+the publisher and prints the same message with a slight modification to stdout as well. While not that malicious in this case, 
+the general principle can be used to receive and change any published data, including sending said data to other computers 
+using the ROS subscriber/publisher system and compromise the original data’s integrity.
+For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of 
+system would be able to intercept those images.
 
 \subsection{Forkbomb}
 This package is a forkbomb.
-As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is do a little math to slow things down a bit, then call itself 8 times and exit.
+As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is 
+do a little math to slow things down a bit, then call itself 8 times and exit.
 Eventually there are enough processes to clog the CPU and cause a kernel panic, bringing down the robot.
-In theory, as long as you don’t have some sort of process management, this would kill any robot with enough time, which has obvious use cases.
+In theory, as long as you don’t have some sort of process management, this would kill any robot with enough time, which has 
+obvious use cases.
 
 \subsection{Malpac 3}
 This exploit temporarily disables the operating system's wireless networking capabilities.
@@ -216,27 +221,36 @@ for a bit.
 \subsection{Malpac 5}
 This package just creates and then deletes a local folder. In theory it can delete any user level folder, which may include
 program files or ROS nodes or maybe just something important locally. If it has super user permissions then it could go so
-far as delete system directories or the like, but that is not guaranteed.
+far as delete system directories or the like, but that is not guaranteed. Either way it can probably delete something that
+the user would rather it not.
 
 \subsection{Malpac 6}
-Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a subscriber that takes that string and prints it to stdout.
-The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the same name that prints a modified message to stdout.
-At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns out that ROS silently assigns each publisher and subscriber its own unique ID and is in fact quite noticeable.
-It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies and is replaced, so it still has potential to be a threat or phone home.
+Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a 
+subscriber that takes that string and prints it to stdout.
+The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the 
+same name that prints a modified message to stdout.
+At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns 
+out that ROS silently assigns each publisher and subscriber its own unique ID and is in fact quite noticeable.
+It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies 
+and is replaced, so it still has potential to be a threat or phone home.
 
 \subsection{Malpac 7}
 This is a package that performs bogo-bogo sort. \cite{bogo}
-Bogo-bogo sort is an extremely inefficient sorting algorithm that basically performs a random shuffle to sort a list, recursively.
+Bogo-bogo sort is an extremely inefficient sorting algorithm that performs a random shuffle to sort a list, recursively.
 While it is not particularly system intensive, the sort for a list with a mere 10 elements can take on the order of days.
-The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also does not check for any particularly long running processes, which allows for a variety of actual threats.
-The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process to kill it.
+The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also does not check 
+for any particularly long running processes, which allows for a variety of actual threats. It also wastes some CPU time.
+The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process 
+to kill it.
 
 \subsection{Malpac 8}
 This is a package that changes the ROSMASTER URI to an arbitrary one, and starts a new ROS master to match.
-The URI is basically where packages check for the ROS master node, which is the master in the ROS master/slave system as one might expect.
+The URI is basically where packages check for the ROS master node, which is the master in the ROS master/slave system.
 ROS master manages nodes, and the publisher/subscriber system between nodes as its 2 main duties.
-As such, changing the URI and starting a new ROS master node means that all new nodes will talk to the new ROS master as opposed to the old, which could allow for some interesting node management or fiddling with the publisher/subscriber system.
-The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised robot respond to a remote ROS master node as well, allowing an attacker to control the robot remotely.
+As such, changing the URI and starting a new ROS master node means that all new nodes will talk to the new ROS master as 
+opposed to the old, which could allow for some interesting node management or fiddling with the publisher/subscriber system.
+The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised 
+robot respond to a remote ROS master node as well, allowing an attacker to control the robot remotely.
 
 \subsection{Malpac 9}
 This simply pkills (process kill, for those unfamiliar) all processes with ROS in the name.
@@ -254,6 +268,8 @@ each process and will need a little disk space for that purpose.
 \subsection{Malpac 11}
 This package dumps your filesystem to a remote machine, currently a dummy address. If you had something confidential on the
 robot, it is now in the hands of some other party, assuming your network connection did not die mid-transfer or something.
+If your drone had those top secret recon images, or maybe the drone's code itself was supposed to be a secret, they could
+potentially be in the hands of some unknown party.
 
 \subsection{Malpac 12}
 This one, assuming your ROSMASTER was run with root privileges and is on a Linux distribution that uses apt-get as its package
@@ -281,15 +297,13 @@ idea was to make a non-ROS socket to communicate with the ROS socket, subscribe 
 print whatever they published as plain text to stdout.
 In short, something like malpac 1, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding 
 that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by 
-ROS master at their launch.
-And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological 
-capacity and time constraints.
+ROS master at their launch. And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit 
+beyond our technological capacity and time constraints.
 We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more 
 investigation into the handshake protocol used by ROS master.
 While the documentation is available online, specifically on the technical overview page of the official ROS site\cite{ROS}, it 
-was just a little too much for the team with the time we had.
-Malpac ROS is similar to this, but differs in that Malpac ROS still uses ROS to achieve this goal, while this package aimed to 
-bypass ROS entirely.
+was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS 
+still uses ROS to achieve this goal, while this package aimed to bypass ROS entirely.
 
 \subsection{Malpac OS}
 This package contains two scripts, a memory hook and a stack smasher.
