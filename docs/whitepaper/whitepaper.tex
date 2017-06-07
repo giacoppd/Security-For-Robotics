@@ -257,6 +257,8 @@ In short, something like malpac 1, but going around ROS to do so. Unfortunately 
 And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological capacity and time constraints.
 We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more investigation into the handshake protocol used by ROS master.
 While the documentation is available online, specifically on the technical overview page of the official ROS site\cite{ROS}, it was just a little too much for the team with the time we had.
+Malpac ROS is similar to this, but differs in that Malpac ROS still uses ROS to achieve this goal, while this package hoped to 
+bypass ROS entirely.
 
 \subsection{Malpac OS}
 This package contains two scripts, a memory hook and a stack smasher.
