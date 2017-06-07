@@ -200,26 +200,29 @@ In theory, as long as you don’t have some sort of process management, this wou
 
 \subsection{Malpac 3}
 This exploit temporarily disables the operating system's wireless networking capabilities.
-For a drone dependent on wireless communication for control or navigation, this has some rather obvious consequences.
-It could also permanently disable the wireless networking with a small tweak, which would make the only fix to physically capture and wire back into the robot to fix the networking. 
-Either way, if one's robot is dependent on wireless networking, it is going to be downed for a bit.
+For a robot dependent on wireless communication for control or navigation, this has some rather obvious consequences.
+Depending on how the robot handles the lack of networking it could do anything from fall out of the sky to automatically
+returning home. It could also permanently disable the wireless networking with a small tweak, which would make the only 
+fix to physically capture and wire back into the robot to fix the networking. 
+Either way, if one's robot is dependent on wireless networking, it will be downed for a bit.
 
 \subsection{Malpac 4}
-This one is actually our Client, Vee's package. It does a very slow recursive implementation of the calculation of Fibonacci
+This one is actually our Client, Vee's package. It does a naive recursive implementation of the calculation of Fibonacci
 numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither 
-of which being terribly great and both using a fair amount of system resources. As such it has the potential to bring down
-the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources for a bit.
+of which being terribly great results and both using a fair amount of system resources. As such it has the potential to 
+bring down the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources 
+for a bit.
 
 \subsection{Malpac 5}
 This package just creates and then deletes a local folder. In theory it can delete any user level folder, which may include
 program files or ROS nodes or maybe just something important locally. If it has super user permissions then it could go so
-far as delete system directories or the like, but it probably can't.
+far as delete system directories or the like, but that is not guaranteed.
 
 \subsection{Malpac 6}
 Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a subscriber that takes that string and prints it to stdout.
 The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the same name that prints a modified message to stdout.
 At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns out that ROS silently assigns each publisher and subscriber its own unique ID and is in fact quite noticeable.
-It might be hard to notice by an unassuming user, assuming they don’t notice the slight hiccup where the old subscriber dies and is replaced, so it still has potential to be a threat or phone home.
+It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies and is replaced, so it still has potential to be a threat or phone home.
 
 \subsection{Malpac 7}
 This is a package that performs bogo-bogo sort. \cite{bogo}
@@ -236,45 +239,56 @@ As such, changing the URI and starting a new ROS master node means that all new 
 The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised robot respond to a remote ROS master node as well, allowing an attacker to control the robot remotely.
 
 \subsection{Malpac 9}
-This simply pkill’s (process kill, for those unfamiliar) all processes with ROS in the name.
+This simply pkills (process kill, for those unfamiliar) all processes with ROS in the name.
 This will at least kill ROS master, and maybe some other related ROS processes, but killing ROS master also kills all the nodes currently being managed by ROS master, so it will also kill all ROS processes on the system.
 This has the obvious effect of bringing the robot to a halt, and has the potential of doing major damage.
 Just image if a drone carrying an explosive payload fell out of the sky because its control system suddenly stopped.
 
 \subsection{Malpac 10}
 This package uses wget to attempt to download all of Wikipedia.
-It probably doesn’t succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to the limit.
-This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of issue.
-If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for each process and will need a little disk space for that purpose.
+It probably will not succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to 
+the limit. This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of 
+issue. If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for 
+each process and will need a little disk space for that purpose.
 
 \subsection{Malpac 11}
 This package dumps your filesystem to a remote machine, currently a dummy address. If you had something confidential on the
-robot, it is now in the hands of some other party, assuming your network didn't die mid-transfer or something.
+robot, it is now in the hands of some other party, assuming your network connection did not die mid-transfer or something.
 
 \subsection{Malpac 12}
-This one, assuming your ROSMASTER was run with root privileges and is on a linux distribution that uses apt-get as its package
+This one, assuming your ROSMASTER was run with root privileges and is on a Linux distribution that uses apt-get as its package
 manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be 
 loaded into system memory, but on reboot or if ROS is killed and restarted in some other way, ROS will no longer be there.
 Especially bad if the ROS install was customized, as one would have to redo all those configurations all over again...
 
 \subsection{Malpac 13}
-Pings (what the team knows to be, but can not directly confirm) a North Korean IP. While it has no direct effects on the system,
-alerting North Korea to your presence is not exactly a great idea in the current political environment, and has a good chance
-of getting one on a watchlist. 
+Pings (what the team knows to be, but can not directly confirm) a North Korean IP address. While it has no direct effect on 
+the system, alerting North Korea to your presence is not exactly a great idea in the current political environment, and 
+has a good chance of getting one on a watchlist. 
 
 \subsection{Malpac 14}
-attempts to install a bitcoin mining service on the robot.
-It does currently need sudo permissions for this, as it does need to use apt-get the way it is set up, which means that ROSCORE needed to be run as a superuser so that this child process would have those permissions as well.
-If the install succeeds however, then you have a bitcoin miner using CPU time for someone else’s monetary gain, and with a little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the package it was good enough as is.
+This package attempts to install a bitcoin mining service on the robot.
+It does currently need superuser permissions for this, as it does need to use apt-get, which means that ROSCORE 
+needed to be run as a superuser so that this child process would have those permissions as well.
+If the install succeeds however, then you have a bitcoin miner using CPU time for someone else’s monetary gain, and with a 
+little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the 
+package it was good enough as is.
 
 \subsection{Malpac 15}
 Here was an attempt to abuse how ROS subscribers and publishers really worked outside of ROS.
-All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and print whatever they published as plain text to stdout.
-In short, something like malpac 1, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by ROS master at their launch.
-And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological capacity and time constraints.
-We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more investigation into the handshake protocol used by ROS master.
-While the documentation is available online, specifically on the technical overview page of the official ROS site\cite{ROS}, it was just a little too much for the team with the time we had.
-Malpac ROS is similar to this, but differs in that Malpac ROS still uses ROS to achieve this goal, while this package hoped to 
+All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general 
+idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and 
+print whatever they published as plain text to stdout.
+In short, something like malpac 1, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding 
+that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by 
+ROS master at their launch.
+And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological 
+capacity and time constraints.
+We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more 
+investigation into the handshake protocol used by ROS master.
+While the documentation is available online, specifically on the technical overview page of the official ROS site\cite{ROS}, it 
+was just a little too much for the team with the time we had.
+Malpac ROS is similar to this, but differs in that Malpac ROS still uses ROS to achieve this goal, while this package aimed to 
 bypass ROS entirely.
 
 \subsection{Malpac OS}
