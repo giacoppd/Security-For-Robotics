@@ -1,0 +1,466 @@
+\documentclass[IEEEtran,letterpaper,10pt,notitlepage,draftclsnofoot,onecolumn]{article}
+
+\usepackage{nopageno}
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{balance}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\begin{document}
+\section{Introduction}
+Our project was proposed by Vedanth Narayanan, a graduate student in CS at 
+OSU, as a way to generate material for his master’s thesis. For his thesis 
+he plans to do something with security in ROS, the Robotics Operating System 
+and henceforth referred to as ROS for the rest of this document, and our 
+work was to discover and document security vulnerabilities for him to use as 
+testing material later, along with identifying what parts of ROS were the most 
+vulnerable overall. Vedanth was also our client for the project, and we, the team, 
+were, in no particular order, Dominic Giacoppe, Emily Longman, and Zachary Rogers. 
+The team had no defined roles at the outset, but over time Emily became the primary 
+research design and compiler, Zach was the hardware specialist before the team 
+decided to drop hardware from consideration from the project, and Dominic was the 
+ROS expert and was the go-between for the team and Vedanth. Vedanth produced a 
+small bit of code for the team, but on the whole took a supervisor position for 
+the duration of the project, mostly providing ideas for what to explore next 
+and detailing what he expected from the team at any given time. 
+\newpage
+\section{Changes to the requirements}
+The only explicit change we had to our requirements was that our team used 
+ROS Indigo Igloo over Kinetic Kame, as a large part of the existing ROS codebase
+was created during Indigo and Kame had some compatibility issues with some 
+Indigo-based code. There was also the understanding that we would not be 
+producing patches to patch any vulnerabilities we found, as all of them
+stem from underlying design choices in ROS itself rather than programming
+errors. This makes everything more or less unpatchable, as it would require
+design changes to ROS itself that are simply not in consideration by the 
+ROS development team. In turn, since our team produced no patches, we did 
+not send them to the SROS project for consideration either.
+\newpage
+\section{Changes to the project design}
+We had 2 major changes from our original design: we did not end up using 
+the drone at all, and we determined that SROS was not viable for a few 
+reasons. The drone simply took too much of our time to get it working to be 
+usable for the project. The team initially thought making the drone usable 
+for our purposes would take about a week, by the time we decided to drop it 
+from the project it was almost the end of winter term. (ZACH, fill in your 
+drone struggles here, only like 2 sentences though save the big bash for 
+the failures bit). SROS was dropped much earlier on in the project when 
+the team discovered that the prefered installation method for it was 
+containers, which the team had no experience with and might not be feasible 
+on the drone, and that it was so poorly documented that the team did not feel 
+that it was robust enough to be a working alternative to ROS. Overall, SROS 
+was not determined to be worth the amount of extra overhead to get it 
+operational for our purposes, and was subsequently cut from the project.
+\newpage
+\section{Technology changes}
+The only technologies that were cut were those related to the drone, and SROS.
+Since we had no drone, we had no need for a drone operating system, nor did 
+we care about drone networking or communications, and hence those were all 
+ignored. The reasons for dropping SROS are detailed as part of the design 
+document discussion, and the team used regular ROS for the rest of the project. 
+Our project did not use any additional technologies not listed in the tech doc.
+\newpage
+\section{Dominic's Blog Posts}
+\subsection{Weeks 0-3, Fall}
+This is the first blog post. This last week was mostly continuing to hash out 
+details with our client, and figuring out what direction we want to take on 
+the project. Next week should be more or less the same; although we will get 
+to see our probable test drone next week. Only problem this week was figuring 
+out when and where to meet
+\subsection{Week 4, Fall}
+This week was mostly about clarification and finding out that we aren't doing 
+our paperwork correctly; also we got to see the drone. The drone runs 
+beaglebone-black stapled to a pixboard, and should run ROS. Also it has 6 
+propellers, a programmable power supply, and a honking battery. 
+As far as goals go, we are more or less set on finding/fixing vulnerabilities 
+in ROS at this point, as it has nice known big ones. It sounds like we might 
+work with the SROS (secure ROS) project, but the SROS project is also in it's 
+infancy and only has some goals on it's page. Also, we met Jesse, an EX Intel 
+employee with heavy crypto/security experience, and I look forward to learning 
+under him.
+\subsection{Week 5, Fall}
+Most things are temporarily on hold while midterms come. We did finish our 
+draft for our project specification, however. Probably needs revision but 
+we'll wait for the feedback. Still need a team name
+\subsection{Week 6, Fall}
+Midterms have finally passed us, my grades remain in a solid B range. Life 
+goes on. As far as the project goes, we will be meeting tonight to put the 
+finisher on the project specifications, sign it, and turn it in. We also got 
+access to our drones this week. We will be in charge of fixing one of them 
+(prior student broke something), and adding the parts we will be using 
+(beaglebone black, some legs) before winter.
+\subsection{Week 7, Fall}
+Not much this week. Mostly attempting to make progress on the Tech doc, 
+but everyone but me seems to be busy. Other classes have more for me to do, 
+so...
+\subsection{Week 8, Fall}
+This week was trying to get a tech doc together. Turns out we were all sick 
+and busy except me, which explains why nothing got done. This means we are 
+spilling over into design doc time, but that has it's own issues. Still 
+not sure what to write about really. Also we are using a pixhawk, not a 
+beaglebone? 
+\subsection{Week 9, Fall}
+Class is basically over tomorrow so I might as well write now. We met 
+today to discuss how we are going to finish the tech doc, along with 
+further debating some technical aspects of the project, most specifically 
+for me whether or not we will be using SROS or not, and if our board can 
+support the latest version of ROS. We also discussed the preliminary aspects 
+of the design doc, which I will start on about now.
+\subsection{Week 10, Fall}
+We got the design doc in on time. Wew. Now on to the final boss(es): My 3 
+finals, and putting together the progress report and video. Hopefully that 
+happens on time. EDIT: It all happened on time. Did well on my finals too!
+\subsection{Week 1, Winter}
+We are back to work. Very little happened over break due to the team being 
+scattered on the four winds, but we have now met up and discussed our current 
+plans. We aim to have the drones functioning by the end of next week, along 
+with completing the threat model. 
+\subsection{Week 2, Winter}
+Progress was made with getting the drones operational, and in theory the threat 
+model is done. However, the drones have some board issues(something about 
+busted connections) and it'll take some more ECE magic before those work. 
+Also, while we have setup the Beaglebones with our linux/ROS install, it's 
+having some memory read issues and it doesn't always boot correctly at this 
+time; we are looking into this but it may be a hardware issue with our SD card 
+reader. In good news I've started working with Vee to create a malicious ROS 
+package for testing purposes, we have one most of the way there but are running
+into some compile dependency issues about graphics drivers. I'm also making one 
+separately that will be a fair bit less complex and should have it done in the 
+near future.
+\subsection{Week 3, Winter}
+I finally wrote code this week. I made some script-kiddy-esc ROS packages that 
+do simple bad things like fork-bomb and kill system stuff. All of these require 
+that you have the bad packages on the system already, but that's okay. Working 
+on thinking up more unique bad packages to make at this time.
+\subsection{Week 4, Winter}
+Not a ton happened this week. We didn't meet as a team Tuesday because everyone 
+was busy, but then Thursday we found out we have more documentation to do, so 
+we are re-gearing for completing that. Emily is our captain by vote, and expo 
+registration should be done soon
+\subsection{Week 5, Winter}
+More progress this week. I made another package, but we were also told of a 
+new high directive: rewriting our documentation to fit current needs. 
+That will happen nowish.
+\subsection{Week 6, Winter}
+The documentation rewrite overrode all other priorities, but it got done. 
+We are looking to make further progress starting next week.
+\subsection{Week 7, Winter}
+The group has determined that there were some internal problems, and are 
+working on refocusing our efforts. Specifically we are looking into whether 
+making the drone work is feasible anymore, and exactly how we are structuring 
+our research.
+\subsection{Week 8, Winter}
+Our issues have been more or less resolved. The proper authorities have been 
+spoken to, we got help for figuring out what was wrong with the drone, and 
+progress is being made again. And we got some clarifications on research specs, 
+but mostly the drone. Next week is the show up or die class, so we will be 
+showing up.
+\subsection{Week 9, Winter}
+Progress continues to be made on the drone, and continuing to bug McGrath for 
+help seems to be working for when we get stuck. However progress is temporarily
+halted until we get another batch of documentation over with, mostly the 
+poster. This, along with a different poster for a baccore class I'm taking, 
+means I have 2 art projects due by next Friday. And I am not an art person.
+\subsection{Week 10, Winter}
+We met briefly this week and worked on the drone some, but most of our 
+attention was now on our progress reports. Mine is done, but then I had other
+classes. I thought of an idea for my next malpac at least. Also, something broke
+my markdown and this is now a big chunk of text. It doesn't seem to want to fix 
+itself, either...
+\subsection{Week 1, Spring}
+So I need to use this 3 P format thing.
+Progress: Over break I made a bunch of new packages as I hoped I would. 
+About 7 total.
+Plans: Make more packages, prepare for expo. Make sure the group is 
+meeting with the right people. Check to see somethings about ROS message rates.
+Problems: Still no drone, possibly won't even be able to do as much as we like 
+with it because we won't have security clearance if the situation doesn't 
+change shortly.
+\subsection{Week 2, Spring}
+Progress: We met with Vee Friday, and after some discussion the rest of the 
+team is now fully aware that they need to make code, hopefully soon. Also we are 
+deep 6'ing the drone at this point.
+Plans: At this point I think I stop making my own packages for a bit and make 
+sure the rest of the team gets off the ground in short order.
+Problems: 3 weeks until expo and we need more code badly
+\subsection{Week 3, Spring}
+Progress: We met with Vee again Thursday, and he's happier with our progress. 
+I gave some ideas to Emily to code but Zach found some stuff on his own. 
+I also have a new idea to work on but I doubt I can really make it happen...
+Plans: Work on my own package, support Emily as needed. Work on poster?
+Problems: Hand encoding TCP packets is really not fun.
+\subsection{Week 4, Spring}
+Progress: Poster is near done. We just need to take a group pic. And I 
+worked on that package from last week, but I have determined it's just not 
+feasible. Also fixed this page!
+Plans: Think about packages, if I can come up with anything else try for it
+Problems: My other classes are hellish and I'm mentally tapped.  
+\subsection{Week 5, Spring}
+Progress: Poster got done. I still don't have anything good for new packages 
+though....
+Plan: Probably think about midterm progress report for now.....
+Problems: Why does the homework never end
+\subsection{Week 6, Spring}
+Progress: We have begun work on the midterm progress report and the final 
+paper. No packages though, not until after expo
+Plan: Work on papers, try not to fail other classes
+Problems: so much due next week
+\subsection{Week 7-10+Expo, Spring}
+EXPO
+Progress: We did our paperwork and Expo is over  
+Plan: Finish this research paper thing, maybe another package or two  
+Problems: None at the moment?  
+If I got a redo, first thing to do is just scrap the drone from day 1, or 
+get the ISO from McGrath sooner.  
+Also, maybe aim to make package 15 my big final package and actually finish 
+it. But mainly, make sure to take ECE 375 in winter term, meet with Vee 
+every week and do a better job as relay.  
+Biggest skill is team communication bar none, including breaking bad news.  
+I have no idea. Does respiration count?  
+How to adapt to change, rapidly. Also disaster planning and management.  
+No, not really. I don't feel like our code base has enough variance in attack 
+types to be worth much.  
+More packages with more variety. Maybe actually fix the drone.  
+\newpage
+\section{Emily's Blog Posts}
+\subsection{Weeks 0-3, Fall}
+The first few weeks of this course were spent analyzing which projects we wanted, who we would be working with, and how we wanted to initially approach our given problem. It was somewhat of an adjustment period to the course and the next nine months. The calm before the storm essentially. These weeks also provided us with an opportunity to prepare for all the technical writing and research we were about to do.
+\subsection{Week 4, Fall}
+During this week we continued our work on getting the project better defined and potentially revising our problem statement. We also got to have a great meeting with Rakesh and Jesse, who gave us some really cool professional insight into what we could potentially focus on. We've mostly confirmed that we're using ROS at this point, and we have some ideas about ways to attack it, but nothing has really been solidified yet. We do hope to be able to contribute to the SROS project, but we're not sure it will be usable for us.
+\subsection{Week 5, Fall}
+This week was somewhat of a lull, but we were able to get our problem statement revised, which will help us. We also started work on an initial draft of our requirements document in preparation for the final version due next week. We met as a group to discuss it and have a great plan for moving forward. We also now have seen our drones, but are lacking some components still.
+\subsection{Week 6, Fall}
+Despite our solid first draft we still scrambled to pull together our final version of the requirements document, mainly because it was a little bit unnatural for a research project. There was still so much ambiguity that it seemed like we were pulling at straws and making wild guesses as to what we need. As for the hardware we do now actually have our drones but we need to do some surgery on them and I need to resolder a component on one of the PixHawk boards that Sam broke.
+\subsection{Week 7, Fall}
+This week we made some rough sections for the tech review, but it's been really difficult for us to figure out enough of them that make sense to do a tech review on. The majority of our project is based around the research lifestyle and ROS, but outside of that we don't have a ton to talk about. Hopefully when we have a more specific view of what we're doing we can come back and better define this.
+\subsection{Week 8, Fall}
+Things were a bit of a struggle this week and not a lot got done. I've had a cold and Zach has also been sick, so it was mostly just each of us trying to finish our tech doc sections. A lot of other classes have gotten chaotic this week too, so we were definitely not as focused as we needed to be on this.
+\subsection{Week 9, Fall}
+This week was a short one with the holiday, and was spent trying to catch up on the tech doc that both Zach and I failed to complete by the deadline. I've talked with both Kirsten and Kevin about it and they had useful pointers, but it still seems like such a stretch when writing it. We're also starting to think about the design doc coming up next week and the end of term assignments.
+\subsection{Week 10, Fall}
+This was the last week of classes and we focused quite a lot of our effort into making the best design document we could. I'm actually really happy with the outcome, and it was probably the most useful of the documents we've written this term. I do wish that I'd had just a little more time to add a better literature review section per Kirsten's suggestion, but we can still add those sources into our final progress document. That's all we have left to do, other than make the video presentation of it. I can't believe this term is already over.
+\subsection{Week 1, Winter}
+Over break we each individually did some work on the project. The portion I worked on was creating our threat models, which we need to use to complete our research iterations this term. This week I'm adding in some of the sources that Dominic and Zach found over break to finish fleshing them out and finalizing them. We are all also going to get the hardware fully functional this week so that we can begin testing as soon as possible. We've met as a group to discuss our project but still need to meet with Vee and our TA.
+\subsection{Week 2, Winter}
+This week we made headway with the hardware, getting the pieces we aren't using taken off of the drones and Zach getting ROS installed on both the boards so that they're ready to go. I get the threat models finished up and published, but there's discussion of changing their layout so they may get more tuning this coming week. In finishing them I've amassed more pages and articles we can use, so we have even more to go off of. We also got to meet with Jon this week so we have a better idea of what's ahead of us this term, as well as get his input on where we are in the project. I think we're all hoping to get a lot done this coming week.
+\subsection{Week 3, Winter}
+A lot got done this week, just as we had hoped it would. We met up three or four times and worked together on getting the boards set up with the operating system, getting some malware packages set up for testing, and getting the hardware ready to go. My part specifically was the hardware, which got everything returned to Kevin that we weren't using, a battery for one of the drones, and everything put in its place. We just need to hook up the boards now and they should be working. We're just making sure that they'll interface correctly with the PixHawks first, since that's been giving us a bit of trouble. In the mean time though we all have an installation of ROS on our computers so we can do some research and testing without having to use the physical drones. My first research prospect is sensor spoofing so I'll be doing more research into that this week.
+\subsection{Week 4, Winter}
+Week four was somehow yet another productive one. While I personally spent the majority of it sick in bed, I was still able to work on some sensor spoofing ideas. I researched the topic more thoroughly and was able to find some pretty great sources. The other two also continued to get work done on their respective research sections. We also had class for the first time in a while, which gave us some good pointers for what to expect in the next couple weeks, and how we should prepare for them. Early next week we'll be working on the rewrite of the tech doc, which will soon be due.
+\subsection{Week 5, Winter}
+With the looming deadline of midterm checkin this week involved a lot of reassessments of our documentation. We each planned out what we would need to revise in our respective sections and prepared for our additional progress documentation. At the same time we continued to put work into our research, with Zach focusing on perfecting the drone communication, Dominic making more malware packages, and I continued honing my research on sensor spoofing, waiting to test it on the fully functional drone. With midterms on top of it, next week is bound to be just a flurry of writing and editing, probably with little research getting done.
+\subsection{Week 6, Winter}
+This week, as expected, was spent almost exclusively updating our documentation and making the changes necessary. I've finished creating the OneNote document and have also made the new progress report docs. We've all added changes and edited our video. We reused parts of the video from last term that didn't change, and added in more current updates. Next week we can finally be done with all this writing and be back on the research cycle.
+\subsection{Week 7, Winter}
+After a solid term of difficulty after difficulty with the drone setup we decided to seek the help we had long needed. Zach spent a lot of time writing up specific documentations on what he had done and tried so that we could get the best possible recommendations. In the mean time I've been working on getting a unified and structured from of data recording up and running. I spoke with Kirsten to get some direction on it, and she gave me some great ideas. With this in place we can all put our research findings in one place, and will be able to see how the others are recording so that we can maintain some sort of consistency. This also means that when the time comes to bring all of our results together and draw conclusions, it will be a much easier process.
+\subsection{Week 8, Winter}
+%TODO
+\subsection{Week 9, Winter}
+%TODO
+I had meant to also get all of my person research and data gathering put up, as well as the packages I've found or created, but unfortunately my mountains of other homework overtook that. I'll be putting them up as I can throughout the next week. After we've met with Kevin we'll all have a better idea of how we are doing moving forward.
+\subsection{Week 10, Winter}
+Dead week, as always, consisted mostly of hurried work and and scrambling to meet deadlines. For this class there was just preparation work for our upcoming individual reports and then the final presentation. We each worked on putting the terms worth of work together so that we could best present and discuss it. I spent a good deal of this time preparing for a job interview, and left most of my prep work to be done over the weekend, which it was. Going into next term is looking pretty solid, we just need to keep up the work ethic and be better about documenting what we find.
+\subsection{Week 1, Spring}
+As with most first weeks, this first week of Spring term has consisted of assessing and planning. We met with Vee and made some plans for what we need to do moving forward, specifically on getting the poster done and getting our research data together. I've made progress on updating our threat models and creating designs for our final poster look. We seem to still have some problems with our work being disparate but with more meeting it should be resolved soon. Once we know that we're all on the same page with the same game plan we can really get things moving.
+\subsection{Week 2, Spring}
+Week 2 was a productive one, we had a much needed meeting in which we hashed out exactly where we need to be going in the last week of this project, and how we all understand our responsibilities within it. We've made plans to work together more often and to put all of our heads together to grind out as many exploits as we still can. As for progress, I made some on my Mavlink script, and I also updated the threat model. The poster draft was also imminently due so I updated it and added graphics. Miscommunication was a continuous problem in the project and I think that's be fixed now after our meeting, but now that a lot of what I thought was my important work has been cut down I have the problem of filling that space with a lot more code or other forms of vulnerability proof.
+\subsection{Week 3, Spring}
+This past week involved Herculean work effort, pushing what I had been working on, planning for the next couple weeks, and exploring new exploit topics. Reevaluating what needed to be done before expo gave me a great chance to make new in depth plans. Specifically they involve focusing all my efforts between now and May 1st on pushing any software exploits I've been working on, and quickly developing the OS level ones I've recently started. Some of this time will also need to be spend on perfecting our final poster draft. After the code freeze takes place on the first my focus will shift more towards expo prep and data analysis.
+
+I've made a good deal of progress so far on pushing out my code by finishing my second GPS spoofing package and conceptually finishing my MavLink package. I've started work on three separate OS level memory manipulation exploits, and hope to finish them by the end of this week. Getting these tricky OS exploits to work in a week is bound to be problematic, I'm hoping to get some help from Kevin when that inevitably happens.
+\subsection{Week 4, Spring}
+This week involved a LOT of work. I had planned to work on some OS exploits and have spent quite a lot of time on them, with some solid progress being made. Now that those and the poster are so close to being finished the plans for the next couple weeks move to our WIRED writing assignment and to preparations for expo. We also plan to continue making progress on the code base, fixing up any packages that need love and documenting them all. As expected there were a number of problems in getting our poster beautifully strapped together, which unfortunately required some last minute scrambling. Better planning for the upcoming portions of the work will hopefully prevent much more of this from happening.
+\subsection{Week 5, Spring}
+Week five was spent polishing up the exploits we had, and preparing for our whitepaper and midterm report. We made plans to get together and put as much work as we all can into our whitepaper, to get the best possible result. We've also planned to record our progress video and pitch together. As for work done this week, we each wrote our WIRED papers reviewing a member of another group, which was an interesting and useful exercise. It gave me good ideas for how to pitch our project to someone, with the mindset of them reviewing it. This was a surprisingly problem free week, mainly since it was somewhat of an eye of the storm in term of overall project development.
+\subsection{Week 6, Spring}
+This week was somewhat odd in that we were updating and tidying up our repo, but there weren't any actual assignments going on. We did get the actual deadline for our whitepaper at the end of the week so that gave us the cue to spring into action. Thankfully I had already laid out something of an outline for it and had a lot of the writing already done in different places. It wasn't too hard to piece together a bare bones draft of it over the weekend. Our biggest problem was that we were flying somewhat blind as to what the final product should look like. There isn't really an official whitepaper structure for us to follow.
+\subsection{Week 7, Spring}
+This week was the long awaited expo week! We spent nearly all of it preparing and perfecting our whitepaper. This meant planning out how it was going to work and meeting with Kirsten to tweak the layout and organization of sections. I was really impressed wth all of our combined effort being able to create a complete and polished document by combining our preexisting writing and tying it together. We did have some problems with how to approach some sections or on whether or not some aspects should be included. I also personally struggled with the wording of some sections, so I spent a lot of time bugging Kirsten with questions.
+
+As for expo it went really well and I honestly enjoyed the experience. We had each planned out a spiel and pitch to use when talking to differing groups of people. We were able to interact with a wide variety of backgrounds and interests, and many of them really liked our project. Personally I had the hardest time communicating it with children since I've never been particularly good with them.
+\subsection{Week 8, Spring}
+We've made it! All the hardest parts are over, and only the final written wrap ups are left ahead of us. We have plans to meet with Kirsten early next week to discuss in more specific detail what our group needs to do for the final write up, since ours is a little different. Once that happens then we'll all work to get it put together and as nicely done as possible. For the moment we've all been working on the three short writing assignments that were revealed in the final class meeting. As for problems we currently don't have any, except that we're stuck waiting for our meeting this weekend rather than being able to make progress on our final report.
+Final Post Questions
+
+    If you were to redo the project from Fall term, what would you tell yourself? I would definitely tell myself to start working on the unknowns, like the hardware, much sooner, rather than assuming we could easy get it done. This would reduce sooooo much of the stress and headache from this project.
+
+        What's the biggest skill you've learned? I've learned a huge amount about project and time management. I definitely got better at estimating the time things would take and my ability to get them done.
+
+            What skills do you see yourself using in the future? I see myself using the two skills I just mentioned extensively throughout my personal and professional life, and I'm sure I'll always be working to improve them.
+
+                What did you like about the project, and what did you not? While it was rough sometimes, I really liked the challenge of being able to work on a research project about something of which I had little foreknowledge. I enjoyed being able to continuously learn from it. I did not so much enjoy the seemingly excessive progress reporting, particularly in video from, but I understand why it was assigned.
+
+                    What did you learn from your teammates? A lot! They both taught me a variety of different skills, and showed me different ways of thinking about things on various occasions. I think we all traded at least a little knowledge, and hopefully each learned how to operate well in a group.
+
+                        If you were the client for this project, would you be satisfied with the work done? Yes, I would be. I know we've had miscommunications about what satisfactory meant previously in this project, but I know we've all put a lot of work into it, and strove to fix that and make it the best it could be.
+
+                            If your project were to be continued next year, what do you think needs to be working on? Our project would be a great candidate to be continued, probably as a development project that creates fixes and patches for ROS based on our research, and help to secure the system.
+                            \section{Zach's Blog Posts}
+                            \subsection{Week 0-3, Fall}
+                            Ah yes, the first blog post. We spent time trying to figure out a good time and place to meet with our client, and hasing out details. We got some input from some research professors, which helped us to refine the goals of the project. Next week we hope to get antiquated with the hardware and start planning attack vectors and threat modelling.
+                            \subsection{Week 4, Fall}
+                            We spent time clarifying some logistical things with the class, including getting feedback on our Problem Statement writeup; which we need to redo. We also got to see the drone! There's some work to be done before we can get it working, and we should be able to have it run ROS. Being that we are using ROS, we already have some vulnerabilities that we can look at, as ROS has some out of the box. We may be looking towards SROS, a secure variant of ROS, though it is still a very early project. We also had a chance to meet with Jesse, a crypto researcher who once worked for Intel. It will be awesome having his input on the project as we move further along. Next week we hope to finish up our Problem Statement and get our Requirements doc written.
+                            \subsection{Week 5, Fall}
+                            This week we finished up our revised Problem Statement document, and should be squared away on that. We also spent a lot of time trying to work out our requirements document to get our first draft submitted. We were able to meet briefly with our client to check in and make sure everyone was on the same page with regards to the requirements document. After we finish up some formatting and polishing, we should have a good starting point for moving forward.
+                            \subsection{Week 6, Fall}
+                            We had a busy week trying to put together our final version of the Requirements document. We were not able to meet with our client until the end of the week, which caused some concerns regarding our document being too ambiguous. However, being that this is a research project, with requirements that can't fully be defined until we complete our threat model. So we are hoping that we can make changes to this document later on.
+                            \subsection{Week 7, Fall}
+                            Spent this week trying to hash out tech document sections and doing a lot of research into the drone hardware and ROS. Hopefully this helps us figure out the direction our research will take us, though I feel we will run into some issues due to the open endedness of our project; it is hard to define a clear objective that is measurable.
+                            \subsection{Week 8, Fall}
+                            Spent a lot of time researching more into the drone, more specifically the communications channel. Turns out there is a lot of things that we can do with our drone, and we have no idea what additional hardware is available for us to use. It seems that our client is also unsure, though we haven't really been able to speak with him much since the requirements document was turned in. Hopefully we are able to have a meeting soon.
+                            \subsection{Week 9, Fall}
+                            Due to unanswered questions regarding our drone, I was unable to meet the tech document deadline. For example, we still have no idea how our drone will be controlled; what kind of ground control station do we have? Is it operating on the 2.4 Ghz or 900 Mhz band? How do we interface this with ROS and the Pixhawk flight controller? There are a lot of unanswered questions, and after meeting with our client I was basically told that it didn't matter and to just pick something for the sake of turning in the document. I was not, and am still not a fan of bullshitting such an important document, and find it a bit annoying that we are left to just "wing" it, without any real direction from our client or those helping us with the project. Though, I did the best I could making education decisions, and was able to get the document further completed.
+                            \subsection{Week 10, Fall}
+                            During the holiday break, I finished up the tech document and started working with my team to get our design document figured out. It turns out we don't have to follow the IEEE template mentioned for the design document, since it is a software specific standard, and we are doing a research based project that does not involve writing some fancy app or what have you. Speaking with Kirsten allowed us to get more direction on how to properly format our document. After much hard work we finished our design document.
+                            \subsection{Week 11, Fall}
+                            During the weekend leading up to finals week, our group worked to get our progress document completed, and began work on our powerpoint presentation. We also discussed talking points for our video that we have to make. It looks like we will make the deadline Wednesday, which is good. We are basically on our own at this point, so hopefully we made the right calls in our design document, and Winter Term starts smoothly. Over winter break, myself and Emily plan on meeting in the design lab to get our drone working with ROS, and to do some testing to see if we can use the SROS (Secure ROS) project at all. Things are getting exciting!
+                            \subsection{Week 1, Winter Break}
+                            The start of winter break has been used for final exam recovery, and not much project stuff has been done. I looked into what we need to do to get our drones operational so we can start threat modeling. Lots of snow and ice closed campus preventing me from using the capstone lab. I'm hoping I can start on things next week, and that my other group members are available.
+                            \subsection{Week 2, Winter Break}
+                            I spent time making sure the BeagleBone Blacks were operational. Also picked up two SD Cards so we can easily boot up ROS and whatever else we need, without needing to flash the local memory. I have not got ROS running just yet, but at least we know that our hardware seems to be working as it should. Once I get ROS running with our drone packages installed, I will see if I can get the PixHawk cape to work properly.
+                            \subsection{Rest of Winter Break}
+                            Planned out meeting with our groupmates for the first week of winter term. I continued to get our microcontrollers ready for use, and inquired about getting some SD cards from Kevin McGrath. Also inquired to get our drone controllers, so we can actually get things operational.
+                            \subsection{Week 1, Winter}
+                            Got our hardware together and organized, as we get ready to get the drones running. Kevin McGrath gave us the pairing cables so we can link the drone controllers to each of our drones. Met with Emily and Dominic to discuss our next steps, and plans to finish our threat modeling. We still need to meet with our client, to go over what we have and to get further direction for the remainder of the term.
+                            \subsection{Week 2, Winter}
+                            McGrath gave us some microSD cards for the BeagleBone Black microcontrollers -- I worked to get Ubuntu & ROS running on both boards. Also did some testing to make sure it was working correctly. Next week we plan on meeting up to see if we can get the Pixhawk interfaced and working.
+                            \subsection{Week 3, Winter}
+                            Finally got Ubuntu ARM running on the BeagleBones, along with a working install of ROS!!! It took two all nighters to work through some issues, but everything finally fell into place. We also met with our client, Vee, a couple times this week to discuss our next steps. I was also able to test the PixHawk Cape; we are able to read and write memory via I2C, which is good. Plans over the weekend include getting the dones actually hooked up and seeing if we can get them fully operational. Exciting things ahead!
+                            \subsection{Week 4, Winter}
+                            Got ArduPilot compiled on the Beagle Bone Blacks; we need to setup the PWM connections on the drone, to actually test if this works. This process took several hours, for each BBB. If this fails, we will roll back to an earlier version of Ubuntu and ROS. Week 5 will be when we figure this out, and get the drones flying, finally.
+                            \subsection{Week 5, Winter}
+                            Still having issues regarding the ArduCopter project, seeking assistance trying to get this error message resolved: http://diydrones.com/forum/topics/can-t-connect-to-mavlink-via-usb-panic-ap-baro-read-unsuccessful Speaking with Vee our client next week about this.
+                            \subsection{Week 6, Winter}
+                            After talking with our client, and working on our midterm progress, it was suggested that we go to Kevin McGrath regarding next steps, since we are not getting anywhere getting our drone configuration working. We have solid work done towards ROS packages and exploitation regarding our project; we just don't have hardware for it to run on. The next step during week 7 is to figure out what to do regarding these issues
+                            \subsection{Week 7, Winter}
+                            This week was spent trying to figure out next steps regarding our drone hardware issues. I have been tasked with sending a detailed email to Kevin McGrath, seeking guidance. We also got initial feedback from our client Vee, who wanted to see more detail and info regarding ROS packages in our midterm progress report. We spoke with our TA, Jon, to see how to best accomplish this. Vee, Kevin, and Kirsten were all brought in the loop on this, as there was a disconnect between what the assignment asked for, and what our client was looking for. Right now our focus is getting our hardware situation worked out, and we will fine tune the documentation later on. We hope to meet with Kevin McGrath next week to help figure out what to do with our hardware.
+
+                            I am also working on communication exploit related ROS packages, after speaking with Vee briefly via Slack on Friday night (24 Feb 2017) -- This is the first time I have been told to work on ROS packages, even though Dominic has been working steadily on them for the past several weeks. I hope that my work towards this will help with getting our project moved forward, while trying to work out our real-world hardware issues.
+
+                            There was also some talk about going towards new hardware, or a virtual robotic environment. Either way, we are still focusing on ROS exploitation, and have been making solid work towards that goal.
+                            \subsection{Week 8, Winter}
+                            We had a morning meeting with McGrath to talk about our issues getting the BBB and Pixhawk 1.6 cape working with our drone. McGrath had a lot of ideas and was incredibly helpful! He provided me with access to a new BBB image to try, that already has the BBB + PixHawk cape device trees setup for you. This Erle Brain image is no longer published online, so we were very thankful that Kevin McGrath had a copy of it to share with us on Box. We also spoke with Kevin about our policy exemption request, so that we can sniff 2.4 Ghz and 900 Mhz RF traffic while on campus -- I was given details on what to include in the document to formally request that exemption. We also had a good discussion regarding methods to intercept this RF traffic, and talked about various SDR (Software Defined Radio) options that we could use -- some cheap and some not so cheap.
+
+                            After the meeting with McGrath I went to the capstone lab to flash the new BBB image to test it -- And I am very happy to say that it appears to be working!! The rest of this week will be spent trying to hook up the drone again and see where it leaves us.
+                            \subsection{Week 9, Winter}
+                            This week I wrote up the policy exemption document for McGrath -- The OSU Security Council is meeting Monday of Week 10, and discussion of this request is formally on the meeting agenda fingers crossed that it all goes well!
+
+                            We all met in the capstone lab a few times this week to hook up the drone and see where we are now that we have a working BBB image. We can communicate with our Mission Control software, but only for a moment before we lose contact. We are going to request a pair of MAVLink radios and try this again.
+
+                            Also during our tinkering, we found that our GPS cable for the 3DR radio doesn't have anywhere to go on our PixHawk 1.6 cape -- it appears the cable we were given was for a newer version of the Pixhawk, and no the one we have. After Dominic and Emily spoke with Kevin about this, he gave us another cable to try -- he too was a bit perplexed by this. We will be meeting up early next week to give things another go to see where we are.
+
+                            We also had our final capstone lecture for the term, where we did simulated pitches of our project. We were chosen to do ours in the front of the class, and got some solid feed back doing so. We need to have some solid drone visuals to keep people interested an engaged. At this time we are not sure exactly how to do that, as it seems that we can't have the drones at the expo.
+
+                            Next week we will be finalizing our end of term documents, including our poster -- the deadline for that was dropped on all of us last minute, after being told it would be due at the beginning of next term. But hey, what's a little more stress and pulling your hair out, right?
+
+                            Oh, I also came across this awesome research paper by the U.S Air Force, regarding exploiting the MAVLink protocol
+
+                            VULNERABILITY ANALYSIS OF THE MAVLINK PROTOCOL FOR COMMAND AND CONTROL OF UNMANNED AIRCRAFT
+
+                            DEPARTMENT OF THE AIR FORCE
+
+                            http://www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA598977
+                            \subsection{Week 10, Winter}
+                            I was really sick at the beginning of dead week -- plagued with a stomach flu and multiple days of trying to manage a 102 degree fever. Because of this my productivity was nonexistent at the beginning of the week. Luckily around Wednesday evening I started to feel better, and was able to start working on end of term documents. Our group worked on our poster, and finished up the draft design of it Thursday night. We also made progress on our final progress reports for the term, and discussed logistics regarding our video we need to do next week. So far progress is smoothly being made as we approach the end of Winter term. Over spring break I plan to do more work on the drone, and getting into more exploitation analysis.
+                            \subsection{Week 1, Spring}
+                            We are using this "3P" format now, so here it goes:
+
+                            Progress: Logistics and planning for trying to figure out where we are with the project, and what we still need to do; since Expo is next month, we are running out of time, so this stuff needs to be figured out. We spoke with Vee, our client, for about 15 minutes; luckily we have plans to meet next week, on a day where our schedules aren't so tight with classes.
+
+                            Plans: Come up with a game plan from now until Expo -- Contact Vee, our client, and setup a time to meet to talk more in-depth about the project.
+
+                            Problems: Apparently my request to get a policy exemption was scrapped and someone brought up the idea of using ROS Bag; I was not informed of this until speaking with Vee during our 15 minute meeting. This really changes things as most of my communications threat model is up in the air, unless if we can use ros-bag in a way that will gather the data I am looking for.
+                            \subsection{Week 2, Spring}
+                            Progress: We were not able to meet with our client until Friday, and that's when shit kinda hit the fan. The client decided earlier to throw out the drone, though I was not informed of this when that decision was made. With that, we set a game plan on how to proceed.
+
+                            Plans: Work on ROS only Proof of Concepts, that do not need a drone to show that vulnerabilities exist. Meet with client next Thursday to explain progress of things.
+
+                            Problems: Lots of uncertainties, and the project seems to be on a fine line at the moment.
+                            \subsection{Week 3, Spring}
+                            Progress: Spoke with several people this week about the state of the project, and how we should proceed. We have a great support network and have been able to find some direction in this last minute chaos. Vee, our client, was pleased with my progress on my ROS PoC packages, so things seem to be going in a positive direction now.
+
+                            Plans: Continue work on PoC packages, document everything, and get poster feedback so we can finish it.
+
+                            Problems: Still some uncertainties regarding how the project is going.
+                            \subsection{Week 4, Spring}
+                            Progress: Made my ROS fuzzer this week, and started work on my ROS replay attack package. Submitted poster for final approval before going to the printers on Monday.
+
+                            Plans: Finish up remainder of ROS PoCs, for Monday's code freeze. Finalize poster and get client approval.
+
+                            Problems: I was sick with strep throat this week, so I was not able to get as much done as I wanted.
+                            \subsection{Week 5, Spring}
+                            Progress: We got our poster done this week, and managed to get a pretty cool team photo for our poster (and proudly displayed on the Github repo).
+
+                            Plans: Start working towards Midterm progress report and video
+
+                            Problems: No problems to report currently; our client still seems to be happy with the new direction of work.
+                            \subsection{Week 6, Spring}
+                            Progress: Worked on and finished the Midterm progress report and video. Finished first draft of our white paper. Hopefully we will get feedback before the Expo due date.
+
+                            Plans: Finalize whitepaper next week, and prepare for Friday's Engineering Expo
+
+                            Problems: Got last minute notice that our whitepaper is expected to be submitted by Friday, which is expo day. Why we got such late notice on this, I do not know. We will do what we can to work within this limited time frame.
+                            \subsection{Week 7, Spring}
+                            Progress: We produced our final white paper in time for expo. Expo went well, and it was a great experience!
+
+                            Plans: Start working towards final report, and other final writing documents.
+
+                            Problems: No problems to report.
+                            \subsection{Week 8, Spring}
+                            Progress: Got information regarding our final assignments for the term to wrap up our capstone experience. Started working towards completing some of those assignments.
+
+                            Plans: Scheduled a meeting with Kirsten to talk about our Final Report requirements, since we have a research project.
+
+                            Problems: No problems to report.
+                            Final Post Questions
+
+                                If you were to redo the project from Fall term, what would you tell yourself? I would tell myself to identify exactly what needs to be done much sooner; there was so much time spent trying to navigate what to do first. Getting those things out of the way sooner would have made things less stressful.
+
+                                    What's the biggest skill you've learned? Dealing with conflict. Unfortunately this project hit a lot of problems along the way, and things often got tense between myself and other team mates, as well as tense with our client. Knowing how to navigate situations like this is important, as it can often get in the way of success.
+
+                                        What skills do you see yourself using in the future? Project planning, team work, and conflict resolution.
+
+                                            What did you like about the project, and what did you not? I really enjoyed evaluating ROS security in a lab setting, and developing proof-of-concepts. I disliked being tasked with getting our dated drone hardware to work, however. That caused a lot of issues.
+
+                                                What did you learn from your teammates? Learned how to better communicate my progress with certain tasks, and saw different ways of approaching problems.
+
+                                                    If you were the client for this project, would you be satisfied with the work done? Yes, I would. Assuming that I was better at communicating and checking in with my group along the way; there were some communication issues with our client and to be honest I have no idea if he is pleased with the work that was done after we worked through these issues.
+
+                                                        If your project were to be continued next year, what do you think needs to be working on? A continued evaluation of ROS, as well as a revamp of the current PoCs we have; a lot of the packages could use some work. Also, getting these PoCs tested on real world hardware, like a drone. It would also be good to spend some time working on fixes for the security issues that we discovered.
+
+
+
+
+\end{document}
