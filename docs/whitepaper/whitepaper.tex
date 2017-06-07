@@ -230,6 +230,21 @@ It probably doesn’t succeed, unless the robot has enough disk space to hold al
 This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of issue.
 If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for each process and will need a little disk space for that purpose.
 
+\subsection{Malpac 11}
+This package dumps your filesystem to a remote machine, currently a dummy address. If you had something confidiental on the
+robot, it is now in the hands of some other party, assuming your network didn't die mid-transfer or something.
+
+\subsection{Malpac 12}
+This one, assuming your ROSMASTER was run with root privledges and is on a linux distrobution that uses apt-get as its package
+manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be 
+loaded into system memory, but on reboot or if ROS is killed and restarted in some other way, ROS will no longer be there.
+Especially bad if the ROS install was customized, as one would have to redo all those configurations all over again...
+
+\subsection{Malpac 13}
+Pings (what the team knows to be, but can not directly confirm) a North Korean IP. While it has no direct effects on the system,
+alerting North Korea to your presence is not exactly a great idea in the current political environment, and has a good chance
+of getting one on a watchlist. 
+
 \subsection{Malpac 14}
 attempts to install a bitcoin mining service on the robot.
 It does currently need sudo permissions for this, as it does need to use apt-get the way it is set up, which means that ROSCORE needed to be run as a superuser so that this child process would have those permissions as well.
