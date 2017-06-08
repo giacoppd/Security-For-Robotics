@@ -19,37 +19,21 @@
 \usepackage{url}
 \usepackage{setspace}
 \usepackage{tabular}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\lstset{frame=tb,
-  language=python,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\small\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
-}
-\begin{document}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{REQDELTA--\thepage}
 
+\begin{document}
+\begin{sloppypar}
 \section{Changes to the requirements}
-\begin{center}
-\begin{tabular}{ |c|c|c|c| } 
+\begin{tabular}{|p{.1cm}|l|p{2cm}| p{5cm} |} 
  \hline
- 1 & Use Kinetic Kame as our ROS distribution & Used Indigo Igloo instead & The older version of ROS was easier to integrate code samples into than the current stable version.\\ 
- 2 & Submit patches for vulnerabilites upstream & Didn't create any patches & All the vulnerabilities we found were based in how ROS was designed, not a code exploit or bug. So there really was not anything to patch.\\ 
+ 1 & Use Kinetic Kame as our ROS distribution & Used Indigo Igloo instead & The older version of ROS was more commonly used in other code samples, so the team used it instead for compatibility\\
+ \hline
+ 2 & Submit patches for vulnerabilites upstream & Didn't create any patches & All the vulnerabilities we found were based in how ROS was designed, not a code exploit or bug. So there really was not anything to patch.\\
  \hline
 \end{tabular}
-\end{center}
-
+\end{sloppypar}
 %
 %The only explicit change we had to our requirements was that our team used 
 %ROS Indigo Igloo over Kinetic Kame, as a large part of the existing ROS codebase
