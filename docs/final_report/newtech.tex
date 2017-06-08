@@ -18,36 +18,19 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{setspace}
-
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\lstset{frame=tb,
-  language=python,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\small\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
-}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{LEARN--\thepage}
 \begin{document}
-\section{Learning Resources}
-The defacto outside resource for this project was the ROS wiki(wiki.ros.org), as it
+\LARGE\textbf{Learning Resources\\ \\}\normalsize
+The defacto outside resource for this project was the ROS wiki\cite{ROSWIKI}(wiki.ros.org), as it
 contains all the developer written documentation for ROS itself. It also
 contains some tutorials and descriptions of common tasks in ROS that the
-team refered to while developing packages.
-For some Linux and operating system related questions, Stack Overflow(stackoverflow.com)
+team refered to while developing packages.\\
+For some Linux and operating system related questions, Stack Overflow\cite{SO}(stackoverflow.com)
 continues to be a semi-reliable source for getting things working in short order, and
 for some of the operating system packages it was refered to in order to answer 
-various questions.
+various questions.\\
 --RESEARCH GOES HERE--
 --FOR THE LOVE OF GOD GUYS FILL THIS IN--
 
@@ -60,7 +43,7 @@ HEREEEEEEEEEEEEEEEEEEEEEEE
 
 
 --i hope there is a lot--
---Emily: Put that threat model book here?--
+--Emily: Put that threat model book here?--\\
 Lastly, our team had an abundance of on campus resources. Kevin McGrath was our go-to
 concerning attempting to get the drone operational, at least until the team gave up on
 that. Kirsten Winters was crucial in our document and research design, along with Jonathan 
