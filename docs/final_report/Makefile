@@ -8,9 +8,10 @@ GH		= gv
 all: pdf
 
 pdf:
-	latex $(X).tex
-	dvips -R -Poutline -t letter $(X).dvi -o $(X).ps
-	ps2pdf $(X).ps
+	latex $(x).tex
+	dvips -R -Poutline -t letter $(x).dvi -o $(x).ps
+	ps2pdf $(x).ps
+	mv $(x).pdf pdfs/
  
 clean:
 	rm -f *.dvi *.out *.aux *.log *.bbl *.blg *.ps *.pdf
