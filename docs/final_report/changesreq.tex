@@ -1,0 +1,64 @@
+\documentclass[IEEEtran,letterpaper,10pt,notitlepage,draftclsnofoot,onecolumn]{article}
+
+\usepackage{nopageno}
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{balance}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{tabular}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\begin{document}
+
+\section{Changes to the requirements}
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+ \hline
+ 1 & Use Kinetic Kame as our ROS distribution & Used Indigo Igloo instead & The older version of ROS was easier to integrate code samples into than the current stable version.\\ 
+ 2 & Submit patches for vulnerabilites upstream & Didn't create any patches & All the vulnerabilities we found were based in how ROS was designed, not a code exploit or bug. So there really was not anything to patch.\\ 
+ \hline
+\end{tabular}
+\end{center}
+
+%
+%The only explicit change we had to our requirements was that our team used 
+%ROS Indigo Igloo over Kinetic Kame, as a large part of the existing ROS codebase
+%was created during Indigo and Kame had some compatibility issues with some 
+%Indigo-based code. There was also the understanding that we would not be 
+%producing patches to patch any vulnerabilities we found, as all of them
+%stem from underlying design choices in ROS itself rather than programming
+%errors. This makes everything more or less unpatchable, as it would require
+%design changes to ROS itself that are simply not in consideration by the 
+%ROS development team. In turn, since our team produced no patches, we did 
+%not send them to the SROS project for consideration either.
+\end{document}
