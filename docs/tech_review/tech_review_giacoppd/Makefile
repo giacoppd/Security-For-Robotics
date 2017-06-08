@@ -9,9 +9,6 @@ all: pdf
 
 pdf:
 	latex tech_review.tex
-	bibtex tech_review
-	latex tech_review.tex
-	latex tech_review.tex
 	dvips -R -Poutline -t letter tech_review.dvi -o tech_review.ps
 	ps2pdf tech_review.ps
  
