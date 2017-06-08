@@ -233,7 +233,7 @@ Eventually there are enough processes to clog the CPU and cause a kernel panic, 
 In theory, as long as there is no existing form of process management, this would kill any robot with enough time, which has 
 obvious use cases.
 
-Forkbombs like this one work to fill up processing resources so that they system has a much harder time scheduling legitimate processes. 
+Forkbombs like this one work to fill up processing resources so that the system has a much harder time scheduling legitimate processes. 
 This is essentially denial of service, which falls into the availability branch of attacks, since the system resources are rendered unavailable when done successfully.
 Distributed denial of service (DDoS) attacks are becoming more and more common in Internet of Things devices, and this package shows how it easy is to do something similar within a ROS device.
 
@@ -246,7 +246,8 @@ fix to physically capture and wire back into the robot to fix the networking.
 Either way, if one's robot is dependent on wireless networking, it will be downed for a bit.
 
 Much like the forkbomb, and similarly named, the network bomb is also an exploit that reduces the availability of the system resources.
-Specifically this one uses up the communication resources, which cuts it off from the control center
+Specifically this one uses up the communication resources, which cuts it off from the control center and potentially allows an attacker to take over.
+This was developed to flesh out the DoS portion of the model, so that the forkbomb focuses on consuming internal resources, while this one consumes the network.
 
 \subsection{Fibonacci}
 This one is actually our Client, Vee's package. It does a naive recursive implementation of the calculation of Fibonacci
@@ -255,11 +256,17 @@ of which being terribly great results and both using a fair amount of system res
 bring down the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources 
 for a bit.
 
+This was one of the first packages in existence and served as somewhat of an example of what future packages might look like. 
+It was also why a number of the earliest packages focused on resource consumption and computationally intensive work.
+Even if this isn't the most creative or greedy way to reduce availability, it serves as an elegant and classic proof of concept for availability focused packages.
+
 \subsection{Local Folder}
 This package just creates and then deletes a local folder. In theory it can delete any user level folder, which may include
 program files or ROS nodes or maybe just something important locally. If it has super user permissions then it could go so
 far as delete system directories or the like, but that is not guaranteed. Either way it can probably delete something that
 the user would rather it not.
+
+
 
 \subsection{Node Replacement}
 Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a 
@@ -420,6 +427,14 @@ We had initially intended to do more hardware based attacks, but they proved to 
 There are also a board range of physical attacks ranging anywhere from an EMP type gun to an eagle taking down an airborne drone.
 
 \section{Analysis}
+As discussed above in the Methods sections, FMEA was used primarily in the analysis of this project, in order to discover which of the created packages would be most catastrophic. 
+In the figure above representing the graph of the RPNs, one can see which types of attacks were ranked the highest. 
+Those that focused on the integrity of the system turned out to have the highest concentration in the top of that ranking.
+
+There are a number of factors that could have lead to this clustering.
+Firstly, the majority of them were more thorough and written in a greater depth than many of those in other categories.
+This means that they would be likely ranked more severely since they do more damage in more detail within the scope of this research.
+Another potential reason for this is that spoofing and changing of data to something malicious tends to be perceived as more nefarious than something like resource consumption.
 
 \section{Future Research}
 
