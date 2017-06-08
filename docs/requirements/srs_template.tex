@@ -17,11 +17,17 @@
 %http://karlwiegers.com
 \documentclass{scrreprt}
 \usepackage{listings}
+\usepackage{nopageno}
 \usepackage{underscore}
 \usepackage[bookmarks=true]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{DESIGN--\thepage}
+
+
 \hypersetup{
     bookmarks=false,    % show bookmarks bar?
     pdftitle={Software Requirement Specification},    % title
