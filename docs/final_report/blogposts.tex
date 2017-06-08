@@ -1,4 +1,30 @@
+\documentclass[IEEEtran,letterpaper,10pt,notitlepage,draftclsnofoot,onecolumn]{article}
+
+\usepackage{nopageno}
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{balance}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{BLOG--\thepage}
+
+\begin{document}
 \section{Dominic's Blog Posts}
+\begin{sloppypar}
 \subsection{Weeks 0-3, Fall}
 This is the first blog post. This last week was mostly continuing to hash out 
 details with our client, and figuring out what direction we want to take on 
@@ -106,59 +132,59 @@ classes. I thought of an idea for my next malpac at least. Also, something broke
 my markdown and this is now a big chunk of text. It doesn't seem to want to fix 
 itself, either...
 \subsection{Week 1, Spring}
-So I need to use this 3 P format thing.
+So I need to use this 3 P format thing.\\
 Progress: Over break I made a bunch of new packages as I hoped I would. 
-About 7 total.
+About 7 total.\\
 Plans: Make more packages, prepare for expo. Make sure the group is 
-meeting with the right people. Check to see somethings about ROS message rates.
+meeting with the right people. Check to see somethings about ROS message rates. \\
 Problems: Still no drone, possibly won't even be able to do as much as we like 
 with it because we won't have security clearance if the situation doesn't 
-change shortly.
+change shortly.\\
 \subsection{Week 2, Spring}
 Progress: We met with Vee Friday, and after some discussion the rest of the 
 team is now fully aware that they need to make code, hopefully soon. Also we are 
-deep 6'ing the drone at this point.
+deep 6'ing the drone at this point.\\
 Plans: At this point I think I stop making my own packages for a bit and make 
-sure the rest of the team gets off the ground in short order.
-Problems: 3 weeks until expo and we need more code badly
+sure the rest of the team gets off the ground in short order.\\
+Problems: 3 weeks until expo and we need more code badly\\
 \subsection{Week 3, Spring}
 Progress: We met with Vee again Thursday, and he's happier with our progress. 
 I gave some ideas to Emily to code but Zach found some stuff on his own. 
-I also have a new idea to work on but I doubt I can really make it happen...
-Plans: Work on my own package, support Emily as needed. Work on poster?
-Problems: Hand encoding TCP packets is really not fun.
+I also have a new idea to work on but I doubt I can really make it happen...\\
+Plans: Work on my own package, support Emily as needed. Work on poster?\\
+Problems: Hand encoding TCP packets is really not fun.\\
 \subsection{Week 4, Spring}
 Progress: Poster is near done. We just need to take a group pic. And I 
 worked on that package from last week, but I have determined it's just not 
-feasible. Also fixed this page!
-Plans: Think about packages, if I can come up with anything else try for it
-Problems: My other classes are hellish and I'm mentally tapped.  
+feasible. Also fixed this page!\\
+Plans: Think about packages, if I can come up with anything else try for it\\
+Problems: My other classes are hellish and I'm mentally tapped.  \\
 \subsection{Week 5, Spring}
 Progress: Poster got done. I still don't have anything good for new packages 
-though....
-Plan: Probably think about midterm progress report for now.....
-Problems: Why does the homework never end
+though....\\
+Plan: Probably think about midterm progress report for now.....\\
+Problems: Why does the homework never end\\
 \subsection{Week 6, Spring}
-Progress: We have begun work on the midterm progress report and the final 
-paper. No packages though, not until after expo
-Plan: Work on papers, try not to fail other classes
-Problems: so much due next week
+Progress: We have begun work on the midterm progress report and the final
+paper. No packages though, not until after expo\\
+Plan: Work on papers, try not to fail other classes\\
+Problems: so much due next week\\
 \subsection{Week 7-10+Expo, Spring}
 EXPO
 Progress: We did our paperwork and Expo is over  
-Plan: Finish this research paper thing, maybe another package or two  
-Problems: None at the moment?  
+Plan: Finish this research paper thing, maybe another package or two  \\
+Problems: None at the moment?  \\
 If I got a redo, first thing to do is just scrap the drone from day 1, or 
-get the ISO from McGrath sooner.  
+get the ISO from McGrath sooner. \\ 
 Also, maybe aim to make package 15 my big final package and actually finish 
 it. But mainly, make sure to take ECE 375 in winter term, meet with Vee 
-every week and do a better job as relay.  
-Biggest skill is team communication bar none, including breaking bad news.  
-I have no idea. Does respiration count?  
-How to adapt to change, rapidly. Also disaster planning and management.  
+every week and do a better job as relay. \\
+Biggest skill is team communication bar none, including breaking bad news.  \\
+I have no idea. Does respiration count?  \\
+How to adapt to change, rapidly. Also disaster planning and management.  \\
 No, not really. I don't feel like our code base has enough variance in attack 
-types to be worth much.  
-More packages with more variety. Maybe actually fix the drone.  
+types to be worth much.  \\
+More packages with more variety. Maybe actually fix the drone. \\
 \newpage
 \section{Emily's Blog Posts}
 \subsection{Weeks 0-3, Fall}
@@ -261,7 +287,7 @@ Planned out meeting with our groupmates for the first week of winter term. I con
 \subsection{Week 1, Winter}
 Got our hardware together and organized, as we get ready to get the drones running. Kevin McGrath gave us the pairing cables so we can link the drone controllers to each of our drones. Met with Emily and Dominic to discuss our next steps, and plans to finish our threat modeling. We still need to meet with our client, to go over what we have and to get further direction for the remainder of the term.
 \subsection{Week 2, Winter}
-McGrath gave us some microSD cards for the BeagleBone Black microcontrollers -- I worked to get Ubuntu & ROS running on both boards. Also did some testing to make sure it was working correctly. Next week we plan on meeting up to see if we can get the Pixhawk interfaced and working.
+McGrath gave us some microSD cards for the BeagleBone Black microcontrollers -- I worked to get Ubuntu and ROS running on both boards. Also did some testing to make sure it was working correctly. Next week we plan on meeting up to see if we can get the Pixhawk interfaced and working.
 \subsection{Week 3, Winter}
 Finally got Ubuntu ARM running on the BeagleBones, along with a working install of ROS!!! It took two all nighters to work through some issues, but everything finally fell into place. We also met with our client, Vee, a couple times this week to discuss our next steps. I was also able to test the PixHawk Cape; we are able to read and write memory via I2C, which is good. Plans over the weekend include getting the dones actually hooked up and seeing if we can get them fully operational. Exciting things ahead!
 \subsection{Week 4, Winter}
@@ -282,10 +308,10 @@ We all met in the capstone lab a few times this week to hook up the drone and se
 Also during our tinkering, we found that our GPS cable for the 3DR radio doesn't have anywhere to go on our PixHawk 1.6 cape -- it appears the cable we were given was for a newer version of the Pixhawk, and no the one we have. After Dominic and Emily spoke with Kevin about this, he gave us another cable to try -- he too was a bit perplexed by this. We will be meeting up early next week to give things another go to see where we are.
 We also had our final capstone lecture for the term, where we did simulated pitches of our project. We were chosen to do ours in the front of the class, and got some solid feed back doing so. We need to have some solid drone visuals to keep people interested an engaged. At this time we are not sure exactly how to do that, as it seems that we can't have the drones at the expo.
 Next week we will be finalizing our end of term documents, including our poster -- the deadline for that was dropped on all of us last minute, after being told it would be due at the beginning of next term. But hey, what's a little more stress and pulling your hair out, right?
-Oh, I also came across this awesome research paper by the U.S Air Force, regarding exploiting the MAVLink protocol
-VULNERABILITY ANALYSIS OF THE MAVLINK PROTOCOL FOR COMMAND AND CONTROL OF UNMANNED AIRCRAFT
-DEPARTMENT OF THE AIR FORCE
-http://www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA598977
+Oh, I also came across this awesome research paper by the U.S Air Force, regarding exploiting the MAVLink protocol \\
+VULNERABILITY ANALYSIS OF THE MAVLINK PROTOCOL FOR COMMAND AND CONTROL OF UNMANNED AIRCRAFT \\
+DEPARTMENT OF THE AIR FORCE \\
+http://www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA598977 \\
 \subsection{Week 10, Winter}
 I was really sick at the beginning of dead week -- plagued with a stomach flu and multiple days of trying to manage a 102 degree fever. Because of this my productivity was nonexistent at the beginning of the week. Luckily around Wednesday evening I started to feel better, and was able to start working on end of term documents. Our group worked on our poster, and finished up the draft design of it Thursday night. We also made progress on our final progress reports for the term, and discussed logistics regarding our video we need to do next week. So far progress is smoothly being made as we approach the end of Winter term. Over spring break I plan to do more work on the drone, and getting into more exploitation analysis.
 \subsection{Week 1, Spring}
@@ -294,39 +320,40 @@ Progress: Logistics and planning for trying to figure out where we are with the 
 Plans: Come up with a game plan from now until Expo -- Contact Vee, our client, and setup a time to meet to talk more in-depth about the project.
 Problems: Apparently my request to get a policy exemption was scrapped and someone brought up the idea of using ROS Bag; I was not informed of this until speaking with Vee during our 15 minute meeting. This really changes things as most of my communications threat model is up in the air, unless if we can use ros-bag in a way that will gather the data I am looking for.
 \subsection{Week 2, Spring}
-Progress: We were not able to meet with our client until Friday, and that's when shit kinda hit the fan. The client decided earlier to throw out the drone, though I was not informed of this when that decision was made. With that, we set a game plan on how to proceed.
-Plans: Work on ROS only Proof of Concepts, that do not need a drone to show that vulnerabilities exist. Meet with client next Thursday to explain progress of things.
-Problems: Lots of uncertainties, and the project seems to be on a fine line at the moment.
+Progress: We were not able to meet with our client until Friday, and that's when shit kinda hit the fan. The client decided earlier to throw out the drone, though I was not informed of this when that decision was made. With that, we set a game plan on how to proceed. \\
+Plans: Work on ROS only Proof of Concepts, that do not need a drone to show that vulnerabilities exist. Meet with client next Thursday to explain progress of things. \\
+Problems: Lots of uncertainties, and the project seems to be on a fine line at the moment. \\
 \subsection{Week 3, Spring}
-Progress: Spoke with several people this week about the state of the project, and how we should proceed. We have a great support network and have been able to find some direction in this last minute chaos. Vee, our client, was pleased with my progress on my ROS PoC packages, so things seem to be going in a positive direction now.
-Plans: Continue work on PoC packages, document everything, and get poster feedback so we can finish it.
-Problems: Still some uncertainties regarding how the project is going.
+Progress: Spoke with several people this week about the state of the project, and how we should proceed. We have a great support network and have been able to find some direction in this last minute chaos. Vee, our client, was pleased with my progress on my ROS PoC packages, so things seem to be going in a positive direction now. \\
+Plans: Continue work on PoC packages, document everything, and get poster feedback so we can finish it. \\
+Problems: Still some uncertainties regarding how the project is going. \\
 \subsection{Week 4, Spring}
-Progress: Made my ROS fuzzer this week, and started work on my ROS replay attack package. Submitted poster for final approval before going to the printers on Monday.
-Plans: Finish up remainder of ROS PoCs, for Monday's code freeze. Finalize poster and get client approval.
-Problems: I was sick with strep throat this week, so I was not able to get as much done as I wanted.
+Progress: Made my ROS fuzzer this week, and started work on my ROS replay attack package. Submitted poster for final approval before going to the printers on Monday. \\
+Plans: Finish up remainder of ROS PoCs, for Monday's code freeze. Finalize poster and get client approval. \\
+Problems: I was sick with strep throat this week, so I was not able to get as much done as I wanted. \\
 \subsection{Week 5, Spring}
-Progress: We got our poster done this week, and managed to get a pretty cool team photo for our poster (and proudly displayed on the Github repo).
-Plans: Start working towards Midterm progress report and video
-Problems: No problems to report currently; our client still seems to be happy with the new direction of work.
+Progress: We got our poster done this week, and managed to get a pretty cool team photo for our poster (and proudly displayed on the Github repo). \\
+Plans: Start working towards Midterm progress report and video \\
+Problems: No problems to report currently; our client still seems to be happy with the new direction of work. \\
 \subsection{Week 6, Spring}
-Progress: Worked on and finished the Midterm progress report and video. Finished first draft of our white paper. Hopefully we will get feedback before the Expo due date.
-Plans: Finalize whitepaper next week, and prepare for Friday's Engineering Expo
-Problems: Got last minute notice that our whitepaper is expected to be submitted by Friday, which is expo day. Why we got such late notice on this, I do not know. We will do what we can to work within this limited time frame.
+Progress: Worked on and finished the Midterm progress report and video. Finished first draft of our white paper. Hopefully we will get feedback before the Expo due date. \\
+Plans: Finalize whitepaper next week, and prepare for Friday's Engineering Expo \\
+Problems: Got last minute notice that our whitepaper is expected to be submitted by Friday, which is expo day. Why we got such late notice on this, I do not know. We will do what we can to work within this limited time frame. \\
 \subsection{Week 7, Spring}
-Progress: We produced our final white paper in time for expo. Expo went well, and it was a great experience!
-Plans: Start working towards final report, and other final writing documents.
-Problems: No problems to report.
+Progress: We produced our final white paper in time for expo. Expo went well, and it was a great experience! \\
+Plans: Start working towards final report, and other final writing documents. \\
+Problems: No problems to report. \\
 \subsection{Week 8, Spring}
-Progress: Got information regarding our final assignments for the term to wrap up our capstone experience. Started working towards completing some of those assignments.
-Plans: Scheduled a meeting with Kirsten to talk about our Final Report requirements, since we have a research project.
-Problems: No problems to report.
+Progress: Got information regarding our final assignments for the term to wrap up our capstone experience. Started working towards completing some of those assignments.\\
+Plans: Scheduled a meeting with Kirsten to talk about our Final Report requirements, since we have a research project.\\
+Problems: No problems to report.\\
 Final Post Questions
-If you were to redo the project from Fall term, what would you tell yourself? I would tell myself to identify exactly what needs to be done much sooner; there was so much time spent trying to navigate what to do first. Getting those things out of the way sooner would have made things less stressful.
-What's the biggest skill you've learned? Dealing with conflict. Unfortunately this project hit a lot of problems along the way, and things often got tense between myself and other team mates, as well as tense with our client. Knowing how to navigate situations like this is important, as it can often get in the way of success.
-What skills do you see yourself using in the future? Project planning, team work, and conflict resolution.
-What did you like about the project, and what did you not? I really enjoyed evaluating ROS security in a lab setting, and developing proof-of-concepts. I disliked being tasked with getting our dated drone hardware to work, however. That caused a lot of issues.
-What did you learn from your teammates? Learned how to better communicate my progress with certain tasks, and saw different ways of approaching problems.
-If you were the client for this project, would you be satisfied with the work done? Yes, I would. Assuming that I was better at communicating and checking in with my group along the way; there were some communication issues with our client and to be honest I have no idea if he is pleased with the work that was done after we worked through these issues.
-If your project were to be continued next year, what do you think needs to be working on? A continued evaluation of ROS, as well as a revamp of the current PoCs we have; a lot of the packages could use some work. Also, getting these PoCs tested on real world hardware, like a drone. It would also be good to spend some time working on fixes for the security issues that we discovered.
+If you were to redo the project from Fall term, what would you tell yourself? I would tell myself to identify exactly what needs to be done much sooner; there was so much time spent trying to navigate what to do first. Getting those things out of the way sooner would have made things less stressful. \\
+What's the biggest skill you've learned? Dealing with conflict. Unfortunately this project hit a lot of problems along the way, and things often got tense between myself and other team mates, as well as tense with our client. Knowing how to navigate situations like this is important, as it can often get in the way of success. \\
+What skills do you see yourself using in the future? Project planning, team work, and conflict resolution. \\
+What did you like about the project, and what did you not? I really enjoyed evaluating ROS security in a lab setting, and developing proof-of-concepts. I disliked being tasked with getting our dated drone hardware to work, however. That caused a lot of issues. \\
+What did you learn from your teammates? Learned how to better communicate my progress with certain tasks, and saw different ways of approaching problems.\\
+If you were the client for this project, would you be satisfied with the work done? Yes, I would. Assuming that I was better at communicating and checking in with my group along the way; there were some communication issues with our client and to be honest I have no idea if he is pleased with the work that was done after we worked through these issues. \\
+If your project were to be continued next year, what do you think needs to be working on? A continued evaluation of ROS, as well as a revamp of the current PoCs we have; a lot of the packages could use some work. Also, getting these PoCs tested on real world hardware, like a drone. It would also be good to spend some time working on fixes for the security issues that we discovered. \\
+\end{sloppypar}
 \end{document}
