@@ -24,6 +24,7 @@
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
+\DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
 \pagestyle{fancy}
 \fancyfoot[C]{DESIGN--\thepage}
 
@@ -145,7 +146,6 @@ Lastly, we must have some sort of vulnerability at least documented before we pr
       \label{fig:gantt}
     \end{figure}
   \end{center}
-
 
 \chapter{Specific Requirements}
 
