@@ -131,11 +131,11 @@ This project aims to eliminate some of this abuse before it begins.
 %Our group undertook an exploratory effort to document ways we found it to be insecure as a starting point for what could be a more thorough documentation of the variety of ways it is insecure, for future research or development.
 %This paper summarizes our findings.
 
-Since robotics are continually in development and there is such a wide variety of devices, focus needed to be on a small subset of robotics to have any hope of making progress within a year. 
+Since robotics are continually in development and there is such a wide variety of devices, focus needed to be on a small subset of robotics to have any hope of making progress within a year.
 Because of this the Robotic Operating System (ROS) was chosen for this project.
 These operating systems can be attacked at the driver level with malware, they can have the configuration files modified, and they can have data intercepted or spoofed in their internal communication subsystems.
-We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
-Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices. 
+We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems.
+Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices.
 It's very important that we acknowledge all of these risks, since exploitation of them could be a big setback for global trust of robotics.
 
 Essentially the problem is twofold; first a specific feature of a specific device needs to be isolated, and then that feature needs to be broken, and all work documented.
@@ -157,14 +157,14 @@ The inspiration from this paper laid a groundwork for the threat models that wou
 
 One particularly useful paper was written by Bernhard Dieber et al, which discussed security on the application level of ROS.
 It provides great insights for the problems with authentication and data integrity that are present in ROS. \cite{App}
-This helped to provide guidance for that portion of our model, and was foundational in the understanding of how the application level interacts with the rest of the system, from a security standpoint. 
+This helped to provide guidance for that portion of our model, and was foundational in the understanding of how the application level interacts with the rest of the system, from a security standpoint.
 A similar paper entitled \"ROS: an open-source Robotic Operating System\" was vastly useful in the planning of this project, as it gave a detailed overview of the system from a research standpoint.
 while the official site and documentation of ROS was absolutely invaluable, this paper provided us with a third party assessment of the system and how all portions work together.
 Without a thorough understanding of this research would be much more difficult. \cite{Open}
- 
+
 The last of the papers that were used extensively in the overall planning and implementation of this project was one discussing the SROS project.
 This project is very closely aligned with ours in that they are working to bring better security to ROS in its most vulnerable sectors.
-The areas in which this project most wanted to provide security were some of the first that our project investigated. 
+The areas in which this project most wanted to provide security were some of the first that our project investigated.
 Specifically it provided insight into the access control policies needed in ROS, the insecurity of the communication channels, and they way in which processes are handled. \cite{Sros}
 
 To find inspiration for specific exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
@@ -175,7 +175,7 @@ A key element to our project is being able to accurately find vulnerabilities or
 One of the best ways to do this in an organized way that can be later referenced is with threat modeling.
 Adam Shostack has a well defined method for doing this, which was followed to develop the model for this project. \cite{TMDS}
 
-An important thing to note is that ROS is middleware, which means it sits between the base Linux OS, and the application level.Typically there is little focus on security because middleware like this needs to be lightweight. 
+An important thing to note is that ROS is middleware, which means it sits between the base Linux OS, and the application level.Typically there is little focus on security because middleware like this needs to be lightweight.
 Without any specific security measures taken, there is room for all manner of attacks. To try to tackle them, the vulnerabilities were broken into the three categories of the CIA Triad \cite{CIA}:
 \begin{itemize}
   \item Those affecting the confidentiality of data
@@ -211,29 +211,29 @@ Specific packages have been chosen below to represent each of the notable catego
 These range from resource consumption, to network sniffing and spoofing, and to OS level exploitation.
 
 \subsection{Eavesdropper}
-Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and 
-a subscriber that takes that message and prints it to stdout. There is also a third “malicious” node which also subscribes to 
-the publisher and prints the same message with a slight modification to stdout as well. While not that malicious in this case, 
-the general principle can be used to receive and change any published data, including sending said data to other computers 
+Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and
+a subscriber that takes that message and prints it to stdout. There is also a third “malicious” node which also subscribes to
+the publisher and prints the same message with a slight modification to stdout as well. While not that malicious in this case,
+the general principle can be used to receive and change any published data, including sending said data to other computers
 using the ROS subscriber/publisher system and compromise the original data’s integrity.
-For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of 
+For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of
 system would be able to intercept those images.
 
 This package was one of the first ideas implemented so it started in one of the most obvious places within our model, the Publisher/Subscriber system.
-It falls under the confidentiality section of the threat model because it steals data that would be best kept confidential. 
-Although not particularly sophisticated, the unencrypted nature of this communication channels means it doesn't need to be. 
+It falls under the confidentiality section of the threat model because it steals data that would be best kept confidential.
+Although not particularly sophisticated, the unencrypted nature of this communication channels means it doesn't need to be.
 With little difficulty it demonstrates how trivial it is for a malicious actor to listen in on communications between nodes and steal useful information.
 This is expanded upon in later packages which take this easily gained information and use it spoof the system.
 
 \subsection{Forkbomb}
 This package is a forkbomb.
-As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is 
+As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is
 do a little math to slow things down a bit, then call itself 8 times and exit.
 Eventually there are enough processes to clog the CPU and cause a kernel panic, bringing down the robot.
-In theory, as long as there is no existing form of process management, this would kill any robot with enough time, which has 
+In theory, as long as there is no existing form of process management, this would kill any robot with enough time, which has
 obvious use cases.
 
-Forkbombs like this one work to fill up processing resources so that the system has a much harder time scheduling legitimate processes. 
+Forkbombs like this one work to fill up processing resources so that the system has a much harder time scheduling legitimate processes.
 This is essentially denial of service, which falls into the availability branch of attacks, since the system resources are rendered unavailable when done successfully.
 Distributed denial of service (DDoS) attacks are becoming more and more common in Internet of Things devices, and this package shows how it easy is to do something similar within a ROS device.
 
@@ -241,8 +241,8 @@ Distributed denial of service (DDoS) attacks are becoming more and more common i
 This exploit temporarily disables the operating system's wireless networking capabilities.
 For a robot dependent on wireless communication for control or navigation, this has some rather obvious consequences.
 Depending on how the robot handles the lack of networking it could do anything from fall out of the sky to automatically
-returning home. It could also permanently disable the wireless networking with a small tweak, which would make the only 
-fix to physically capture and wire back into the robot to fix the networking. 
+returning home. It could also permanently disable the wireless networking with a small tweak, which would make the only
+fix to physically capture and wire back into the robot to fix the networking.
 Either way, if one's robot is dependent on wireless networking, it will be downed for a bit.
 
 Much like the forkbomb, and similarly named, the network bomb is also an exploit that reduces the availability of the system resources.
@@ -251,12 +251,12 @@ This was developed to flesh out the DoS portion of the model, so that the forkbo
 
 \subsection{Fibonacci}
 This one is actually our Client, Vee's package. It does a naive recursive implementation of the calculation of Fibonacci
-numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither 
-of which being terribly great results and both using a fair amount of system resources. As such it has the potential to 
-bring down the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources 
+numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither
+of which being terribly great results and both using a fair amount of system resources. As such it has the potential to
+bring down the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources
 for a bit.
 
-This was one of the first packages in existence and served as somewhat of an example of what future packages might look like. 
+This was one of the first packages in existence and served as somewhat of an example of what future packages might look like.
 It was also why a number of the earliest packages focused on resource consumption and computationally intensive work.
 Even if this isn't the most creative or greedy way to reduce availability, it serves as an elegant and classic proof of concept for availability focused packages.
 
@@ -269,31 +269,31 @@ the user would rather it not.
 
 
 \subsection{Node Replacement}
-Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a 
+Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a
 subscriber that takes that string and prints it to stdout.
-The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the 
+The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the
 same name that prints a modified message to stdout.
-At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns 
+At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns
 out that ROS silently assigns each publisher and subscriber its own unique ID and is in fact quite noticeable.
-It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies 
+It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies
 and is replaced, so it still has potential to be a threat or phone home.
 
 \subsection{Costly Sorting}
 This is a package that performs bogo-bogo sort. \cite{bogo}
 Bogo-bogo sort is an extremely inefficient sorting algorithm that performs a random shuffle to sort a list, recursively.
 While it is not particularly system intensive, the sort for a list with a mere 10 elements can take on the order of days.
-The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also does not check 
+The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also does not check
 for any particularly long running processes, which allows for a variety of actual threats. It also wastes some CPU time.
-The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process 
+The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process
 to kill it.
 
 \subsection{URI Change}
 This is a package that changes the ROSMASTER URI to an arbitrary one, and starts a new ROS master to match.
 The URI is basically where packages check for the ROS master node, which is the master in the ROS master/slave system.
 ROS master manages nodes, and the publisher/subscriber system between nodes as its 2 main duties.
-As such, changing the URI and starting a new ROS master node means that all new nodes will talk to the new ROS master as 
+As such, changing the URI and starting a new ROS master node means that all new nodes will talk to the new ROS master as
 opposed to the old, which could allow for some interesting node management or fiddling with the publisher/subscriber system.
-The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised 
+The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised
 robot respond to a remote ROS master node as well, allowing an attacker to control the robot remotely.
 
 \subsection{Pkiller}
@@ -304,9 +304,9 @@ Just image if a drone carrying an explosive payload fell out of the sky because 
 
 \subsection{Massive Download}
 This package uses wget to attempt to download all of Wikipedia.
-It probably will not succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to 
-the limit. This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of 
-issue. If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for 
+It probably will not succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to
+the limit. This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of
+issue. If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for
 each process and will need a little disk space for that purpose.
 
 \subsection{Root Dump}
@@ -317,31 +317,31 @@ potentially be in the hands of some unknown party.
 
 \subsection{Uninstaller}
 This one, assuming your ROSMASTER was run with root privileges and is on a Linux distribution that uses apt-get as its package
-manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be 
+manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be
 loaded into system memory, but on reboot or if ROS is killed and restarted in some other way, ROS will no longer be there.
 Especially bad if the ROS install was customized, as one would have to redo all those configurations all over again...
 
 \subsection{Start WW3}
-This pings (what the team knows to be, but can not directly confirm) a North Korean IP address. 
-While it has no direct effect on the system, alerting North Korea to your presence is not exactly a great idea in the current political environment, and has a good chance of getting one on a watchlist. 
+This pings (what the team knows to be, but can not directly confirm) a North Korean IP address.
+While it has no direct effect on the system, alerting North Korea to your presence is not exactly a great idea in the current political environment, and has a good chance of getting one on a watchlist.
 
 \subsection{Bitcoin Miner}
 This package attempts to install a bitcoin mining service on the robot.
-It does currently need superuser permissions for this, as it does need to use apt-get, which means that ROSCORE 
+It does currently need superuser permissions for this, as it does need to use apt-get, which means that ROSCORE
 needed to be run as a superuser so that this child process would have those permissions as well.
-If the install succeeds however, then you have a bitcoin miner using CPU time for someone else’s monetary gain, and with a 
-little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the 
+If the install succeeds however, then you have a bitcoin miner using CPU time for someone else’s monetary gain, and with a
+little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the
 package it was good enough as is.
 
 \subsection{ROSless Listener}
 Here was an attempt to abuse how ROS subscribers and publishers really worked outside of ROS.
-All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general 
-idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and 
+All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general
+idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and
 print whatever they published as plain text to stdout.
 In short, something like the first malpac, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by ROS master at their launch. And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological capacity and time constraints.
-We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more 
+We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more
 investigation into the handshake protocol used by ROS master.
-While the documentation is available online, specifically on the technical overview page of the official ROS site \cite{ROS}, it was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS 
+While the documentation is available online, specifically on the technical overview page of the official ROS site \cite{ROS}, it was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS
 still uses ROS to achieve this goal, while this package aimed to bypass ROS entirely.
 
 \subsection{Linux Kernel Exploitation}
@@ -427,8 +427,8 @@ We had initially intended to do more hardware based attacks, but they proved to 
 There are also a board range of physical attacks ranging anywhere from an EMP type gun to an eagle taking down an airborne drone.
 
 \section{Analysis}
-As discussed above in the Methods sections, FMEA was used primarily in the analysis of this project, in order to discover which of the created packages would be most catastrophic. 
-In the figure above representing the graph of the RPNs, one can see which types of attacks were ranked the highest. 
+As discussed above in the Methods sections, FMEA was used primarily in the analysis of this project, in order to discover which of the created packages would be most catastrophic.
+In the figure above representing the graph of the RPNs, one can see which types of attacks were ranked the highest.
 Those that focused on the integrity of the system turned out to have the highest concentration in the top of that ranking.
 
 There are a number of factors that could have lead to this clustering.
@@ -439,6 +439,144 @@ Another potential reason for this is that spoofing and changing of data to somet
 \section{Future Research}
 
 %discuss problems and failures here
+
+There were plans to use real world hardware to test our ROS exploit packages, in this case a drone. However,
+we ran into some issues getting our hardware platform to work. This section will try to go through the
+hardware that was used, as well as the issues that occurred along the way so that the same mistakes are not
+made in the future. Also, where possible, there will be a mention of recommended next steps for anyone
+interested in continuing this project.
+
+There were two drones at our disposal, though we really focused our efforts on one of them; the Flame Wheel ARF F550. The other drone we had was a complete, proprietary NazaM2 based drone, with its own micro controller
+and flight controller. The Flame Wheel F550 was already hooked up to a Beagle Bone Black, which is the
+micro controller we decided to use, so it made sense to focus on the Flame Wheel drone. Along with this
+Flame Wheel drone, we had a Beagle Bone Black micro controller, a Pixhawk v1.6 Firecape, and a 3DR compass and
+magnetometer radio. The idea was that ROS would be running on the Beagle Bone Black, along with the ArduPilot
+project \cite{Ardu}, and the Pixhawk would act as our flight controller. Based on the current
+ArduPilot project documentation, the Pixhawk is a supported flight controller \cite{ArduFlightController}.
+However, we later found out that our Pixhawk v1.6 was no longer supported, and documentation was incredibly
+lacking. Our team recommends that the newer version of the Pixhawk be used instead of the out-dated v1.6.
+
+It should also be mentioned that we were given two Beagle Bone Black micro controllers, and two
+Pixhawk v1.6 flight controllers. Only one of the Pixhawks was used, as the other one had damage to the
+tty0 connection. We had planned to fix this ourselves, though never got around to it. Also, only one of the
+Beagle Bone Blacks was used, as there was no reason to suggest that it had any problems.
+
+\subsection{Why This Hardware Was Used}
+
+We decided to use this hardware as it was available to us and did not require that we purchase anything new.
+In terms of why use a drone, we discussed the current trend of drones becoming popular in the hobbyist and
+commercial sectors, and thought it be important that our security evaluation of ROS extend to drones that use it. Moving forward, we feel there is no reason to use different drone hardware, as it is our view that the
+issues we ran into are related to the micro controller and flight controller. We would highly suggest that
+newer versions of the supported micro controllers be used, along with a compatible paired flight controller,
+that is still supported by the manufacture and the community. These include, but are not limited to, the
+Erle Brain 2, the newer Pixhawks, and more \cite{ArduFlightController}.
+
+Due to the issues we encountered, we were not able to test our exploits on real hardware. Instead, we managed
+to lay the ground work needed for future work to be extended to real world hardware, such as drones. It is
+our view, that great care and time needs to be taken to find a set of hardware that is currently supported,
+and that works with the ROS drone configuration we were hoping to achieve.
+
+\subsection{Beagle Bone Black: Stability, UbuntuARM, and ROS}
+
+The first thing we did with regards to getting our hardware setup was to get a stable operating system
+running on the Beagle Bone Black (BBB). We knew that we wanted to run ROS, and according to the ROS
+documentation, Ubuntu was the route to go \cite{ROSBBBUbuntu}. To do this, we followed
+the extensive documentation to install Ubuntu ARM 16.4, which was the latest Ubuntu ARM build at the time
+\cite{eLinuxBBB}.
+
+While flashing Ubuntu on the BBB was pretty easy, we ran into an issue where the BBB would randomly restart
+and would enter user flashing mode, even though we flashed Ubuntu to the internal memory. After going through
+this process a second time, we managed to get a stable Ubuntu ARM version running on the BBB. The logs for
+the internal eMMC flash can be seen on our project GitHub \cite{eMMCLog}. We are not
+sure why this did not work the first time, but after a couple weeks made the decision to reflash Ubuntu,
+which ended up working as expected.
+
+Once Ubuntu was running, we installed ROS following the online documentation \cite{ROSUbuntuARM}. This process went as expected, and did not present any issues. Once we had ROS running on a stable
+Ubuntu build, we moved on to try and get the BBB to detect the Pixhawk v1.6 Firecape.
+
+
+\subsection{Pixhawk i2c Detection and Beagle Bone Device Trees}
+
+Following along with the ArduPilot documentation, after installing Ubuntu and hooking up the Pixhawk
+flight controller, running the 'i2cdetect' command should tell you if the Pixhawk is being detected
+by the BBB \cite{PixhawkDetectionArdu}.
+When we ran this command, and we did not get the same output \cite{PixhawkDetectLog}, which
+told us that the Pixhawk was not yet being read by the Beagle Bone Black. UbuntuARM did not seem to have the
+device trees preconfigured for the Pixhawk.
+
+Looking ahead, we found that the ArduPilot project has the device trees needed for the Pixhawk Fire Cape
+\cite{ArduGuideDeviceTrees}. We thought that by moving forward with compiling ArduPilot, we would also be working towards getting the Pixhawk operational.
+
+
+\subsection{Compiling ArduPilot Project}
+
+After installing the needed build tools on UbuntuARM, we proceeded to to pull the latest version of the
+ArduPilot project from git, per instructions listed in the documentation \cite{ArduCompileBBB}.
+
+After the code was pulled from the ArduPilot git, we compiled the ArduCopter specific packages, as this is
+needed for multi-copter, or hex-copter style drones, which is what our Flame Wheel F550 is. A log from this process can be
+seen on our project's GitHub \cite{ArduCompileLog}.
+
+It took a long time to compile the ArduCopter code on the Beagle Bone Black, and all appeared to compile
+correctly, without any errors.
+
+We then continued with the instructions on building and enabling the proper Beagle Bone Black device trees
+for the Pixhawk Firecape, and enabled the cape manager at the kernel level, per these instructions \cite{ArduGuideDeviceTrees}.
+
+It should be noted, that these build instructions are assuming that the Beagle Bone Black is running a Debian
+image, not an Ubuntu image. We continued using the Ubuntu image at this point, as we saw it as needed in order
+to get ROS working properly, per the ROS build guide \cite{ROSBBBUbuntu}. It is unclear if
+this was the reason for our initial issues with getting the BBB to communicate with the Pixhawk.
+
+\subsection{ArduPilot Pixhawk Detection Issues}
+
+At this point, even after using the device trees from the ArduPilot project, the Pixhawk still was not being
+recognized by the Beagle Bone Black. Feeling stuck, we spoke with one of our project mentors, Kevin McGrath,
+who suggested we use an "all in one" ArduPilot image, that has everything we need ready to go.
+Upon our initial research, we could not find such an image, though luckily our mentor was able to share the
+Beagle Bone Black image with us.
+
+It was an old version of the ErleBrain image that supported the Pixhawk Fire v1.6 cape; the current image on
+their website is for the Pixhawk Fire Mini and Raspberry Pi. Flashing this image instead of UbuntuARM showed
+results immediately. Upon first boot the Pixhawk started to respond to the Beagle Bone Black, and ROS along
+with the ArduCopter project was ready to go. We highly suggest that this image be used at as a starting point
+in the future, as our group spent well over a month trying to sort through issues with getting the UbuntuARM
+image and device trees to work properly. We have a copy of this image on our project GitHub \cite{ErleBrainAIOImage}.
+
+\subsection{Pixhawk Wiring and 3DR GPS Incompatibilities}
+
+According to the ArduCopter documentation, we need to have a Pixhawk flight controller, RC Receiver, 3DR GPS
+Unit, an assembled multi-copter drone, and a battery \cite{ArduCopterIntro}.
+Since we had all of these, and it appeared we now had a working image flashed on the Beagle Bone Black, we
+started the process of hooking everything up, per the directions outlines in
+the ArduCopter documentation. This is when we started to run into more problems, as the documentation shows a
+wiring guide for a newer version of the Pixhawk flight controller, and not the 1.6 version that we had
+\cite{ArduPixhawkWiring}.
+
+One of the primary issues we faced was that there was no port on the Pixhawk that was labeled for the GPS
+unit, and our wiring for the 3DR GPS unit did not seem to be compatible with our version of the Pixhawk; after
+hooking everything up, there were no open ports on the Pixhawk for the 3DR GPS unit.
+After speaking with Kevin McGrath about this issue, he too was puzzled by the 3DR GPS not having a proper
+set of wires for our Pixhawk flight controller. He gave us a new wire to use for the 3DR, and we hooked it
+up to the only port it could plug into on the Pixhawk, the tty0 port.
+
+
+\subsection{Pre-flight Saftey Check Failures}
+
+*** Need to get a log from the drone showing this error ***
+
+For the sake of testing, we launched the ArduCopter application and it started without any problems, and
+signaled that it was ready to communicate with our Mission Planner software. Our mission planner was able to
+communicate with the drone, and was able to pull settings from the Pixhawk Fire cape. However it would then
+crash due to not being able to complete the pre-flight safety checks. The particular error we got with
+regards to this failure was that it was unable to detect our GPS unit.
+
+It was at this point that our client decided that too much time was being spent trying to get the drone to
+work, and that we should focus our efforts on developing ROS packages to explore our threat model. It is our
+hope that this information will help to guide any future work on this project, so that the same mistakes are
+not made trying to get the Pixhawk configuration to work. We highly recommend that efforts be focused on using
+recent flight controllers that are still supported by the ArduPilot project.
+
 
 \section{Conclusion}
 ROS is vulnerable in at least the ways detailed above, and as such is insecure.
