@@ -565,13 +565,13 @@ up to the only port it could plug into on the Pixhawk, the tty0 port.
 
 \subsection{Pre-flight Saftey Check Failures}
 
-*** Need to get a log from the drone showing this error ***
-
 For the sake of testing, we launched the ArduCopter application and it started without any problems, and
 signaled that it was ready to communicate with our Mission Planner software. Our mission planner was able to
 communicate with the drone, and was able to pull settings from the Pixhawk Fire cape. However it would then
 crash due to not being able to complete the pre-flight safety checks. The particular error we got with
-regards to this failure was that it was unable to detect our GPS unit.
+regards to this failure was that it was unable to detect our GPS unit. That error message can be seen here,
+where others using similar hardware had the same problem. We were not able to fix this, and think it might
+be due to the Pixhawk being out of date, though are not positive \cite{3DRError} \cite{3DRError2}. 
 
 It was at this point that our client decided that too much time was being spent trying to get the drone to
 work, and that we should focus our efforts on developing ROS packages to explore our threat model. It is our
