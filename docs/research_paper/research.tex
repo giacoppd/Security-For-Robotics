@@ -8,7 +8,7 @@
 \usepackage{balance}
 \usepackage{enumitem}
 \usepackage{pstricks, pst-node}
-\usepackage{geometry}R
+\usepackage{geometry}
 \geometry{textheight=9.5in, textwidth=7in}
 \newcommand{\cred}[1]{{\color{red}#1}}
 \newcommand{\cblue}[1]{{\color{blue}#1}}
@@ -189,7 +189,7 @@ This way one can look at our threat model, decide if their concern is one of con
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{model}
+    \includegraphics[width=\textwidth]{model.eps}
     \caption{A view of the attacks that are viable against the ROS system}
 \end{figure}
 
@@ -395,7 +395,7 @@ With better documentation and a system with which to reliably test it the Mavlin
 \subsection{ROS Broken Authentication PoC}
 \begin{figure}[H]
   \centering
-    \includegraphics[width=\textwidth]{poc1}
+    \includegraphics[width=\textwidth]{poc1.eps}
     \caption{PoC ROS Broken Authentication}
 \end{figure}
 
@@ -407,7 +407,7 @@ connects to a remote \"victim\" machine, sending data to a ROS subscriber proces
 \subsection{ROS Process Communication}
 \begin{figure}[H]
   \centering
-    \includegraphics[width=\textwidth]{poc2}
+    \includegraphics[width=\textwidth]{poc2.eps}
     \caption{PoC ROS Fuzzer Selection}
 \end{figure}
 
@@ -422,7 +422,7 @@ South Korean study \cite{ROSVulnCounter}.
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=\textwidth]{poc3}
+    \includegraphics[width=\textwidth]{poc3.eps}
     \caption{PoC ROS Fuzzer Execution}
 \end{figure}
 
@@ -434,7 +434,7 @@ You can see this represented in figure 5 below.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{RPN}
+    \includegraphics[width=\textwidth]{RPN.eps}
     \caption{The increasing criticality ratings of packages, based on the three combined numbers}
 \end{figure}
 
@@ -463,7 +463,7 @@ This also includes our specific packages as leaves, rather than the general conc
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{color_model}
+    \includegraphics[width=\textwidth]{color_model.eps}
     \caption{map of the areas which were most or least covered in this research}
 \end{figure}
 
@@ -669,6 +669,6 @@ There are indeed already undertakings to do just that, specifically SROS and ROS
 Many of our vulnerability exploits come from having access to ROS itself or by abusing lax communications security to get into ROS, so just ensuring that the ROS is only accessible by trusted users is enough to prevent most exploits that we have found, although that in itself is a rather big task.
 
 \bibliographystyle{IEEEtran}
-\bibliography{research.bib}
+\bibliography{research}
 
 \end{document}
