@@ -13,5 +13,16 @@ pdf:
 	ps2pdf $(x).ps
 	mv $(x).pdf pdfs/
  
+bibtex:
+	latex $(x).tex
+	bibtex $(x)
+	latex $(x).tex
+	latex $(x).tex
+	dvips -R -Poutline -t letter $(x).dvi -o $(x).ps
+	ps2pdf $(x).ps
+	mv $(x).pdf pdfs/
+ 
+
+
 clean:
 	rm -f *.dvi *.out *.aux *.log *.bbl *.blg *.ps *.pdf
