@@ -148,18 +148,18 @@ Hopefully our work in securing robotics can help to better develop consumer trus
 
 \section{Literature Review}
 This project would have been much more difficult without a variety of documentation and previous research into the security of ROS and robotics in general.
-One paper that was widely used in the creation of our project basis was \"A Preliminary Cyber-Physical Security Assessment of the Robotic Operating System (ROS)\". \cite{mainROS}
+One paper that was widely used in the creation of our project basis was "A Preliminary Cyber-Physical Security Assessment of the Robotic Operating System (ROS)". \cite{mainROS}
 This article was written by a group of researchers who created a honeypot robotic system and brought it to DefCon 20 to let hackers there exploit it as they could.
 This lead the researches to be able to recored a range of attack vectors from a wider variety of minds.
 They also used a number of their own methods to study what was being done, such as examining the packets being sent and received through wireshark, visualizing the effects with hardware, and using Backtrack Linux.
 Their work provided starting points for many different ways to attack the system, and for cataloging the effectiveness of each different type, relative to the others.
 The inspiration from this paper laid a groundwork for the threat models that would be created here, and for the exploratory structure that was followed.
 
-One particularly useful paper was written by Bernhard Dieber et al, which discussed security on the application level of ROS.
+Another particularly useful paper was written by Bernhard Dieber et al, which discussed security on the application level of ROS.
 It provides great insights for the problems with authentication and data integrity that are present in ROS. \cite{App}
-This helped to provide guidance for that portion of our model, and was foundational in the understanding of how the application level interacts with the rest of the system, from a security standpoint. 
-A similar paper entitled \"ROS: an open-source Robotic Operating System\" was vastly useful in the planning of this project, as it gave a detailed overview of the system from a research standpoint.
-while the official site and documentation of ROS was absolutely invaluable, this paper provided us with a third party assessment of the system and how all portions work together.
+This article helped to provide guidance for that portion of our model, and was foundational in the understanding of how the application level interacts with the rest of the system, from a security standpoint. 
+A similar paper entitled "ROS: an open-source Robotic Operating System" was vastly useful in the planning of this project, as it gave a detailed overview of the system from a research standpoint.
+While the official site and documentation of ROS was absolutely invaluable, this paper provided us with a third party assessment of the system and how all portions work together.
 Without a thorough understanding of this research would be much more difficult. \cite{Open}
  
 The last of the papers that were used extensively in the overall planning and implementation of this project was one discussing the SROS project.
@@ -167,7 +167,7 @@ This project is very closely aligned with ours in that they are working to bring
 The areas in which this project most wanted to provide security were some of the first that our project investigated. 
 Specifically it provided insight into the access control policies needed in ROS, the insecurity of the communication channels, and they way in which processes are handled. \cite{Sros}
 
-To find inspiration for specific exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
+When looking for background information for specific exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
 These are referenced and discussed within each of packages to which they contributed.
 
 \section{Threat Model}
@@ -193,11 +193,16 @@ This way one can look at our threat model, decide if their concern is one of con
     \caption{A view of the attacks that are viable against the ROS system}
 \end{figure}
 
+In this figure the top levels are the three sectors of the CIA Triad, which branch into the attack types within each.
+Below that level are the rectangular examples of vulnerabilities of that type.
+Lastly the bottom tier nodes are attack type examples.
+
 \section{Packages and Solutions}
 As mentioned above, the exploits written were meant to cover a lot of ground topic wise.
 Some are based on the same vulnerability, while others are more distinct.
 Specific packages have been chosen below to represent each of the notable categories of attack.
 These range from resource consumption, to network sniffing and spoofing, and to OS level exploitation.
+In the Analysis section below there is a table showing where in the CIA triad each of the exploit packages falls.
 
 \subsection{Eavesdropper}
 Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and 
@@ -402,7 +407,7 @@ With better documentation and a system with which to reliably test it the Mavlin
 Two PoC packages were created that show ROS has zero authentication measures, by leveraging the publisher subscriber model.
 These simple yet effective PoCs are the basis for remote ROS exploitation. If you know the IP address of a remote ROS machine, you can leverage it as you wish, without the need
 to authenticate with the machine in any way. This should not be taken lightly, as this opens up ROS to any device that has a network connection. The PoC proving this to be true
-connects to a remote \"victim\" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15. The idea came from expanding upon a study done by a university in South Korea \cite{ROSVulnCounter}.
+connects to a remote "victim" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15. The idea came from expanding upon a study done by a university in South Korea \cite{ROSVulnCounter}.
 
 \subsection{ROS Process Communication}
 \begin{figure}[H]
@@ -415,8 +420,8 @@ Two additional packages were created, exploring exploitation of the process comm
 fuzzing tool, and the other a publisher data capture tool. The subscriber fuzzer allows an attacker to target remote ROS processes by flooding them with large amounts of malformed data.
 This can be used to expose issues with ROS processes on a real world device, like a drone. The idea of creating a fuzzer came from a study that looked at using a similar technique to exploit the MAV Link communicaitons protocol \cite{ROSMAVFuzz}.
 The remote publisher data capture tool uses a ROS tool called rosbag to create a saved instance
-of a given ROS process. This PoC uses that data to preform what's known as a \"ROS Bag Replay Attack\", which can cause devices running ROS to carry out a given operation at the will of the attacker.
-For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then \"replay\" that action remotely, causing the drone
+of a given ROS process. This PoC uses that data to preform what's known as a "ROS Bag Replay Attack", which can cause devices running ROS to carry out a given operation at the will of the attacker.
+For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then "replay" that action remotely, causing the drone
 to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method. The idea of the ROS replay attack came from a
 South Korean study \cite{ROSVulnCounter}.
 
@@ -426,7 +431,7 @@ South Korean study \cite{ROSVulnCounter}.
     \caption{PoC ROS Fuzzer Execution}
 \end{figure}
 
-\section{Testing Methods}
+\section{Analysis System}
 Failure Mode Effects Analysis (FMEA) is a procedure used in a variety of fields which creates an empirical system for testing and logging any failures, which can be applied to all of our attacks. \cite{FMEA}
 Somewhat akin to risk analysis, FMEA involves defining severity, occurrence, and detection rating scales, usually from 1 to 10.
 After these scales have been defined one can use them to calculate a risk priority number (RPN) and a criticality number with which the found failures can be ranked in order of importance.
@@ -437,13 +442,6 @@ You can see this represented in figure 5 below.
     \includegraphics[width=\textwidth]{RPN.eps}
     \caption{The increasing criticality ratings of packages, based on the three combined numbers}
 \end{figure}
-
-\section{Limitations}
-The main limitation our project faced was not being able to do testing on actual robotic hardware.
-If this project were continued, the next steps would be to setup a ROS enabled drone and see how our exploit packages effect the drone's functionality.
-Testing on real world hardware will drive home the real-world implications of using an insecure middleware on robotic devices with open communication channels.
-Our research is not just limited to drones; any device running ROS can be used to further test our methods.
-While our testing was done on ROS enabled machines, those machines were not real-world robotic devices, thus the real-world impact of our packages could not be evaluated.
 
 \section{Findings}
 Just as suspected, ROS has wide range of vulnerabilities that this project exploits with a success rate of nearly 100\%.
@@ -517,6 +515,16 @@ The table from which these averages came can be viewed below.
      &  & \  \\ \hline
 \end{tabular}
 \end{center} 
+
+\section{Limitations}
+The main limitation our project faced was not being able to do testing on actual robotic hardware.
+If this project were continued, the next steps would be to setup a ROS enabled drone and see how our exploit packages effect the drone's functionality.
+Testing on real world hardware will drive home the real-world implications of using an insecure middleware on robotic devices with open communication channels.
+Our research is not just limited to drones; any device running ROS can be used to further test our methods.
+While our testing was done on ROS enabled machines, those machines were not real-world robotic devices, thus the real-world impact of our packages could not be evaluated.
+
+If this project had spanned longer than one year there also would have been much more time to expand the breadth and depth of this research.
+Keeping our investigations within the scope of both the project requirements and the time constraints was a continuous challenge.
 
 \section{Future Research}
 
