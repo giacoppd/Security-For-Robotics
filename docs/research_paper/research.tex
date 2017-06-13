@@ -8,7 +8,7 @@
 \usepackage{balance}
 \usepackage{enumitem}
 \usepackage{pstricks, pst-node}
-\usepackage{geometry}
+\usepackage{geometry}R
 \geometry{textheight=9.5in, textwidth=7in}
 \newcommand{\cred}[1]{{\color{red}#1}}
 \newcommand{\cblue}[1]{{\color{blue}#1}}
@@ -58,7 +58,7 @@
         %Technology Review
         %Design Document
         %Midterm Progress Report
-        Whitepaper
+        Research Paper
         }
 
 \newcommand{\NameSigPair}[1]{\par
@@ -131,11 +131,11 @@ This project aims to eliminate some of this abuse before it begins.
 %Our group undertook an exploratory effort to document ways we found it to be insecure as a starting point for what could be a more thorough documentation of the variety of ways it is insecure, for future research or development.
 %This paper summarizes our findings.
 
-Since robotics are continually in development and there is such a wide variety of devices, focus needed to be on a small subset of robotics to have any hope of making progress within a year.
+Since robotics are continually in development and there is such a wide variety of devices, focus needed to be on a small subset of robotics to have any hope of making progress within a year. 
 Because of this the Robotic Operating System (ROS) was chosen for this project.
 These operating systems can be attacked at the driver level with malware, they can have the configuration files modified, and they can have data intercepted or spoofed in their internal communication subsystems.
-We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems.
-Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices.
+We could also investigate the ability to spoof sensor data, such as the camera, IR guidance, accelerometer, or gyroscopic systems. 
+Outside of the OS level there is a huge amount of room for exploitation in the communication and control channels used by networked devices. 
 It's very important that we acknowledge all of these risks, since exploitation of them could be a big setback for global trust of robotics.
 
 Essentially the problem is twofold; first a specific feature of a specific device needs to be isolated, and then that feature needs to be broken, and all work documented.
@@ -157,14 +157,14 @@ The inspiration from this paper laid a groundwork for the threat models that wou
 
 One particularly useful paper was written by Bernhard Dieber et al, which discussed security on the application level of ROS.
 It provides great insights for the problems with authentication and data integrity that are present in ROS. \cite{App}
-This helped to provide guidance for that portion of our model, and was foundational in the understanding of how the application level interacts with the rest of the system, from a security standpoint.
+This helped to provide guidance for that portion of our model, and was foundational in the understanding of how the application level interacts with the rest of the system, from a security standpoint. 
 A similar paper entitled \"ROS: an open-source Robotic Operating System\" was vastly useful in the planning of this project, as it gave a detailed overview of the system from a research standpoint.
 while the official site and documentation of ROS was absolutely invaluable, this paper provided us with a third party assessment of the system and how all portions work together.
 Without a thorough understanding of this research would be much more difficult. \cite{Open}
-
+ 
 The last of the papers that were used extensively in the overall planning and implementation of this project was one discussing the SROS project.
 This project is very closely aligned with ours in that they are working to bring better security to ROS in its most vulnerable sectors.
-The areas in which this project most wanted to provide security were some of the first that our project investigated.
+The areas in which this project most wanted to provide security were some of the first that our project investigated. 
 Specifically it provided insight into the access control policies needed in ROS, the insecurity of the communication channels, and they way in which processes are handled. \cite{Sros}
 
 To find inspiration for specific exploits that would be created, a lot of other research papers, journal articles, and security presentations were examined.
@@ -175,7 +175,7 @@ A key element to our project is being able to accurately find vulnerabilities or
 One of the best ways to do this in an organized way that can be later referenced is with threat modeling.
 Adam Shostack has a well defined method for doing this, which was followed to develop the model for this project. \cite{TMDS}
 
-An important thing to note is that ROS is middleware, which means it sits between the base Linux OS, and the application level.Typically there is little focus on security because middleware like this needs to be lightweight.
+An important thing to note is that ROS is middleware, which means it sits between the base Linux OS, and the application level.Typically there is little focus on security because middleware like this needs to be lightweight. 
 Without any specific security measures taken, there is room for all manner of attacks. To try to tackle them, the vulnerabilities were broken into the three categories of the CIA Triad \cite{CIA}:
 \begin{itemize}
   \item Those affecting the confidentiality of data
@@ -193,17 +193,6 @@ This way one can look at our threat model, decide if their concern is one of con
     \caption{A view of the attacks that are viable against the ROS system}
 \end{figure}
 
-Not every area from the threat model was successful, some were not possible to breach, but it is important to acknowledge their importance.
-This new version of the threat model was created to showcase the success level of each area using color coding.
-Those areas that are red have a lot more potential for vulnerabilities, yellow has been covered by our research but is still likely to have more, and green was heavily covered and only an expert in that area would be likely to identify more.
-This also includes our specific packages as leaves, rather than the general concepts they covered.
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{color_model}
-%    \caption{map of the areas which were most or least covered in this research}
-%\end{figure}
-
 \section{Packages and Solutions}
 As mentioned above, the exploits written were meant to cover a lot of ground topic wise.
 Some are based on the same vulnerability, while others are more distinct.
@@ -211,29 +200,29 @@ Specific packages have been chosen below to represent each of the notable catego
 These range from resource consumption, to network sniffing and spoofing, and to OS level exploitation.
 
 \subsection{Eavesdropper}
-Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and
-a subscriber that takes that message and prints it to stdout. There is also a third “malicious” node which also subscribes to
-the publisher and prints the same message with a slight modification to stdout as well. While not that malicious in this case,
-the general principle can be used to receive and change any published data, including sending said data to other computers
+Called Malpac in the repo, this is a very simple package. It has 2 nodes, one that publishes a string every couple seconds, and 
+a subscriber that takes that message and prints it to stdout. There is also a third “malicious” node which also subscribes to 
+the publisher and prints the same message with a slight modification to stdout as well. While not that malicious in this case, 
+the general principle can be used to receive and change any published data, including sending said data to other computers 
 using the ROS subscriber/publisher system and compromise the original data’s integrity.
-For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of
+For example, if you had a drone doing aerial reconnaissance of an area and transmitting the images back to a base, this kind of 
 system would be able to intercept those images.
 
 This package was one of the first ideas implemented so it started in one of the most obvious places within our model, the Publisher/Subscriber system.
-It falls under the confidentiality section of the threat model because it steals data that would be best kept confidential.
-Although not particularly sophisticated, the unencrypted nature of this communication channels means it doesn't need to be.
+It falls under the confidentiality section of the threat model because it steals data that would be best kept confidential. 
+Although not particularly sophisticated, the unencrypted nature of this communication channels means it doesn't need to be. 
 With little difficulty it demonstrates how trivial it is for a malicious actor to listen in on communications between nodes and steal useful information.
 This is expanded upon in later packages which take this easily gained information and use it spoof the system.
 
 \subsection{Forkbomb}
 This package is a forkbomb.
-As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is
+As stated previously there is no process monitoring or control native to ROS, so this is a very simple forkbomb. All it does is 
 do a little math to slow things down a bit, then call itself 8 times and exit.
 Eventually there are enough processes to clog the CPU and cause a kernel panic, bringing down the robot.
-In theory, as long as there is no existing form of process management, this would kill any robot with enough time, which has
+In theory, as long as there is no existing form of process management, this would kill any robot with enough time, which has 
 obvious use cases.
 
-Forkbombs like this one work to fill up processing resources so that the system has a much harder time scheduling legitimate processes.
+Forkbombs like this one work to fill up processing resources so that the system has a much harder time scheduling legitimate processes. 
 This is essentially denial of service, which falls into the availability branch of attacks, since the system resources are rendered unavailable when done successfully.
 Distributed denial of service (DDoS) attacks are becoming more and more common in Internet of Things devices, and this package shows how it easy is to do something similar within a ROS device.
 
@@ -241,8 +230,8 @@ Distributed denial of service (DDoS) attacks are becoming more and more common i
 This exploit temporarily disables the operating system's wireless networking capabilities.
 For a robot dependent on wireless communication for control or navigation, this has some rather obvious consequences.
 Depending on how the robot handles the lack of networking it could do anything from fall out of the sky to automatically
-returning home. It could also permanently disable the wireless networking with a small tweak, which would make the only
-fix to physically capture and wire back into the robot to fix the networking.
+returning home. It could also permanently disable the wireless networking with a small tweak, which would make the only 
+fix to physically capture and wire back into the robot to fix the networking. 
 Either way, if one's robot is dependent on wireless networking, it will be downed for a bit.
 
 Much like the forkbomb, and similarly named, the network bomb is also an exploit that reduces the availability of the system resources.
@@ -251,12 +240,12 @@ This was developed to flesh out the DoS portion of the model, so that the forkbo
 
 \subsection{Fibonacci}
 This one is actually our Client, Vee's package. It does a naive recursive implementation of the calculation of Fibonacci
-numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither
-of which being terribly great results and both using a fair amount of system resources. As such it has the potential to
-bring down the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources
+numbers, and tries to calculate the 100000th number. It either takes a long time, or stack overflows and crashes, neither 
+of which being terribly great results and both using a fair amount of system resources. As such it has the potential to 
+bring down the system, depending on how exactly python handles the recursion involved, or at least be a waste of resources 
 for a bit.
 
-This was one of the first packages in existence and served as somewhat of an example of what future packages might look like.
+This was one of the first packages in existence and served as somewhat of an example of what future packages might look like. 
 It was also why a number of the earliest packages focused on resource consumption and computationally intensive work.
 Even if this isn't the most creative or greedy way to reduce availability, it serves as an elegant and classic proof of concept for availability focused packages.
 
@@ -266,34 +255,45 @@ program files or ROS nodes or maybe just something important locally. If it has 
 far as delete system directories or the like, but that is not guaranteed. Either way it can probably delete something that
 the user would rather it not.
 
-
+This package is yet another one that compromises the availability of the system. 
+While it could be used to remove mundane things, it also would be capable or deleting crucial folders, giving it the potential to be quite dangerous.
+It is an interesting approach to the availability side of attacks, since they often use tactics that increase the load on the system, rather than removing critical portions.
 
 \subsection{Node Replacement}
-Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a
+Consisting of 2 parts, this includes one package which launches a publisher that publishes a string every couple seconds and a 
 subscriber that takes that string and prints it to stdout.
-The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the
+The other one runs a package that kills the subscriber from the 1st package, and replaces it with its own subscriber with the 
 same name that prints a modified message to stdout.
-At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns
+At the time we thought the node would be indistinguishable from the previous node besides the different message, but it turns 
 out that ROS silently assigns each publisher and subscriber its own unique ID and is in fact quite noticeable.
-It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies
+It might be hard to notice by an inattentive user, assuming they do not notice the slight hiccup where the old subscriber dies 
 and is replaced, so it still has potential to be a threat or phone home.
+
+This exploit works on the integrity portion of the tree, by doing a rudimentary form of a man in the middle attack.
+The system is somewhat fooled into thinking that the new node was the original publisher and takes information from it.
+While the unique ID makes this package not useful as is, it still provides a solid proof of concept for the idea. 
+It was also used as a starting point for some later iterations of the same concept. 
 
 \subsection{Costly Sorting}
 This is a package that performs bogo-bogo sort. \cite{bogo}
 Bogo-bogo sort is an extremely inefficient sorting algorithm that performs a random shuffle to sort a list, recursively.
 While it is not particularly system intensive, the sort for a list with a mere 10 elements can take on the order of days.
-The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also does not check
+The goal of this package was not to be directly malicious but more of a lurking threat; it shows that ROS also does not check 
 for any particularly long running processes, which allows for a variety of actual threats. It also wastes some CPU time.
-The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process
+The best example is an attack that lies dormant until signaled to do maximum damage, or one that waits for a specific process 
 to kill it.
+
+This package falls into the availability spectrum, as it uses a processing intensive sorting algorithm to eat up computing resources.
+As stated above it also serves as proof of concept for the fact that ROS doesn't cut processes off after any certain amount of time.
+This same idea can be used in many different ways, with different types of resource consumption being called at specific times to deny service to legitimate actions.
 
 \subsection{URI Change}
 This is a package that changes the ROSMASTER URI to an arbitrary one, and starts a new ROS master to match.
 The URI is basically where packages check for the ROS master node, which is the master in the ROS master/slave system.
 ROS master manages nodes, and the publisher/subscriber system between nodes as its 2 main duties.
-As such, changing the URI and starting a new ROS master node means that all new nodes will talk to the new ROS master as
+As such, changing the URI and starting a new ROS master node means that all new nodes will talk to the new ROS master as 
 opposed to the old, which could allow for some interesting node management or fiddling with the publisher/subscriber system.
-The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised
+The ROSMASTER URI can also be set to a remote machine if it setup correctly as well, which means you could have a compromised 
 robot respond to a remote ROS master node as well, allowing an attacker to control the robot remotely.
 
 \subsection{Pkiller}
@@ -302,12 +302,19 @@ This will at least kill ROS master, and maybe some other related ROS processes, 
 This has the obvious effect of bringing the robot to a halt, and has the potential of doing major damage.
 Just image if a drone carrying an explosive payload fell out of the sky because its control system suddenly stopped.
 
+This attack removes availability by killing key processes, but can also be used to kill something legitimate and then replaces it with a malicious process, which would be an integrity attack.
+Much like many of the previous packages, this one was created to further explore the ways in which system control and accessibility can be taken away, with something other than just resource consumption.
+
 \subsection{Massive Download}
 This package uses wget to attempt to download all of Wikipedia.
-It probably will not succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to
-the limit. This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of
-issue. If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for
+It probably will not succeed, unless the robot has enough disk space to hold all of Wikipedia, but it will fill the disk up to 
+the limit. This can cause a number of issues depending on what else needs disk space, but it is sure to cause some sort of 
+issue. If nothing else it will prevent any more ROS processes from being launched, as ROS master does some record keeping for 
 each process and will need a little disk space for that purpose.
+
+This package works to break down the availability of the system by filling up disk space, which mean it can stop legitimate data being stored.
+This is an interesting approach to denial of service in that it doesn't have to be continuous but rather only needs to be run once.
+After having done this there are a number of routes the attacker could follow, such as replacing this downloaded data with their own malicious files, or even making the initial massive download contain malware to serve whatever purpose they desire.
 
 \subsection{Root Dump}
 This package dumps your filesystem to a remote machine, currently a dummy address. If you had something confidential on the
@@ -315,47 +322,68 @@ robot, it is now in the hands of some other party, assuming your network connect
 If your drone had those top secret recon images, or maybe the drone's code itself was supposed to be a secret, they could
 potentially be in the hands of some unknown party.
 
+This package is one of the first in the confidentiality portion of the tree.
+It uses surprisingly simple tactics to give a malicious person access to a copy of the entire file system, leaving them free to peruse the contents and use them.
+This goes to prove just how big even basic file encryption on ROS would be, since that would prevent this from being a viable attack.
+
 \subsection{Uninstaller}
 This one, assuming your ROSMASTER was run with root privileges and is on a Linux distribution that uses apt-get as its package
-manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be
+manager, uninstalls ROS from the robot. The robot's operations will be unaffected until next boot as the ROS binaries will be 
 loaded into system memory, but on reboot or if ROS is killed and restarted in some other way, ROS will no longer be there.
 Especially bad if the ROS install was customized, as one would have to redo all those configurations all over again...
 
+This attack is almost the exact opposite of the previous one.
+It uses system capabilities to remove ROS itself, which is essentially the ultimate shut down.
+Although, as stated above, this wouldn't actually take effect until the next time the system was booted up, it still serves as a very effective way to deny someone access to their robotic control by rendering their system completely unavailable.
+
 \subsection{Start WW3}
-This pings (what the team knows to be, but can not directly confirm) a North Korean IP address.
-While it has no direct effect on the system, alerting North Korea to your presence is not exactly a great idea in the current political environment, and has a good chance of getting one on a watchlist.
+This pings (what the team knows to be, but can not directly confirm) a North Korean IP address. 
+While it has no direct effect on the system, alerting North Korea to your presence is not exactly a great idea in the current political environment, and has a good chance of getting one on a watchlist. 
+
+This package was written mostly for fun, since it doesn't do much from a research standpoint.
+It's hard to even classify where it would fit into the CIA Triad.
+It seems to hurt the person who owns the ROS device more than the device itself.
+In that case it would be quite effective for targeting someone and getting them investigated or arrested or in some way causing them legal and diplomatic problems.
 
 \subsection{Bitcoin Miner}
 This package attempts to install a bitcoin mining service on the robot.
-It does currently need superuser permissions for this, as it does need to use apt-get, which means that ROSCORE
+It does currently need superuser permissions for this, as it does need to use apt-get, which means that ROSCORE 
 needed to be run as a superuser so that this child process would have those permissions as well.
-If the install succeeds however, then you have a bitcoin miner using CPU time for someone else’s monetary gain, and with a
-little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the
+If the install succeeds however, then you have a bitcoin miner using CPU time for someone else’s monetary gain, and with a 
+little more work could be further configured to have the miner run at boot as a system process, but for the purposes of the 
 package it was good enough as is.
+
+Bitcoin mining is also a more fun type of package, but it does also serve to reduce the availability of the system resources since its mathematically intensive.
+It also somewhat touches upon the other two portions of the triad in that it compromises the system's integrity, and reveals some potentially confidential system information.
 
 \subsection{ROSless Listener}
 Here was an attempt to abuse how ROS subscribers and publishers really worked outside of ROS.
-All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general
-idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and
+All subscribers and publishers actually communicate through a shared TCP/UDP socket controlled by ROS master, and the general 
+idea was to make a non-ROS socket to communicate with the ROS socket, subscribe to a known publisher on the ROS machine, and 
 print whatever they published as plain text to stdout.
 In short, something like the first malpac, but going around ROS to do so. Unfortunately ROS uses TCP/UDP with a special header encoding that makes this difficult, as to communicate any publisher or subscriber you need their unique ID, which is assigned to them by ROS master at their launch. And to get said ID, you need to do some handshaking with ROS master, which turned out to be a bit beyond our technological capacity and time constraints.
-We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more
+We believe it is still possible to achieve this, but to do so would require a better working knowledge of sockets and more 
 investigation into the handshake protocol used by ROS master.
-While the documentation is available online, specifically on the technical overview page of the official ROS site \cite{ROS}, it was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS
+While the documentation is available online, specifically on the technical overview page of the official ROS site \cite{ROS}, it was just a little too much for the team with the time we had. Malpac ROS is similar to this, but differs in that Malpac ROS 
 still uses ROS to achieve this goal, while this package aimed to bypass ROS entirely.
 
 \subsection{Linux Kernel Exploitation}
 This package contains two scripts, a memory hook and a stack smasher.
-The first, the memory hook, is actually a Linux kernel exploit, and doesn't use ROS itself, but ROS commonly sits atop Ubuntu or Ubuntu-based linux systems.
-This package does a simple memory hook into the syscall table, which allows the script to make changes to whichever syscalls it wants once it finds the syscall table memory address.
+The first, the memory hook, is actually a Linux kernel exploit, and doesn't use ROS itself, but ROS commonly sits atop Ubuntu or Ubuntu-based linux systems. \cite{kern}
+This package does a simple memory hook into the syscall table, which allows the script to make changes to whichever syscalls it wants once it finds the syscall table memory address. \cite{hook}
 This is done by changing the pointer to the function of an existing syscall and replacing it with a pointer to a malicious function.
 This is the kind of script that would likely be secondary to one of the network attacks. One of those might be used to get into the system, and could then install LKMs like this one. Since it operates at the kernel level in Linux, ROS would have no way of ever knowing something was amiss, which renders this a very insidious threat.
 
-The second script, the stack smasher, provides a basic proof of concept (PoC) for stack smashing.
+The second script, the stack smasher, provides a basic proof of concept (PoC) for stack smashing. \cite{SS}
 This is a form of buffer overflow attack which has been used reliably for a very long time to gain unauthorized access to a system.
-It works by leveraging the overflow to push its way into privileged space and then execute some form of malicious code once it has entered that area of the stack.
+It works by leveraging the overflow to push its way into privileged space and then execute some form of malicious code once it has entered that area of the stack. \cite{SS2}
 This specific script is a small scale buffer so better demonstrate the idea.
 To use a simple approach like this, one needs access to the environment variables of the system so it's not perfect.
+
+Both of these different OS exploits affect the availability and the integrity of the system.
+They both remove the availability of their area's primary functionality on the way to modifying it and damaging the integrity.
+Some confidentiality is also lost in the process, but it's a negligible effect.
+The idea for both of these came primarily from subject matter covered in the Defense Against the Dark Arts class, and because the underlying kernel was an area of the system that had yet to be touched.
 
 \subsection{GPS Exploitation}
 The exploits in the category work with the GPS or Mavlink protocol.
@@ -428,15 +456,67 @@ We also found that our project evolved as we went along.
 We had initially intended to do more hardware based attacks, but they proved to be too cumbersome and difficult to generalize.
 There are also a board range of physical attacks ranging anywhere from an EMP type gun to an eagle taking down an airborne drone.
 
+Not every area from the threat model was successful, some were not possible to breach, but it is important to acknowledge their importance.
+This new version of the threat model was created to showcase the success level of each area using color coding.
+Those areas that are red have a lot more potential for vulnerabilities, yellow has been covered by our research but is still likely to have more, and green was heavily covered and only an expert in that area would be likely to identify more.
+This also includes our specific packages as leaves, rather than the general concepts they covered.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{color_model}
+    \caption{map of the areas which were most or least covered in this research}
+\end{figure}
+
 \section{Analysis}
-As discussed above in the Methods sections, FMEA was used primarily in the analysis of this project, in order to discover which of the created packages would be most catastrophic.
-In the figure above representing the graph of the RPNs, one can see which types of attacks were ranked the highest.
+As discussed above in the Methods sections, FMEA was used primarily in the analysis of this project, in order to discover which of the created packages would be most catastrophic. 
+In the figure above representing the graph of the RPNs, one can see which types of attacks were ranked the highest. 
 Those that focused on the integrity of the system turned out to have the highest concentration in the top of that ranking.
 
 There are a number of factors that could have lead to this clustering.
 Firstly, the majority of them were more thorough and written in a greater depth than many of those in other categories.
 This means that they would be likely ranked more severely since they do more damage in more detail within the scope of this research.
 Another potential reason for this is that spoofing and changing of data to something malicious tends to be perceived as more nefarious than something like resource consumption.
+
+Another interesting metric by which to compare the exploits is the time it took to write them.
+On average the time to complete an availability package was 18.75 minutes.
+For confidentiality the average was 246.7 minutes.
+Integrity came in at 296 minutes average development time, which is the longest.
+This helps to back up the trend of integrity focused packages being ranked as some of the most severe.
+If more time went into the development of them, then it makes sense that they would likely be more sophisticated.
+
+The table from which these averages came can be viewed below.
+
+\begin{center}
+\begin{tabular}{ |p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| }
+\hline
+    Package Name & Primary Type & Time Spent (in Minutes) \\ \hline
+    Malpac2 & Availability & 10 \\ \hline
+    Malpac3 & Availability & 20 \\ \hline
+    Malpac5 & Availability & 5 \\ \hline
+    Malpac7 & Availability & 25 \\ \hline
+    Malpac9 & Availability & 20 \\ \hline
+    Malpac10 & Availability & 20 \\ \hline
+    Malpac12 & Availability & 15 \\ \hline
+    Malpac14 & Availability & 35 \\ \hline
+    Malpac1 & Confidentiality & 30 \\ \hline
+    Malpac11 & Confidentiality & 25 \\ \hline
+    GPS1 & Confidentiality & 300 \\ \hline
+    Malpac\_Coms (nc\_drop.py) & Confidentiality & 720 \\ \hline
+    Malpac\_ROS (ros1.py) & Confidentiality & 360 \\ \hline
+    Malpac\_ROS (ros2.py) & Confidentiality & 45 \\ \hline
+    Malpac6 & Integrity & 40 \\ \hline
+    Malpac8 & Integrity & 30 \\ \hline
+    Malpac13 & Integrity & 10 \\ \hline
+    Malpac15 & Integrity & 300 \\ \hline
+    GPS2 & Integrity & 420 \\ \hline
+    MavLink & Integrity & 240 \\ \hline
+    MemHook & Integrity & 840 \\ \hline
+    StackSmash & Integrity & 540 \\ \hline
+    Malpac\_ROS (ros3.py) & Integrity & 480 \\ \hline
+    Malpac\_ROS (ros4.py) & Integrity & 60 \\ \hline
+     &  & \  \\ \hline
+\end{tabular}
+\end{center} 
 
 \section{Future Research}
 
