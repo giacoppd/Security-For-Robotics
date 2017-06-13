@@ -374,7 +374,7 @@ With better documentation and a system with which to reliably test it the Mavlin
 Two PoC packages were created that show ROS has zero authentication measures, by leveraging the publisher subscriber model.
 These simple yet effective PoCs are the basis for remote ROS exploitation. If you know the IP address of a remote ROS machine, you can leverage it as you wish, without the need
 to authenticate with the machine in any way. This should not be taken lightly, as this opens up ROS to any device that has a network connection. The PoC proving this to be true
-connects to a remote \"victim\" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15.
+connects to a remote \"victim\" machine, sending data to a ROS subscriber process. This complete PoC package extends upon Malpac 8 and 15. The idea came from expanding upon a study done by a university in South Korea \cite{ROSVulnCounter}.
 
 \subsection{ROS Process Communication}
 \begin{figure}[H]
@@ -385,10 +385,12 @@ connects to a remote \"victim\" machine, sending data to a ROS subscriber proces
 
 Two additional packages were created, exploring exploitation of the process communication model that ROS uses. These PoC packages act as ROS security tools, one of which is a subscriber
 fuzzing tool, and the other a publisher data capture tool. The subscriber fuzzer allows an attacker to target remote ROS processes by flooding them with large amounts of malformed data.
-This can be used to expose issues with ROS processes on a real world device, like a drone. The remote publisher data capture tool uses a ROS tool called rosbag to create a saved instance
+This can be used to expose issues with ROS processes on a real world device, like a drone. The idea of creating a fuzzer came from a study that looked at using a similar technique to exploit the MAV Link communicaitons protocol \cite{ROSMAVFuzz}.
+The remote publisher data capture tool uses a ROS tool called rosbag to create a saved instance
 of a given ROS process. This PoC uses that data to preform what's known as a \"ROS Bag Replay Attack\", which can cause devices running ROS to carry out a given operation at the will of the attacker.
 For example, an attacker could capture what happens with a drone flight control process turns on the motors to begin flight. The attacker could then \"replay\" that action remotely, causing the drone
-to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method.
+to fly. It is also possible to modify this captured data before replaying it via ROS, so an attacker could replay a malicious payload quite easily using this method. The idea of the ROS replay attack came from a
+South Korean study \cite{ROSVulnCounter}.
 
 \begin{figure}[H]
   \centering
