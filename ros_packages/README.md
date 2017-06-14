@@ -1,28 +1,6 @@
 ## ROS Packages
-This directory contains ROS packages related to our project.
+This directory contains the ROS exploit packages created for this project, to prove the existence of vulnerabilities.
 
-### Malicious ROS Packages
-  * malpac - Has 4 packages in total. The "exercise*" packages are Vee's class assignments. These have been added for reference purposes. The more important node package is malpac. This is Dominic's first malicious package. It sends a value and gets added. There are 2 subscribers, so one essentally eavesdrops. In the same package, there is a redirect.py script that is able to kill another node.
+Specific documentation on each package can be found within their respective folders, and discussed in the research paper.
 
-  * malpac2 - This a basic ROS forkbomb. Running it spawns a bunch of clones of itself that does some rather unpleasant math. Currently gets my laptop's cpu to 100% usage of 2 cores in about 2 minutes, at which point I killed it. Run it with 'rosrun malpac2 bomb.py' after doing the regular sourcing.
-
-  * malpac3 - This package disables all network interfaces and re-enables them after 5 seconds.
-
-  * malpac4 - To be added...
-
-  * malpac5 - To be added...
-
-  * malpac6 - To be added...
-
-  * malpac6b - To be added...
-
-  * malpac7 - To be added...
-
-  * malpac8 - To be added...
-
-  * gps_spoof - To be added (linked from another repo?)
-
-  * malpac_comms - The purpose of this package is to compromise communications on a ROS based system.
-
-  * malpac_ros - This package contains several ROS related malware packages, in an attempt to exploit ROS itself
   
